@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail Server - Giải pháp Email Doanh nghiệp | MES Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #00a8e8;
+            --accent: #ff6b00;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f4f8;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), #003d82);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 5px;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: #e9ecef;
+            padding: 15px 0;
+            margin-bottom: 40px;
+        }
+        
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb-content a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb-content a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        .breadcrumb-content span {
+            margin: 0 10px;
+            color: var(--gray);
+        }
+        
+        /* Hero section for Mail Server */
+        .mail-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1589149098258-3e9102cd63d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0 100px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .mail-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .mail-hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 2px solid var(--accent);
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: var(--accent);
+        }
+        
+        /* Section common styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        .section-header p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+        }
+        
+        /* Mail Server Features */
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: linear-gradient(135deg, #f8fafc, #e6f7ff);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .benefit-icon {
+            background: var(--success);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+        
+        .benefit-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .pricing-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px;
+        }
+        
+        .pricing-card.popular .pricing-header {
+            background: linear-gradient(135deg, var(--accent), #ff8c00);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--accent);
+            color: white;
+            padding: 8px 40px;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+        
+        .pricing-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .price span {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+        
+        .pricing-body {
+            padding: 30px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-features li i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--primary), #003d82);
+            color: white;
+        }
+        
+        .contact .section-header h2 {
+            color: white;
+        }
+        
+        .contact .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .contact-details {
+            list-style: none;
+        }
+        
+        .contact-details li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-details li i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .faq-item.active .faq-question {
+            background-color: #f0f7ff;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-col ul li a i {
+            margin-right: 10px;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mail-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .mail-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+                max-width: 250px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">MES<span>Solutions</span></div>
+            </div>
+            
+            <nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="index.html#about">Về chúng tôi</a></li>
+                    <li><a href="index.html#products">Sản phẩm</a></li>
+                    <li><a href="index.html#news">Tin tức</a></li>
+                    <li><a href="index.html#careers">Tuyển dụng</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container breadcrumb-content">
+            <a href="index.html">Trang chủ</a>
+            <span>/</span>
+            <a href="index.html#products">Sản phẩm</a>
+            <span>/</span>
+            <a href="#">Mail Server</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="mail-hero">
+        <div class="container">
+            <h1>Giải pháp Mail Server Doanh nghiệp</h1>
+            <p>Hệ thống email chuyên nghiệp, bảo mật và ổn định cho doanh nghiệp của bạn</p>
+            <div>
+                <a href="#pricing" class="btn">Xem Báo giá</a>
+                <a href="#contact" class="btn btn-outline">Liên hệ Tư vấn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tính năng nổi bật</h2>
+                <p>Mail Server của chúng tôi cung cấp giải pháp email toàn diện cho doanh nghiệp</p>
+            </div>
+            
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Bảo mật cao cấp</h3>
+                    <p>Hệ thống chống spam, chống virus mạnh mẽ với mã hóa dữ liệu đầu cuối, đảm bảo an toàn thông tin.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Hiệu suất vượt trội</h3>
+                    <p>Hạ tầng server mạnh mẽ đảm bảo tốc độ gửi/nhận email nhanh chóng, ổn định 99.9% thời gian hoạt động.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Đồng bộ đa nền tảng</h3>
+                    <p>Làm việc liền mạch trên mọi thiết bị: máy tính, điện thoại, tablet với đồng bộ hóa tức thì.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Dung lượng không giới hạn</h3>
+                    <p>Lưu trữ email không giới hạn với khả năng mở rộng linh hoạt theo nhu cầu doanh nghiệp.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>Quản trị tập trung</h3>
+                    <p>Bảng điều khiển quản trị dễ sử dụng, tạo và quản lý tài khoản, thiết lập chính sách bảo mật.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Hỗ trợ 24/7</h3>
+                    <p>Đội ngũ kỹ thuật chuyên nghiệp hỗ trợ 24/7 qua nhiều kênh: điện thoại, email, chat trực tuyến.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Lợi ích khi sử dụng Mail Server</h2>
+                <p>Tại sao doanh nghiệp nên chọn giải pháp Mail Server của chúng tôi</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Bảo mật thông tin</h3>
+                        <p>Bảo vệ dữ liệu nhạy cảm của doanh nghiệp khỏi các mối đe dọa bên ngoài với hệ thống mã hóa tiên tiến và xác thực đa yếu tố.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Nâng cao hiệu suất</h3>
+                        <p>Tối ưu hóa quy trình làm việc với tốc độ gửi/nhận email nhanh chóng, giảm thiểu thời gian chờ đợi và gián đoạn công việc.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Tiết kiệm chi phí</h3>
+                        <p>Không cần đầu tư hạ tầng server tốn kém, chi phí hợp lý với nhiều gói dịch vụ phù hợp với mọi quy mô doanh nghiệp.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Thương hiệu chuyên nghiệp</h3>
+                        <p>Sử dụng email tên miền riêng (yourname@yourcompany.com) tăng độ tin cậy và chuyên nghiệp trong giao dịch.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Khả năng mở rộng</h3>
+                        <p>Dễ dàng thêm/bớt tài khoản email khi doanh nghiệp phát triển mà không cần thay đổi cơ sở hạ tầng.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Tích hợp hệ thống</h3>
+                        <p>Kết nối dễ dàng với các giải pháp khác trong hệ sinh thái MES như MES Enterprise, Dashboard và CRM.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Gói dịch vụ Mail Server</h2>
+                <p>Lựa chọn giải pháp email phù hợp với nhu cầu doanh nghiệp của bạn</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Cơ bản</h3>
+                        <div class="price">1.500.000<span>đ/tháng</span></div>
+                        <p>Phù hợp cho doanh nghiệp nhỏ</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> 10 tài khoản email</li>
+                            <li><i class="fas fa-check"></i> Dung lượng 10GB/tài khoản</li>
+                            <li><i class="fas fa-check"></i> Tên miền riêng</li>
+                            <li><i class="fas fa-check"></i> Webmail & Mobile Access</li>
+                            <li><i class="fas fa-check"></i> Chống spam cơ bản</li>
+                            <li><i class="fas fa-times"></i> Sao lưu tự động</li>
+                            <li><i class="fas fa-times"></i> Hỗ trợ 24/7</li>
+                        </ul>
+                        <a href="#contact" class="btn">Đăng ký ngay</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-tag">Phổ biến</div>
+                    <div class="pricing-header">
+                        <h3>Doanh nghiệp</h3>
+                        <div class="price">3.500.000<span>đ/tháng</span></div>
+                        <p>Giải pháp tối ưu cho doanh nghiệp vừa</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> 30 tài khoản email</li>
+                            <li><i class="fas fa-check"></i> Dung lượng 25GB/tài khoản</li>
+                            <li><i class="fas fa-check"></i> Tên miền riêng</li>
+                            <li><i class="fas fa-check"></i> Webmail & Mobile Access</li>
+                            <li><i class="fas fa-check"></i> Chống spam & virus nâng cao</li>
+                            <li><i class="fas fa-check"></i> Sao lưu tự động hàng ngày</li>
+                            <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
+                        </ul>
+                        <a href="#contact" class="btn">Đăng ký ngay</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Cao cấp</h3>
+                        <div class="price">6.500.000<span>đ/tháng</span></div>
+                        <p>Giải pháp toàn diện cho tập đoàn</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Tài khoản email không giới hạn</li>
+                            <li><i class="fas fa-check"></i> Dung lượng không giới hạn</li>
+                            <li><i class="fas fa-check"></i> Tên miền riêng</li>
+                            <li><i class="fas fa-check"></i> Webmail & Mobile Access</li>
+                            <li><i class="fas fa-check"></i> Bảo mật doanh nghiệp nâng cao</li>
+                            <li><i class="fas fa-check"></i> Sao lưu tự động thời gian thực</li>
+                            <li><i class="fas fa-check"></i> Hỗ trợ 24/7 VIP</li>
+                        </ul>
+                        <a href="#contact" class="btn">Đăng ký ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Câu hỏi thường gặp</h2>
+                <p>Tìm hiểu thêm về giải pháp Mail Server của chúng tôi</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Mail Server có hỗ trợ tên miền riêng của chúng tôi không?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Có, chúng tôi hoàn toàn hỗ trợ sử dụng tên miền riêng của doanh nghiệp bạn. Sau khi đăng ký dịch vụ, đội ngũ kỹ thuật của chúng tôi sẽ hướng dẫn bạn cách cấu hình DNS để kích hoạt email với tên miền riêng.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Thời gian chuyển đổi từ hệ thống cũ sang Mail Server mất bao lâu?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Quá trình chuyển đổi thường mất từ 24-48 giờ làm việc. Chúng tôi sẽ hỗ trợ di chuyển toàn bộ dữ liệu email hiện có của bạn sang hệ thống mới một cách an toàn và đảm bảo không gián đoạn hoạt động kinh doanh.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Chúng tôi có thể sử dụng Mail Server trên điện thoại được không?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Hoàn toàn được. Mail Server tương thích với mọi thiết bị di động thông qua các ứng dụng email phổ biến như Outlook, Apple Mail hoặc ứng dụng chuyên dụng của chúng tôi. Bạn có thể cấu hình email trên điện thoại chỉ trong vài phút.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Tần suất sao lưu dữ liệu như thế nào?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Chúng tôi thực hiện sao lưu dữ liệu hàng ngày đối với gói Doanh nghiệp và sao lưu thời gian thực đối với gói Cao cấp. Tất cả dữ liệu được lưu trữ tại trung tâm dữ liệu đạt chuẩn quốc tế với khả năng phục hồi 99.99%.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Có giới hạn số lượng email gửi đi mỗi ngày không?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Gói Cơ bản có giới hạn 500 email/ngày/tài khoản. Gói Doanh nghiệp giới hạn 2000 email/ngày/tài khoản. Gói Cao cấp không giới hạn số lượng email gửi đi. Tất cả các gói đều đảm bảo không bị đánh dấu là spam khi gửi email hợp pháp.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Liên hệ với chúng tôi</h2>
+                <p>Đăng ký dùng thử hoặc nhận tư vấn miễn phí từ chuyên gia</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Thông tin liên hệ</h3>
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Địa chỉ</strong>
+                                <p>Tầng 12, Toà nhà MES, Số 123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Điện thoại</strong>
+                                <p>(028) 1234 5678</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p>mailserver@mes-solutions.vn</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Giờ làm việc</strong>
+                                <p>Thứ 2 - Thứ 7: 8:00 - 17:30</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="contact-form">
+                    <h3 style="color: var(--primary); margin-bottom: 25px;">Đăng ký tư vấn</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Họ và tên</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Tên công ty</label>
+                            <input type="text" id="company" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nhu cầu của bạn</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Gửi yêu cầu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>MES Solutions</h3>
+                    <p>Đơn vị hàng đầu cung cấp giải pháp chuyển đổi số toàn diện cho nhà máy thông minh tại Việt Nam.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Sản phẩm</h3>
+                    <ul>
+                        <li><a href="index.html#products"><i class="fas fa-chevron-right"></i> Phần mềm QLSX MES</a></li>
+                        <li><a href="index.html#products"><i class="fas fa-chevron-right"></i> Nền tảng lập trình</a></li>
+                        <li><a href="index.html#products"><i class="fas fa-chevron-right"></i> Mail Server</a></li>
+                        <li><a href="index.html#products"><i class="fas fa-chevron-right"></i> Giải pháp tùy chỉnh</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Liên kết nhanh</h3>
+                    <ul>
+                        <li><a href="index.html#about"><i class="fas fa-chevron-right"></i> Về chúng tôi</a></li>
+                        <li><a href="index.html#news"><i class="fas fa-chevron-right"></i> Tin tức</a></li>
+                        <li><a href="index.html#careers"><i class="fas fa-chevron-right"></i> Tuyển dụng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Liên hệ</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Số 123, Đường ABC, Quận XYZ, TP. Hồ Chí Minh</li>
+                        <li><i class="fas fa-phone"></i> (028) 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@mes-solutions.vn</li>
+                        <li><i class="fas fa-clock"></i> Thứ 2 - Thứ 7: 8:00 - 17:30</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 MES Solutions. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+        
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // FAQ toggle
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+                
+                const icon = question.querySelector('i');
+                if (faqItem.classList.contains('active')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Cảm ơn bạn đã gửi yêu cầu! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.');
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>

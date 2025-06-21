@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot AI | MES Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #00a8e8;
+            --accent: #ff6b00;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f4f8;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), #003d82);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 5px;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1677442135722-5f1d3d8a1f3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 2px solid var(--accent);
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: var(--accent);
+        }
+        
+        /* Section common styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        .section-header p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+        }
+        
+        /* Chatbot Intro */
+        .chatbot-intro {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .chatbot-text {
+            flex: 1;
+        }
+        
+        .chatbot-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .chatbot-text p {
+            margin-bottom: 20px;
+        }
+        
+        .chatbot-demo {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .chat-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            position: relative;
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+            background: #f0f4f8;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background: var(--secondary);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            margin-right: 10px;
+        }
+        
+        .chat-input button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .feature-icon {
+            background: var(--secondary);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Benefits Section */
+        .benefits-container {
+            background: linear-gradient(135deg, var(--primary), #003d82);
+            color: white;
+            padding: 80px 0;
+            border-radius: 15px;
+            margin-bottom: 60px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .benefit-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .benefit-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Use Cases Section */
+        .use-cases {
+            margin-bottom: 60px;
+        }
+        
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .case-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .case-icon {
+            height: 150px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .case-info {
+            padding: 25px;
+        }
+        
+        .case-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .case-info p {
+            color: var(--gray);
+        }
+        
+        /* Technology Section */
+        .technology {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 150px;
+        }
+        
+        .tech-icon {
+            width: 80px;
+            height: 80px;
+            background: #f0f4f8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Demo Section */
+        .demo-container {
+            background: linear-gradient(135deg, var(--primary), #003d82);
+            color: white;
+            border-radius: 15px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .demo-container:before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .demo-container:after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .demo-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-col ul li a i {
+            margin-right: 10px;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .chatbot-intro {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+                max-width: 250px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .tech-stack {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">MES<span>Solutions</span></div>
+            </div>
+            
+            <nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="index.html#about">Về chúng tôi</a></li>
+                    <li><a href="index.html#products">Sản phẩm</a></li>
+                    <li><a href="index.html#news">Tin tức</a></li>
+                    <li><a href="index.html#careers">Tuyển dụng</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Chatbot AI Thông minh</h1>
+            <p>Trợ lý ảo tích hợp AI giúp tự động hóa hỗ trợ và phân tích dữ liệu</p>
+            <div>
+                <a href="#demo" class="btn">Trải nghiệm Ngay</a>
+                <a href="#contact" class="btn btn-outline">Tư vấn Giải pháp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Introduction -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Giải pháp Chatbot AI</h2>
+                <p>Trợ lý ảo thông minh kết nối dữ liệu, hỗ trợ 24/7 và phân tích thông minh</p>
+            </div>
+            
+            <div class="chatbot-intro">
+                <div class="chatbot-text">
+                    <h3>Trợ lý ảo thông minh cho doanh nghiệp</h3>
+                    <p>Chatbot AI của MES Solutions là giải pháp trí tuệ nhân tạo tiên tiến, được thiết kế để hỗ trợ doanh nghiệp trong việc tự động hóa dịch vụ khách hàng, hỗ trợ nội bộ và phân tích dữ liệu thông minh.</p>
+                    <p>Với khả năng hiểu ngôn ngữ tự nhiên và truy cập vào hệ thống dữ liệu của công ty, chatbot có thể:</p>
+                    <ul style="list-style: none; margin: 20px 0;">
+                        <li style="margin-bottom: 10px; padding-left: 30px; position: relative;">
+                            <i class="fas fa-check" style="position: absolute; left: 0; color: var(--accent);"></i>
+                            Trả lời câu hỏi dựa trên tài liệu và cơ sở dữ liệu nội bộ
+                        </li>
+                        <li style="margin-bottom: 10px; padding-left: 30px; position: relative;">
+                            <i class="fas fa-check" style="position: absolute; left: 0; color: var(--accent);"></i>
+                            Hỗ trợ nhân viên truy vấn thông tin sản xuất, chính sách
+                        </li>
+                        <li style="margin-bottom: 10px; padding-left: 30px; position: relative;">
+                            <i class="fas fa-check" style="position: absolute; left: 0; color: var(--accent);"></i>
+                            Phân tích dữ liệu và đưa ra báo cáo tự động
+                        </li>
+                        <li style="margin-bottom: 10px; padding-left: 30px; position: relative;">
+                            <i class="fas fa-check" style="position: absolute; left: 0; color: var(--accent);"></i>
+                            Tích hợp với hệ thống MES để cập nhật thông tin thời gian thực
+                        </li>
+                    </ul>
+                    <p>Giải pháp của chúng tôi sử dụng công nghệ AI tiên tiến nhất, có khả năng học hỏi và cải thiện theo thời gian, đảm bảo mang lại trải nghiệm ngày càng thông minh và chính xác hơn.</p>
+                </div>
+                
+                <div class="chatbot-demo">
+                    <div class="chat-header">
+                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Chatbot">
+                        <div>
+                            <h4>Trợ lý ảo MES</h4>
+                            <small>Đang trực tuyến</small>
+                        </div>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="message bot-message">
+                            Xin chào! Tôi là trợ lý ảo MES. Tôi có thể giúp gì cho bạn hôm nay?
+                        </div>
+                        <div class="message user-message">
+                            Bạn có thể làm những gì?
+                        </div>
+                        <div class="message bot-message">
+                            Tôi có thể:
+                            - Trả lời câu hỏi về sản phẩm, dịch vụ
+                            - Hỗ trợ truy vấn dữ liệu sản xuất
+                            - Báo cáo tình trạng đơn hàng
+                            - Phân tích dữ liệu và đưa ra đề xuất
+                            Bạn cần hỗ trợ việc gì ạ?
+                        </div>
+                        <div class="message user-message">
+                            Tình trạng đơn hàng #12345?
+                        </div>
+                        <div class="message bot-message">
+                            Đơn hàng #12345:
+                            - Sản phẩm: Máy kiểm tra chất lượng
+                            - Số lượng: 15
+                            - Tình trạng: Đang giao hàng
+                            - Dự kiến giao: 25/06/2025
+                            Bạn cần thêm thông tin gì không ạ?
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Nhập câu hỏi của bạn...">
+                        <button><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="section-header">
+                <h2>Tính năng nổi bật</h2>
+                <p>Các công nghệ tiên tiến trong giải pháp Chatbot AI</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Xử lý ngôn ngữ tự nhiên</h3>
+                    <p>Hiểu và xử lý ngôn ngữ tự nhiên với độ chính xác cao, hỗ trợ đa ngôn ngữ</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Truy cập dữ liệu đa nguồn</h3>
+                    <p>Kết nối với cơ sở dữ liệu, hệ thống MES, ERP và các nguồn dữ liệu khác</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Phân tích tài liệu</h3>
+                    <p>Đọc và trích xuất thông tin từ tài liệu PDF, Word, Excel và trình bày</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Phân tích dữ liệu</h3>
+                    <p>Tự động phân tích dữ liệu và đưa ra báo cáo, dự báo và đề xuất</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Tích hợp hệ thống</h3>
+                    <p>Kết nối liền mạch với hệ thống hiện có của doanh nghiệp</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Học máy liên tục</h3>
+                    <p>Cải thiện hiệu suất theo thời gian thông qua học máy và tương tác</p>
+                </div>
+            </div>
+            
+            <!-- Benefits Section -->
+            <div class="benefits-container">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Lợi ích vượt trội</h2>
+                        <p>Giải pháp Chatbot AI mang lại giá trị đáng kể cho doanh nghiệp</p>
+                    </div>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <div class="benefit-number">24/7</div>
+                            <h3>Hỗ trợ không ngừng nghỉ</h3>
+                            <p>Trả lời yêu cầu mọi lúc, mọi nơi không cần nghỉ ngơi</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-number">70%</div>
+                            <h3>Giảm tải hỗ trợ</h3>
+                            <p>Giảm đáng kể khối lượng công việc cho bộ phận hỗ trợ</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-number">40%</div>
+                            <h3>Tăng hiệu suất</h3>
+                            <p>Nhân viên truy cập thông tin nhanh hơn, tập trung công việc giá trị cao</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-number">90%</div>
+                            <h3>Chính xác thông tin</h3>
+                            <p>Cung cấp thông tin chính xác dựa trên dữ liệu hệ thống</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Use Cases Section -->
+            <div class="use-cases">
+                <div class="section-header">
+                    <h2>Ứng dụng thực tế</h2>
+                    <p>Các tình huống ứng dụng Chatbot AI trong doanh nghiệp</p>
+                </div>
+                
+                <div class="cases-grid">
+                    <div class="case-card">
+                        <div class="case-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="case-info">
+                            <h3>Hỗ trợ khách hàng</h3>
+                            <p>Trả lời tự động câu hỏi về sản phẩm, dịch vụ, chính sách bảo hành</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card">
+                        <div class="case-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="case-info">
+                            <h3>Hỗ trợ nội bộ</h3>
+                            <p>Giải đáp thắc mắc nhân viên về chính sách, quy trình, thông tin nội bộ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card">
+                        <div class="case-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="case-info">
+                            <h3>Báo cáo tự động</h3>
+                            <p>Tạo báo cáo sản xuất, kinh doanh tự động theo yêu cầu</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card">
+                        <div class="case-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="case-info">
+                            <h3>Theo dõi đơn hàng</h3>
+                            <p>Cung cấp thông tin cập nhật về tình trạng đơn hàng và vận chuyển</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card">
+                        <div class="case-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="case-info">
+                            <h3>Hỗ trợ kỹ thuật</h3>
+                            <p>Hướng dẫn xử lý sự cố kỹ thuật, bảo trì thiết bị</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card">
+                        <div class="case-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="case-info">
+                            <h3>Phân tích dữ liệu</h3>
+                            <p>Phân tích dữ liệu sản xuất, kinh doanh và đưa ra đề xuất</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technology Section -->
+            <div class="technology">
+                <div class="section-header">
+                    <h2>Công nghệ tiên tiến</h2>
+                    <p>Nền tảng AI mạnh mẽ đằng sau giải pháp Chatbot</p>
+                </div>
+                
+                <p>Chatbot AI của chúng tôi được xây dựng trên nền tảng công nghệ tiên tiến nhất, kết hợp các giải pháp AI hàng đầu thế giới:</p>
+                
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <div class="tech-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h4>Natural Language Processing</h4>
+                        <small>Xử lý ngôn ngữ tự nhiên</small>
+                    </div>
+                    
+                    <div class="tech-item">
+                        <div class="tech-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h4>Neural Networks</h4>
+                        <small>Mạng nơ-ron nhân tạo</small>
+                    </div>
+                    
+                    <div class="tech-item">
+                        <div class="tech-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h4>Cloud AI</h4>
+                        <small>Điện toán đám mây</small>
+                    </div>
+                    
+                    <div class="tech-item">
+                        <div class="tech-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4>Knowledge Graph</h4>
+                        <small>Đồ thị tri thức</small>
+                    </div>
+                    
+                    <div class="tech-item">
+                        <div class="tech-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4>Machine Learning</h4>
+                        <small>Học máy</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Demo Section -->
+            <div class="demo-container" id="demo">
+                <div class="demo-content">
+                    <div class="section-header">
+                        <h2>Trải nghiệm Chatbot AI</h2>
+                        <p>Khám phá sức mạnh của trợ lý ảo thông minh</p>
+                    </div>
+                    
+                    <p>Đăng ký ngay để nhận bản demo cá nhân hóa và trải nghiệm công nghệ Chatbot AI cho doanh nghiệp của bạn:</p>
+                    
+                    <form style="max-width: 600px; margin: 40px auto;">
+                        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+                            <input type="text" placeholder="Họ và tên" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
+                            <input type="email" placeholder="Email" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
+                        </div>
+                        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+                            <input type="tel" placeholder="Số điện thoại" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
+                            <input type="text" placeholder="Tên công ty" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
+                        </div>
+                        <textarea placeholder="Mô tả nhu cầu của bạn" style="width: 100%; padding: 15px; border-radius: 15px; border: none; min-height: 100px; margin-bottom: 20px;"></textarea>
+                        <button type="submit" class="btn" style="border: none; cursor: pointer;">Yêu cầu Demo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>MES Solutions</h3>
+                    <p>Đơn vị hàng đầu cung cấp giải pháp chuyển đổi số toàn diện cho nhà máy thông minh tại Việt Nam.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Sản phẩm</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Phần mềm QLSX MES</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Nền tảng lập trình</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chatbot AI</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Giải pháp tùy chỉnh</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Liên kết nhanh</h3>
+                    <ul>
+                        <li><a href="index.html#about"><i class="fas fa-chevron-right"></i> Về chúng tôi</a></li>
+                        <li><a href="index.html#news"><i class="fas fa-chevron-right"></i> Tin tức</a></li>
+                        <li><a href="index.html#careers"><i class="fas fa-chevron-right"></i> Tuyển dụng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Liên hệ</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Số 123, Đường ABC, Quận XYZ, TP. Hồ Chí Minh</li>
+                        <li><i class="fas fa-phone"></i> (028) 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@mes-solutions.vn</li>
+                        <li><i class="fas fa-clock"></i> Thứ 2 - Thứ 7: 8:00 - 17:30</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 MES Solutions. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+        
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Chatbot simulation
+        const chatInput = document.querySelector('.chat-input input');
+        const chatMessages = document.querySelector('.chat-messages');
+        
+        if (chatInput) {
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            document.querySelector('.chat-input button').addEventListener('click', sendMessage);
+        }
+        
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                // Add user message
+                addMessage(message, 'user');
+                
+                // Simulate bot response after delay
+                setTimeout(() => {
+                    let response;
+                    if (message.toLowerCase().includes('xin chào') || message.toLowerCase().includes('hello')) {
+                        response = "Xin chào! Tôi là trợ lý ảo MES. Tôi có thể giúp gì cho bạn hôm nay?";
+                    } else if (message.toLowerCase().includes('cảm ơn')) {
+                        response = "Không có gì! Nếu bạn cần thêm thông tin, tôi luôn sẵn sàng hỗ trợ.";
+                    } else if (message.toLowerCase().includes('đơn hàng')) {
+                        response = "Để kiểm tra đơn hàng, vui lòng cung cấp mã đơn hàng hoặc tên khách hàng.";
+                    } else {
+                        response = "Cảm ơn câu hỏi của bạn! Tôi đang phân tích và sẽ cung cấp thông tin chính xác nhất.";
+                    }
+                    addMessage(response, 'bot');
+                }, 1000);
+                
+                // Clear input
+                chatInput.value = '';
+            }
+        }
+        
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(sender + '-message');
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.section-header, .feature-card, .benefit-item, .case-card, .tech-item').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Form submission
+        const demoForm = document.querySelector('form');
+        if (demoForm) {
+            demoForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Cảm ơn bạn đã đăng ký! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>

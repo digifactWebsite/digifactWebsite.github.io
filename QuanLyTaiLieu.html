@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Tài Liệu - Giải Pháp MES | MES Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700;800&display=swap">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #00a8e8;
+            --accent: #ff6b00;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --success: #28a745;
+            --warning: #ffc107;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 20px rgba(0,0,0,0.15);
+            --border-radius: 10px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f4f8;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), #003d82);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 5px;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero section */
+        .hero-docs {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-docs h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero-docs p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 2px solid var(--accent);
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: var(--accent);
+        }
+        
+        /* Section common styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        .section-header p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+        }
+        
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: linear-gradient(135deg, #f8fafc, #e6f0ff);
+        }
+        
+        .benefits-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .benefits-text {
+            flex: 1;
+        }
+        
+        .benefits-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .benefits-list {
+            list-style: none;
+        }
+        
+        .benefits-list li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .benefits-list li i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .benefits-image {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .benefits-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .benefits-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Dashboard Section */
+        .dashboard-preview {
+            background: var(--dark);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .dashboard-image {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .dashboard-container:hover .dashboard-image {
+            transform: scale(1.03);
+        }
+        
+        .dashboard-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            padding: 20px;
+            text-align: left;
+        }
+        
+        /* Process Section */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 50px;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--secondary);
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 3px solid var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 auto 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .step:hover .step-number {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, var(--primary), #003d82);
+            color: white;
+        }
+        
+        .testimonials .section-header h2 {
+            color: white;
+        }
+        
+        .testimonials .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-info p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .testimonial-content::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--accent);
+            line-height: 1;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--accent), #ff8b33);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta .btn {
+            background: white;
+            color: var(--accent);
+            border-color: white;
+        }
+        
+        .cta .btn:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: var(--transition);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .stat-text {
+            font-size: 1.1rem;
+        }
+        
+        /* File Types Section */
+        .file-types {
+            background: linear-gradient(135deg, #e6f7ff, #ffffff);
+            padding: 80px 0;
+        }
+        
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .type-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .type-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .type-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* Version Control */
+        .versions {
+            background: linear-gradient(135deg, #f8fafc, #e6f0ff);
+        }
+        
+        .version-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .version-badge {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+        
+        .version-info h4 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .version-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .version-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .current-version .version-badge {
+            background: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-col ul li a i {
+            margin-right: 10px;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .benefits-content {
+                flex-direction: column;
+            }
+            
+            .hero-docs h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-docs p {
+                font-size: 1.3rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+            }
+            
+            .process-steps::before {
+                width: 3px;
+                height: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-docs h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-docs p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+                max-width: 250px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .features-grid, .types-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cta p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">MES<span>Solutions</span></div>
+            </div>
+            
+            <nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="index.html#products">Sản phẩm</a></li>
+                    <li><a href="index.html#about">Về chúng tôi</a></li>
+                    <li><a href="index.html#contact">Liên hệ</a></li>
+                    <li><a href="#demo" class="btn">Demo ngay</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-docs">
+        <div class="container hero-content">
+            <h1>Giải Pháp Quản Lý Tài Liệu Thông Minh</h1>
+            <p>Số hóa và quản lý tài liệu tập trung, tăng hiệu quả làm việc 50% và đảm bảo tuân thủ</p>
+            <div>
+                <a href="#features" class="btn">Khám phá Tính năng</a>
+                <a href="#contact" class="btn btn-outline">Yêu cầu Tư vấn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tính Năng Đột Phá</h2>
+                <p>Giải pháp quản lý tài liệu toàn diện với công nghệ MES tiên tiến</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-folder-plus"></i>
+                    </div>
+                    <h3>Lưu Trữ Tập Trung</h3>
+                    <p>Quản lý tất cả tài liệu tại một nơi với phân loại thông minh</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Tìm Kiếm Thông Minh</h3>
+                    <p>Tìm kiếm nội dung trong tài liệu chỉ trong vài giây</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Bảo Mật Nâng Cao</h3>
+                    <p>Kiểm soát truy cập và bảo vệ tài liệu với mã hóa AES-256</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Quản Lý Phiên Bản</h3>
+                    <p>Theo dõi lịch sử thay đổi và khôi phục phiên bản trước</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Phê Duyệt Tài Liệu</h3>
+                    <p>Quy trình phê duyệt điện tử tự động cho tài liệu mới</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Đồng Bộ Đa Nền Tảng</h3>
+                    <p>Truy cập tài liệu mọi lúc mọi nơi trên mọi thiết bị</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hiệu Quả Đã Được Chứng Minh</h2>
+                <p>Giải pháp quản lý tài liệu MES giúp doanh nghiệp đạt được những kết quả ấn tượng</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-text">Giảm thời gian tìm kiếm tài liệu</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">50%</div>
+                    <div class="stat-text">Tăng hiệu suất làm việc</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-text">Độ chính xác tài liệu</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-text">Giảm chi phí in ấn</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Lợi Ích Vượt Trội</h2>
+                <p>Giải pháp quản lý tài liệu MES mang lại giá trị đột phá cho doanh nghiệp</p>
+            </div>
+            
+            <div class="benefits-content">
+                <div class="benefits-text">
+                    <h3>Tối ưu hóa quản lý tài liệu doanh nghiệp</h3>
+                    <p>Hệ thống quản lý tài liệu thông minh của chúng tôi giúp doanh nghiệp:</p>
+                    
+                    <ul class="benefits-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Giảm 70% thời gian tìm kiếm tài liệu</strong> với công cụ tìm kiếm thông minh
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Giảm 90% lỗi phiên bản</strong> với quản lý phiên bản tự động
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Tăng 50% hiệu suất làm việc</strong> nhờ truy cập tài liệu nhanh chóng
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Giảm 60% rủi ro tuân thủ</strong> với kiểm soát truy cập và kiểm toán
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Tiết kiệm 40% chi phí in ấn</strong> với quản lý tài liệu số
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Tuân thủ ISO 9001</strong> và các tiêu chuẩn quản lý chất lượng
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="benefits-image">
+                    <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Lợi ích quản lý tài liệu">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- File Types Section -->
+    <section class="file-types">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hỗ Trợ Đa Dạng Định Dạng</h2>
+                <p>Quản lý tất cả loại tài liệu với hơn 50 định dạng file khác nhau</p>
+            </div>
+            
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="far fa-file-pdf"></i>
+                    </div>
+                    <h3>PDF</h3>
+                    <p>Xem, chú thích và ký điện tử</p>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="far fa-file-word"></i>
+                    </div>
+                    <h3>Word</h3>
+                    <p>DOC, DOCX, RTF</p>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="far fa-file-excel"></i>
+                    </div>
+                    <h3>Excel</h3>
+                    <p>XLS, XLSX, CSV</p>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="far fa-file-powerpoint"></i>
+                    </div>
+                    <h3>PowerPoint</h3>
+                    <p>PPT, PPTX, PPS</p>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="far fa-file-image"></i>
+                    </div>
+                    <h3>Hình Ảnh</h3>
+                    <p>JPG, PNG, GIF, TIFF</p>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon">
+                        <i class="far fa-file-video"></i>
+                    </div>
+                    <h3>Video</h3>
+                    <p>MP4, MOV, AVI</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Bảng Điều Khiển Quản Lý Tài Liệu</h2>
+                <p style="color: rgba(255,255,255,0.8);">Giám sát toàn bộ tài liệu và hoạt động từ một màn hình</p>
+            </div>
+            
+            <div class="dashboard-container">
+                <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Bảng điều khiển tài liệu" class="dashboard-image">
+                <div class="dashboard-overlay">
+                    <h3>Dashboard Tài Liệu Thời Gian Thực</h3>
+                    <p>Theo dõi tình trạng tài liệu, truy cập, thay đổi và cảnh báo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Version Control -->
+    <section class="versions">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quản Lý Phiên Bản Tài Liệu</h2>
+                <p>Theo dõi lịch sử thay đổi và quản lý phiên bản tài liệu hiệu quả</p>
+            </div>
+            
+            <div class="version-card current-version">
+                <div class="version-badge">v3.0</div>
+                <div class="version-info">
+                    <h4>Quy trình sản xuất - Phiên bản mới nhất</h4>
+                    <p>Cập nhật quy trình sản xuất theo tiêu chuẩn ISO mới, bổ sung quy trình kiểm tra chất lượng tại công đoạn 4</p>
+                    <div class="version-meta">
+                        <span><i class="fas fa-user"></i> Nguyễn Văn A</span>
+                        <span><i class="fas fa-calendar"></i> 15/06/2025</span>
+                        <span><i class="fas fa-comment"></i> Ghi chú: Cập nhật theo yêu cầu QA</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="version-card">
+                <div class="version-badge">v2.1</div>
+                <div class="version-info">
+                    <h4>Quy trình sản xuất - Phiên bản trước</h4>
+                    <p>Sửa lỗi chính tả tại mục 5.2, bổ sung biểu mẫu kiểm tra tại phụ lục B</p>
+                    <div class="version-meta">
+                        <span><i class="fas fa-user"></i> Trần Thị B</span>
+                        <span><i class="fas fa-calendar"></i> 10/05/2025</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="version-card">
+                <div class="version-badge">v2.0</div>
+                <div class="version-info">
+                    <h4>Quy trình sản xuất - Phiên bản cũ</h4>
+                    <p>Phiên bản hoàn chỉnh đầu tiên sau khi phê duyệt</p>
+                    <div class="version-meta">
+                        <span><i class="fas fa-user"></i> Lê Văn C</span>
+                        <span><i class="fas fa-calendar"></i> 01/04/2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quy Trình Quản Lý Tài Liệu</h2>
+                <p>Quản lý toàn bộ vòng đời tài liệu từ tạo mới đến lưu trữ</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Tạo Mới</h3>
+                    <p>Tạo tài liệu mới hoặc tải lên từ hệ thống hiện có</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Phê Duyệt</h3>
+                    <p>Gửi phê duyệt theo quy trình được cấu hình sẵn</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Phân Phối</h3>
+                    <p>Phân phối tài liệu đến các bộ phận liên quan</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Sử Dụng & Cập Nhật</h3>
+                    <p>Sử dụng trong công việc và cập nhật khi cần thiết</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Lưu Trữ & Hủy</h3>
+                    <p>Lưu trữ khi hết hiệu lực hoặc hủy theo quy định</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Khách Hàng Nói Về Chúng Tôi</h2>
+                <p>Những phản hồi từ các doanh nghiệp đã triển khai giải pháp</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Nguyễn Văn An">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Nguyễn Văn An</h4>
+                            <p>Giám đốc QA, Công ty ABC</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Giải pháp quản lý tài liệu MES đã giúp chúng tôi quản lý hơn 5.000 tài liệu kỹ thuật và quy trình một cách hiệu quả. Thời gian tìm kiếm tài liệu giảm từ 30 phút xuống còn 30 giây."</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Trần Thị Bình">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Trần Thị Bình</h4>
+                            <p>Quản Lý Hành Chính, Tập đoàn XYZ</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Hệ thống giúp chúng tôi số hóa toàn bộ hồ sơ nhân sự, hợp đồng và tài liệu pháp lý. Chi phí lưu trữ giảm 70% và tuân thủ pháp lý được đảm bảo tuyệt đối."</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Lê Minh Cường">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Lê Minh Cường</h4>
+                            <p>Giám đốc Sản Xuất, Công ty DEF</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Quy trình phê duyệt tài liệu tự động đã giúp chúng tôi rút ngắn thời gian phê duyệt từ 2 tuần xuống còn 2 ngày. Tính năng quản lý phiên bản giúp loại bỏ hoàn toàn tình trạng sử dụng tài liệu lỗi thời."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="demo">
+        <div class="container">
+            <h2>Sẵn sàng cách mạng hóa quản lý tài liệu?</h2>
+            <p>Đăng ký ngay để nhận tư vấn miễn phí và demo giải pháp trong 30 phút</p>
+            <a href="#contact" class="btn">Đăng ký Demo Ngay</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>MES Solutions</h3>
+                    <p>Đơn vị hàng đầu cung cấp giải pháp chuyển đổi số toàn diện cho nhà máy thông minh tại Việt Nam.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Giải Pháp</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý tài liệu</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý sản xuất</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý kho</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý chất lượng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Liên kết nhanh</h3>
+                    <ul>
+                        <li><a href="index.html#about"><i class="fas fa-chevron-right"></i> Về chúng tôi</a></li>
+                        <li><a href="index.html#news"><i class="fas fa-chevron-right"></i> Tin tức</a></li>
+                        <li><a href="index.html#careers"><i class="fas fa-chevron-right"></i> Tuyển dụng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Tài liệu</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Liên hệ</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Số 123, Đường ABC, Quận XYZ, TP. Hồ Chí Minh</li>
+                        <li><i class="fas fa-phone"></i> (028) 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@mes-solutions.vn</li>
+                        <li><i class="fas fa-clock"></i> Thứ 2 - Thứ 7: 8:00 - 17:30</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 MES Solutions. Tất cả quyền được bảo lưu. | Thiết kế bởi MES Solutions</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+        
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.feature-card, .step, .testimonial-card, .stat-item, .type-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
