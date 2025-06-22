@@ -497,8 +497,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
             margin: 0 auto 20px;
+            font-size: 2rem;
         }
         
         .process-step h3 {
@@ -546,7 +546,35 @@
             max-width: 800px;
             margin: 0 auto;
         }
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--accent), #ff8b33);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
         
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta .btn {
+            background: white;
+            color: var(--accent);
+            border-color: white;
+        }
+        
+        .cta .btn:hover {
+            background: transparent;
+            color: white;
+        }
         /* Footer */
         footer {
             background: var(--dark);
@@ -782,7 +810,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Mô phỏng Sản xuất với Unity</h1>
+            <h1>Mô phỏng Sản xuất</h1>
             <p>Công nghệ Digital Twin tiên tiến cho nhà máy thông minh thế hệ mới</p>
             <div>
                 <a href="#demo" class="btn">Yêu cầu Demo</a>
@@ -795,7 +823,7 @@
     <section>
         <div class="container">
             <div class="section-header">
-                <h2>Giải pháp Digital Twin với Unity</h2>
+                <h2>Giải pháp Digital Twin</h2>
                 <p>Bản sao kỹ thuật số chính xác cho toàn bộ quy trình sản xuất</p>
             </div>
             
@@ -1005,6 +1033,40 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="app-content" id="maintenance-content">
+                    <div class="app-grid">
+                        <div class="app-card">
+                            <div class="app-img">
+                                <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Giám sát tình trạng thiết bị">
+                            </div>
+                            <div class="app-info">
+                                <h3>Giám sát tình trạng thiết bị</h3>
+                                <p>Theo dõi liên tục tình trạng máy móc, dự đoán thời điểm cần bảo trì dựa trên phân tích dữ liệu cảm biến.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="app-card">
+                            <div class="app-img">
+                                <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Dự báo hư hỏng">
+                            </div>
+                            <div class="app-info">
+                                <h3>Dự báo hư hỏng</h3>
+                                <p>Mô phỏng các kịch bản hư hỏng và đề xuất kế hoạch bảo trì tối ưu để giảm thiểu thời gian dừng máy.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="app-card">
+                            <div class="app-img">
+                                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Lập kế hoạch bảo trì">
+                            </div>
+                            <div class="app-info">
+                                <h3>Lập kế hoạch bảo trì</h3>
+                                <p>Tự động lên lịch bảo trì dựa trên tình trạng thực tế của thiết bị và kế hoạch sản xuất.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <!-- Process Section -->
@@ -1017,7 +1079,8 @@
                 <div class="process-steps">
                     <div class="process-step">
                         <div class="step-icon">
-                            <i class="fas fa-scan"></i>
+                            <!-- Icon Số hóa nhà máy mới -->
+                            <i class="fas fa-industry"></i>
                         </div>
                         <h3>Số hóa nhà máy</h3>
                         <p>Thu thập dữ liệu và tạo mô hình 3D chính xác của nhà máy</p>
@@ -1048,34 +1111,17 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Demo Section -->
-            <div class="demo-container" id="demo">
-                <div class="demo-content">
-                    <div class="section-header">
-                        <h2>Trải nghiệm Digital Twin</h2>
-                        <p>Khám phá sức mạnh của giải pháp Mô phỏng Sản xuất</p>
-                    </div>
                     
-                    <p>Đăng ký ngay để nhận bản demo cá nhân hóa và trải nghiệm công nghệ Digital Twin cho nhà máy của bạn:</p>
-                    
-                    <form style="max-width: 600px; margin: 40px auto;">
-                        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-                            <input type="text" placeholder="Họ và tên" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                            <input type="email" placeholder="Email" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                        </div>
-                        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-                            <input type="tel" placeholder="Số điện thoại" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                            <input type="text" placeholder="Tên công ty" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                        </div>
-                        <textarea placeholder="Thông tin bổ sung" style="width: 100%; padding: 15px; border-radius: 15px; border: none; min-height: 100px; margin-bottom: 20px;"></textarea>
-                        <button type="submit" class="btn" style="border: none; cursor: pointer;">Yêu cầu Demo</button>
-                    </form>
-                </div>
-            </div>
+        </div>
+    
+    </section>
+    <section class="cta" id="demo">
+        <div class="container">
+            <h2>Sẵn sàng sở hữu Công cụ mô phỏng giúp quản lý nhà máy của bạn?</h2>
+            <p>Đăng ký ngay để nhận tư vấn miễn phí và demo giải pháp ngay bây giờ</p>
+            <a  class="btn">Đăng ký Demo Ngay</a>
         </div>
     </section>
-
     <!-- Footer -->
     <footer id="contact">
         <div class="container">

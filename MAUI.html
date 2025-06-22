@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAUI - MES Community | Giải pháp MES đa nền tảng</title>
+    <title>MES Community | Giải pháp MES đa nền tảng</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -404,8 +404,8 @@
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            gap: 40px;
+            margin-top: 10px;
         }
         
         .pricing-card {
@@ -448,6 +448,14 @@
         .price span {
             font-size: 1.5rem;
             font-weight: 400;
+        }
+        
+        .price-unit {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 5px;
+            line-height: 1.4;
         }
         
         .pricing-features {
@@ -582,7 +590,59 @@
             font-size: 0.9rem;
             opacity: 0.7;
         }
+                /* Process Section */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 50px;
+        }
         
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--secondary);
+            z-index: 1;
+        }
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 3px solid var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 auto 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .step:hover .step-number {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
         /* Animations */
         @keyframes fadeInDown {
             from {
@@ -627,6 +687,18 @@
             
             .hero p {
                 font-size: 1.3rem;
+            }
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+            }
+            
+            .process-steps::before {
+                width: 3px;
+                height: 100%;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
         
@@ -688,6 +760,15 @@
                 width: 400px;
                 height: 270px;
             }
+
+            /* Responsive pricing adjustments */
+            .price {
+                font-size: 2.5rem;
+            }
+
+            .price-unit {
+                font-size: 1.3rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -720,6 +801,68 @@
                 width: 100%;
                 height: 250px;
             }
+
+            /* Mobile-specific pricing adjustments */
+            .price {
+                font-size: 2.2rem;
+            }
+
+            .price-unit {
+                font-size: 1.1rem;
+                display: block;
+                line-height: 1.5;
+            }
+
+            .pricing-features li {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Solution for the pricing card overflow */
+        .price-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .price-main {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .price-units {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .price-unit {
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .price-main {
+                font-size: 2.5rem;
+            }
+            .price-unit {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .price-main {
+                font-size: 2rem;
+            }
+            .price-units {
+                flex-direction: column;
+                gap: 0;
+            }
+            .price-unit {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -739,9 +882,11 @@
                     <li><a href="index.html">Trang chủ</a></li>
                     <li><a href="index.html#about">Về chúng tôi</a></li>
                     <li><a href="index.html#products">Sản phẩm</a></li>
-                    <li><a href="wpf-mes-enterprise.html">WPF Enterprise</a></li>
+                    <li><a href="WPF.html">MES Enterprise</a></li>
+                    <li><a href="#process">Quy trình triển khai</a></li>
                     <li><a href="#pricing">Bảng giá</a></li>
-                    <li><a href="index.html#contact">Liên hệ</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
                 </ul>
             </nav>
         </div>
@@ -750,8 +895,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>MAUI - MES Community</h1>
-            <p>Giải pháp MES đa nền tảng cho doanh nghiệp vừa và nhỏ - Phát triển một lần, chạy mọi nơi</p>
+            <h1>MES Community</h1>
+            <p>Giải pháp MES đa nền tảng cho doanh nghiệp, chạy mọi lúc, mọi nơi</p>
             <div>
                 <a href="#pricing" class="btn">Xem Bảng giá</a>
                 <a href="#features" class="btn btn-outline">Khám phá Tính năng</a>
@@ -770,7 +915,7 @@
             <div class="platform-intro">
                 <div class="platform-text">
                     <h3>Công nghệ MAUI cho mọi thiết bị</h3>
-                    <p>MAUI - MES Community là giải pháp quản lý sản xuất được phát triển trên nền tảng .NET MAUI (Multi-platform App UI) - công nghệ mới nhất từ Microsoft cho phép tạo ứng dụng đa nền tảng từ một codebase duy nhất.</p>
+                    <p>MES Community là giải pháp quản lý sản xuất được phát triển trên nền tảng .NET MAUI (Multi-platform App UI) - công nghệ mới nhất từ Microsoft cho phép tạo ứng dụng đa nền tảng từ một codebase duy nhất.</p>
                     <p>Với MAUI, chúng tôi mang đến giải pháp MES có thể chạy trên iOS, Android, macOS và Windows, giúp doanh nghiệp vừa và nhỏ tiếp cận công nghệ quản lý sản xuất hiện đại với chi phí hợp lý.</p>
                     <p>Giải pháp này tập trung vào tính linh hoạt, dễ triển khai và sử dụng, giúp các doanh nghiệp nhỏ có thể bắt đầu hành trình chuyển đổi số mà không cần đầu tư lớn.</p>
                 </div>
@@ -847,7 +992,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Tính năng cốt lõi</h2>
-                <p>MES Community - Giải pháp toàn diện cho doanh nghiệp vừa và nhỏ</p>
+                <p>MES Community - Giải pháp toàn diện cho doanh nghiệp</p>
             </div>
             
             <div class="features-grid">
@@ -985,7 +1130,47 @@
             </div>
         </div>
     </section>
-
+<!-- Process Section -->
+    <section id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quy Trình Triển Khai MES Community</h2>
+                <p>Từ kế hoạch đến hoàn thành sản phẩm với hệ thống MES</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Lập Kế Hoạch</h3>
+                    <p>Nhập đơn hàng, lập kế hoạch sản xuất và phân bổ nguồn lực</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Chuẩn Bị Sản Xuất</h3>
+                    <p>Xuất kho nguyên liệu, chuẩn bị máy móc và nhân sự</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Thực Hiện Sản Xuất</h3>
+                    <p>Giám sát quy trình sản xuất theo thời gian thực</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Kiểm Soát Chất Lượng</h3>
+                    <p>Kiểm tra chất lượng tại các điểm QCP trong quy trình</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Hoàn Thành & Báo Cáo</h3>
+                    <p>Nhập kho thành phẩm và tạo báo cáo sản xuất tự động</p>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Pricing Section -->
     <section class="pricing" id="pricing">
         <div class="container">
@@ -998,7 +1183,13 @@
                 <div class="pricing-card">
                     <h3>Startup</h3>
                     <p>Dành cho xưởng sản xuất nhỏ</p>
-                    <div class="price">5.000.000<span>/tháng</span></div>
+                    <div class="price-container">
+                        <div class="price-main">5.000.000</div>
+                        <div class="price-units">
+                            <span class="price-unit">/tháng</span>
+                            <span class="price-unit">/module</span>
+                        </div>
+                    </div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> Tối đa 10 người dùng</li>
                         <li><i class="fas fa-check"></i> Quản lý đơn hàng & sản xuất</li>
@@ -1014,7 +1205,13 @@
                     <div class="popular-tag">PHỔ BIẾN</div>
                     <h3>Business</h3>
                     <p>Dành cho doanh nghiệp vừa</p>
-                    <div class="price">8.500.000<span>/tháng</span></div>
+                    <div class="price-container">
+                        <div class="price-main">15.000.000</div>
+                        <div class="price-units">
+                            <span class="price-unit">/tháng</span>
+                            <span class="price-unit">/module</span>
+                        </div>
+                    </div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> Tối đa 30 người dùng</li>
                         <li><i class="fas fa-check"></i> Tất cả tính năng Startup</li>
@@ -1027,9 +1224,15 @@
                 </div>
                 
                 <div class="pricing-card">
-                    <h3>Enterprise</h3>
+                    <h3>International</h3>
                     <p>Dành cho doanh nghiệp đa chi nhánh</p>
-                    <div class="price">15.000.000<span>/tháng</span></div>
+                    <div class="price-container">
+                        <div class="price-main">20.000.000</div>
+                        <div class="price-units">
+                            <span class="price-unit">/tháng</span>
+                            <span class="price-unit">/module</span>
+                        </div>
+                    </div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> Không giới hạn người dùng</li>
                         <li><i class="fas fa-check"></i> Tất cả tính năng Business</li>
@@ -1045,11 +1248,11 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta">
+    <section class="cta" id="demo">
         <div class="container">
             <h2>Bắt đầu hành trình chuyển đổi số</h2>
             <p>Đăng ký dùng thử miễn phí 30 ngày để trải nghiệm MES Community</p>
-            <a href="#pricing" class="btn">Dùng thử miễn phí</a>
+            <a href="#" class="btn">Dùng thử miễn phí</a>
         </div>
     </section>
 

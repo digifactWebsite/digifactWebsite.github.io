@@ -214,7 +214,43 @@
             margin: 20px auto 0;
             font-size: 1.1rem;
         }
+        .section-header1 {
+            text-align: center;
+            margin-bottom: 60px;
+            color: #fff;
+
+        }
         
+        .section-header1 h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            color: #fff;
+        }
+        
+        .section-header1 h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            color: #fff;
+
+        }
+        
+        .section-header1 p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+            color: #fff;
+
+        }
         /* Dashboard Section */
         .dashboard-intro {
             display: flex;
@@ -728,9 +764,8 @@
                     <li><a href="index.html">Trang chủ</a></li>
                     <li><a href="index.html#about">Về chúng tôi</a></li>
                     <li><a href="index.html#products">Sản phẩm</a></li>
-                    <li><a href="index.html#news">Tin tức</a></li>
-                    <li><a href="index.html#careers">Tuyển dụng</a></li>
                     <li><a href="#contact">Liên hệ</a></li>
+                    <li><a href="#demo">Demo</a></li>
                 </ul>
             </nav>
         </div>
@@ -923,7 +958,7 @@
             
             <!-- Demo Section -->
             <div class="demo-container" id="demo">
-                <div class="section-header">
+                <div class="section-header1">
                     <h2>Trải nghiệm Dashboard</h2>
                     <p>Khám phá sức mạnh của giải pháp trực quan hóa dữ liệu</p>
                 </div>

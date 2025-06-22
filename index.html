@@ -513,6 +513,35 @@
             opacity: 0.9;
         }
         
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--accent), #ff8b33);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta .btn {
+            background: white;
+            color: var(--accent);
+            border-color: white;
+        }
+        
+        .cta .btn:hover {
+            background: transparent;
+            color: white;
+        }
         /* Footer */
         footer {
             background: var(--dark);
@@ -713,6 +742,13 @@
             .products-grid, .news-grid, .careers-grid {
                 grid-template-columns: 1fr;
             }
+            .cta h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cta p {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -823,7 +859,7 @@
             
             <div class="products-tabs">
                 <button class="tab-btn active" data-tab="mes">Phần mềm QLSX MES</button>
-                <button class="tab-btn" data-tab="platform">Nền tảng lập trình</button>
+                <button class="tab-btn" data-tab="platform">Hệ sinh thái MES</button>
                 <button class="tab-btn" data-tab="other">Sản phẩm khác</button>
             </div>
             
@@ -933,7 +969,7 @@
                         <div class="product-info">
                             <span class="product-tag">Nền tảng</span>
                             <h3>
-                                <a href="WPF.html">WPF - MES Enterprise</a> 
+                                <a href="WPF.html">MES Enterprise</a> 
                             </h3>
                             <p>Nền tảng phát triển MES cho doanh nghiệp lớn với giao diện hiện đại, hiệu suất cao.</p>
                         </div>
@@ -946,7 +982,7 @@
                         <div class="product-info">
                             <span class="product-tag">Nền tảng</span>
                             <h3>
-                                <a href="MAUI.html">MAUI - MES Community</a> 
+                                <a href="MAUI.html">MES Community</a> 
                             </h3>
                             <p>Giải pháp MES đa nền tảng dành cho cộng đồng doanh nghiệp vừa và nhỏ.</p>
                         </div>
@@ -1131,7 +1167,13 @@
             </div>
         </div>
     </section>
-
+    <section class="cta" id="demo">
+        <div class="container">
+            <h2>Sẵn sàng tối ưu hóa quản lý nhà máy của bạn?</h2>
+            <p>Đăng ký ngay để nhận tư vấn miễn phí và demo giải pháp ngay bây giờ</p>
+            <a href="#contact" class="btn">Đăng ký Demo Ngay</a>
+        </div>
+    </section>
     <!-- Footer -->
     <footer id="contact">
         <div class="container">

@@ -213,6 +213,44 @@
             margin: 20px auto 0;
             font-size: 1.1rem;
         }
+
+        .section-header1 {
+            text-align: center;
+            margin-bottom: 60px;
+            color: #fff;
+
+        }
+        
+        .section-header1 h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            color: #fff;
+        }
+        
+        .section-header1 h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            color: #fff;
+
+        }
+        
+        .section-header1 p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+            color: #fff;
+
+        }
         
         /* Chatbot Intro */
         .chatbot-intro {
@@ -527,7 +565,35 @@
             max-width: 800px;
             margin: 0 auto;
         }
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--accent), #ff8b33);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
         
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta .btn {
+            background: white;
+            color: var(--accent);
+            border-color: white;
+        }
+        
+        .cta .btn:hover {
+            background: transparent;
+            color: white;
+        }
         /* Footer */
         footer {
             background: var(--dark);
@@ -725,6 +791,13 @@
                 flex-direction: column;
                 align-items: center;
             }
+            .cta h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cta p {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -744,9 +817,8 @@
                     <li><a href="index.html">Trang chủ</a></li>
                     <li><a href="index.html#about">Về chúng tôi</a></li>
                     <li><a href="index.html#products">Sản phẩm</a></li>
-                    <li><a href="index.html#news">Tin tức</a></li>
-                    <li><a href="index.html#careers">Tuyển dụng</a></li>
                     <li><a href="#contact">Liên hệ</a></li>
+                    <li><a href="#demo">Demo</a></li>
                 </ul>
             </nav>
         </div>
@@ -899,7 +971,7 @@
             <!-- Benefits Section -->
             <div class="benefits-container">
                 <div class="container">
-                    <div class="section-header">
+                    <div class="section-header1">
                         <h2>Lợi ích vượt trội</h2>
                         <p>Giải pháp Chatbot AI mang lại giá trị đáng kể cho doanh nghiệp</p>
                     </div>
@@ -1055,32 +1127,16 @@
             </div>
             
             <!-- Demo Section -->
-            <div class="demo-container" id="demo">
-                <div class="demo-content">
-                    <div class="section-header">
-                        <h2>Trải nghiệm Chatbot AI</h2>
-                        <p>Khám phá sức mạnh của trợ lý ảo thông minh</p>
-                    </div>
-                    
-                    <p>Đăng ký ngay để nhận bản demo cá nhân hóa và trải nghiệm công nghệ Chatbot AI cho doanh nghiệp của bạn:</p>
-                    
-                    <form style="max-width: 600px; margin: 40px auto;">
-                        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-                            <input type="text" placeholder="Họ và tên" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                            <input type="email" placeholder="Email" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                        </div>
-                        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-                            <input type="tel" placeholder="Số điện thoại" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                            <input type="text" placeholder="Tên công ty" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                        </div>
-                        <textarea placeholder="Mô tả nhu cầu của bạn" style="width: 100%; padding: 15px; border-radius: 15px; border: none; min-height: 100px; margin-bottom: 20px;"></textarea>
-                        <button type="submit" class="btn" style="border: none; cursor: pointer;">Yêu cầu Demo</button>
-                    </form>
-                </div>
-            </div>
+            
         </div>
     </section>
-
+    <section class="cta" id="demo">
+        <div class="container">
+            <h2>Sẵn sàng sở hữu Trợ lý ảo giúp quản lý nhà máy của bạn?</h2>
+            <p>Đăng ký ngay để nhận tư vấn miễn phí và demo giải pháp ngay bây giờ</p>
+            <a  class="btn">Đăng ký Demo Ngay</a>
+        </div>
+    </section>
     <!-- Footer -->
     <footer id="contact">
         <div class="container">

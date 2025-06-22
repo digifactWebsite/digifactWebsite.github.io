@@ -548,7 +548,35 @@
             padding: 20px;
             max-height: 500px;
         }
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--accent), #ff8b33);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
         
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta .btn {
+            background: white;
+            color: var(--accent);
+            border-color: white;
+        }
+        
+        .cta .btn:hover {
+            background: transparent;
+            color: white;
+        }
         /* Footer */
         footer {
             background: var(--dark);
@@ -760,24 +788,15 @@
                     <li><a href="index.html">Trang chủ</a></li>
                     <li><a href="index.html#about">Về chúng tôi</a></li>
                     <li><a href="index.html#products">Sản phẩm</a></li>
-                    <li><a href="index.html#news">Tin tức</a></li>
-                    <li><a href="index.html#careers">Tuyển dụng</a></li>
+                    <li><a href="#pricing">Chi phí</a></li>
                     <li><a href="#contact">Liên hệ</a></li>
+                    <li><a href="#demo">Tư vấn giải pháp</a></li>
+
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <div class="container breadcrumb-content">
-            <a href="index.html">Trang chủ</a>
-            <span>/</span>
-            <a href="index.html#products">Sản phẩm</a>
-            <span>/</span>
-            <a href="#">Mail Server</a>
-        </div>
-    </div>
 
     <!-- Hero Section -->
     <section class="mail-hero">
@@ -786,7 +805,7 @@
             <p>Hệ thống email chuyên nghiệp, bảo mật và ổn định cho doanh nghiệp của bạn</p>
             <div>
                 <a href="#pricing" class="btn">Xem Báo giá</a>
-                <a href="#contact" class="btn btn-outline">Liên hệ Tư vấn</a>
+                <a href="#demo" class="btn btn-outline">Liên hệ Tư vấn</a>
             </div>
         </div>
     </section>
@@ -1059,80 +1078,16 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section class="cta" id="demo">
         <div class="container">
-            <div class="section-header">
-                <h2>Liên hệ với chúng tôi</h2>
-                <p>Đăng ký dùng thử hoặc nhận tư vấn miễn phí từ chuyên gia</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Thông tin liên hệ</h3>
-                    <ul class="contact-details">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <strong>Địa chỉ</strong>
-                                <p>Tầng 12, Toà nhà MES, Số 123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <strong>Điện thoại</strong>
-                                <p>(028) 1234 5678</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email</strong>
-                                <p>mailserver@mes-solutions.vn</p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <strong>Giờ làm việc</strong>
-                                <p>Thứ 2 - Thứ 7: 8:00 - 17:30</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="contact-form">
-                    <h3 style="color: var(--primary); margin-bottom: 25px;">Đăng ký tư vấn</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Họ và tên</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="company">Tên công ty</label>
-                            <input type="text" id="company" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Số điện thoại</label>
-                            <input type="tel" id="phone" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Nhu cầu của bạn</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn" style="width: 100%;">Gửi yêu cầu</button>
-                    </form>
-                </div>
-            </div>
+            <h2>Sẵn sàng sở hữu email riêng cho nhà máy của bạn?</h2>
+            <p>Đăng ký ngay để nhận tư vấn miễn phí và trải nghiệm ngay bây giờ</p>
+            <a href="#contact" class="btn">Đăng ký Ngay</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">

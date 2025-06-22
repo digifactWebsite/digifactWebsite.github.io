@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WPF - MES Enterprise | Giải pháp MES cao cấp</title>
+    <title>MES Enterprise | Giải pháp MES cao cấp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -385,7 +385,87 @@
             height: auto;
             display: block;
         }
+                /* Pricing Section */
+        .pricing {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            color: white;
+            text-align: center;
+        }
         
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 10px;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .pricing-card.popular {
+            background: rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        
+        .price span {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        
+        .price-unit {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-features li i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
         /* CTA Section */
         .cta {
             background: linear-gradient(135deg, var(--primary), #003d82);
@@ -500,7 +580,59 @@
             font-size: 0.9rem;
             opacity: 0.7;
         }
+        /* Process Section */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 50px;
+        }
         
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--secondary);
+            z-index: 1;
+        }
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 3px solid var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 auto 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .step:hover .step-number {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
         /* Animations */
         @keyframes fadeInDown {
             from {
@@ -545,6 +677,18 @@
             
             .hero p {
                 font-size: 1.3rem;
+            }
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+            }
+            
+            .process-steps::before {
+                width: 3px;
+                height: 100%;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
         
@@ -592,6 +736,14 @@
             .btn-outline {
                 margin-left: 0;
             }
+            /* Responsive pricing adjustments */
+            .price {
+                font-size: 2.5rem;
+            }
+
+            .price-unit {
+                font-size: 1.3rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -608,6 +760,61 @@
             }
             
             .cta p {
+                font-size: 1.1rem;
+            }
+            .price-unit {
+                font-size: 1.1rem;
+                display: block;
+                line-height: 1.5;
+            }
+
+            .pricing-features li {
+                font-size: 0.9rem;
+            }
+        }
+        /* Solution for the pricing card overflow */
+        .price-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .price-main {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .price-units {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .price-unit {
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .price-main {
+                font-size: 2.5rem;
+            }
+            .price-unit {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .price-main {
+                font-size: 2rem;
+            }
+            .price-units {
+                flex-direction: column;
+                gap: 0;
+            }
+            .price-unit {
                 font-size: 1.1rem;
             }
         }
@@ -629,9 +836,11 @@
                     <li><a href="index.html">Trang chủ</a></li>
                     <li><a href="index.html#about">Về chúng tôi</a></li>
                     <li><a href="index.html#products">Sản phẩm</a></li>
-                    <li><a href="index.html#news">Tin tức</a></li>
-                    <li><a href="index.html#careers">Tuyển dụng</a></li>
-                    <li><a href="index.html#contact">Liên hệ</a></li>
+                    <li><a href="MAUI.html">MES Community</a></li>
+                    <li><a href="#process">Quy trình triển khai</a></li>
+                    <li><a href="#pricing">Bảng giá</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
                 </ul>
             </nav>
         </div>
@@ -641,7 +850,7 @@
     <section class="hero">
         <div class="container">
             <h1>WPF - MES Enterprise</h1>
-            <p>Giải pháp MES cao cấp phát triển trên nền tảng WPF với .NET 8, mang lại hiệu suất vượt trội và trải nghiệm người dùng đẳng cấp</p>
+            <p>Giải pháp MES cao cấp phát triển trên nền tảng WPF với .NET mới nhất, mang lại hiệu suất vượt trội và trải nghiệm người dùng đẳng cấp</p>
             <div>
                 <a href="#contact" class="btn">Liên hệ Tư vấn</a>
                 <a href="#features" class="btn btn-outline">Khám phá Tính năng</a>
@@ -660,7 +869,7 @@
             <div class="platform-intro">
                 <div class="platform-text">
                     <h3>Ứng dụng MES mạnh mẽ cho doanh nghiệp lớn</h3>
-                    <p>WPF - MES Enterprise là giải pháp quản lý sản xuất toàn diện được phát triển trên nền tảng Windows Presentation Foundation (WPF) sử dụng .NET 8 - phiên bản mới nhất của framework .NET từ Microsoft.</p>
+                    <p>MES Enterprise là giải pháp quản lý sản xuất toàn diện được phát triển trên nền tảng Windows Presentation Foundation (WPF) sử dụng .NET 8 - phiên bản mới nhất của framework .NET từ Microsoft.</p>
                     <p>Với kiến trúc hiện đại và khả năng tùy biến cao, giải pháp này mang đến trải nghiệm người dùng vượt trội, hiệu suất ổn định và khả năng tích hợp đa hệ thống cho các doanh nghiệp sản xuất quy mô lớn.</p>
                     <p>Chúng tôi tập trung vào việc xây dựng một hệ thống không chỉ mạnh mẽ về mặt chức năng mà còn có giao diện trực quan, dễ sử dụng, giúp doanh nghiệp tối ưu hóa quy trình quản lý sản xuất.</p>
                 </div>
@@ -677,7 +886,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Ưu điểm vượt trội</h2>
-                <p>Lợi thế khi phát triển MES trên nền tảng WPF với .NET 8</p>
+                <p>Lợi thế khi phát triển MES trên nền tảng WPF với .NET 9</p>
             </div>
             
             <div class="advantages-grid">
@@ -821,7 +1030,7 @@
                             </div>
                             <div class="spec-details">
                                 <h3>Nền tảng công nghệ</h3>
-                                <p>WPF (Windows Presentation Foundation) trên .NET 8 - Phiên bản mới nhất</p>
+                                <p>WPF (Windows Presentation Foundation) trên .NET 9 - Phiên bản mới nhất</p>
                             </div>
                         </div>
                         
@@ -831,7 +1040,7 @@
                             </div>
                             <div class="spec-details">
                                 <h3>Cơ sở dữ liệu</h3>
-                                <p>Microsoft SQL Server 2022, hỗ trợ PostgreSQL, Oracle</p>
+                                <p>Tất cả các loại cơ sở dữ liệu thời điểm hiện tại, từ SQL đến NoSQL</p>
                             </div>
                         </div>
                         
@@ -851,7 +1060,7 @@
                             </div>
                             <div class="spec-details">
                                 <h3>Khả năng tích hợp</h3>
-                                <p>RESTful API, OData, gRPC, hỗ trợ tích hợp với SAP, Oracle ERP, Microsoft Dynamics</p>
+                                <p>RESTful API, OData, gRPC, hỗ trợ tích hợp với SAP, Oracle ERP, Microsoft Dynamics, hộ trợ tích hợp các sản phẩm khác trong hệ sinh thái của chúng tôi</p>
                             </div>
                         </div>
                         
@@ -873,9 +1082,124 @@
             </div>
         </div>
     </section>
-
+<!-- Process Section -->
+    <section id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quy Trình Triển Khai MES Enterprise</h2>
+                <p>Từ kế hoạch đến hoàn thành sản phẩm với hệ thống MES</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Lập Kế Hoạch</h3>
+                    <p>Nhập đơn hàng, lập kế hoạch sản xuất và phân bổ nguồn lực</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Chuẩn Bị Sản Xuất</h3>
+                    <p>Xuất kho nguyên liệu, chuẩn bị máy móc và nhân sự</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Thực Hiện Sản Xuất</h3>
+                    <p>Giám sát quy trình sản xuất theo thời gian thực</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Kiểm Soát Chất Lượng</h3>
+                    <p>Kiểm tra chất lượng tại các điểm QCP trong quy trình</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Hoàn Thành & Báo Cáo</h3>
+                    <p>Nhập kho thành phẩm và tạo báo cáo sản xuất tự động</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bảng giá linh hoạt</h2>
+                <p>Lựa chọn gói dịch vụ phù hợp với quy mô doanh nghiệp của bạn</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Startup</h3>
+                    <p>Dành cho xưởng sản xuất nhỏ</p>
+                    <div class="price-container">
+                        <div class="price-main">5.000.000</div>
+                        <div class="price-units">
+                            <span class="price-unit">/tháng</span>
+                            <span class="price-unit">/module</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Tối đa 10 người dùng</li>
+                        <li><i class="fas fa-check"></i> Quản lý đơn hàng & sản xuất</li>
+                        <li><i class="fas fa-check"></i> Báo cáo cơ bản</li>
+                        <li><i class="fas fa-check"></i> Hỗ trợ qua email</li>
+                        <li><i class="fas fa-times"></i> Quản lý kho nâng cao</li>
+                        <li><i class="fas fa-times"></i> Tích hợp API</li>
+                    </ul>
+                    <a href="#" class="btn">Đăng ký ngay</a>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-tag">PHỔ BIẾN</div>
+                    <h3>Business</h3>
+                    <p>Dành cho doanh nghiệp vừa</p>
+                    <div class="price-container">
+                        <div class="price-main">15.000.000</div>
+                        <div class="price-units">
+                            <span class="price-unit">/tháng</span>
+                            <span class="price-unit">/module</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Tối đa 30 người dùng</li>
+                        <li><i class="fas fa-check"></i> Tất cả tính năng Startup</li>
+                        <li><i class="fas fa-check"></i> Quản lý kho nâng cao</li>
+                        <li><i class="fas fa-check"></i> Báo cáo chuyên sâu</li>
+                        <li><i class="fas fa-check"></i> Tích hợp API cơ bản</li>
+                        <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
+                    </ul>
+                    <a href="#" class="btn">Đăng ký ngay</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>International</h3>
+                    <p>Dành cho doanh nghiệp đa chi nhánh</p>
+                    <div class="price-container">
+                        <div class="price-main">20.000.000</div>
+                        <div class="price-units">
+                            <span class="price-unit">/tháng</span>
+                            <span class="price-unit">/module</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Không giới hạn người dùng</li>
+                        <li><i class="fas fa-check"></i> Tất cả tính năng Business</li>
+                        <li><i class="fas fa-check"></i> Tích hợp API nâng cao</li>
+                        <li><i class="fas fa-check"></i> Báo cáo tùy chỉnh</li>
+                        <li><i class="fas fa-check"></i> Hỗ trợ chuyên sâu</li>
+                        <li><i class="fas fa-check"></i> Đào tạo nhân sự</li>
+                    </ul>
+                    <a href="#" class="btn">Đăng ký ngay</a>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- CTA Section -->
-    <section class="cta">
+    <section class="cta" id="demo">
         <div class="container">
             <h2>Sẵn sàng chuyển đổi nhà máy của bạn?</h2>
             <p>Liên hệ ngay với chúng tôi để được tư vấn giải pháp MES Enterprise phù hợp với doanh nghiệp</p>

@@ -624,7 +624,35 @@
             font-size: 0.9rem;
             opacity: 0.7;
         }
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--accent), #ff8b33);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
         
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta .btn {
+            background: white;
+            color: var(--accent);
+            border-color: white;
+        }
+        
+        .cta .btn:hover {
+            background: transparent;
+            color: white;
+        }
         /* Animations */
         @keyframes fadeInDown {
             from {
@@ -750,9 +778,8 @@
                     <li><a href="index.html">Trang chủ</a></li>
                     <li><a href="index.html#about">Về chúng tôi</a></li>
                     <li><a href="index.html#products">Sản phẩm</a></li>
-                    <li><a href="index.html#news">Tin tức</a></li>
-                    <li><a href="index.html#careers">Tuyển dụng</a></li>
                     <li><a href="#contact">Liên hệ</a></li>
+                    <li><a href="#demo">Demo</a></li>
                 </ul>
             </nav>
         </div>
@@ -1084,40 +1111,17 @@
             </div>
             
             <!-- Demo Section -->
-            <div class="demo-container" id="demo">
-                <div class="demo-content">
-                    <div class="section-header">
-                        <h2>Trải nghiệm Giao tiếp Nội bộ</h2>
-                        <p>Khám phá giải pháp giao tiếp tập trung cho doanh nghiệp của bạn</p>
-                    </div>
-                    
-                    <p>Đăng ký ngay để nhận bản demo cá nhân hóa và trải nghiệm giải pháp giao tiếp nội bộ chuyên nghiệp:</p>
-                    
-                    <form style="max-width: 600px; margin: 40px auto;">
-                        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-                            <input type="text" placeholder="Họ và tên" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                            <input type="email" placeholder="Email" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                        </div>
-                        <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-                            <input type="tel" placeholder="Số điện thoại" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                            <input type="text" placeholder="Tên công ty" style="flex: 1; min-width: 200px; padding: 12px 15px; border-radius: 30px; border: none;">
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <select style="width: 100%; padding: 12px 15px; border-radius: 30px; border: none;">
-                                <option value="">Quy mô nhân sự</option>
-                                <option value="small">Dưới 50 nhân viên</option>
-                                <option value="medium">50-200 nhân viên</option>
-                                <option value="large">200-1000 nhân viên</option>
-                                <option value="enterprise">Trên 1000 nhân viên</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn" style="border: none; cursor: pointer;">Yêu cầu Demo</button>
-                    </form>
-                </div>
-            </div>
+            
         </div>
     </section>
-
+    </section>
+    <section class="cta" id="demo">
+        <div class="container">
+            <h2>Sẵn sàng sở hữu Trợ lý ảo giúp quản lý nhà máy của bạn?</h2>
+            <p>Đăng ký ngay để nhận tư vấn miễn phí và demo giải pháp ngay bây giờ</p>
+            <a  class="btn">Đăng ký Demo Ngay</a>
+        </div>
+    </section>
     <!-- Footer -->
     <footer id="contact">
         <div class="container">
