@@ -105,14 +105,51 @@
       /* Hero Section */
       .hero {
         padding: 140px 0 60px;
-        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(29, 78, 216, 0.9)), 
+                    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        background-size: cover, 40px 40px;
+        background-position: center, 0 0;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(ellipse at top left, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at bottom right, rgba(37, 99, 235, 0.1) 0%, transparent 50%);
+        animation: float 6s ease-in-out infinite;
+        z-index: 1;
+      }
+
+      .hero::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"><animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/></circle><circle cx="60" cy="40" r="1.5" fill="rgba(255,255,255,0.08)"><animate attributeName="opacity" values="0;1;0" dur="4s" repeatCount="indefinite" begin="1s"/></circle><circle cx="80" cy="70" r="1" fill="rgba(255,255,255,0.06)"><animate attributeName="opacity" values="0;1;0" dur="5s" repeatCount="indefinite" begin="2s"/></circle></svg>');
+        animation: drift 20s linear infinite;
+        z-index: 1;
+      }
+
+      .hero .container {
+        position: relative;
+        z-index: 2;
       }
 
       .hero h1 {
         font-size: 3rem;
         margin-bottom: 20px;
         color: white;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        animation: slideInDown 1s ease-out;
       }
 
       .hero p {
@@ -120,6 +157,41 @@
         color: rgba(255, 255, 255, 0.9);
         max-width: 600px;
         margin: 0 auto;
+        text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        animation: slideInUp 1s ease-out 0.3s both;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(2deg); }
+      }
+
+      @keyframes drift {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+
+      @keyframes slideInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* Filter Section */
@@ -244,15 +316,86 @@
       }
 
       .card-icon {
-        font-size: 40px;
-        color: var(--light);
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         transition: all 0.3s ease;
-        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        position: relative;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
 
       .product-card:hover .card-icon {
         transform: scale(1.1);
-        color: var(--primary);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      }
+
+      /* Modern SVG icon styles inspired by Windows 11 and iOS */
+      .icon-warehouse { background: linear-gradient(135deg, #0ea5e9, #06b6d4); border-radius: 12px; }
+      .icon-production { background: linear-gradient(135deg, #8b5cf6, #a855f7); border-radius: 12px; }
+      .icon-quality { background: linear-gradient(135deg, #10b981, #059669); border-radius: 12px; }
+      .icon-hr { background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 12px; }
+      .icon-orders { background: linear-gradient(135deg, #ef4444, #dc2626); border-radius: 12px; }
+      .icon-equipment { background: linear-gradient(135deg, #64748b, #475569); border-radius: 12px; }
+      .icon-finance { background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 12px; }
+      .icon-sales { background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 12px; }
+      .icon-purchase { background: linear-gradient(135deg, #f97316, #ea580c); border-radius: 12px; }
+      .icon-documents { background: linear-gradient(135deg, #6366f1, #4f46e5); border-radius: 12px; }
+      .icon-customer { background: linear-gradient(135deg, #ec4899, #db2777); border-radius: 12px; }
+      .icon-opportunity { background: linear-gradient(135deg, #84cc16, #65a30d); border-radius: 12px; }
+      .icon-marketing { background: linear-gradient(135deg, #14b8a6, #0d9488); border-radius: 12px; }
+      .icon-support { background: linear-gradient(135deg, #8b5cf6, #7c3aed); border-radius: 12px; }
+      .icon-analytics { background: linear-gradient(135deg, #06b6d4, #0891b2); border-radius: 12px; }
+      .icon-enterprise { background: linear-gradient(135deg, #1e40af, #1d4ed8); border-radius: 12px; }
+      .icon-community { background: linear-gradient(135deg, #059669, #047857); border-radius: 12px; }
+      .icon-project { background: linear-gradient(135deg, #7c2d12, #92400e); border-radius: 12px; }
+      .icon-dashboard { background: linear-gradient(135deg, #be185d, #9d174d); border-radius: 12px; }
+      .icon-simulation { background: linear-gradient(135deg, #0369a1, #0284c7); border-radius: 12px; }
+      .icon-chatbot { background: linear-gradient(135deg, #7c3aed, #6d28d9); border-radius: 12px; }
+      .icon-vr { background: linear-gradient(135deg, #c2410c, #ea580c); border-radius: 12px; }
+      .icon-security { background: linear-gradient(135deg, #dc2626, #b91c1c); border-radius: 12px; }
+      .icon-network { background: linear-gradient(135deg, #0891b2, #0e7490); border-radius: 12px; }
+      .icon-agv { background: linear-gradient(135deg, #7c2d12, #a16207); border-radius: 12px; }
+      .icon-autowarehouse { background: linear-gradient(135deg, #4338ca, #3730a3); border-radius: 12px; }
+      .icon-vision { background: linear-gradient(135deg, #be123c, #9f1239); border-radius: 12px; }
+      .icon-quality-book { background: linear-gradient(135deg, #0f766e, #0891b2); border-radius: 12px; }
+      .icon-traceability { background: linear-gradient(135deg, #7c2d12, #92400e); border-radius: 12px; }
+      .icon-scheduling { background: linear-gradient(135deg, #7c3aed, #6366f1); border-radius: 12px; }
+      .icon-oee { background: linear-gradient(135deg, #ea580c, #dc2626); border-radius: 12px; }
+      .icon-reports { background: linear-gradient(135deg, #0891b2, #0e7490); border-radius: 12px; }
+      .icon-api { background: linear-gradient(135deg, #059669, #047857); border-radius: 12px; }
+      .icon-email { background: linear-gradient(135deg, #dc2626, #b91c1c); border-radius: 12px; }
+      .icon-chat-app { background: linear-gradient(135deg, #7c3aed, #6d28d9); border-radius: 12px; }
+      .icon-consulting { background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 12px; }
+      .icon-plc { background: linear-gradient(135deg, #1e40af, #1d4ed8); border-radius: 12px; }
+      .icon-monitoring { background: linear-gradient(135deg, #0891b2, #0e7490); border-radius: 12px; }
+      .icon-inventory { background: linear-gradient(135deg, #8b5cf6, #7c3aed); border-radius: 12px; }
+      .icon-accounting { background: linear-gradient(135deg, #10b981, #059669); border-radius: 12px; }
+      .icon-asset { background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 12px; }
+      .icon-contract { background: linear-gradient(135deg, #6366f1, #4f46e5); border-radius: 12px; }
+      .icon-loyalty { background: linear-gradient(135deg, #ec4899, #db2777); border-radius: 12px; }
+      .icon-campaign { background: linear-gradient(135deg, #14b8a6, #0d9488); border-radius: 12px; }
+      .icon-social { background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 12px; }
+      .icon-design { background: linear-gradient(135deg, #8b5cf6, #7c3aed); border-radius: 12px; }
+      .icon-prototype { background: linear-gradient(135deg, #f97316, #ea580c); border-radius: 12px; }
+      .icon-testing { background: linear-gradient(135deg, #ef4444, #dc2626); border-radius: 12px; }
+      .icon-lifecycle { background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 12px; }
+      .icon-workflow { background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 12px; }
+      .icon-scheduling-mes { background: linear-gradient(135deg, #8b5cf6, #7c3aed); border-radius: 12px; }
+      .icon-maintenance { background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 12px; }
+      .icon-cost { background: linear-gradient(135deg, #10b981, #059669); border-radius: 12px; }
+      .icon-compliance { background: linear-gradient(135deg, #ef4444, #dc2626); border-radius: 12px; }
+      .icon-bom { background: linear-gradient(135deg, #06b6d4, #0891b2); border-radius: 12px; }
+      .icon-version { background: linear-gradient(135deg, #6366f1, #4f46e5); border-radius: 12px; }
+      .icon-collaboration { background: linear-gradient(135deg, #ec4899, #db2777); border-radius: 12px; }
+      .icon-change { background: linear-gradient(135deg, #14b8a6, #0d9488); border-radius: 12px; }
+
+      .card-icon svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
       }
 
       .product-info {
@@ -281,12 +424,181 @@
         opacity: 0.9;
       }
 
+      /* MES Section Styles */
+      .mes-section {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        padding: 80px 0;
+        border-top: 1px solid rgba(100, 116, 139, 0.2);
+      }
+
+      .mes-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .mes-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--light);
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .mes-header p {
+        font-size: 1.2rem;
+        color: var(--gray);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .mes-comparison {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .mes-card {
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(100, 116, 139, 0.2);
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .mes-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .mes-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .mes-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+      }
+
+      .mes-card.enterprise {
+        border-color: rgba(245, 158, 11, 0.3);
+      }
+
+      .mes-card.enterprise::before {
+        background: linear-gradient(90deg, #f59e0b, #d97706);
+      }
+
+      .mes-card.community {
+        border-color: rgba(34, 197, 94, 0.3);
+      }
+
+      .mes-card.community::before {
+        background: linear-gradient(90deg, #22c55e, #16a34a);
+      }
+
+      .mes-badge {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .mes-badge.enterprise {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        color: white;
+      }
+
+      .mes-badge.community {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+      }
+
+      .mes-card h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--light);
+        margin-bottom: 15px;
+      }
+
+      .mes-card .description {
+        color: var(--gray);
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      .mes-features {
+        list-style: none;
+        text-align: left;
+        margin-bottom: 30px;
+      }
+
+      .mes-features li {
+        color: var(--light);
+        padding: 8px 0;
+        padding-left: 25px;
+        position: relative;
+        font-size: 0.95rem;
+      }
+
+      .mes-features li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--success);
+        font-weight: bold;
+      }
+
+      .mes-cta {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .mes-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+      }
+
+      .mes-cta.enterprise {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+      }
+
+      .mes-cta.community {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+      }
+
       /* Statistics */
       .stats-section {
-        background: linear-gradient(135deg, var(--accent), #fbbf24);
+        background: linear-gradient(135deg, var(--dark), var(--darker));
         padding: 60px 0;
         text-align: center;
         color: white;
+        border-top: 1px solid rgba(100, 116, 139, 0.2);
       }
 
       .stats-grid {
@@ -441,10 +753,12 @@
       <div class="container">
         <div class="filter-buttons">
           <button class="filter-btn active" data-filter="all">Tất cả</button>
-          <button class="filter-btn" data-filter="mes">Phần mềm MES</button>
           <button class="filter-btn" data-filter="erp">Phần mềm ERP</button>
+          <button class="filter-btn" data-filter="plm">Phần mềm PLM</button>
           <button class="filter-btn" data-filter="crm">Phần mềm CRM</button>
-          <button class="filter-btn" data-filter="platform">Nền tảng</button>
+          <button class="filter-btn" data-filter="mes">So sánh MES</button>
+          <button class="filter-btn" data-filter="mes-new">Phần mềm MES</button>
+          <button class="filter-btn" data-filter="platform">Nhà máy thông minh</button>
           <button class="filter-btn" data-filter="other">Sản phẩm khác</button>
         </div>
       </div>
@@ -453,86 +767,7 @@
     <!-- Main Content -->
     <section class="main-content">
       <div class="container">
-        <!-- MES Section -->
-        <div class="category-section" data-category="mes">
-          <div class="category-header">
-            <h2>Phần mềm MES</h2>
-            <p>Hệ thống quản lý thực thi sản xuất toàn diện</p>
-          </div>
-          <div class="products-grid">
-            <a href="QuanLyKho.html" class="product-card">
-              <div class="icon-container">
-                <i class="fas fa-warehouse card-icon"></i>
-              </div>
-              <div class="product-info">
-                <h3>Quản lý kho</h3>
-                <p>
-                  Tối ưu không gian lưu trữ và quy trình xuất nhập hàng hoá thông minh.
-                </p>
-              </div>
-            </a>
 
-            <a href="QuanLySanXuat.html" class="product-card">
-              <div class="icon-container">
-                <i class="fas fa-cogs card-icon"></i>
-              </div>
-              <div class="product-info">
-                <h3>Quản lý sản xuất</h3>
-                <p>
-                  Giám sát quy trình sản xuất và tối ưu hoá hiệu suất toàn diện.
-                </p>
-              </div>
-            </a>
-
-            <a href="QuanLyChatLuong.html" class="product-card">
-              <div class="icon-container">
-                <i class="fas fa-check-circle card-icon"></i>
-              </div>
-              <div class="product-info">
-                <h3>Quản lý chất lượng</h3>
-                <p>
-                  Kiểm soát chất lượng và đảm bảo tiêu chuẩn sản phẩm.
-                </p>
-              </div>
-            </a>
-
-            <a href="QuanLyNhanSu.html" class="product-card">
-              <div class="icon-container">
-                <i class="fas fa-users card-icon"></i>
-              </div>
-              <div class="product-info">
-                <h3>Quản lý nhân sự</h3>
-                <p>
-                  Quản lý thông tin nhân viên và phân ca làm việc hiệu quả.
-                </p>
-              </div>
-            </a>
-
-            <a href="QuanLyDonHang.html" class="product-card">
-              <div class="icon-container">
-                <i class="fas fa-shopping-cart card-icon"></i>
-              </div>
-              <div class="product-info">
-                <h3>Quản lý đơn hàng</h3>
-                <p>
-                  Theo dõi vòng đời đơn hàng từ tiếp nhận đến giao hàng.
-                </p>
-              </div>
-            </a>
-
-            <a href="QuanLyThietBi.html" class="product-card">
-              <div class="icon-container">
-                <i class="fas fa-wrench card-icon"></i>
-              </div>
-              <div class="product-info">
-                <h3>Quản lý thiết bị</h3>
-                <p>
-                  Bảo trì và quản lý tình trạng thiết bị sản xuất.
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
 
         <!-- ERP Section -->
         <div class="category-section" data-category="erp">
@@ -543,7 +778,11 @@
           <div class="products-grid">
             <a href="QuanLyTaiChinh.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-chart-line card-icon"></i>
+                <div class="card-icon icon-finance">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Quản lý tài chính</h3>
@@ -555,7 +794,11 @@
 
             <a href="QuanLyBanHang.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-handshake card-icon"></i>
+                <div class="card-icon icon-sales">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Quản lý bán hàng</h3>
@@ -567,7 +810,11 @@
 
             <a href="QuanLyMuaHang.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-truck card-icon"></i>
+                <div class="card-icon icon-purchase">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Quản lý mua hàng</h3>
@@ -579,12 +826,217 @@
 
             <a href="QuanLyTaiLieu.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-file-alt card-icon"></i>
+                <div class="card-icon icon-documents">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Quản lý tài liệu</h3>
                 <p>
                   Hệ thống quản lý tài liệu điện tử với tìm kiếm thông minh.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-inventory">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,7V13H13V7H11M11,15V17H13V15H11Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý tồn kho</h3>
+                <p>
+                  Theo dõi và quản lý tồn kho thời gian thực với cảnh báo tự động.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-accounting">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5,6H23V18H5V6M14,9A3,3 0 0,1 17,12A3,3 0 0,1 14,15A3,3 0 0,1 11,12A3,3 0 0,1 14,9M9,8A2,2 0 0,1 7,10V14A2,2 0 0,1 9,16H19A2,2 0 0,1 21,14V10A2,2 0 0,1 19,8H9Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Kế toán tổng hợp</h3>
+                <p>
+                  Hệ thống kế toán đầy đủ với báo cáo tài chính chuẩn VAS.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-asset">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,3L2,12H5V20H19V12H22L12,3M12,8.75A2.25,2.25 0 0,1 14.25,11A2.25,2.25 0 0,1 12,13.25A2.25,2.25 0 0,1 9.75,11A2.25,2.25 0 0,1 12,8.75M7,18V16A5,5 0 0,1 12,11A5,5 0 0,1 17,16V18H7Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý tài sản</h3>
+                <p>
+                  Quản lý tài sản cố định, khấu hao và bảo trì định kỳ.
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- PLM Section -->
+        <div class="category-section" data-category="plm">
+          <div class="category-header">
+            <h2>Quản lý vòng đời sản phẩm (PLM)</h2>
+            <p>Hệ thống quản lý toàn bộ vòng đời sản phẩm từ ý tưởng đến thị trường</p>
+          </div>
+          <div class="products-grid">
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-design">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6A2,2 0 0,1 10,4A2,2 0 0,1 12,2M21,9V7L15,1H5A2,2 0 0,0 3,3V21A2,2 0 0,0 5,23H19A2,2 0 0,0 21,21V9M19,9H14V4H19V9Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý thiết kế sản phẩm</h3>
+                <p>
+                  Công cụ thiết kế, mô hình hóa và quản lý bản vẽ kỹ thuật.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-prototype">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M7.5,18A1.5,1.5 0 0,1 6,16.5A1.5,1.5 0 0,1 7.5,15A1.5,1.5 0 0,1 9,16.5A1.5,1.5 0 0,1 7.5,18M7.5,13A1.5,1.5 0 0,1 6,11.5A1.5,1.5 0 0,1 7.5,10A1.5,1.5 0 0,1 9,11.5A1.5,1.5 0 0,1 7.5,13M12,18A1.5,1.5 0 0,1 10.5,16.5A1.5,1.5 0 0,1 12,15A1.5,1.5 0 0,1 13.5,16.5A1.5,1.5 0 0,1 12,18M12,13A1.5,1.5 0 0,1 10.5,11.5A1.5,1.5 0 0,1 12,10A1.5,1.5 0 0,1 13.5,11.5A1.5,1.5 0 0,1 12,13M16.5,18A1.5,1.5 0 0,1 15,16.5A1.5,1.5 0 0,1 16.5,15A1.5,1.5 0 0,1 18,16.5A1.5,1.5 0 0,1 16.5,18M16.5,13A1.5,1.5 0 0,1 15,11.5A1.5,1.5 0 0,1 16.5,10A1.5,1.5 0 0,1 18,11.5A1.5,1.5 0 0,1 16.5,13Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý nguyên mẫu</h3>
+                <p>
+                  Theo dõi quá trình phát triển và thử nghiệm nguyên mẫu.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-testing">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M7,2V4H8V18A4,4 0 0,0 12,22A4,4 0 0,0 16,18V4H17V2H7M11,16C10.4,16 10,15.6 10,15C10,14.4 10.4,14 11,14C11.6,14 12,14.4 12,15C12,15.6 11.6,16 11,16M13,12C12.4,12 12,11.6 12,11C12,10.4 12.4,10 13,10C13.6,10 14,10.4 14,11C14,11.6 13.6,12 13,12M14,7H10V4H14V7Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý thử nghiệm</h3>
+                <p>
+                  Hệ thống quản lý quy trình thử nghiệm và kiểm định sản phẩm.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-lifecycle">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,6H13V14H11V6M15.2,7.2L16.6,8.6L10.6,14.6L9.2,13.2L15.2,7.2Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Theo dõi vòng đời</h3>
+                <p>
+                  Giám sát toàn bộ vòng đời sản phẩm từ R&D đến khai thác.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-bom">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V5H19V19M17,17H7V15H17V17M17,13H7V11H17V13M17,9H7V7H17V9Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý BOM</h3>
+                <p>
+                  Quản lý danh sách vật liệu và cấu trúc sản phẩm đa cấp.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-version">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,7H13V9H11V7M11,11H13V17H11V11Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý phiên bản</h3>
+                <p>
+                  Theo dõi và kiểm soát các phiên bản thiết kế sản phẩm.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-collaboration">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M16,4C18.2,4 20,5.8 20,8S18.2,12 16,12S12,10.2 12,8S13.8,4 16,4M16,14C20.4,14 24,15.8 24,18V20H8V18C8,15.8 11.6,14 16,14M8.5,4C10.7,4 12.5,5.8 12.5,8S10.7,12 8.5,12S4.5,10.2 4.5,8S6.3,4 8.5,4M8.5,14C12.9,14 16.5,15.8 16.5,18V20H0.5V18C0.5,15.8 4.1,14 8.5,14Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Cộng tác nhóm</h3>
+                <p>
+                  Nền tảng cộng tác cho các nhóm phát triển sản phẩm.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-change">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M13,6V12L9,16L7.6,14.6L11,11H6V9H13V6Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý thay đổi</h3>
+                <p>
+                  Kiểm soát và phê duyệt các thay đổi thiết kế sản phẩm.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-compliance">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.1 16,12.7V16.7C16,17.4 15.4,18 14.7,18H9.2C8.6,18 8,17.4 8,16.8V12.8C8,12.1 8.6,11.5 9.2,11.5V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11.5H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Tuân thủ quy định</h3>
+                <p>
+                  Đảm bảo sản phẩm tuân thủ các tiêu chuẩn và quy định.
                 </p>
               </div>
             </a>
@@ -600,7 +1052,11 @@
           <div class="products-grid">
             <a href="QuanLyKhachHang.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-address-book card-icon"></i>
+                <div class="card-icon icon-customer">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Quản lý khách hàng</h3>
@@ -612,7 +1068,11 @@
 
             <a href="QuanLyCoHoi.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-bullseye card-icon"></i>
+                <div class="card-icon icon-opportunity">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4L13.09,8.26L22,9L17,14L18.18,22.74L12,19.74L5.82,22.74L7,14L2,9L10.91,8.26L12,4Z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Quản lý cơ hội bán hàng</h3>
@@ -624,7 +1084,11 @@
 
             <a href="MarketingTuDong.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-envelope-open-text card-icon"></i>
+                <div class="card-icon icon-marketing">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Marketing tự động</h3>
@@ -636,7 +1100,11 @@
 
             <a href="HoTroKhachHang.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-headset card-icon"></i>
+                <div class="card-icon icon-support">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,3C17.5,3 22,7.5 22,13C22,14.2 21.8,15.4 21.4,16.5L20,17.9C20.6,16.7 21,15.4 21,14C21,8.5 16.5,4 11,4H10V6L7,3L10,0V2H11C17.5,2 23,7.5 23,14C23,15.7 22.6,17.3 21.9,18.7L18.4,15.2C18.8,14.5 19,13.8 19,13C19,9.7 16.3,7 13,7S7,9.7 7,13S9.7,19 13,19H14.7L17.9,22.2C16.5,22.7 15,23 13.5,23C7,23 2,18 2,12.5C2,7 7,2 12,3Z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Hệ thống hỗ trợ khách hàng</h3>
@@ -646,26 +1114,265 @@
               </div>
             </a>
 
-            <a href="Chatbot.html" class="product-card">
-              <div class="icon-container">
-                <i class="fas fa-robot card-icon"></i>
-              </div>
-              <div class="product-info">
-                <h3>Chatbot AI</h3>
-                <p>
-                  Chatbot thông minh hỗ trợ khách hàng 24/7 với công nghệ AI.
-                </p>
-              </div>
-            </a>
-
             <a href="BaoCaoKhachHang.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-chart-bar card-icon"></i>
+                <div class="card-icon icon-analytics">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M22,21H2V3H4V19H6V17H10V19H12V16H16V19H18V17H22V21Z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Báo cáo và phân tích</h3>
                 <p>
                   Dashboard trực quan với báo cáo chi tiết về hiệu quả bán hàng.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-contract">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M9,13V15H7V13H9M15,15H17V13H15V15M9,10V12H7V10H9M15,12H17V10H15V12Z"/>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý hợp đồng</h3>
+                <p>
+                  Theo dõi hợp đồng, gia hạn và điều khoản thanh toán tự động.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-loyalty">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35M12,18.92L13.45,17.77C18.6,13.1 22,10 22,6.5C22,4.08 20.43,2 17.5,2C15.24,2 13.09,3.08 12,4.92C10.91,3.08 8.76,2 6.5,2C3.57,2 2,4.08 2,6.5C2,10 5.4,13.1 10.55,17.77L12,18.92Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Chương trình khách hàng thân thiết</h3>
+                <p>
+                  Quản lý điểm thưởng, voucher và chương trình loyalty.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-campaign">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý chiến dịch</h3>
+                <p>
+                  Tạo và theo dõi hiệu quả các chiến dịch marketing đa kênh.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-social">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M18,5H15.5A3.5,3.5 0 0,0 12,8.5V11H10V14H12V21H15V14H18L18.5,11H15V9A1,1 0 0,1 16,8H18V5Z"/>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Tích hợp mạng xã hội</h3>
+                <p>
+                  Kết nối và quản lý tương tác khách hàng trên các nền tảng xã hội.
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- MES Section -->
+        <div class="category-section" data-category="mes-new">
+          <div class="category-header">
+            <h2>Phần mềm MES</h2>
+            <p>Hệ sinh thái module hoàn chỉnh cho quản lý sản xuất thông minh</p>
+          </div>
+          <div class="products-grid">
+            <a href="QuanLyKho.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-warehouse">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 2L2 7v10c0 5.55 3.84 9 8 9s8-3.45 8-9V7L12 2zM8 18H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V8h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V8h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V8h2v2z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý kho</h3>
+                <p>
+                  Tối ưu không gian lưu trữ và quy trình xuất nhập hàng hoá thông minh.
+                </p>
+              </div>
+            </a>
+
+            <a href="QuanLySanXuat.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-production">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý sản xuất</h3>
+                <p>
+                  Giám sát quy trình sản xuất và tối ưu hoá hiệu suất toàn diện.
+                </p>
+              </div>
+            </a>
+
+            <a href="QuanLyChatLuong.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-quality">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý chất lượng</h3>
+                <p>
+                  Kiểm soát chất lượng và đảm bảo tiêu chuẩn sản phẩm.
+                </p>
+              </div>
+            </a>
+
+            <a href="QuanLyNhanSu.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-hr">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 7H17c-.8 0-1.54.37-2.01.99L10 14v-2c0-.55-.45-1-1-1s-1 .45-1 1v6h2v6h2v-6h2v6h4z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý nhân sự</h3>
+                <p>
+                  Quản lý thông tin nhân viên và phân ca làm việc hiệu quả.
+                </p>
+              </div>
+            </a>
+
+            <a href="QuanLyDonHang.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-orders">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý đơn hàng</h3>
+                <p>
+                  Theo dõi vòng đời đơn hàng từ tiếp nhận đến giao hàng.
+                </p>
+              </div>
+            </a>
+
+            <a href="QuanLyThietBi.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-equipment">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý thiết bị</h3>
+                <p>
+                  Bảo trì và quản lý tình trạng thiết bị sản xuất.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-workflow">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.21,15.05 2.27,14.78 2.46,14.63L4.57,12.97L4.5,12L4.57,11L2.46,9.37C2.27,9.22 2.21,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.79,8.95 21.73,9.22 21.54,9.37L19.43,11L19.5,12L19.43,13L21.54,14.63C21.73,14.78 21.79,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.04 19.05,18.95L16.56,17.95C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.62L12.75,4H11.25Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý quy trình sản xuất</h3>
+                <p>
+                  Thiết kế và quản lý workflow sản xuất tự động hóa.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-scheduling-mes">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Lập kế hoạch sản xuất</h3>
+                <p>
+                  Tối ưu hóa lịch trình và phân bổ nguồn lực sản xuất.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-maintenance">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M22.7,19L13.6,9.9C14.5,7.6 14,4.9 12.1,3C10.1,1 7.1,0.6 4.7,1.7L9,6L6,9L1.6,4.7C0.4,7.1 0.9,10.1 2.9,12.1C4.8,14 7.5,14.5 9.8,13.6L18.9,22.7C19.3,23.1 19.9,23.1 20.3,22.7L22.6,20.4C23.1,20 23.1,19.3 22.7,19Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý bảo trì</h3>
+                <p>
+                  Lập kế hoạch bảo trì thiết bị và theo dõi lịch sử sửa chữa.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-cost">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Tính toán chi phí sản xuất</h3>
+                <p>
+                  Phân tích và tối ưu hóa chi phí sản xuất theo thời gian thực.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-compliance">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.1 16,12.7V16.7C16,17.4 15.4,18 14.7,18H9.2C8.6,18 8,17.4 8,16.8V12.8C8,12.1 8.6,11.5 9.2,11.5V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11.5H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Tuân thủ tiêu chuẩn</h3>
+                <p>
+                  Đảm bảo quy trình sản xuất tuân thủ các tiêu chuẩn công nghiệp.
                 </p>
               </div>
             </a>
@@ -675,30 +1382,134 @@
         <!-- Platform Section -->
         <div class="category-section" data-category="platform">
           <div class="category-header">
-            <h2>Hệ sinh thái nhà máy</h2>
-            <p>Nền tảng phát triển và triển khai giải pháp</p>
+            <h2>Nhà máy thông minh</h2>
+            <p>Nền tảng tích hợp toàn diện cho quản lý và vận hành nhà máy thông minh 4.0</p>
           </div>
           <div class="products-grid">
-            <a href="WPF.html" class="product-card">
+            <a href="QuanLyChatLuong.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-desktop card-icon"></i>
+                <div class="card-icon icon-quality-book">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M19 2L14 6.5V17.5L19 13V2M6.5 5C4.55 5 2.45 5.4 1 6.5V21.16C1 21.41 1.25 21.66 1.5 21.66C1.6 21.66 1.65 21.59 1.75 21.59C3.1 20.94 5.05 20.59 6.5 20.59C8.45 20.59 10.55 20.99 12 22C13.35 21.15 15.8 20.59 17.5 20.59C19.15 20.59 20.85 20.87 22.25 21.56C22.35 21.61 22.4 21.66 22.5 21.66C22.75 21.66 23 21.41 23 21.16V6.5C22.4 6.05 21.75 5.75 21 5.5V19C19.9 18.65 18.7 18.5 17.5 18.5C15.8 18.5 13.35 19.15 12 20V8C10.55 6.95 8.45 6.5 6.5 6.5V5Z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
-                <h3>MES Enterprise</h3>
+                <h3>Quản lý sổ tay chất lượng</h3>
                 <p>
-                  Nền tảng MES cho doanh nghiệp lớn với giao diện hiện đại.
+                  Số hóa và quản lý tài liệu quy trình chất lượng theo tiêu chuẩn ISO.
                 </p>
               </div>
             </a>
 
-            <a href="MAUI.html" class="product-card">
+            <a href="#" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-mobile-alt card-icon"></i>
+                <div class="card-icon icon-traceability">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3,8V16H21V8H3M2,3H22A1,1 0 0,1 23,4V20A1,1 0 0,1 22,21H2A1,1 0 0,1 1,20V4A1,1 0 0,1 2,3M11,15H5V13H11V15M13,11H5V9H13V11M16,15V9H18V15H16Z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
-                <h3>MES Community</h3>
+                <h3>Tra cứu truy vết</h3>
                 <p>
-                  Giải pháp MES đa nền tảng cho doanh nghiệp vừa và nhỏ.
+                  Truy xuất nguồn gốc sản phẩm từ nguyên liệu đến thành phẩm.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-scheduling">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Điều phối sản xuất</h3>
+                <p>
+                  Lập kế hoạch và điều phối tối ưu lịch trình sản xuất thông minh.
+                </p>
+              </div>
+            </a>
+
+            <a href="Dashboard.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-oee">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M22,21H2V3H4V19H6V10H10V19H12V6H16V19H18V14H22V21Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Dashboard OEE</h3>
+                <p>
+                  Theo dõi hiệu suất thiết bị tổng thể theo thời gian thực.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-reports">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M19,3H5C3.9,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19M17,17H7V15H17V17M17,13H7V11H17V13M17,9H7V7H17V9Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Báo cáo linh hoạt</h3>
+                <p>
+                  Tạo báo cáo tự động với dữ liệu cập nhật theo thời gian thực.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-api">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M7.07,14.15C7.5,14.15 7.85,14.39 7.85,14.69C7.85,15 7.5,15.24 7.07,15.24C6.64,15.24 6.29,15 6.29,14.69C6.29,14.39 6.64,14.15 7.07,14.15M7.07,16.74C7.5,16.74 7.85,16.9 7.85,17.2C7.85,17.5 7.5,17.76 7.07,17.76C6.64,17.76 6.29,17.5 6.29,17.2C6.29,16.9 6.64,16.74 7.07,16.74M8.84,18.82C8.84,19.66 8.24,20.35 7.53,20.35C6.82,20.35 6.22,19.66 6.22,18.82C6.22,18 6.82,17.27 7.53,17.27C8.24,17.27 8.84,18 8.84,18.82M21.79,19.63C21.79,20.35 21.23,20.93 20.55,20.93C19.87,20.93 19.31,20.35 19.31,19.63C19.31,18.91 19.87,18.33 20.55,18.33C21.23,18.33 21.79,18.91 21.79,19.63M16.93,9.83C17.75,9.83 18.42,9.11 18.42,8.23C18.42,7.35 17.75,6.63 16.93,6.63C16.11,6.63 15.44,7.35 15.44,8.23C15.44,9.11 16.11,9.83 16.93,9.83M21.79,8.23C21.79,8.91 21.23,9.49 20.55,9.49C19.87,9.49 19.31,8.91 19.31,8.23C19.31,7.55 19.87,6.97 20.55,6.97C21.23,6.97 21.79,7.55 21.79,8.23M8.84,8.23C8.84,9.11 8.24,9.83 7.53,9.83C6.82,9.83 6.22,9.11 6.22,8.23C6.22,7.35 6.82,6.63 7.53,6.63C8.24,6.63 8.84,7.35 8.84,8.23M7.07,11.32C7.5,11.32 7.85,11.56 7.85,11.86C7.85,12.16 7.5,12.4 7.07,12.4C6.64,12.4 6.29,12.16 6.29,11.86C6.29,11.56 6.64,11.32 7.07,11.32M16.93,12.4C16.5,12.4 16.15,12.16 16.15,11.86C16.15,11.56 16.5,11.32 16.93,11.32C17.36,11.32 17.71,11.56 17.71,11.86C17.71,12.16 17.36,12.4 16.93,12.4M16.93,15.24C16.5,15.24 16.15,15 16.15,14.69C16.15,14.39 16.5,14.15 16.93,14.15C17.36,14.15 17.71,14.39 17.71,14.69C17.71,15 17.36,15.24 16.93,15.24M12,3C16.97,3 21,7.03 21,12C21,16.97 16.97,21 12,21C7.03,21 3,16.97 3,12C3,7.03 7.03,3 12,3Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Tích hợp API</h3>
+                <p>
+                  Kết nối và tích hợp với các hệ thống bên thứ ba qua API.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-plc">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M20,3H4A1,1 0 0,0 3,4V20A1,1 0 0,0 4,21H20A1,1 0 0,0 21,20V4A1,1 0 0,0 20,3M19,19H5V5H19V19M17,17V15H15V17H17M13,17V15H11V17H13M9,17V15H7V17H9M17,13V11H15V13H17M13,13V11H11V13H13M9,13V11H7V13H9M17,9V7H15V9H17M13,9V7H11V9H13M9,9V7H7V9H9Z"/>
+                </svg>
+              </div>
+              </div>
+              <div class="product-info">
+                <h3>Tích hợp thiết bị</h3>
+                <p>
+                  Kết nối máy móc, PLC, DCS, SCADA cho nhà máy thông minh.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-monitoring">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Giám sát vận hành</h3>
+                <p>
+                  Giám sát và điều khiển thiết bị sản xuất theo thời gian thực.
                 </p>
               </div>
             </a>
@@ -714,7 +1525,11 @@
           <div class="products-grid">
             <a href="OpenProject.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-tasks card-icon"></i>
+                <div class="card-icon icon-project">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M19 19H5V5H19V19M7 12H9V17H7V12M11 7H13V17H11V7M15 10H17V17H15V10Z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Công cụ quản lý dự án</h3>
@@ -726,7 +1541,11 @@
 
             <a href="Dashboard.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-tachometer-alt card-icon"></i>
+                <div class="card-icon icon-dashboard">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M13 3V9H21V3M13 21H21V11H13M3 21H11V15H3M3 13H11V3H3V13Z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Trực quan hóa dữ liệu</h3>
@@ -738,7 +1557,11 @@
 
             <a href="MoPhong.html" class="product-card">
               <div class="icon-container">
-                <i class="fas fa-cube card-icon"></i>
+                <div class="card-icon icon-simulation">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L6.04,7.5L12,10.85L17.96,7.5L12,4.15Z"/>
+                  </svg>
+                </div>
               </div>
               <div class="product-info">
                 <h3>Công cụ mô phỏng sản xuất</h3>
@@ -747,6 +1570,224 @@
                 </p>
               </div>
             </a>
+
+            <a href="Chatbot.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-chatbot">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M10.5,12A1.5,1.5 0 0,1 9,10.5A1.5,1.5 0 0,1 10.5,9A1.5,1.5 0 0,1 12,10.5A1.5,1.5 0 0,1 10.5,12M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7H15L13.5,7.5C13.1,7.3 12.6,7.2 12,7.2C11.4,7.2 10.9,7.3 10.5,7.5L9,7H3V9H9L10.5,9.5C10.9,9.7 11.4,9.8 12,9.8C12.6,9.8 13.1,9.7 13.5,9.5L15,9H21M12,20C10.9,20 10,19.1 10,18V16H14V18C14,19.1 13.1,20 12,20Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Chatbot AI</h3>
+                <p>
+                  Chatbot thông minh hỗ trợ khách hàng 24/7 với công nghệ AI.
+                </p>
+              </div>
+            </a>
+
+            <a href="DaoTaoVR.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-vr">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5,3C3.89,3 3,3.9 3,5V19C3,20.1 3.89,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3H5M6.5,6A2.5,2.5 0 0,1 9,8.5A2.5,2.5 0 0,1 6.5,11A2.5,2.5 0 0,1 4,8.5A2.5,2.5 0 0,1 6.5,6M17.5,6A2.5,2.5 0 0,1 20,8.5A2.5,2.5 0 0,1 17.5,11A2.5,2.5 0 0,1 15,8.5A2.5,2.5 0 0,1 17.5,6M6,13H18L17,18H7L6,13Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Đào tạo VR/AR</h3>
+                <p>
+                  Mô phỏng đào tạo nhân sự và tình huống khẩn cấp với VR/AR.
+                </p>
+              </div>
+            </a>
+
+            <a href="BaoMatDuLieu.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-security">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.1 16,12.7V16.7C16,17.4 15.4,18 14.7,18H9.2C8.6,18 8,17.4 8,16.8V12.8C8,12.1 8.6,11.5 9.2,11.5V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11.5H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Bảo toàn & bảo mật dữ liệu</h3>
+                <p>
+                  Hệ thống backup và bảo mật dữ liệu doanh nghiệp toàn diện.
+                </p>
+              </div>
+            </a>
+
+            <a href="HaTangMang.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-network">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4,1C2.89,1 2,1.89 2,3V7C2,8.11 2.89,9 4,9H1V11H13V9H10C11.11,9 12,8.11 12,7V3C12,1.89 11.11,1 10,1H4M4,3H10V7H4V3M3,12V18L1,20H9L7,18V12H3M10,12V18L8,20H16L14,18V12H10M17,12V18L15,20H23L21,18V12H17Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Triển khai hạ tầng IT</h3>
+                <p>
+                  Thiết kế và triển khai hạ tầng mạng, máy tính cho doanh nghiệp.
+                </p>
+              </div>
+            </a>
+
+            <a href="XeTuHanh.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-agv">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,10.68 7.59,12.2 8.55,13.34L9,13.75V16H15V13.75L15.45,13.34C16.41,12.2 17,10.68 17,9A5,5 0 0,0 12,4Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Xe tự hành AGV/AMR</h3>
+                <p>
+                  Robot vận chuyển tự động trong nhà máy và kho bãi.
+                </p>
+              </div>
+            </a>
+
+            <a href="KhoTuDong.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-autowarehouse">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9,2V8H11V11H5C3.89,11 3,11.89 3,13V19H2V21H4H20H22V19H21V13C21,11.89 20.11,11 19,11H13V8H15V2H9M11,4H13V6H11V4M5,13H19V19H5V13M6,15V18H8V15H6M16,15V18H18V15H16Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Kho tự động thông minh</h3>
+                <p>
+                  Hệ thống kho tự động với robot và AI quản lý hàng hóa.
+                </p>
+              </div>
+            </a>
+
+            <a href="XuLyAnh.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-vision">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Xử lý ảnh công nghiệp</h3>
+                <p>
+                  Ứng dụng AI xử lý ảnh cho kiểm soát chất lượng và giám sát.
+                </p>
+              </div>
+            </a>
+
+            <a href="Mail.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-email">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Hệ thống email nội bộ</h3>
+                <p>
+                  Email server tự triển khai bảo mật cao cho doanh nghiệp.
+                </p>
+              </div>
+            </a>
+
+            <a href="Message.html" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-chat-app">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,3C6.5,3 2,6.58 2,11C2.05,13.15 3.06,15.17 4.75,16.5C4.75,17.1 4.33,18.67 2,21C4.37,20.89 6.64,20 8.47,18.5C9.61,18.83 10.81,19 12,19C17.5,19 22,15.42 22,11C22,6.58 17.5,3 12,3M12,17C7.58,17 4,14.31 4,11C4,7.69 7.58,5 12,5C16.42,5 20,7.69 20,11C20,14.31 16.42,17 12,17Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Ứng dụng chat nội bộ</h3>
+                <p>
+                  Platform chat OTT tự triển khai cho giao tiếp nội bộ doanh nghiệp.
+                </p>
+              </div>
+            </a>
+
+            <a href="#" class="product-card">
+              <div class="icon-container">
+                <div class="card-icon icon-consulting">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Tư vấn chuyển đổi số</h3>
+                <p>
+                  Đào tạo và tư vấn nâng cao năng lực chuyển đổi số doanh nghiệp.
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- MES Section -->
+    <section class="mes-section">
+      <div class="container">
+        <div class="mes-header">
+          <h2>Phiên bản phần mềm</h2>
+          <p style="max-width: 900px; margin: 0 auto;">Hãy lựa chọn phiên bản phù hợp cho mọi quy mô doanh nghiệp</p>
+        </div>
+        
+        <div class="mes-comparison">
+          <!-- Enterprise Version -->
+          <div class="mes-card enterprise">
+            <div class="mes-badge enterprise">Trả phí</div>
+            <h3>Enterprise</h3>
+            <p class="description">
+              Giải pháp toàn diện cho doanh nghiệp <br/>với mong muốn tùy biến cao và hỗ trợ chuyên sâu
+            </p>
+            
+            <ul class="mes-features">
+              <li>Tùy biến không giới hạn theo yêu cầu</li>
+              <li>Hỗ trợ kỹ thuật 24/7 từ đội ngũ chuyên gia</li>
+              <li>Tích hợp sâu với ERP, CRM và hệ thống khác</li>
+              <li>Báo cáo và dashboard tùy chỉnh</li>
+              <li>Đào tạo chuyên sâu cho nhân viên</li>
+              <li>Bảo trì và cập nhật thường xuyên</li>
+              <li>Tư vấn tối ưu quy trình sản xuất</li>
+              <li>Backup và khôi phục dữ liệu tự động</li>
+            </ul>
+            
+            <a href="WPF.html" class="mes-cta enterprise">Liên hệ tư vấn</a>
+          </div>
+
+          <!-- Community Version -->
+          <div class="mes-card community">
+            <div class="mes-badge community">Miễn phí</div>
+            <h3>Community</h3>
+            <p class="description">
+              Phiên bản rút gọn để thử nghiệm <br/> và làm quen với phần mềm quản lý sản xuất
+            </p>
+            
+            <ul class="mes-features">
+              <li>Triển khai ngay để thử nghiệm</li>
+              <li>Doanh nghiệp làm quen với phần mềm</li>
+              <li>Giao diện đơn giản, dễ sử dụng</li>
+              <li>Các tính năng cơ bản rút gọn</li>
+              <li>Phù hợp cho giai đoạn khởi động</li>
+              <li>Tài liệu hướng dẫn cơ bản</li>
+              <li>Không cần đầu tư ban đầu</li>
+              <li>Chuyển đổi dễ dàng lên Enterprise</li>
+            </ul>
+            
+            <a href="MAUI.html" class="mes-cta community">Tải về thử ngay</a>
           </div>
         </div>
       </div>
@@ -758,11 +1799,11 @@
         <h2>Tổng quan hệ sinh thái</h2>
         <div class="stats-grid">
           <div class="stat-item">
-            <div class="stat-number">17+</div>
+            <div class="stat-number">51+</div>
             <div class="stat-label">Module chức năng</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">5</div>
+            <div class="stat-number">6</div>
             <div class="stat-label">Danh mục sản phẩm</div>
           </div>
           <div class="stat-item">
