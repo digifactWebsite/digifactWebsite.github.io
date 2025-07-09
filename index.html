@@ -297,6 +297,9 @@
         color: var(--gray);
         max-width: 600px;
         margin: 0 auto;
+        white-space: nowrap;
+        font-size: 1.4rem;
+        text-align: center;
       }
 
       /* About Section */
@@ -999,8 +1002,7 @@
               những
               <strong
                 >nhân sự làm việc trong nhà máy, lập trình viên kinh nghiệm và
-                chuyên gia chuyển đổi số</strong
-              >
+                chuyên gia chuyển đổi số</strong>
               cùng các <strong>nhà nghiên cứu học thuật</strong> trong các công
               nghệ tiên tiến nhất hướng đến <strong>nhà máy thông minh</strong>.
             </p>
@@ -1094,21 +1096,18 @@
       <div class="container">
         <div class="section-title">
           <h2>Giải pháp của chúng tôi</h2>
-          <p>
-            Các sản phẩm công nghệ hàng đầu giúp doanh nghiệp chuyển đổi số
-            thành công
-          </p>
+          <p style="max-width: 900px; margin: 0 auto;">Các sản phẩm công nghệ hàng đầu giúp doanh nghiệp chuyển đổi số thành công</p>
         </div>
 
         <div class="products-tabs">
-          <button class="tab-btn active" data-tab="mes">
-            Phần mềm MES
-          </button>
-          <button class="tab-btn" data-tab="mes">
+          <button class="tab-btn" data-tab="erp">
             Phần mềm ERP
           </button>
-          <button class="tab-btn" data-tab="mes">
+          <button class="tab-btn" data-tab="crm">
             Phần mềm CRM
+          </button>
+          <button class="tab-btn active" data-tab="mes">
+            Phần mềm MES
           </button>
           <button class="tab-btn" data-tab="platform">Hệ sinh thái nhà máy</button>
           <button class="tab-btn" data-tab="other">Sản phẩm khác</button>
@@ -1238,6 +1237,206 @@
           </div>
         </div>
 
+        <!-- ERP Software Tab -->
+        <div class="tab-content" id="erp-content">
+          <div class="products-grid">
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                  alt="Quản lý tài chính"
+                />
+              </div>
+              <div class="product-info">
+                <span class="product-tag">ERP Module</span>
+                <h3>Quản lý tài chính</h3>
+                <p>
+                  Hệ thống quản lý tài chính toàn diện, theo dõi dòng tiền và báo cáo tài chính chi tiết.
+                </p>
+                <a href="QuanLyTaiChinh.html" class="news-link"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                  alt="Quản lý bán hàng"
+                />
+              </div>
+              <div class="product-info">
+                <span class="product-tag">ERP Module</span>
+                <h3>Quản lý bán hàng</h3>
+                <p>
+                  Quản lý quy trình bán hàng từ báo giá đến giao hàng và thanh toán.
+                </p>
+                <a href="QuanLyBanHang.html" class="news-link"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                  alt="Quản lý mua hàng"
+                />
+              </div>
+              <div class="product-info">
+                <span class="product-tag">ERP Module</span>
+                <h3>Quản lý mua hàng</h3>
+                <p>
+                  Tối ưu hóa quy trình mua hàng, quản lý nhà cung cấp và kiểm soát chi phí.
+                </p>
+                <a href="QuanLyMuaHang.html" class="news-link"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                  alt="Quản lý tài liệu"
+                />
+              </div>
+              <div class="product-info">
+                <span class="product-tag">ERP Module</span>
+                <h3>Quản lý tài liệu</h3>
+                <p>
+                  Hệ thống quản lý tài liệu điện tử với khả năng tìm kiếm và phân quyền.
+                </p>
+                <a href="QuanLyTaiLieu.html" class="news-link"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRM Software Tab -->
+        <div class="tab-content" id="crm-content">
+          <div class="products-grid">
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1553484771-371a605b060b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                  alt="Quản lý khách hàng"
+                />
+              </div>
+              <div class="product-info">
+                <span class="product-tag">CRM Module</span>
+                <h3>Quản lý khách hàng</h3>
+                <p>
+                  Quản lý thông tin khách hàng, lịch sử giao dịch và phân tích hành vi mua hàng.
+                </p>
+                <a href="QuanLyKhachHang.html" class="news-link"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                  alt="Quản lý cơ hội bán hàng"
+                />
+              </div>
+              <div class="product-info">
+                <span class="product-tag">CRM Module</span>
+                <h3>Quản lý cơ hội bán hàng</h3>
+                <p>
+                  Theo dõi và quản lý các cơ hội bán hàng từ tiềm năng đến thành công.
+                </p>
+                <a href="QuanLyCoHoi.html" class="news-link"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                  alt="Marketing tự động"
+                />
+              </div>
+              <div class="product-info">
+                <span class="product-tag">CRM Module</span>
+                <h3>Marketing tự động</h3>
+                <p>
+                  Tự động hóa các chiến dịch marketing và chăm sóc khách hàng qua email.
+                </p>
+                <a href="MarketingTuDong.html" class="news-link"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                  alt="Hỗ trợ khách hàng"
+                />
+              </div>
+              <div class="product-info">
+                <span class="product-tag">CRM Module</span>
+                <h3>Hệ thống hỗ trợ khách hàng</h3>
+                <p>
+                  Quản lý ticket hỗ trợ, live chat và đánh giá mức độ hài lòng khách hàng.
+                </p>
+                <a href="HoTroKhachHang.html" class="news-link"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                  alt="Chatbot AI"
+                />
+              </div>
+              <div class="product-info">
+                <span class="product-tag">CRM Module</span>
+                <h3>Chatbot AI</h3>
+                <p>
+                  Chatbot thông minh hỗ trợ khách hàng 24/7 với công nghệ AI tiên tiến.
+                </p>
+                <a href="Chatbot.html" class="news-link"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                  alt="Báo cáo phân tích"
+                />
+              </div>
+              <div class="product-info">
+                <span class="product-tag">CRM Module</span>
+                <h3>Báo cáo và phân tích</h3>
+                <p>
+                  Dashboard trực quan với các báo cáo chi tiết về hiệu quả bán hàng và marketing.
+                </p>
+                <a href="BaoCaoKhachHang.html" class="news-link"
+                  >Xem chi tiết <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Platform Tab -->
         <div class="tab-content" id="platform-content">
           <div class="products-grid">
@@ -1345,6 +1544,14 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- View All Button -->
+        <div style="text-align: center; margin-top: 50px;">
+          <a href="AllModules.html" class="cta-button" style="padding: 18px 40px; font-size: 1.1rem;">
+            <i class="fas fa-th-large" style="margin-right: 10px;"></i>
+            Xem tất cả module
+          </a>
         </div>
       </div>
     </section>
