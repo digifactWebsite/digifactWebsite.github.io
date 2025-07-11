@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="Resources/DigiFact_Logo_Noname_Type1.png"
+    />
+    <title>Top 5 phần mềm quản lý đội nhóm hiệu quả 2025 - DigiFact</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, sans-serif;
+        line-height: 1.6;
+        color: #0f172a;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        min-height: 100vh;
+        padding: 24px;
+      }
+
+      /* Header Navigation */
+      .header-nav {
+        background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 1rem 0;
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+      }
+
+      .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .back-btn {
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .back-btn:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 80px auto 0;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .header-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #3b82f6, #10b981);
+        color: white;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+      }
+
+      .header h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, #3b82f6, #10b981);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .header p {
+        font-size: 1.125rem;
+        color: #64748b;
+        max-width: 768px;
+        margin: 0 auto;
+      }
+
+      .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+        overflow: hidden;
+        margin-bottom: 32px;
+      }
+
+      .card-header {
+        padding: 24px;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .card-description {
+        color: #64748b;
+        font-size: 0.875rem;
+      }
+
+      .table-container {
+        overflow-x: auto;
+        padding: 24px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        min-width: 1200px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Điều chỉnh kích thước cột */
+      th:nth-child(1),
+      td:nth-child(1) {
+        width: 15%;
+      } /* Công cụ */
+      th:nth-child(2),
+      td:nth-child(2) {
+        width: 12%;
+      } /* Giá tham khảo - giảm */
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 18%;
+      } /* Tính năng chính - tăng */
+      th:nth-child(4),
+      td:nth-child(4) {
+        width: 20%;
+      } /* Ưu điểm */
+      th:nth-child(5),
+      td:nth-child(5) {
+        width: 20%;
+      } /* Nhược điểm */
+      th:nth-child(6),
+      td:nth-child(6) {
+        width: 12%;
+      } /* Phù hợp với - giảm */
+      th:nth-child(7),
+      td:nth-child(7) {
+        width: 10%;
+      } /* Đánh giá */
+
+      th,
+      td {
+        padding: 16px;
+        text-align: left;
+        border-right: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: top;
+      }
+
+      th {
+        background: #3b82f6;
+        color: white;
+        font-weight: 600;
+        font-size: 0.875rem;
+      }
+
+      th:first-child {
+        border-top-left-radius: 12px;
+      }
+
+      th:last-child {
+        border-top-right-radius: 12px;
+        border-right: none;
+      }
+
+      td:last-child {
+        border-right: none;
+      }
+
+      tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 12px;
+      }
+
+      tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 12px;
+      }
+
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      tr:nth-child(even) {
+        background: #f8fafc;
+      }
+
+      tr:hover {
+        background: #f0fdf4;
+      }
+
+      .tool-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .tool-logo {
+        font-size: 2rem;
+      }
+
+      .tool-name {
+        font-weight: 600;
+        color: #0f172a;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 8px;
+        background: #f1f5f9;
+        color: #475569;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .pricing {
+        color: #3b82f6;
+        font-weight: 500;
+        font-size: 0.875rem;
+      }
+
+      .feature-list {
+        list-style: none;
+        font-size: 0.875rem;
+      }
+
+      .feature-list li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+
+      .feature-dot {
+        width: 6px;
+        height: 6px;
+        background: #10b981;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .strength-list li {
+        color: #059669;
+      }
+
+      .weakness-list li {
+        color: #dc2626;
+      }
+
+      .strength-icon,
+      .weakness-icon {
+        width: 12px;
+        height: 12px;
+        flex-shrink: 0;
+      }
+
+      .strength-icon {
+        color: #059669;
+      }
+
+      .weakness-icon {
+        color: #dc2626;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .rating-excellent {
+        color: #059669;
+      }
+
+      .rating-good {
+        color: #3b82f6;
+      }
+
+      .rating-average {
+        color: #f59e0b;
+      }
+
+      .rating-poor {
+        color: #dc2626;
+      }
+
+      .personal-review {
+        font-style: italic;
+        color: #64748b;
+        font-size: 0.875rem;
+      }
+
+      .summary-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        margin-bottom: 32px;
+      }
+
+      .summary-card {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+      }
+
+      .summary-card h3 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+      }
+
+      .summary-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .summary-tool {
+        font-weight: 600;
+      }
+
+      .summary-desc {
+        font-size: 0.875rem;
+        color: #64748b;
+      }
+
+      .footer-note {
+        text-align: center;
+        background: white;
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+        font-size: 0.875rem;
+        color: #64748b;
+      }
+
+      .icon {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .summary-cards {
+          grid-template-columns: 1fr;
+        }
+
+        body {
+          padding: 16px;
+        }
+
+        .container {
+          margin-top: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Navigation -->
+    <div class="header-nav">
+      <div class="nav-container">
+        <div>
+          <img
+            src="Resources/DigiFact_Logo_Fullname_Type1_White.png"
+            alt="DigiFact Logo"
+            style="height: 40px; margin-right: 10px"
+          />
+        </div>
+        <div>
+          <a href="index.html" class="back-btn"
+            ><i class="fas fa-arrow-left"></i> Quay lại trang chủ</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-badge">
+          <i class="fas fa-users" style="color: white; font-size: 1.2rem"></i>
+          <span>Top 5 phần mềm quản lý đội nhóm hiệu quả 2025</span>
+        </div>
+        <h1>Bảng so sánh các phần mềm quản lý đội nhóm hàng đầu</h1>
+        <p>
+          Phân tích sâu về 5 phần mềm quản lý đội nhóm được đánh giá cao nhất
+          năm 2025,
+          <br />giúp tối ưu hóa quy trình làm việc và nâng cao hiệu suất nhóm.
+        </p>
+      </div>
+
+      <!-- Comparison Table -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📄</span>
+            Bảng so sánh chi tiết
+          </div>
+          <div class="card-description">
+            Dữ liệu được cập nhật tháng 7/2025 dựa trên thông tin chính thức và
+            trải nghiệm thực tế
+          </div>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="text-align: center">Công cụ</th>
+                <th style="text-align: center">💰 Giá tham khảo</th>
+                <th style="text-align: center">Tính năng chính</th>
+                <th style="text-align: center">Ưu điểm</th>
+                <th style="text-align: center">Nhược điểm</th>
+                <th style="text-align: center; white-space: nowrap">
+                  Phù hợp với
+                </th>
+                <th style="white-space: nowrap">⭐ Đánh giá</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="tool-info">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg"
+                      alt="Microsoft Teams Logo"
+                      style="width: 32px; height: 32px"
+                    />
+                    <div class="tool-name">Microsoft Teams Premium</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="pricing">Miễn phí - 12.50 USD/người/tháng</div>
+                </td>
+                <td>
+                  <ul class="feature-list">
+                    <li>
+                      <span class="feature-dot"></span>AI Copilot tích hợp
+                    </li>
+                    <li>
+                      <span class="feature-dot"></span>Video call & Meetings
+                    </li>
+                    <li>
+                      <span class="feature-dot"></span>Tự động tóm tắt cuộc họp
+                    </li>
+                    <li>
+                      <span class="feature-dot"></span>Phân tích hiệu suất
+                      real-time
+                    </li>
+                    <li>
+                      <span class="feature-dot"></span>Workflow automation
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="feature-list strength-list">
+                    <li>
+                      <span class="strength-icon">✓</span>AI Copilot mạnh mẽ
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Tích hợp sâu Microsoft
+                      365
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Bảo mật enterprise cao
+                      cấp
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Meetings quy mô lớn
+                      (10,000 người)
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="feature-list weakness-list">
+                    <li>
+                      <span class="weakness-icon">✗</span>Giao diện phức tạp
+                    </li>
+                    <li>
+                      <span class="weakness-icon">✗</span>Hiệu suất chậm trên
+                      máy cũ
+                    </li>
+                    <li>
+                      <span class="weakness-icon">✗</span>AI Premium tính phí
+                      cao
+                    </li>
+                  </ul>
+                </td>
+                <td>Doanh nghiệp lớn sử dụng Microsoft 365</td>
+                <td>
+                  <div class="rating">
+                    <span class="rating-excellent">✓</span>
+                    <span class="rating-excellent">4.7/5</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="tool-info">
+                    <img
+                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg"
+                      alt="Slack Logo"
+                      style="width: 32px; height: 32px"
+                    />
+                    <div class="tool-name">Slack AI</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="pricing">Miễn phí - 15 USD/người/tháng</div>
+                </td>
+                <td>
+                  <ul class="feature-list">
+                    <li><span class="feature-dot"></span>AI-powered search</li>
+                    <li>
+                      <span class="feature-dot"></span>Knowledge management
+                    </li>
+                    <li>
+                      <span class="feature-dot"></span>Workflow Builder AI
+                    </li>
+                    <li>
+                      <span class="feature-dot"></span>2000+ app integrations
+                    </li>
+                    <li><span class="feature-dot"></span>Advanced analytics</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="feature-list strength-list">
+                    <li>
+                      <span class="strength-icon">✓</span>Giao diện thân thiện
+                      nhất
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Hệ sinh thái app phong
+                      phú
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>AI search thông minh
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Văn hóa làm việc hiện
+                      đại
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="feature-list weakness-list">
+                    <li>
+                      <span class="weakness-icon">✗</span>Giá cao cho team lớn
+                    </li>
+                    <li>
+                      <span class="weakness-icon">✗</span>Video call kém hơn
+                      Teams
+                    </li>
+                    <li>
+                      <span class="weakness-icon">✗</span>Free plan hạn chế
+                    </li>
+                  </ul>
+                </td>
+                <td>Startup, team công nghệ vừa và nhỏ</td>
+                <td>
+                  <div class="rating">
+                    <span class="rating-excellent">✓</span>
+                    <span class="rating-excellent">4.5/5</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="tool-info">
+                    <img
+                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg"
+                      alt="Trello Logo"
+                      style="width: 32px; height: 32px"
+                    />
+                    <div class="tool-name">Trello</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="pricing">Miễn phí - 17.50 USD/người/tháng</div>
+                </td>
+                <td>
+                  <ul class="feature-list">
+                    <li><span class="feature-dot"></span>Kanban boards</li>
+                    <li><span class="feature-dot"></span>Cards & Lists</li>
+                    <li>
+                      <span class="feature-dot"></span>Due dates & Checklists
+                    </li>
+                    <li><span class="feature-dot"></span>Team collaboration</li>
+                    <li>
+                      <span class="feature-dot"></span>Power-ups & Integrations
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="feature-list strength-list">
+                    <li>
+                      <span class="strength-icon">✓</span>Đơn giản, trực quan
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Học nhanh, sử dụng dễ
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Phiên bản miễn phí khá
+                      đầy đủ
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Phù hợp với phương
+                      pháp Agile
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="feature-list weakness-list">
+                    <li>
+                      <span class="weakness-icon">✗</span>Thiếu tính năng báo
+                      cáo chi tiết
+                    </li>
+                    <li>
+                      <span class="weakness-icon">✗</span>Không phù hợp dự án
+                      phức tạp
+                    </li>
+                    <li>
+                      <span class="weakness-icon">✗</span>Hạn chế trong theo dõi
+                      thời gian
+                    </li>
+                  </ul>
+                </td>
+                <td>Team nhỏ, dự án đơn giản, quản lý task cá nhân</td>
+                <td>
+                  <div class="rating">
+                    <span class="rating-good">✓</span>
+                    <span class="rating-good">4.3/5</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="tool-info">
+                    <img
+                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg"
+                      alt="Notion Logo"
+                      style="width: 32px; height: 32px"
+                    />
+                    <div class="tool-name">Notion</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="pricing">Miễn phí - 15 USD/người/tháng</div>
+                </td>
+                <td>
+                  <ul class="feature-list">
+                    <li><span class="feature-dot"></span>Notes & Documents</li>
+                    <li><span class="feature-dot"></span>Databases & Tables</li>
+                    <li><span class="feature-dot"></span>Project templates</li>
+                    <li><span class="feature-dot"></span>Team wiki</li>
+                    <li><span class="feature-dot"></span>Task management</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="feature-list strength-list">
+                    <li>
+                      <span class="strength-icon">✓</span>Linh hoạt, tùy biến
+                      cao
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Kết hợp nhiều tính
+                      năng trong 1
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Templates phong phú
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Giao diện đẹp, hiện
+                      đại
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="feature-list weakness-list">
+                    <li>
+                      <span class="weakness-icon">✗</span>Đường cong học tập dốc
+                    </li>
+                    <li>
+                      <span class="weakness-icon">✗</span>Hiệu suất chậm với dữ
+                      liệu lớn
+                    </li>
+                    <li>
+                      <span class="weakness-icon">✗</span>Có thể quá phức tạp
+                      cho nhu cầu đơn giản
+                    </li>
+                  </ul>
+                </td>
+                <td>Team sáng tạo, cần workspace linh hoạt</td>
+                <td>
+                  <div class="rating">
+                    <span class="rating-good">✓</span>
+                    <span class="rating-good">4.4/5</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="tool-info">
+                    <img
+                      src="Resources/OpenProjectLogo.png"
+                      alt="OpenProject Logo"
+                      style="width: 40px; height: 40px"
+                    />
+                    <div class="tool-name">OpenProject</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="pricing">Miễn phí - 13.95 EUR/người/tháng</div>
+                </td>
+                <td>
+                  <ul class="feature-list">
+                    <li><span class="feature-dot"></span>Gantt charts</li>
+                    <li><span class="feature-dot"></span>Agile boards</li>
+                    <li><span class="feature-dot"></span>Time tracking</li>
+                    <li><span class="feature-dot"></span>Budget management</li>
+                    <li><span class="feature-dot"></span>Wiki & Forums</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="feature-list strength-list">
+                    <li>
+                      <span class="strength-icon">✓</span>Mã nguồn mở, miễn phí
+                    </li>
+                    <li>
+                      <span class="strength-icon">✓</span>Tính năng quản lý dự
+                      án chuyên nghiệp
+                    </li>
+                    <li><span class="strength-icon">✓</span>Tự host được</li>
+                    <li><span class="strength-icon">✓</span>Tuân thủ GDPR</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="feature-list weakness-list">
+                    <li><span class="weakness-icon">✗</span>Giao diện cũ kỹ</li>
+                    <li>
+                      <span class="weakness-icon">✗</span>Cần kỹ thuật để setup
+                      tự host
+                    </li>
+                    <li>
+                      <span class="weakness-icon">✗</span>Cộng đồng nhỏ hơn
+                    </li>
+                  </ul>
+                </td>
+                <td>Doanh nghiệp cần kiểm soát dữ liệu hoàn toàn</td>
+                <td>
+                  <div class="rating">
+                    <span class="rating-average">⚠</span>
+                    <span class="rating-average">3.8/5</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="summary-cards">
+        <div class="summary-card">
+          <h3 style="color: #059669">
+            <span>⭐</span>
+            Khuyến nghị hàng đầu 2025
+          </h3>
+          <div class="summary-item">
+            <span style="font-size: 1.25rem">💼</span>
+            <div>
+              <div class="summary-tool">Microsoft Teams</div>
+              <div class="summary-desc">
+                AI Copilot mạnh nhất cho enterprise
+              </div>
+            </div>
+          </div>
+          <div class="summary-item">
+            <span style="font-size: 1.25rem">💬</span>
+            <div>
+              <div class="summary-tool">Slack AI</div>
+              <div class="summary-desc">UX tốt nhất cho team startup</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <h3 style="color: #3b82f6">
+            <span>🤖</span>
+            AI Features tốt nhất
+          </h3>
+          <div class="summary-item">
+            <span style="font-size: 1.25rem">💬</span>
+            <div>
+              <div class="summary-tool">Slack AI</div>
+              <div class="summary-desc">AI search & knowledge management</div>
+            </div>
+          </div>
+          <div class="summary-item">
+            <span style="font-size: 1.25rem">💼</span>
+            <div>
+              <div class="summary-tool">Microsoft Teams</div>
+              <div class="summary-desc">AI Copilot integration</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <h3 style="color: #7c3aed">
+            <span>⚡</span>
+            User Experience tốt nhất
+          </h3>
+          <div class="summary-item">
+            <span style="font-size: 1.25rem">📋</span>
+            <div>
+              <div class="summary-tool">Trello</div>
+              <div class="summary-desc">Đơn giản, dễ sử dụng nhất</div>
+            </div>
+          </div>
+          <div class="summary-item">
+            <span style="font-size: 1.25rem">📝</span>
+            <div>
+              <div class="summary-tool">Notion</div>
+              <div class="summary-desc">Giao diện đẹp, tùy biến cao</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Analysis -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🔍</span>
+            Phân tích xu hướng AI trong quản lý đội nhóm 2025
+          </div>
+          <div class="card-description">
+            Những breakthrough công nghệ đang thay đổi cách chúng ta quản lý
+            team
+          </div>
+        </div>
+        <div style="padding: 24px">
+          <h3 style="color: #3b82f6; margin-bottom: 16px">
+            1. AI-Powered Predictive Analytics
+          </h3>
+          <p style="margin-bottom: 20px; color: #64748b">
+            Các phần mềm hiện đại sử dụng machine learning để dự đoán
+            bottleneck, identify risk factors và suggest optimal resource
+            allocation dựa trên historical data và real-time performance
+            metrics.
+          </p>
+
+          <h3 style="color: #3b82f6; margin-bottom: 16px">
+            2. Intelligent Workflow Automation
+          </h3>
+          <p style="margin-bottom: 20px; color: #64748b">
+            Tự động hóa thông minh không chỉ thực hiện các task repetitive mà
+            còn học hỏi từ user behavior để tối ưu hóa workflow và suggest
+            improvements.
+          </p>
+
+          <h3 style="color: #3b82f6; margin-bottom: 16px">
+            3. Real-time Collaboration Intelligence
+          </h3>
+          <p style="margin-bottom: 20px; color: #64748b">
+            AI assistant tích hợp giúp facilitate meetings, summarize
+            discussions, track action items và ensure follow-up actions được
+            thực hiện đúng timeline.
+          </p>
+
+          <h3 style="color: #3b82f6; margin-bottom: 16px">
+            4. Localized AI for Vietnamese Market
+          </h3>
+          <p style="color: #64748b">
+            Xu hướng phát triển AI solutions được tối ưu cho thị trường Việt
+            Nam, với khả năng hiểu ngữ cảnh văn hóa và business practices địa
+            phương.
+          </p>
+        </div>
+      </div>
+
+      <!-- Footer note -->
+      <div class="footer-note">
+        <p>
+          <strong>Lưu ý:</strong> Giá có thể thay đổi theo thời gian. Vui lòng
+          kiểm tra website chính thức của từng công cụ để có thông tin giá chính
+          xác nhất. Đánh giá dựa trên nghiên cứu thị trường, trải nghiệm thực tế
+          và phản hồi từ cộng đồng người dùng tính đến tháng 7/2025.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Header scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector(".header-nav");
+        if (window.scrollY > 100) {
+          header.style.background = "linear-gradient(135deg, #2563eb 0%, #059669 100%)";
+        } else {
+          header.style.background = "linear-gradient(135deg, #3b82f6 0%, #10b981 100%)";
+        }
+      });
+    </script>
+  </body>
+</html>
