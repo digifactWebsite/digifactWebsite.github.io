@@ -133,10 +133,8 @@
         color: white;
         font-size: 1.5rem;
         cursor: pointer;
-      }
-
-      .cta-button {
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
+      }      /* Buttons Common Styles */
+      .btn {
         color: white;
         border: none;
         padding: 15px 35px;
@@ -147,25 +145,40 @@
         font-size: 1rem;
         box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
-
-      .cta-button:hover {
+      
+      .btn i {
+        margin-right: 8px;
+      }
+      
+      .btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         text-decoration: none;
       }
 
+      /* Primary Buttons */
+      .cta-button {
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 15px 35px;
+        font-size: 1rem;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+      }
+
+      /* Demo Button - Larger button */
       .demo-button {
         background: linear-gradient(90deg, var(--primary), var(--secondary));
         color: white;
-        border: none;
-        padding: 18px 50px;
-        border-radius: 30px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: var(--transition);
-        font-size: 1rem;
-        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        padding: 16px 40px;
+        font-size: 1.05rem;
         text-decoration: none !important;
       }
 
@@ -227,23 +240,31 @@
         display: flex;
         gap: 15px;
         margin-top: 30px;
-      }
-
+      }      /* Outline Button */
       .outline-button {
         background: transparent;
         color: var(--light);
         border: 2px solid var(--primary);
-        padding: 12px 25px;
+        padding: 14px 32px;
         border-radius: 30px;
         font-weight: 600;
         cursor: pointer;
         transition: var(--transition);
         font-size: 1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .outline-button i {
+        margin-right: 8px;
       }
 
       .outline-button:hover {
         background-color: var(--primary);
         color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
       }
 
       .hero-stats {
@@ -281,6 +302,7 @@
       .section-title {
         text-align: center;
         margin-bottom: 60px;
+        width: 100%;
       }
 
       .section-title h2 {
@@ -407,9 +429,7 @@
         margin-bottom: 40px;
         flex-wrap: wrap;
         gap: 10px;
-      }
-
-      .tab-btn {
+      }      .tab-btn {
         background: rgba(30, 41, 59, 0.5);
         border: none;
         padding: 12px 30px;
@@ -419,6 +439,15 @@
         color: var(--gray);
         transition: var(--transition);
         border: 1px solid rgba(100, 116, 139, 0.2);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      }
+
+      .tab-btn i {
+        margin-right: 8px;
+        font-size: 0.9em;
       }
 
       .tab-btn.active,
@@ -426,6 +455,8 @@
         background: linear-gradient(135deg, var(--primary), var(--secondary));
         color: white;
         border-color: transparent;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
       }
 
       .tab-content {
@@ -565,8 +596,7 @@
         color: var(--gray);
         margin-bottom: 20px;
         font-size: 0.95rem;
-      }
-
+      }      /* Link Styles */
       .news-link {
         color: var(--primary);
         font-weight: 600;
@@ -574,11 +604,17 @@
         display: inline-flex;
         align-items: center;
         font-size: 0.95rem;
+        transition: var(--transition);
+        padding: 6px 0;
       }
 
       .news-link i {
         margin-left: 8px;
         transition: var(--transition);
+      }
+
+      .news-link:hover {
+        color: var(--secondary);
       }
 
       .news-link:hover i {
@@ -587,51 +623,86 @@
 
       /* Careers Section */
       .careers {
-        background: linear-gradient(
-          135deg,
-          var(--primary),
-          var(--primary-dark)
-        );
+        background-color: var(--dark);
         color: white;
       }
 
       .careers .section-title h2 {
-        color: white;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
       }
 
       .careers .section-title p {
-        color: rgba(255, 255, 255, 0.8);
+        color: var(--gray);
       }
 
       .careers-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
         gap: 30px;
       }
 
       .job-card {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(30, 41, 59, 0.5);
         border-radius: 15px;
-        padding: 30px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         transition: var(--transition);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(100, 116, 139, 0.2);
       }
 
       .job-card:hover {
-        background: rgba(255, 255, 255, 0.15);
         transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        border-color: var(--primary);
       }
 
-      .job-card h3 {
-        font-size: 1.4rem;
+      .job-img {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .job-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .job-card:hover .job-img img {
+        transform: scale(1.1);
+      }
+
+      .job-info {
+        padding: 25px;
+      }
+
+      .job-tag {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 5px 15px;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-bottom: 15px;
+      }
+
+      .job-info h3 {
+        font-size: 1.2rem;
         margin-bottom: 15px;
         display: flex;
         align-items: center;
-        color: white;
+        color: var(--light);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
       }
 
-      .job-card h3 i {
+      .job-info h3 i {
         margin-right: 10px;
         color: var(--accent);
       }
@@ -644,48 +715,372 @@
       }
 
       .job-meta span {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.1);
         padding: 5px 15px;
         border-radius: 30px;
         font-size: 0.9rem;
-        color: white;
-      }
-
-      .job-card p {
+        color: var(--light);
+      }      .job-info p {
+        color: var(--gray);
         margin-bottom: 20px;
-        opacity: 0.9;
-        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.95rem;
       }
-
-      /* CTA Section */
-      .cta {
-        background: linear-gradient(135deg, var(--accent), #fbbf24);
+      
+      /* Job Card Actions */
+      .job-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      
+      .job-apply-btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+      }
+      
+      .job-detail-link {
+        font-size: 0.9rem;
+      }      /* CTA Section */      @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
+      }
+        .cta {
+        background: linear-gradient(90deg, 
+          var(--primary), 
+          #3a66e0, 
+          var(--secondary), 
+          #7c4fe2, 
+          var(--primary));
+        background-size: 200% 100%;
+        animation: gradientBG 15s linear infinite;
         color: white;
         text-align: center;
         padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .cta::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+          radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 2px);
+        background-size: 50px 50px, 50px 50px, 150px 150px;
+        background-position: center;
+        opacity: 0.3;
+        z-index: 1;
+        pointer-events: none;
+      }
+      
+      /* Tech circuit pattern overlay */
+      .cta::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 15h20v20H15zm50 0h20v20H65zM15 65h20v20H15zm50 0h20v20H65zM40 40h20v20H40z' stroke='rgba(255,255,255,0.15)' stroke-width='1' fill='none'/%3E%3Cpath d='M35 15H40V90H35zM60 15H65V90H65zM15 35H90V40H15zM15 60H90V65H15z' stroke='rgba(255,255,255,0.08)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+        opacity: 0.15;
+        z-index: 1;
+        pointer-events: none;
       }
 
-      .cta h2 {
+      /* Create floating data particles */
+      .data-particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0;
+        box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.3);
+        animation: floatParticle 8s linear infinite;
+      }
+
+      .data-particle::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(255,255,255,0.6), transparent);
+        transform: translateX(-20px);
+      }
+
+      .data-particle:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .data-particle:nth-child(2) {
+        top: 70%;
+        left: 20%;
+        animation-delay: 1s;
+      }
+
+      .data-particle:nth-child(3) {
+        top: 40%;
+        left: 70%;
+        animation-delay: 2s;
+      }
+
+      .data-particle:nth-child(4) {
+        top: 80%;
+        left: 85%;
+        animation-delay: 3s;
+      }
+
+      .data-particle:nth-child(5) {
+        top: 15%;
+        left: 75%;
+        animation-delay: 4s;
+      }
+
+      .data-particle:nth-child(6) {
+        top: 50%;
+        left: 30%;
+        animation-delay: 5s;
+      }
+
+      @keyframes floatParticle {
+        0% {
+          opacity: 0;
+          transform: translateX(-100px) translateY(0);
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(calc(100vw + 100px)) translateY(-20px);
+        }
+      }
+
+      /* Hexagonal grid overlay */
+      .hex-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg width='56' height='100' viewBox='0 0 56 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 0L0 50l28 50 28-50L28 0zm0 8.824L47.059 50 28 91.176 8.941 50 28 8.824z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
+        background-size: 60px 60px;
+        opacity: 0.1;
+        z-index: 1;
+        pointer-events: none;
+      }
+      
+      .cta .container {
+        position: relative;
+        z-index: 2;
+      }/* Gradient animation */
+      @keyframes gradientText {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      @keyframes pulseScale {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
+      }
+      
+      .cta .section-title h2 {
+        color: white;
         font-size: 2.8rem;
         margin-bottom: 20px;
+        background: linear-gradient(300deg, #ffffff, #f0f4ff, #d4e2ff, #ffffff);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 15px rgba(255,255,255,0.3), 0 0 30px rgba(100,149,237,0.2);
+        animation: gradientText 5s ease infinite, pulseScale 3s ease-in-out infinite;
+        display: inline-block;
+        position: relative;
+        letter-spacing: 0.5px;
       }
-
-      .cta p {
+      
+      /* Add highlight effect to the title */
+      .cta .section-title h2::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        background: linear-gradient(300deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05), rgba(255,255,255,0.1));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: blur(8px);
+        opacity: 0.8;
+        animation: gradientText 5s ease infinite;
+      }
+      
+      @keyframes fadeInUp {
+        0% { 
+          opacity: 0.8;
+          transform: translateY(10px);
+        }
+        100% { 
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .cta .section-title p {
         font-size: 1.3rem;
-        max-width: 700px;
         margin: 0 auto 40px;
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(255, 255, 255, 0.95);
+        white-space: nowrap;
+        width: 100%;
+        overflow: visible;
+        animation: fadeInUp 2s ease-out;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        position: relative;
+        z-index: 2;
+      }/* CTA Button Container */
+      .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }      /* CTA Demo Button */
+      @keyframes buttonPulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
       }
-
-      .cta .cta-button {
+      
+      .cta .demo-button {
         background: white;
-        color: var(--accent);
-        border-color: white;
+        color: var(--primary);
+        border: 2px solid white;
+        display: inline-flex;
+        align-items: center;
+        padding: 16px 38px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        animation: fadeInUp 1s ease-out, buttonPulse 2s infinite;
+        z-index: 2;
+        border-radius: 5px;
       }
 
-      .cta .cta-button:hover {
+      .cta .demo-button::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transition: all 0.5s ease;
+        transform: skewX(-15deg);
+        z-index: -1;
+      }
+
+      .cta .demo-button i {
+        margin-right: 10px;
+        font-size: 1.1em;
+      }
+
+      .cta .demo-button:hover {
         background: transparent;
         color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3), 
+                    0 0 30px rgba(131, 189, 255, 0.4),
+                    0 0 10px rgba(67, 148, 255, 0.6) inset;
+      }
+      
+      .cta .demo-button:hover::after {
+        left: 100%;
+      }
+        /* CTA Outline Button */
+      .cta .outline-button {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+        text-decoration: none;
+        padding: 16px 38px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        animation: fadeInUp 1.5s ease-out;
+        z-index: 2;
+        border-radius: 5px;
+      }
+      
+      .cta .outline-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0);
+        transition: all 0.5s ease;
+        z-index: -1;
+        transform: scaleX(0);
+        transform-origin: right;
+      }
+      
+      /* Button tech glow effect */
+      .cta .outline-button::after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-radius: 5px;
+        background: linear-gradient(45deg, 
+          rgba(255,255,255,0) 60%, 
+          rgba(255,255,255,0.3) 70%, 
+          rgba(255,255,255,0) 80%);
+        z-index: -2;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .cta .outline-button:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15), 0 0 10px rgba(131, 189, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.8);
+      }
+      
+      .cta .outline-button:hover::before {
+        transform: scaleX(1);
+        transform-origin: left;
+        background: rgba(255, 255, 255, 0.05);
+      }
+      
+      .cta .outline-button:hover::after {
+        opacity: 1;
+        animation: glowScan 1.5s linear infinite;
+      }
+      
+      @keyframes glowScan {
+        0% { transform: translateX(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) rotate(45deg); }
       }
 
       /* Footer */
@@ -829,9 +1224,7 @@
         .section-title h2 {
           font-size: 2.2rem;
         }
-      }
-
-      @media (max-width: 768px) {
+      }      @media (max-width: 768px) {
         .nav-links {
           display: none;
           position: absolute;
@@ -843,6 +1236,7 @@
           padding: 20px;
           box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
           border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+          z-index: 100;
         }
 
         .nav-links.show {
@@ -866,17 +1260,25 @@
           font-size: 1rem;
         }
 
-        .hero-buttons {
+        .hero-buttons, 
+        .cta-buttons,
+        .job-actions {
           flex-direction: column;
+          align-items: center;
         }
 
         .outline-button {
           margin-left: 0;
+          margin-top: 15px;
         }
 
         .hero-stats {
           flex-direction: column;
           gap: 30px;
+        }
+        
+        .job-actions .job-detail-link {
+          margin-top: 10px;
         }
 
         .about-content {
@@ -905,6 +1307,168 @@
 
         .footer-grid {
           grid-template-columns: 1fr;
+        }
+      }      /* Mobile responsiveness for the enhanced CTA section */
+      @media (max-width: 768px) {
+        .cta {
+          padding: 70px 0;
+        }
+        
+        .cta .section-title h2 {
+          font-size: 2rem;
+        }
+        
+        .cta .section-title p {
+          font-size: 1.1rem;
+          padding: 0 15px;
+        }
+        
+        .cta-buttons {
+          flex-direction: column;
+          gap: 15px;
+        }
+        
+        .tech-circle {
+          width: 200px;
+          height: 200px;
+        }
+        
+        .light-orb {
+          width: 100px;
+          height: 100px;
+        }
+        
+        .light-orb-2 {
+          width: 150px;
+          height: 150px;
+        }
+        
+        .data-particle {
+          display: none;
+        }
+        
+        .data-particle:nth-child(1),
+        .data-particle:nth-child(3),
+        .data-particle:nth-child(5) {
+          display: block;
+        }
+      }
+      
+      /* Special effects for higher-end devices */
+      @media (min-width: 1200px) {
+        .cta::before {
+          background-size: 60px 60px, 60px 60px, 180px 180px;
+          opacity: 0.4;
+        }
+        
+        .hex-grid {
+          opacity: 0.15;
+        }
+        
+        .cta .section-title h2 {
+          font-size: 3.2rem;
+          text-shadow: 0 0 20px rgba(255,255,255,0.4), 0 0 40px rgba(100,149,237,0.3);
+        }
+      }
+
+      .animated-title {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .light-orb {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+        top: 20%;
+        left: 10%;
+        opacity: 0.4;
+        filter: blur(20px);
+        animation: floatOrb 15s ease-in-out infinite;
+        z-index: 1;
+        pointer-events: none;
+      }
+      
+      .light-orb-2 {
+        width: 200px;
+        height: 200px;
+        top: 50%;
+        left: 80%;
+        animation-delay: -5s;
+        animation-duration: 18s;
+        opacity: 0.3;
+      }
+      
+      /* Adding tech-oriented glowing circle */
+      .tech-circle {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0.6;
+        animation: rotateTechCircle 30s linear infinite;
+      }
+      
+      .tech-circle::before,
+      .tech-circle::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 1px dashed rgba(255, 255, 255, 0.1);
+        animation: pulseCircle 4s ease-in-out infinite alternate;
+      }
+      
+      .tech-circle::after {
+        width: 80%;
+        height: 80%;
+        top: 10%;
+        left: 10%;
+        animation-delay: 2s;
+      }
+      
+      @keyframes pulseCircle {
+        0% { transform: scale(1); opacity: 0.3; }
+        100% { transform: scale(1.1); opacity: 0.7; }
+      }
+      
+      @keyframes rotateTechCircle {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+      
+      @keyframes floatOrb {
+        0% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(50px, -30px) scale(1.1); }
+        66% { transform: translate(-30px, 50px) scale(0.9); }
+        100% { transform: translate(0, 0) scale(1); }
+      }
+      
+      @keyframes rotateBG {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .cta .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Media query for CTA text handling */
+      @media (min-width: 768px) {
+        .cta .section-title {
+          max-width: 1400px;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
     </style>
@@ -937,10 +1501,9 @@
             <li><a href="#products">Sản phẩm</a></li>
             <li><a href="#news">Tin tức</a></li>
             <li><a href="#careers">Tuyển dụng</a></li>
-            <li><a href="#contact">Liên hệ</a></li>
-            <li>
-              <a href="#demo" class="demo-button" style="padding: 10px 24px"
-                >Dùng thử ngay</a
+            <li><a href="#contact">Liên hệ</a></li>              <li>
+              <a href="#demo" class="demo-button btn" style="padding: 10px 24px"
+                ><i class="fas fa-rocket"></i>Dùng thử ngay</a
               >
             </li>
           </ul>
@@ -957,10 +1520,9 @@
           <p>
             Giải pháp All-in-one giúp tối ưu hoá quy trình vận hành, nâng cao
             chất lượng và giám sát thời gian thực
-          </p>
-          <div class="hero-buttons">
-            <a href="#products" class="cta-button">Khám phá Giải pháp</a>
-            <a href="#contact" class="outline-button">Liên hệ Tư vấn</a>
+          </p>          <div class="hero-buttons">
+            <a href="#products" class="cta-button btn"><i class="fas fa-search"></i>Khám phá Giải pháp</a>
+            <a href="#contact" class="outline-button"><i class="fas fa-envelope"></i>Liên hệ Tư vấn</a>
           </div>
           <div class="hero-stats">
             <div class="stat-item">
@@ -972,7 +1534,7 @@
               <div class="stat-label">Kỹ sư công nghệ</div>
             </div>
             <div class="stat-item">
-              <div class="stat-number">50+</div>
+              <div class="stat-number">58+</div>
               <div class="stat-label">Ứng dụng thực tiễn</div>
             </div>
           </div>
@@ -1001,10 +1563,10 @@
               Chúng tôi là sự kết hợp của 4 nhóm lĩnh vực bổ trợ lẫn nhau từ
               những
               <strong
-                >nhân sự làm việc trong nhà máy, lập trình viên kinh nghiệm và
+                >nhân sự làm việc trong doanh nghiệp - nhà máy, lập trình viên kinh nghiệm và
                 chuyên gia chuyển đổi số</strong>
               cùng các <strong>nhà nghiên cứu học thuật</strong> trong các công
-              nghệ tiên tiến nhất hướng đến <strong>nhà máy thông minh</strong>.
+              nghệ tiên tiến nhất hướng đến <strong>quản trị tinh gọn, minh bạch</strong>.
             </p>
 
             <p>
@@ -1037,7 +1599,7 @@
               <h4>Chuyên gia trong ngành</h4>
               <p>
                 Đội ngũ chuyên gia với nhiều năm kinh nghiệm thực chiến tại các
-                nhà máy hàng đầu, am hiểu sâu sắc quy trình sản xuất và tiêu
+                doanh nghiệp hàng đầu, am hiểu sâu sắc quy trình sản xuất và tiêu
                 chuẩn ngành. Tư vấn nghiệp vụ chính xác, hiệu quả và phù hợp
                 thực tế.
               </p>
@@ -1059,7 +1621,7 @@
               </div>
               <h4>Chuyên gia chuyển đổi số</h4>
               <p>
-                Quản lý triển khai dự án chuyển đổi số nhà máy với phương pháp
+                Quản lý triển khai dự án chuyển đổi số với phương pháp
                 tiên tiến. Chuyên gia tư vấn chiến lược, phân tích nghiệp vụ và
                 thiết kế giải pháp tự động hóa, IIoT toàn diện cho doanh nghiệp.
               </p>
@@ -1097,20 +1659,22 @@
         <div class="section-title">
           <h2>Giải pháp của chúng tôi</h2>
           <p style="max-width: 900px; margin: 0 auto;">Các sản phẩm công nghệ hàng đầu giúp doanh nghiệp chuyển đổi số thành công</p>
-        </div>
-
-        <div class="products-tabs">
+        </div>        <div class="products-tabs">
           <button class="tab-btn" data-tab="erp">
-            Phần mềm ERP
+            <i class="fas fa-building"></i> Phần mềm ERP
           </button>
           <button class="tab-btn" data-tab="crm">
-            Phần mềm CRM
+            <i class="fas fa-users"></i> Phần mềm CRM
           </button>
           <button class="tab-btn active" data-tab="mes">
-            Phần mềm MES
+            <i class="fas fa-industry"></i> Phần mềm MES
           </button>
-          <button class="tab-btn" data-tab="platform">Hệ sinh thái nhà máy</button>
-          <button class="tab-btn" data-tab="other">Sản phẩm khác</button>
+          <button class="tab-btn" data-tab="platform">
+            <i class="fas fa-layer-group"></i> Hệ sinh thái nhà máy
+          </button>
+          <button class="tab-btn" data-tab="other">
+            <i class="fas fa-boxes"></i> Sản phẩm khác
+          </button>
         </div>
 
         <!-- MES Software Tab -->
@@ -1516,8 +2080,7 @@
                 <span class="product-tag">Sản phẩm</span>
                 <h3>Công cụ trực quan hóa dữ liệu</h3>
                 <p>
-                  Hiển thị dữ liệu sản xuất theo thời gian thực với biểu đồ trực
-                  quan.
+                  Hiển thị dữ liệu sản xuất theo thời gian thực với biểu đồ trực quan.
                 </p>
                 <a href="Dashboard.html" class="news-link"
                   >Xem chi tiết <i class="fas fa-arrow-right"></i
@@ -1544,12 +2107,10 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- View All Button -->
+        </div>        <!-- View All Button -->
         <div style="text-align: center; margin-top: 50px;">
-          <a href="AllModules.html" class="cta-button" style="padding: 18px 40px; font-size: 1.1rem;">
-            <i class="fas fa-th-large" style="margin-right: 10px;"></i>
+          <a href="AllModules.html" class="cta-button btn" style="padding: 16px 38px; font-size: 1.1rem;">
+            <i class="fas fa-th-large"></i>
             Xem tất cả module
           </a>
         </div>
@@ -1561,7 +2122,7 @@
       <div class="container">
         <div class="section-title">
           <h2>Tin tức & Sự kiện</h2>
-          <p>
+          <p style="max-width: 900px; margin: 0 auto;">
             Cập nhật những thông tin mới nhất về công nghệ, sản phẩm và hoạt
             động của chúng tôi
           </p>
@@ -1626,78 +2187,100 @@
                 triển khai giải pháp chuyển đổi số...
               </p>
               <a href="#" class="news-link"
-                >Đọc tiếp <i class="fas fa-arrow-right"></i
+                                                             >Đọc tiếp <i class="fas fa-arrow-right"></i
               ></a>
             </div>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Careers Section -->
+    </section>    <!-- Careers Section -->
     <section class="careers" id="careers">
       <div class="container">
         <div class="section-title">
           <h2>Cơ hội nghề nghiệp</h2>
-          <p>Gia nhập đội ngũ chuyên gia công nghệ hàng đầu của chúng tôi</p>
+          <p style="max-width: 900px; margin: 0 auto;">Gia nhập đội ngũ chuyên gia công nghệ hàng đầu của chúng tôi</p>
         </div>
 
         <div class="careers-grid">
           <div class="job-card">
-            <h3><i class="fas fa-laptop-code"></i> Lập trình viên .NET</h3>
-            <div class="job-meta">
-              <span>Toàn thời gian</span>
-              <span>Hà Nội</span>
-              <span>Kinh nghiệm 2+ năm</span>
+            <div class="job-info">
+              <span class="job-tag">Lập trình viên</span>
+              <h3><i class="fas fa-laptop-code"></i> Lập trình viên .NET</h3>
+              <div class="job-meta">
+                <span>Toàn thời gian</span>
+                <span>Hà Nội</span>
+                <span>Kinh nghiệm 2+ năm</span>
+              </div>              <p>
+                Tuyển dụng lập trình viên .NET có kinh nghiệm phát triển ứng dụng
+                WPF và MAUI cho giải pháp MES.
+              </p>
+              <div class="job-actions">
+                <a href="#" class="cta-button btn job-apply-btn"><i class="fas fa-paper-plane"></i>Ứng tuyển ngay</a>
+              </div>
             </div>
-            <p>
-              Tuyển dụng lập trình viên .NET có kinh nghiệm phát triển ứng dụng
-              WPF và MAUI cho giải pháp MES.
-            </p>
-            <a href="#" class="cta-button">Ứng tuyển ngay</a>
           </div>
 
           <div class="job-card">
-            <h3>
-              <i class="fas fa-chart-line"></i> Chuyên viên phân tích dữ liệu
-            </h3>
-            <div class="job-meta">
-              <span>Toàn thời gian</span>
-              <span>Hồ Chí Minh</span>
-              <span>Kinh nghiệm 3+ năm</span>
+            <div class="job-info">
+              <span class="job-tag">Phân tích dữ liệu</span>
+              <h3><i class="fas fa-chart-line"></i> Chuyên viên phân tích dữ liệu</h3>
+              <div class="job-meta">
+                <span>Toàn thời gian</span>
+                <span>Hồ Chí Minh</span>
+                <span>Kinh nghiệm 3+ năm</span>
+              </div>              <p>
+                Tuyển dụng chuyên viên phân tích dữ liệu sản xuất, xây dựng
+                dashboard và báo cáo trực quan.
+              </p>
+              <div class="job-actions">
+                <a href="#" class="cta-button btn job-apply-btn"><i class="fas fa-paper-plane"></i>Ứng tuyển ngay</a>
+              </div>
             </div>
-            <p>
-              Tuyển dụng chuyên viên phân tích dữ liệu sản xuất, xây dựng
-              dashboard và báo cáo trực quan.
-            </p>
-            <a href="#" class="cta-button">Ứng tuyển ngay</a>
-          </div>
-
-          <div class="job-card">
-            <h3><i class="fas fa-robot"></i> Kỹ sư AI/Machine Learning</h3>
-            <div class="job-meta">
-              <span>Toàn thời gian</span>
-              <span>Đà Nẵng</span>
-              <span>Kinh nghiệm 2+ năm</span>
+          </div>          <div class="job-card">
+            <div class="job-info">
+              <span class="job-tag">Trí tuệ nhân tạo</span>
+              <h3><i class="fas fa-robot"></i> Kỹ sư AI/Machine Learning</h3>
+              <div class="job-meta">
+                               <span>Toàn thời gian</span>
+                <span>Đà Nẵng</span>
+                <span>Kinh nghiệm 2+ năm</span>
+              </div>
+              <p>
+                Tuyển dụng kỹ sư AI phát triển giải pháp Chatbot và hệ thống dự
+                đoán sự cố sản xuất.
+              </p>
+              <div class="job-actions">
+                <a href="#" class="cta-button btn job-apply-btn"><i class="fas fa-paper-plane"></i>Ứng tuyển ngay</a>
+              </div>
             </div>
-            <p>
-              Tuyển dụng kỹ sư AI phát triển giải pháp Chatbot và hệ thống dự
-              đoán sự cố sản xuất.
-            </p>
-            <a href="#" class="cta-button">Ứng tuyển ngay</a>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta" id="demo">
+    </section>    <!-- CTA Section -->
+    <section class="cta">
+      <!-- Tech-oriented visual elements -->
+      <div class="hex-grid"></div>
+      <div class="tech-circle"></div>
+      <div class="data-particle"></div>
+      <div class="data-particle"></div>
+      <div class="data-particle"></div>
+      <div class="data-particle"></div>
+      <div class="data-particle"></div>
+      <div class="data-particle"></div>
+      
+      <div class="light-orb"></div>
+      <div class="light-orb light-orb-2"></div>
+      
       <div class="container">
-        <h2>Sẵn sàng tối ưu hóa quản lý nhà máy của bạn?</h2>
-        <p>
-          Đăng ký ngay để nhận tư vấn miễn phí và demo giải pháp ngay bây giờ
-        </p>
-        <a href="#contact" class="demo-button">Đăng ký Demo Ngay</a>
+        <div class="section-title">
+          <div class="animated-title">
+            <h2 data-text="Sẵn sàng tối ưu hóa quản lý doanh nghiệp của bạn?" style="max-width:1500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">Sẵn sàng tối ưu hóa quản lý doanh nghiệp của bạn?</h2>
+          </div>
+          <p style="white-space: nowrap; max-width: 1200px; text-align: center; display: block; margin: 0 auto;">Chúng tôi sẵn sàng cung cấp giải pháp phù hợp với nhu cầu của doanh nghiệp</p>
+        </div>
+        <div class="cta-buttons">
+          <a href="#contact" class="demo-button"><i class="fas fa-play-circle"></i> Đặt lịch Demo</a>
+        </div>
       </div>
     </section>
 
@@ -1725,7 +2308,6 @@
               <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
           </div>
-
           <div class="footer-col">
             <h3>Sản phẩm</h3>
             <ul class="footer-links">
@@ -1779,10 +2361,7 @@
           <div class="footer-col">
             <h3>Liên hệ</h3>
             <ul class="footer-links">
-              <li>
-                <i class="fas fa-map-marker-alt"></i> Số 74B, ngõ 296 Minh Khai,
-                Hà Nội
-              </li>
+              <li><i class="fas fa-map-marker-alt" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0; padding: 0%;"></i> Số 74B, ngõ 296 Minh Khai, Hà&nbsp;Nội</li>
               <li><i class="fas fa-phone"></i> 033 884 5579</li>
               <li><i class="fas fa-envelope"></i> contact@digifact.vn</li>
               <li><i class="fas fa-clock"></i> Thứ 2 - Thứ 7: 7:00 - 21:00</li>
