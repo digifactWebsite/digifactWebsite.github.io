@@ -57,7 +57,43 @@
 
 <script>
 // Google Apps Script endpoint
-const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwQUAFlNaDfmw04ITcyZcvL40d_Z05HgbldjdiunqafMKyo5HWXrdB2oXgUo8JnkRRmvA/exec';
+const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxN-ccZC4Y5OfeEhYs_Udx7daOROD_f9Eo5UQpVfIMd4H9FP9g-dsYu7SekXyYxGdrERA/exec';
+
+// Alternative submission method
+async function tryAlternativeSubmission(data, status) {
+  try {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = CONTACT_SCRIPT_URL;
+    form.target = '_blank';
+    
+    Object.keys(data).forEach(key => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = data[key];
+      form.appendChild(input);
+    });
+    
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+    
+    status.textContent = 'Đang xử lý... Vui lòng kiểm tra tab mới.';
+    status.style.color = '#f59e0b';
+    
+    setTimeout(() => {
+      status.textContent = 'Đã gửi! Chúng tôi sẽ liên hệ lại sớm.';
+      status.style.color = '#10b981';
+      closeContactPopup();
+    }, 3000);
+    
+  } catch (err) {
+    console.error('Alternative submission failed:', err);
+    status.textContent = 'Vui lòng gửi email trực tiếp đến contact@digifact.vn';
+    status.style.color = '#ef4444';
+  }
+}
 
 function openContactPopup() {
   document.getElementById('contactPopup').style.display = 'flex';
@@ -86,20 +122,36 @@ document.addEventListener('DOMContentLoaded', function() {
       try {
         const res = await fetch(CONTACT_SCRIPT_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          headers: { 
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams(data)
         });
-        if (res.ok) {
+        
+        const result = await res.text();
+        console.log('Response:', result);
+        
+        if (res.ok && result.includes('success')) {
           status.textContent = 'Gửi thành công! Chúng tôi sẽ liên hệ lại sớm.';
           status.style.color = '#10b981';
           form.reset();
+          setTimeout(() => {
+            closeContactPopup();
+          }, 2000);
         } else {
           status.textContent = 'Có lỗi xảy ra. Vui lòng thử lại.';
           status.style.color = '#ef4444';
+          console.error('Error response:', result);
         }
       } catch (err) {
+        console.error('Network error:', err);
         status.textContent = 'Không thể gửi. Vui lòng kiểm tra kết nối mạng.';
         status.style.color = '#ef4444';
+        
+        // Alternative: Try with a different approach
+        setTimeout(() => {
+          tryAlternativeSubmission(data, status);
+        }, 1000);
       }
     });
   }
