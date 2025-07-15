@@ -1,0 +1,107 @@
+<!-- Contact Us Popup Form (Reusable) -->
+<div id="contactPopup" class="contact-popup-overlay" style="display:none;">
+  <div class="contact-popup">
+    <button class="close-popup" onclick="closeContactPopup()">&times;</button>
+    <h2>Liên hệ với chúng tôi</h2>
+    <form id="contactForm">
+      <div class="form-group">
+        <label for="firstName">Họ và tên</label>
+        <input type="text" id="firstName" name="firstName" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Số điện thoại</label>
+        <input type="tel" id="phone" name="phone" />
+      </div>
+      <div class="form-group">
+        <label for="company">Công ty</label>
+        <input type="text" id="company" name="company" />
+      </div>
+      <div class="form-group">
+        <label for="message">Nội dung</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Gửi liên hệ</button>
+      <div id="formStatus" style="margin-top:10px;"></div>
+    </form>
+  </div>
+</div>
+
+<style>
+.contact-popup-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.5); z-index: 9999; display: flex; align-items: center; justify-content: center;
+}
+.contact-popup {
+  background: #fff; color: #222; border-radius: 10px; padding: 32px 24px 24px 24px; max-width: 400px; width: 100%; position: relative;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.close-popup {
+  position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 2rem; color: #888; cursor: pointer;
+}
+.contact-popup h2 { text-align: center; margin-bottom: 18px; color: #2563eb; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; margin-bottom: 6px; font-weight: 500; }
+.form-group input, .form-group textarea {
+  width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 5px; font-size: 1rem; background: #f8fafc;
+}
+.submit-btn {
+  width: 100%; background: linear-gradient(90deg, #2563eb, #8b5cf6); color: #fff; border: none; padding: 12px 0; border-radius: 5px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: background 0.2s;
+}
+.submit-btn:hover { background: linear-gradient(90deg, #1d4ed8, #7c3aed); }
+#formStatus { font-size: 0.98rem; text-align: center; }
+</style>
+
+<script>
+// Google Apps Script endpoint
+const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwQUAFlNaDfmw04ITcyZcvL40d_Z05HgbldjdiunqafMKyo5HWXrdB2oXgUo8JnkRRmvA/exec';
+
+function openContactPopup() {
+  document.getElementById('contactPopup').style.display = 'flex';
+}
+function closeContactPopup() {
+  document.getElementById('contactPopup').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      status.textContent = 'Đang gửi...';
+      status.style.color = '#2563eb';
+      const data = {
+        firstName: form.firstName.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        company: form.company.value,
+        message: form.message.value,
+        timestamp: new Date().toISOString(),
+        source: 'Popup Form'
+      };
+      try {
+        const res = await fetch(CONTACT_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          status.textContent = 'Gửi thành công! Chúng tôi sẽ liên hệ lại sớm.';
+          status.style.color = '#10b981';
+          form.reset();
+        } else {
+          status.textContent = 'Có lỗi xảy ra. Vui lòng thử lại.';
+          status.style.color = '#ef4444';
+        }
+      } catch (err) {
+        status.textContent = 'Không thể gửi. Vui lòng kiểm tra kết nối mạng.';
+        status.style.color = '#ef4444';
+      }
+    });
+  }
+});
+</script>
