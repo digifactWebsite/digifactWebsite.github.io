@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PLM Quản Lý Thiết Kế - DigiFact</title>
+    <title>PLM Quản Lý Thử nghiệm - DigiFact</title>
     <link
       rel="icon"
       href="../Resources/DigiFact_Logo_Noname_Type1.png"
@@ -671,8 +671,8 @@
 
       .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
       }
 
       .stat-card {
@@ -779,6 +779,27 @@
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 1px;
+        font-size: 0.9rem;
+        line-height: 1.2;
+        word-wrap: break-word;
+        hyphens: auto;
+        display: block;
+        text-align: center;
+      }
+
+      /* Long stat labels */
+      .stat-label-long {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 480px) {
+        .stat-label-long {
+          white-space: normal;
+          font-size: 0.8rem;
+        }
       }
 
       /* Use Cases Section */
@@ -1659,12 +1680,12 @@
     <section class="hero">
       <div class="hero-container">
         <div class="hero-icon">
-          <i class="fas fa-cube"></i>
+          <i class="fas fa-vial"></i>
         </div>
-        <h1>PLM Quản Lý Thiết Kế</h1>
+        <h1>PLM Quản Lý Thử Nghiệm</h1>
         <p style="max-width: 1000px;">
-          Hệ thống quản lý vòng đời sản phẩm toàn diện với công nghệ AI tiên tiến, <br/>
-          tối ưu hóa quy trình thiết kế và phát triển sản phẩm
+          Hệ thống quản lý thử nghiệm chuyên nghiệp với quy trình testing toàn diện, <br/>
+          đảm bảo chất lượng sản phẩm từ thiết kế đến sản xuất
         </p>
       </div>
     </section>
@@ -1675,99 +1696,98 @@
         <div class="section-header animate-on-scroll">
           <h2>Tính năng nổi bật</h2>
           <p>
-            Giải pháp PLM hiện đại với đầy đủ tính năng <br />quản lý thiết kế
-            chuyên nghiệp
+            Giải pháp quản lý thử nghiệm toàn diện <br />đảm bảo chất lượng sản phẩm hoàn hảo
           </p>
         </div>
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-cube"></i>
+              <i class="fas fa-vial"></i>
             </div>
-            <h3>Thiết kế 3D tương tác</h3>
+            <h3>Quản lý quy trình test</h3>
             <p>
-              Công cụ thiết kế 3D mạnh mẽ với khả năng tương tác real-time, hỗ
-              trợ nhiều định dạng file CAD phổ biến
+              Quản lý toàn bộ quy trình thử nghiệm từ lập kế hoạch, 
+              thiết kế test case, thực hiện test đến báo cáo kết quả
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-code-branch"></i>
+              <i class="fas fa-layer-group"></i>
             </div>
-            <h3>Quản lý phiên bản</h3>
+            <h3>Quản lý test cases</h3>
             <p>
-              Theo dõi và quản lý tất cả các phiên bản thiết kế, đảm bảo tính
-              nhất quán và khả năng rollback
+              Tạo, quản lý và tổ chức test cases theo từng module, 
+              theo dõi độ bao phủ và kết quả thực thi
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-clipboard-list"></i>
             </div>
-            <h3>Cộng tác đội nhóm</h3>
+            <h3>Quản lý yêu cầu test</h3>
             <p>
-              Môi trường cộng tác trực tuyến cho phép nhiều designer làm việc
-              cùng lúc trên một dự án
+              Quản lý yêu cầu thử nghiệm, tiêu chuẩn test và 
+              traceability matrix từ requirement đến test case
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-bug"></i>
+            </div>
+            <h3>Quản lý defect & bug</h3>
+            <p>
+              Hệ thống theo dõi lỗi, phân loại mức độ nghiêm trọng, 
+              quản lý workflow sửa lỗi và verification
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
               <i class="fas fa-robot"></i>
             </div>
-            <h3>AI Design Assistant</h3>
+            <h3>Test automation</h3>
             <p>
-              Trợ lý AI thông minh hỗ trợ tối ưu hóa thiết kế, đề xuất cải tiến
-              và phát hiện lỗi tự động
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-industry"></i>
-            </div>
-            <h3>Mô phỏng sản xuất</h3>
-            <p>
-              Mô phỏng quy trình sản xuất để tối ưu hóa thiết kế trước khi đưa
-              vào sản xuất thực tế
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-database"></i>
-            </div>
-            <h3>Thư viện linh kiện</h3>
-            <p>
-              Thư viện linh kiện chuẩn phong phú với khả năng tìm kiếm thông
-              minh và phân loại chi tiết
+              Tích hợp với framework automation testing, quản lý test scripts, 
+              lập lịch chạy test tự động
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
               <i class="fas fa-chart-line"></i>
             </div>
-            <h3>Phân tích hiệu suất</h3>
+            <h3>Báo cáo test metrics</h3>
             <p>
-              Công cụ phân tích hiệu suất thiết kế với báo cáo chi tiết và
-              visualization trực quan
+              Dashboard theo dõi tiến độ test, tỷ lệ pass/fail, 
+              phân tích xu hướng chất lượng và hiệu suất testing
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-cloud"></i>
+              <i class="fas fa-users-cog"></i>
             </div>
-            <h3>Cloud Integration</h3>
+            <h3>Cộng tác testing team</h3>
             <p>
-              Tích hợp cloud để lưu trữ, đồng bộ và truy cập dữ liệu thiết kế từ
-              bất kỳ đâu
+              Môi trường cộng tác giữa developers, testers, QA và 
+              product owner trong quy trình testing
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-mobile-alt"></i>
+              <i class="fas fa-archive"></i>
             </div>
-            <h3>Mobile Support</h3>
+            <h3>Kho tài liệu test</h3>
             <p>
-              Ứng dụng mobile cho phép xem, review và approve thiết kế ngay trên
-              thiết bị di động
+              Lưu trữ và quản lý test plans, test cases, test data, 
+              screenshots và video evidence của testing
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-route"></i>
+            </div>
+            <h3>Workflow test lifecycle</h3>
+            <p>
+              Tự động hóa quy trình test lifecycle, thông báo deadline, 
+              phân công nhiệm vụ test theo từng giai đoạn
             </p>
           </div>
         </div>
@@ -1779,26 +1799,24 @@
       <div class="stats-container">
         <div class="section-header animate-on-scroll">
           <h2>Hiệu quả vượt trội</h2>
-          <p>Những con số ấn tượng từ hệ thống PLM của chúng tôi</p>
+          <p>Những con số ấn tượng từ hệ thống quản lý thử nghiệm</p>
         </div>
         <div class="stats-grid">
           <div class="stat-card">
-            <span class="stat-number">65%</span>
-            <span style="white-space: nowrap" class="stat-label"
-              >Giảm thời gian thiết kế</span
-            >
-          </div>
-          <div class="stat-card">
-            <span class="stat-number">40%</span>
-            <span class="stat-label">Tăng năng suất</span>
+            <span class="stat-number">60%</span>
+            <span class="stat-label stat-label-long">Giảm thời gian testing</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">85%</span>
-            <span class="stat-label">Giảm lỗi thiết kế</span>
+            <span class="stat-label">Tỷ lệ phát hiện lỗi</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">99.9%</span>
-            <span class="stat-label">Uptime hệ thống</span>
+            <span class="stat-number">75%</span>
+            <span class="stat-label">Tiết kiệm chi phí</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">98%</span>
+            <span class="stat-label">Độ chính xác test</span>
           </div>
         </div>
       </div>
@@ -1809,7 +1827,7 @@
       <div class="use-cases-container">
         <div class="section-header animate-on-scroll">
           <h2>Ứng dụng đa ngành</h2>
-          <p>Phù hợp với nhiều lĩnh vực và quy mô doanh nghiệp khác nhau</p>
+          <p>Phù hợp với nhiều lĩnh vực thử nghiệm và kiểm thử chất lượng</p>
         </div>
         <div class="use-cases-grid">
           <div class="use-case-card">
@@ -1818,8 +1836,8 @@
             </div>
             <h3>Ngành ô tô</h3>
             <p>
-              Thiết kế và phát triển các bộ phận ô tô với độ chính xác cao, quản
-              lý phiên bản và kiểm soát chất lượng nghiêm ngặt
+              Testing an toàn, kiểm thử hiệu suất động cơ, 
+              thử nghiệm độ bền các bộ phận ô tô theo tiêu chuẩn quốc tế
             </p>
           </div>
           <div class="use-case-card">
@@ -1828,8 +1846,8 @@
             </div>
             <h3>Điện tử</h3>
             <p>
-              Phát triển sản phẩm điện tử từ ý tưởng đến sản xuất, tích hợp PCB
-              design và component management
+              Testing circuit, validation thiết kế PCB, 
+              kiểm thử tương thích EMC và stress testing
             </p>
           </div>
           <div class="use-case-card">
@@ -1838,8 +1856,8 @@
             </div>
             <h3>Hàng không</h3>
             <p>
-              Quản lý thiết kế các bộ phận hàng không với tiêu chuẩn an toàn cao
-              và quy trình phê duyệt nghiêm ngặt
+              Testing an toàn bay, thử nghiệm vật liệu composite, 
+              kiểm thử độ bền theo tiêu chuẩn hàng không nghiêm ngặt
             </p>
           </div>
           <div class="use-case-card">
@@ -1848,8 +1866,8 @@
             </div>
             <h3>Đồ gia dụng</h3>
             <p>
-              Thiết kế và phát triển các sản phẩm gia dụng với focus vào user
-              experience và manufacturing efficiency
+              Testing usability, kiểm thử an toàn sử dụng, 
+              thử nghiệm độ bền sản phẩm gia dụng
             </p>
           </div>
           <div class="use-case-card">
@@ -1858,8 +1876,8 @@
             </div>
             <h3>Cơ khí</h3>
             <p>
-              Quản lý thiết kế máy móc, thiết bị cơ khí với tính năng mô phỏng
-              và kiểm tra độ bền vật liệu
+              Testing độ bền vật liệu, thử nghiệm hiệu suất máy móc, 
+              kiểm thử tải trọng và điều kiện hoạt động
             </p>
           </div>
           <div class="use-case-card">
@@ -1868,8 +1886,8 @@
             </div>
             <h3>Y tế</h3>
             <p>
-              Phát triển thiết bị y tế và dược phẩm với tuân thủ nghiêm ngặt các
-              quy định về an toàn và hiệu quả
+              Testing an toàn sinh học, kiểm thử hiệu quả thiết bị y tế, 
+              tuân thủ quy định FDA và các tiêu chuẩn quốc tế
             </p>
           </div>
         </div>
@@ -1881,47 +1899,47 @@
       <div class="benefits-container">
         <div class="section-header animate-on-scroll">
           <h2>Lợi ích vượt trội</h2>
-          <p>Những lợi ích thiết thực mà PLM mang lại cho doanh nghiệp</p>
+          <p>Những lợi ích thiết thực mà quản lý thử nghiệm mang lại</p>
         </div>
         <div class="benefits-grid">
           <div class="benefit-card">
             <div class="benefit-icon">
               <i class="fas fa-rocket"></i>
             </div>
-            <h3>Tăng tốc độ phát triển</h3>
+            <h3>Tăng tốc Testing</h3>
             <p>
-              Rút ngắn thời gian từ ý tưởng đến sản phẩm hoàn thiện nhờ quy
-              trình tự động hóa và AI support
+              Rút ngắn thời gian testing nhờ automation và 
+              quy trình thử nghiệm tối ưu hóa
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
               <i class="fas fa-shield-alt"></i>
             </div>
-            <h3>Đảm bảo chất lượng</h3>
+            <h3>Nâng cao chất lượng sản phẩm</h3>
             <p>
-              Kiểm soát chất lượng nghiêm ngặt qua từng giai đoạn thiết kế và
-              sản xuất
+              Phát hiện và fix lỗi sớm thông qua testing comprehensive 
+              trước khi release sản phẩm
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
               <i class="fas fa-coins"></i>
             </div>
-            <h3>Tiết kiệm chi phí</h3>
+            <h3>Tiết kiệm chi phí testing</h3>
             <p>
-              Giảm chi phí phát triển và sản xuất thông qua tối ưu hóa thiết kế
-              và quy trình
+              Giảm chi phí QA thông qua test automation và 
+              quản lý hiệu quả tài nguyên testing
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
               <i class="fas fa-sync"></i>
             </div>
-            <h3>Tích hợp liền mạch</h3>
+            <h3>Tích hợp với CI/CD</h3>
             <p>
-              Tích hợp dễ dàng với các hệ thống ERP, CRM và production planning
-              hiện có
+              Liền mạch với quy trình DevOps, tích hợp testing 
+              vào pipeline deployment tự động
             </p>
           </div>
         </div>
@@ -1931,9 +1949,9 @@
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="cta-container">
-        <h2>Sẵn sàng cách mạng hóa <br />quy trình thiết kế?</h2>
+        <h2>Sẵn sàng tối ưu hóa <br />quy trình thử nghiệm?</h2>
         <p>
-          Bắt đầu hành trình chuyển đổi số với PLM Quản Lý Thiết Kế của DigiFact
+          Bắt đầu hành trình chuyển đổi số với PLM Quản Lý Thử Nghiệm của DigiFact
         </p>
         <div class="cta-buttons">
           <a href="#" class="cta-btn primary" onclick="openContactPopup()"
@@ -2007,7 +2025,7 @@
       async function tryAlternativeSubmission(data, status) {
         try {
           const subject = encodeURIComponent(
-            "Liên hệ từ website DigiFact - PLM Quản lý thiết kế"
+            "Liên hệ từ website DigiFact - PLM Quản lý nguyên mẫu"
           );
           const body = encodeURIComponent(`
 Họ tên: ${data.firstName}
@@ -2015,7 +2033,7 @@ Email: ${data.email}
 Số điện thoại: ${data.phone}
 Công ty: ${data.company}
 Nội dung: ${data.message}
-Trang: PLM Quản lý thiết kế
+Trang: PLM Quản lý nguyên mẫu
                 `);
 
           const mailtoLink = `mailto:contact@digifact.vn?subject=${subject}&body=${body}`;
@@ -2110,7 +2128,7 @@ Trang: PLM Quản lý thiết kế
               company: form.company.value,
               message: form.message.value,
               timestamp: new Date().toISOString(),
-              source: "Trang PLM Quản lý thiết kế",
+              source: "Trang PLM Quản lý nguyên mẫu",
             };
 
             try {
@@ -2377,7 +2395,7 @@ Trang: PLM Quản lý thiết kế
               name="message"
               rows="4"
               required
-              placeholder="Bạn cần tư vấn gì về PLM Quản lý thiết kế?"
+              placeholder="Bạn cần tư vấn gì về PLM Quản lý nguyên mẫu?"
             ></textarea>
           </div>
           <button type="submit" class="glass-submit-btn">

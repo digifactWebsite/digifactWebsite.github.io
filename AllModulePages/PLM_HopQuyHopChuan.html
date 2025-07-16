@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PLM Quản Lý Thiết Kế - DigiFact</title>
+    <title>PLM Hợp quy - Hợp chuẩn - DigiFact</title>
     <link
       rel="icon"
       href="../Resources/DigiFact_Logo_Noname_Type1.png"
@@ -671,8 +671,8 @@
 
       .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
       }
 
       .stat-card {
@@ -779,6 +779,27 @@
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 1px;
+        font-size: 0.9rem;
+        line-height: 1.2;
+        word-wrap: break-word;
+        hyphens: auto;
+        display: block;
+        text-align: center;
+      }
+
+      /* Long stat labels */
+      .stat-label-long {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 480px) {
+        .stat-label-long {
+          white-space: normal;
+          font-size: 0.8rem;
+        }
       }
 
       /* Use Cases Section */
@@ -1659,12 +1680,12 @@
     <section class="hero">
       <div class="hero-container">
         <div class="hero-icon">
-          <i class="fas fa-cube"></i>
+          <i class="fas fa-certificate"></i>
         </div>
-        <h1>PLM Quản Lý Thiết Kế</h1>
+        <h1>PLM Hợp quy - Hợp chuẩn</h1>
         <p style="max-width: 1000px;">
-          Hệ thống quản lý vòng đời sản phẩm toàn diện với công nghệ AI tiên tiến, <br/>
-          tối ưu hóa quy trình thiết kế và phát triển sản phẩm
+          Hệ thống dữ liệu thông minh tuân thủ tiêu chuẩn quốc tế GMP, HACCP, ISO 9001, ISO 14001<br/>
+          với khả năng thu thập dữ liệu ngầm định để đánh giá KPI, OKR, OEE
         </p>
       </div>
     </section>
@@ -1675,99 +1696,98 @@
         <div class="section-header animate-on-scroll">
           <h2>Tính năng nổi bật</h2>
           <p>
-            Giải pháp PLM hiện đại với đầy đủ tính năng <br />quản lý thiết kế
-            chuyên nghiệp
+            Giải pháp hợp quy - hợp chuẩn toàn diện <br />với thu thập dữ liệu ngầm định và đánh giá KPI thông minh
           </p>
         </div>
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-cube"></i>
+              <i class="fas fa-clipboard-check"></i>
             </div>
-            <h3>Thiết kế 3D tương tác</h3>
+            <h3>Tuân thủ tiêu chuẩn GMP</h3>
             <p>
-              Công cụ thiết kế 3D mạnh mẽ với khả năng tương tác real-time, hỗ
-              trợ nhiều định dạng file CAD phổ biến
+              Hệ thống dữ liệu phù hợp thực hành sản xuất tốt (Good Manufacturing Practices),
+              quy trình validation, hồ sơ lô sản phẩm và kiểm soát tài liệu
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-code-branch"></i>
+              <i class="fas fa-shield-virus"></i>
             </div>
-            <h3>Quản lý phiên bản</h3>
+            <h3>Tuân thủ HACCP</h3>
             <p>
-              Theo dõi và quản lý tất cả các phiên bản thiết kế, đảm bảo tính
-              nhất quán và khả năng rollback
+              Phân tích mối nguy và điểm kiểm soát tới hạn (Hazard Analysis Critical Control Points)
+              với giám sát tự động, theo dõi giới hạn tới hạn và hành động khắc phục
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-award"></i>
             </div>
-            <h3>Cộng tác đội nhóm</h3>
+            <h3>Tiêu chuẩn quốc tế</h3>
             <p>
-              Môi trường cộng tác trực tuyến cho phép nhiều designer làm việc
-              cùng lúc trên một dự án
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-robot"></i>
-            </div>
-            <h3>AI Design Assistant</h3>
-            <p>
-              Trợ lý AI thông minh hỗ trợ tối ưu hóa thiết kế, đề xuất cải tiến
-              và phát hiện lỗi tự động
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-industry"></i>
-            </div>
-            <h3>Mô phỏng sản xuất</h3>
-            <p>
-              Mô phỏng quy trình sản xuất để tối ưu hóa thiết kế trước khi đưa
-              vào sản xuất thực tế
+              Hệ thống quản lý chất lượng theo ISO 9001,
+              Quản lý môi trường theo ISO 14001 với dấu vết kiểm toán
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
               <i class="fas fa-database"></i>
             </div>
-            <h3>Thư viện linh kiện</h3>
+            <h3>Thu thập dữ liệu <br/>ngầm định</h3>
             <p>
-              Thư viện linh kiện chuẩn phong phú với khả năng tìm kiếm thông
-              minh và phân loại chi tiết
+              Thu thập dữ liệu tự động trong suốt quá trình sử dụng,
+              giám sát thời gian thực và phân tích dự báo
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
               <i class="fas fa-chart-line"></i>
             </div>
-            <h3>Phân tích hiệu suất</h3>
+            <h3>Đánh giá KPI & OKR</h3>
             <p>
-              Công cụ phân tích hiệu suất thiết kế với báo cáo chi tiết và
-              visualization trực quan
+              Chỉ số đánh giá hiệu suất chính (Key Performance Indicators) và Mục tiêu - Kết quả chính (Objectives Key Results)
+              với báo cáo tự động và bảng điều khiển hiệu suất
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-cloud"></i>
+              <i class="fas fa-tachometer-alt"></i>
             </div>
-            <h3>Cloud Integration</h3>
+            <h3>OEE theo ISO 22400</h3>
             <p>
-              Tích hợp cloud để lưu trữ, đồng bộ và truy cập dữ liệu thiết kế từ
-              bất kỳ đâu
+              Hiệu suất tổng thể thiết bị (Overall Equipment Effectiveness) theo tiêu chuẩn ISO 22400
+              cho ngành tự động hóa với tính toán thời gian thực
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-mobile-alt"></i>
+              <i class="fas fa-plane"></i>
             </div>
-            <h3>Mobile Support</h3>
+            <h3>Chuẩn ISA 95<br/> Ngành hàng không</h3>
             <p>
-              Ứng dụng mobile cho phép xem, review và approve thiết kế ngay trên
-              thiết bị di động
+              Tích hợp hệ thống doanh nghiệp - điều khiển (Enterprise-Control System Integration) theo ISA 95
+              cho ngành hàng không với khả năng truy xuất nguồn gốc đầy đủ
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <h3>Dấu vết kiểm toán & Truy xuất nguồn gốc</h3>
+            <p>
+              Dấu vết kiểm toán đầy đủ, kiểm tra tính toàn vẹn dữ liệu,
+              chữ ký điện tử và tuân thủ quy định
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3>Phân tích thông minh AI</h3>
+            <p>
+              Thuật toán học máy (Machine learning) cho bảo trì dự báo,
+              phát hiện bất thường và tối ưu hóa hiệu suất
             </p>
           </div>
         </div>
@@ -1779,26 +1799,24 @@
       <div class="stats-container">
         <div class="section-header animate-on-scroll">
           <h2>Hiệu quả vượt trội</h2>
-          <p>Những con số ấn tượng từ hệ thống PLM của chúng tôi</p>
+          <p>Những con số ấn tượng từ hệ thống hợp quy - hợp chuẩn</p>
         </div>
         <div class="stats-grid">
           <div class="stat-card">
-            <span class="stat-number">65%</span>
-            <span style="white-space: nowrap" class="stat-label"
-              >Giảm thời gian thiết kế</span
-            >
-          </div>
-          <div class="stat-card">
-            <span class="stat-number">40%</span>
-            <span class="stat-label">Tăng năng suất</span>
+            <span class="stat-number">99%</span>
+            <span class="stat-label stat-label-long">Tuân thủ tiêu chuẩn</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">85%</span>
-            <span class="stat-label">Giảm lỗi thiết kế</span>
+            <span class="stat-label">Cải thiện OEE</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">99.9%</span>
-            <span class="stat-label">Uptime hệ thống</span>
+            <span class="stat-number">90%</span>
+            <span class="stat-label">Tự động hóa KPI</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">95%</span>
+            <span class="stat-label">Tỷ lệ thành công kiểm toán</span>
           </div>
         </div>
       </div>
@@ -1808,68 +1826,68 @@
     <section class="use-cases">
       <div class="use-cases-container">
         <div class="section-header animate-on-scroll">
-          <h2>Ứng dụng đa ngành</h2>
-          <p>Phù hợp với nhiều lĩnh vực và quy mô doanh nghiệp khác nhau</p>
+          <h2>Ứng dụng theo ngành</h2>
+          <p>Phù hợp với các ngành có yêu cầu hợp quy - hợp chuẩn nghiêm ngặt | <strong>Thu thập dữ liệu ngầm định</strong></p>
         </div>
         <div class="use-cases-grid">
           <div class="use-case-card">
             <div class="use-case-icon">
-              <i class="fas fa-car"></i>
+              <i class="fas fa-pills"></i>
             </div>
-            <h3>Ngành ô tô</h3>
+            <h3>Dược phẩm</h3>
             <p>
-              Thiết kế và phát triển các bộ phận ô tô với độ chính xác cao, quản
-              lý phiên bản và kiểm soát chất lượng nghiêm ngặt
+              Tuân thủ GMP, hồ sơ lô sản phẩm, quy trình validation,
+              21 CFR Part 11 với dấu vết kiểm toán đầy đủ
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
-              <i class="fas fa-microchip"></i>
+              <i class="fas fa-utensils"></i>
             </div>
-            <h3>Điện tử</h3>
+            <h3>Thực phẩm & Đồ uống</h3>
             <p>
-              Phát triển sản phẩm điện tử từ ý tưởng đến sản xuất, tích hợp PCB
-              design và component management
+              Triển khai HACCP, điểm kiểm soát tới hạn,
+              giám sát an toàn thực phẩm và truy xuất nguồn gốc
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
               <i class="fas fa-plane"></i>
             </div>
-            <h3>Hàng không</h3>
+            <h3>Hàng không vũ trụ</h3>
             <p>
-              Quản lý thiết kế các bộ phận hàng không với tiêu chuẩn an toàn cao
-              và quy trình phê duyệt nghiêm ngặt
+              Tuân thủ ISA 95, tiêu chuẩn AS9100,
+              truy xuất nguồn gốc linh kiện hoàn chỉnh và kiểm soát chất lượng
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
-              <i class="fas fa-home"></i>
+              <i class="fas fa-industry"></i>
             </div>
-            <h3>Đồ gia dụng</h3>
+            <h3>Sản xuất tự động</h3>
             <p>
-              Thiết kế và phát triển các sản phẩm gia dụng với focus vào user
-              experience và manufacturing efficiency
+              Triển khai ISO 22400, tính toán OEE,
+              tích hợp Industry 4.0 và bảo trì dự báo
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
-              <i class="fas fa-tools"></i>
+              <i class="fas fa-heartbeat"></i>
             </div>
-            <h3>Cơ khí</h3>
+            <h3>Thiết bị y tế</h3>
             <p>
-              Quản lý thiết kế máy móc, thiết bị cơ khí với tính năng mô phỏng
-              và kiểm tra độ bền vật liệu
+              Tuân thủ ISO 13485, quy định thiết bị y tế,
+              hồ sơ FDA và quản lý dữ liệu lâm sàng
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
-              <i class="fas fa-pills"></i>
+              <i class="fas fa-leaf"></i>
             </div>
-            <h3>Y tế</h3>
+            <h3>Môi trường</h3>
             <p>
-              Phát triển thiết bị y tế và dược phẩm với tuân thủ nghiêm ngặt các
-              quy định về an toàn và hiệu quả
+              Quản lý môi trường ISO 14001,
+              giám sát phát thải, chỉ số bền vững
             </p>
           </div>
         </div>
@@ -1881,47 +1899,47 @@
       <div class="benefits-container">
         <div class="section-header animate-on-scroll">
           <h2>Lợi ích vượt trội</h2>
-          <p>Những lợi ích thiết thực mà PLM mang lại cho doanh nghiệp</p>
+          <p>Những lợi ích thiết thực mà hệ thống hợp quy - hợp chuẩn mang lại</p>
         </div>
         <div class="benefits-grid">
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-rocket"></i>
+              <i class="fas fa-clipboard-check"></i>
             </div>
-            <h3>Tăng tốc độ phát triển</h3>
+            <h3>Đảm bảo tuân thủ 99%</h3>
             <p>
-              Rút ngắn thời gian từ ý tưởng đến sản phẩm hoàn thiện nhờ quy
-              trình tự động hóa và AI support
+              Tuân thủ hoàn hảo các tiêu chuẩn GMP, HACCP, ISO 9001, ISO 14001
+              với giám sát tuân thủ tự động
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-shield-alt"></i>
+              <i class="fas fa-chart-line"></i>
             </div>
-            <h3>Đảm bảo chất lượng</h3>
+            <h3>Tối ưu OEE theo <br/>ISO 22400</h3>
             <p>
-              Kiểm soát chất lượng nghiêm ngặt qua từng giai đoạn thiết kế và
-              sản xuất
+              Cải thiện Hiệu suất tổng thể thiết bị 85% thông qua
+              giám sát thời gian thực và phân tích dự báo
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-coins"></i>
+              <i class="fas fa-robot"></i>
             </div>
-            <h3>Tiết kiệm chi phí</h3>
+            <h3>Tự động hóa <br/>theo dõi KPI</h3>
             <p>
-              Giảm chi phí phát triển và sản xuất thông qua tối ưu hóa thiết kế
-              và quy trình
+              90% tự động hóa thu thập và báo cáo KPI, OKR
+              với phân tích thông minh AI và bảng điều khiển thời gian thực
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-sync"></i>
+              <i class="fas fa-search-plus"></i>
             </div>
-            <h3>Tích hợp liền mạch</h3>
+            <h3>Tỷ lệ thành công kiểm toán 95%</h3>
             <p>
-              Tích hợp dễ dàng với các hệ thống ERP, CRM và production planning
-              hiện có
+              Dấu vết kiểm toán đầy đủ, xác thực tính toàn vẹn dữ liệu,
+              chữ ký điện tử và báo cáo quy định
             </p>
           </div>
         </div>
@@ -1931,9 +1949,9 @@
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="cta-container">
-        <h2>Sẵn sàng cách mạng hóa <br />quy trình thiết kế?</h2>
+        <h2>Sẵn sàng đạt chuẩn <br />hợp quy quốc tế?</h2>
         <p>
-          Bắt đầu hành trình chuyển đổi số với PLM Quản Lý Thiết Kế của DigiFact
+          Bắt đầu hành trình tuân thủ tiêu chuẩn với PLM Hợp quy - Hợp chuẩn của DigiFact
         </p>
         <div class="cta-buttons">
           <a href="#" class="cta-btn primary" onclick="openContactPopup()"
@@ -2007,7 +2025,7 @@
       async function tryAlternativeSubmission(data, status) {
         try {
           const subject = encodeURIComponent(
-            "Liên hệ từ website DigiFact - PLM Quản lý thiết kế"
+            "Liên hệ từ website DigiFact - PLM Hợp quy - Hợp chuẩn"
           );
           const body = encodeURIComponent(`
 Họ tên: ${data.firstName}
@@ -2015,7 +2033,7 @@ Email: ${data.email}
 Số điện thoại: ${data.phone}
 Công ty: ${data.company}
 Nội dung: ${data.message}
-Trang: PLM Quản lý thiết kế
+Trang: PLM Hợp quy - Hợp chuẩn
                 `);
 
           const mailtoLink = `mailto:contact@digifact.vn?subject=${subject}&body=${body}`;
@@ -2110,7 +2128,7 @@ Trang: PLM Quản lý thiết kế
               company: form.company.value,
               message: form.message.value,
               timestamp: new Date().toISOString(),
-              source: "Trang PLM Quản lý thiết kế",
+              source: "Trang PLM Hợp quy - Hợp chuẩn",
             };
 
             try {
@@ -2377,7 +2395,7 @@ Trang: PLM Quản lý thiết kế
               name="message"
               rows="4"
               required
-              placeholder="Bạn cần tư vấn gì về PLM Quản lý thiết kế?"
+              placeholder="Bạn cần tư vấn gì về PLM Hợp quy - Hợp chuẩn?"
             ></textarea>
           </div>
           <button type="submit" class="glass-submit-btn">

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PLM Quản Lý Thiết Kế - DigiFact</title>
+    <title>PLM Quản Lý BOM - DigiFact</title>
     <link
       rel="icon"
       href="../Resources/DigiFact_Logo_Noname_Type1.png"
@@ -671,8 +671,8 @@
 
       .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
       }
 
       .stat-card {
@@ -779,6 +779,27 @@
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 1px;
+        font-size: 0.9rem;
+        line-height: 1.2;
+        word-wrap: break-word;
+        hyphens: auto;
+        display: block;
+        text-align: center;
+      }
+
+      /* Long stat labels */
+      .stat-label-long {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 480px) {
+        .stat-label-long {
+          white-space: normal;
+          font-size: 0.8rem;
+        }
       }
 
       /* Use Cases Section */
@@ -851,6 +872,821 @@
         to {
           opacity: 1;
           transform: translateX(0);
+        }
+      }
+
+      /* Advanced BOM Management Infographic */
+      .advanced-bom-section {
+        padding: 100px 0;
+        background: linear-gradient(135deg, 
+          rgba(15, 23, 42, 0.95) 0%, 
+          rgba(30, 41, 59, 0.95) 50%, 
+          rgba(51, 65, 85, 0.95) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .advanced-bom-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+        animation: backgroundPulse 15s ease-in-out infinite;
+      }
+
+      @keyframes backgroundPulse {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.6; }
+      }
+
+      .advanced-bom-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .bom-infographic {
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+      }
+
+      /* BOM Structure Section */
+      .bom-structure-section {
+        background: rgba(30, 41, 59, 0.6);
+        border-radius: 25px;
+        padding: 50px 40px;
+        border: 1px solid rgba(100, 116, 139, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .structure-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .structure-header h3 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .structure-header p {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+      }
+
+      .bom-tree-container {
+        position: relative;
+        padding: 40px 0;
+      }
+
+      .bom-level {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 60px;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: levelFadeIn 1s ease forwards;
+      }
+
+      .bom-level[data-level="0"] { animation-delay: 0.2s; }
+      .bom-level[data-level="1"] { animation-delay: 0.4s; }
+      .bom-level[data-level="2"] { animation-delay: 0.6s; }
+      .bom-level[data-level="3"] { animation-delay: 0.8s; }
+
+      @keyframes levelFadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .bom-item {
+        background: rgba(51, 65, 85, 0.8);
+        border-radius: 15px;
+        padding: 20px;
+        min-width: 200px;
+        border: 2px solid transparent;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .bom-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .bom-item:hover::before {
+        left: 100%;
+      }
+
+      .bom-item.main-product {
+        border-color: var(--primary);
+        background: rgba(6, 182, 212, 0.1);
+      }
+
+      .bom-item.assembly {
+        border-color: var(--secondary);
+        background: rgba(59, 130, 246, 0.1);
+      }
+
+      .bom-item.component {
+        border-color: var(--accent);
+        background: rgba(139, 92, 246, 0.1);
+      }
+
+      .bom-item.raw-material {
+        border-color: var(--success);
+        background: rgba(16, 185, 129, 0.1);
+      }
+
+      .bom-item:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      .item-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .item-info h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: var(--text);
+      }
+
+      .item-code {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        font-family: 'Courier New', monospace;
+      }
+
+      .item-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(100, 116, 139, 0.3);
+      }
+
+      .cost {
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .qty {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .connection-lines {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .bom-connections {
+        width: 100%;
+        height: 100%;
+      }
+
+      .connection-path {
+        stroke-dasharray: 5,5;
+        animation: connectionFlow 3s ease-in-out infinite;
+      }
+
+      @keyframes connectionFlow {
+        0% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 20; }
+      }
+
+      /* Design Integration Section */
+      .design-integration-section {
+        background: rgba(30, 41, 59, 0.6);
+        border-radius: 25px;
+        padding: 50px 40px;
+        border: 1px solid rgba(100, 116, 139, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .integration-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .integration-header h3 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        background: var(--gradient-2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .integration-showcase {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .design-file-types {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+      }
+
+      .file-type-card {
+        background: rgba(51, 65, 85, 0.6);
+        border-radius: 15px;
+        padding: 25px 20px;
+        text-align: center;
+        border: 1px solid rgba(100, 116, 139, 0.3);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .file-type-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--gradient-2);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+      }
+
+      .file-type-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .file-type-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .file-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        background: var(--gradient-2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .file-type-card h4 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+
+      .file-type-card p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 15px;
+      }
+
+      .file-formats {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .file-formats span {
+        background: rgba(59, 130, 246, 0.2);
+        color: var(--secondary);
+        padding: 3px 8px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .integration-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .flow-step {
+        background: rgba(51, 65, 85, 0.6);
+        border-radius: 15px;
+        padding: 30px 25px;
+        text-align: center;
+        flex: 1;
+        border: 1px solid rgba(100, 116, 139, 0.3);
+        transition: all 0.4s ease;
+      }
+
+      .flow-step:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .step-icon {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        background: var(--gradient-2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .flow-step h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--text);
+      }
+
+      .flow-step p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+      }
+
+      .flow-arrow {
+        font-size: 1.5rem;
+        color: var(--primary);
+        animation: arrowPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes arrowPulse {
+        0%, 100% { opacity: 0.5; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.1); }
+      }
+
+      /* Version Management Section */
+      .version-management-section {
+        background: rgba(30, 41, 59, 0.6);
+        border-radius: 25px;
+        padding: 50px 40px;
+        border: 1px solid rgba(100, 116, 139, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .version-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .version-header h3 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        background: var(--gradient-3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .version-timeline {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        gap: 30px;
+        position: relative;
+      }
+
+      .version-timeline::before {
+        content: "";
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        z-index: 1;
+      }
+
+      .version-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .version-marker {
+        background: rgba(51, 65, 85, 0.8);
+        border: 3px solid var(--primary);
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        position: relative;
+        animation: versionPulse 3s ease-in-out infinite;
+      }
+
+      .version-item[data-version="1.1"] .version-marker {
+        border-color: var(--secondary);
+        animation-delay: 0.5s;
+      }
+
+      .version-item[data-version="1.2"] .version-marker {
+        border-color: var(--accent);
+        animation-delay: 1s;
+      }
+
+      @keyframes versionPulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+        50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
+      }
+
+      .version-number {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 5px;
+      }
+
+      .version-status {
+        font-size: 0.8rem;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-weight: 500;
+      }
+
+      .version-status.released {
+        background: rgba(16, 185, 129, 0.2);
+        color: var(--success);
+      }
+
+      .version-status.testing {
+        background: rgba(245, 158, 11, 0.2);
+        color: var(--warning);
+      }
+
+      .version-status.draft {
+        background: rgba(100, 116, 139, 0.2);
+        color: var(--text-muted);
+      }
+
+      .version-content {
+        background: rgba(51, 65, 85, 0.6);
+        border-radius: 15px;
+        padding: 25px 20px;
+        border: 1px solid rgba(100, 116, 139, 0.3);
+        transition: all 0.4s ease;
+      }
+
+      .version-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .version-content h4 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--text);
+      }
+
+      .version-content p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 15px;
+        line-height: 1.4;
+      }
+
+      .version-changes {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+
+      .change-type {
+        padding: 3px 8px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .change-type.added {
+        background: rgba(16, 185, 129, 0.2);
+        color: var(--success);
+      }
+
+      .change-type.modified {
+        background: rgba(245, 158, 11, 0.2);
+        color: var(--warning);
+      }
+
+      .change-type.removed {
+        background: rgba(239, 68, 68, 0.2);
+        color: var(--error);
+      }
+
+      .change-cost {
+        font-weight: 700;
+        color: var(--primary);
+        font-size: 1.1rem;
+      }
+
+      /* Cost Management Section */
+      .cost-management-section {
+        background: rgba(30, 41, 59, 0.6);
+        border-radius: 25px;
+        padding: 50px 40px;
+        border: 1px solid rgba(100, 116, 139, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .cost-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .cost-header h3 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .cost-breakdown {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .cost-categories {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+      }
+
+      .cost-category {
+        background: rgba(51, 65, 85, 0.6);
+        border-radius: 15px;
+        padding: 25px 20px;
+        border: 1px solid rgba(100, 116, 139, 0.3);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cost-category::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+      }
+
+      .cost-category.material::before {
+        background: linear-gradient(90deg, #06b6d4, #0891b2);
+      }
+
+      .cost-category.labor::before {
+        background: linear-gradient(90deg, #3b82f6, #2563eb);
+      }
+
+      .cost-category.overhead::before {
+        background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+      }
+
+      .cost-category.hidden::before {
+        background: linear-gradient(90deg, #f59e0b, #d97706);
+      }
+
+      .cost-category:hover::before {
+        transform: scaleX(1);
+      }
+
+      .cost-category:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .category-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .category-icon {
+        font-size: 1.8rem;
+        margin-right: 15px;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .category-header h4 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text);
+        flex: 1;
+      }
+
+      .category-percentage {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .cost-details {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .cost-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+      }
+
+      .cost-item:last-child {
+        border-bottom: none;
+      }
+
+      .item-name {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .item-cost {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .cost-visualization {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .cost-chart {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        position: relative;
+        background: conic-gradient(
+          from 0deg,
+          #06b6d4 0deg 162deg,
+          #3b82f6 162deg 252deg,
+          #8b5cf6 252deg 324deg,
+          #f59e0b 324deg 360deg
+        );
+      }
+
+      @keyframes chartRotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .chart-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 180px;
+        height: 180px;
+        background: rgba(30, 41, 59, 0.95);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid rgba(100, 116, 139, 0.3);
+      }
+
+      .total-cost {
+        text-align: center;
+      }
+
+      @keyframes costPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+
+      .cost-label {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .cost-amount {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary);
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .cost-unit {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      /* Responsive Design for Advanced BOM */
+      @media (max-width: 1200px) {
+        .integration-showcase {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        
+        .cost-breakdown {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .bom-level {
+          flex-direction: column;
+          gap: 20px;
+        }
+        
+        .design-file-types {
+          grid-template-columns: 1fr;
+        }
+        
+        .integration-flow {
+          flex-direction: column;
+        }
+        
+        .flow-arrow {
+          transform: rotate(90deg);
+        }
+        
+        .version-timeline {
+          flex-direction: column;
+          gap: 40px;
+        }
+        
+        .version-timeline::before {
+          top: 0;
+          left: 50%;
+          right: auto;
+          width: 2px;
+          height: 100%;
+          transform: translateX(-50%);
+        }
+        
+        .cost-categories {
+          grid-template-columns: 1fr;
         }
       }
 
@@ -1659,12 +2495,12 @@
     <section class="hero">
       <div class="hero-container">
         <div class="hero-icon">
-          <i class="fas fa-cube"></i>
+          <i class="fas fa-list-ul"></i>
         </div>
-        <h1>PLM Quản Lý Thiết Kế</h1>
+        <h1>PLM Quản Lý BOM</h1>
         <p style="max-width: 1000px;">
-          Hệ thống quản lý vòng đời sản phẩm toàn diện với công nghệ AI tiên tiến, <br/>
-          tối ưu hóa quy trình thiết kế và phát triển sản phẩm
+          Hệ thống quản lý danh sách vật liệu (Bill of Materials) thông minh, <br/>
+          từ cấu trúc sản phẩm đa cấp đến tối ưu hóa chi phí sản xuất
         </p>
       </div>
     </section>
@@ -1675,99 +2511,98 @@
         <div class="section-header animate-on-scroll">
           <h2>Tính năng nổi bật</h2>
           <p>
-            Giải pháp PLM hiện đại với đầy đủ tính năng <br />quản lý thiết kế
-            chuyên nghiệp
+            Giải pháp quản lý BOM toàn diện <br />từ cấu trúc sản phẩm đến tối ưu hóa chi phí
           </p>
         </div>
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-cube"></i>
+              <i class="fas fa-sitemap"></i>
             </div>
-            <h3>Thiết kế 3D tương tác</h3>
+            <h3>Cấu trúc BOM đa cấp</h3>
             <p>
-              Công cụ thiết kế 3D mạnh mẽ với khả năng tương tác real-time, hỗ
-              trợ nhiều định dạng file CAD phổ biến
+              Quản lý cấu trúc sản phẩm phức tạp với nhiều cấp độ, 
+              từ sản phẩm cuối đến nguyên vật liệu cơ bản
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-code-branch"></i>
+              <i class="fas fa-layer-group"></i>
             </div>
-            <h3>Quản lý phiên bản</h3>
+            <h3>Quản lý phiên bản BOM</h3>
             <p>
-              Theo dõi và quản lý tất cả các phiên bản thiết kế, đảm bảo tính
-              nhất quán và khả năng rollback
+              Theo dõi các phiên bản BOM khác nhau, lịch sử thay đổi 
+              và quản lý vòng đời của từng phiên bản
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-calculator"></i>
             </div>
-            <h3>Cộng tác đội nhóm</h3>
+            <h3>Tính toán chi phí tự động</h3>
             <p>
-              Môi trường cộng tác trực tuyến cho phép nhiều designer làm việc
-              cùng lúc trên một dự án
+              Tự động tính toán chi phí sản phẩm dựa trên giá nguyên vật liệu, 
+              nhân công và chi phí chung
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-robot"></i>
+              <i class="fas fa-exchange-alt"></i>
             </div>
-            <h3>AI Design Assistant</h3>
+            <h3>Quản lý vật liệu thay thế</h3>
             <p>
-              Trợ lý AI thông minh hỗ trợ tối ưu hóa thiết kế, đề xuất cải tiến
-              và phát hiện lỗi tự động
+              Định nghĩa và quản lý vật liệu thay thế, 
+              tự động đề xuất khi có shortage hoặc tối ưu chi phí
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-industry"></i>
+              <i class="fas fa-search"></i>
             </div>
-            <h3>Mô phỏng sản xuất</h3>
+            <h3>Truy xuất nguồn gốc</h3>
             <p>
-              Mô phỏng quy trình sản xuất để tối ưu hóa thiết kế trước khi đưa
-              vào sản xuất thực tế
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-database"></i>
-            </div>
-            <h3>Thư viện linh kiện</h3>
-            <p>
-              Thư viện linh kiện chuẩn phong phú với khả năng tìm kiếm thông
-              minh và phân loại chi tiết
+              Theo dõi nguồn gốc nguyên vật liệu từ nhà cung cấp 
+              đến sản phẩm cuối, hỗ trợ recall khi cần
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
               <i class="fas fa-chart-line"></i>
             </div>
-            <h3>Phân tích hiệu suất</h3>
+            <h3>Phân tích và tối ưu hóa</h3>
             <p>
-              Công cụ phân tích hiệu suất thiết kế với báo cáo chi tiết và
-              visualization trực quan
+              Phân tích chi phí, consumption pattern và đề xuất 
+              tối ưu hóa BOM để giảm chi phí sản xuất
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-cloud"></i>
+              <i class="fas fa-sync"></i>
             </div>
-            <h3>Cloud Integration</h3>
+            <h3>Tích hợp ERP/MRP</h3>
             <p>
-              Tích hợp cloud để lưu trữ, đồng bộ và truy cập dữ liệu thiết kế từ
-              bất kỳ đâu
+              Liên kết trực tiếp với hệ thống ERP, MRP để 
+              đồng bộ thông tin và tự động planning
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-mobile-alt"></i>
+              <i class="fas fa-check-circle"></i>
             </div>
-            <h3>Mobile Support</h3>
+            <h3>Workflow phê duyệt</h3>
             <p>
-              Ứng dụng mobile cho phép xem, review và approve thiết kế ngay trên
-              thiết bị di động
+              Quy trình phê duyệt BOM có kiểm soát, 
+              đảm bảo tính chính xác và tuân thủ quy định
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-file-export"></i>
+            </div>
+            <h3>Export đa định dạng</h3>
+            <p>
+              Xuất BOM sang nhiều định dạng khác nhau: 
+              Excel, PDF, XML, CSV cho các hệ thống khác
             </p>
           </div>
         </div>
@@ -1779,26 +2614,464 @@
       <div class="stats-container">
         <div class="section-header animate-on-scroll">
           <h2>Hiệu quả vượt trội</h2>
-          <p>Những con số ấn tượng từ hệ thống PLM của chúng tôi</p>
+          <p>Những con số ấn tượng từ hệ thống quản lý BOM</p>
         </div>
         <div class="stats-grid">
           <div class="stat-card">
-            <span class="stat-number">65%</span>
-            <span style="white-space: nowrap" class="stat-label"
-              >Giảm thời gian thiết kế</span
-            >
+            <span class="stat-number">40%</span>
+            <span class="stat-label stat-label-long">Giảm chi phí sản xuất</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">40%</span>
-            <span class="stat-label">Tăng năng suất</span>
+            <span class="stat-number">60%</span>
+            <span class="stat-label">Tiết kiệm thời gian</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">99%</span>
+            <span class="stat-label">Độ chính xác BOM</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">85%</span>
-            <span class="stat-label">Giảm lỗi thiết kế</span>
+            <span class="stat-label">Tối ưu hóa inventory</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-number">99.9%</span>
-            <span class="stat-label">Uptime hệ thống</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advanced BOM Management Infographic -->
+    <section class="advanced-bom-section">
+      <div class="advanced-bom-container">
+        <div class="section-header animate-on-scroll">
+          <h2>Quản lý BOM chuyên sâu</h2>
+          <p>Giải pháp toàn diện cho cấu trúc sản phẩm phức tạp đa cấp</p>
+        </div>
+        
+        <div class="bom-infographic">
+          <!-- Multi-level BOM Structure -->
+          <div class="bom-structure-section">
+            <div class="structure-header">
+              <h3>Cấu trúc BOM đa cấp không giới hạn</h3>
+              <p>Quản lý từ sản phẩm chính đến từng ốc vít nhỏ nhất</p>
+            </div>
+            
+            <div class="bom-tree-container">
+              <div class="bom-level level-0" data-level="0">
+                <div class="bom-item main-product">
+                  <div class="item-icon">
+                    <i class="fas fa-microchip"></i>
+                  </div>
+                  <div class="item-info">
+                    <h4>Smartphone XY-2025</h4>
+                    <span class="item-code">PRD-SM-001</span>
+                  </div>
+                  <div class="item-stats">
+                    <span class="cost">$245.80</span>
+                    <span class="qty">1 EA</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bom-level level-1" data-level="1">
+                <div class="bom-item assembly">
+                  <div class="item-icon">
+                    <i class="fas fa-tv"></i>
+                  </div>
+                  <div class="item-info">
+                    <h4>Display Assembly</h4>
+                    <span class="item-code">ASM-DSP-001</span>
+                  </div>
+                  <div class="item-stats">
+                    <span class="cost">$85.20</span>
+                    <span class="qty">1 EA</span>
+                  </div>
+                </div>
+                
+                <div class="bom-item assembly">
+                  <div class="item-icon">
+                    <i class="fas fa-memory"></i>
+                  </div>
+                  <div class="item-info">
+                    <h4>Main Board</h4>
+                    <span class="item-code">PCB-MB-001</span>
+                  </div>
+                  <div class="item-stats">
+                    <span class="cost">$95.40</span>
+                    <span class="qty">1 EA</span>
+                  </div>
+                </div>
+                
+                <div class="bom-item assembly">
+                  <div class="item-icon">
+                    <i class="fas fa-battery-half"></i>
+                  </div>
+                  <div class="item-info">
+                    <h4>Battery Pack</h4>
+                    <span class="item-code">BAT-LP-001</span>
+                  </div>
+                  <div class="item-stats">
+                    <span class="cost">$42.80</span>
+                    <span class="qty">1 EA</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bom-level level-2" data-level="2">
+                <div class="bom-item component">
+                  <div class="item-icon">
+                    <i class="fas fa-square"></i>
+                  </div>
+                  <div class="item-info">
+                    <h4>OLED Panel</h4>
+                    <span class="item-code">LCD-OL-6.5</span>
+                  </div>
+                  <div class="item-stats">
+                    <span class="cost">$65.00</span>
+                    <span class="qty">1 EA</span>
+                  </div>
+                </div>
+                
+                <div class="bom-item component">
+                  <div class="item-icon">
+                    <i class="fas fa-microchip"></i>
+                  </div>
+                  <div class="item-info">
+                    <h4>Processor A15</h4>
+                    <span class="item-code">CPU-A15-001</span>
+                  </div>
+                  <div class="item-stats">
+                    <span class="cost">$45.20</span>
+                    <span class="qty">1 EA</span>
+                  </div>
+                </div>
+                
+                <div class="bom-item component">
+                  <div class="item-icon">
+                    <i class="fas fa-memory"></i>
+                  </div>
+                  <div class="item-info">
+                    <h4>RAM 8GB</h4>
+                    <span class="item-code">RAM-8G-001</span>
+                  </div>
+                  <div class="item-stats">
+                    <span class="cost">$28.50</span>
+                    <span class="qty">1 EA</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bom-level level-3" data-level="3">
+                <div class="bom-item raw-material">
+                  <div class="item-icon">
+                    <i class="fas fa-bolt"></i>
+                  </div>
+                  <div class="item-info">
+                    <h4>Capacitor 100μF</h4>
+                    <span class="item-code">CAP-100-001</span>
+                  </div>
+                  <div class="item-stats">
+                    <span class="cost">$0.05</span>
+                    <span class="qty">12 EA</span>
+                  </div>
+                </div>
+                
+                <div class="bom-item raw-material">
+                  <div class="item-icon">
+                    <i class="fas fa-minus"></i>
+                  </div>
+                  <div class="item-info">
+                    <h4>Resistor 1kΩ</h4>
+                    <span class="item-code">RES-1K-001</span>
+                  </div>
+                  <div class="item-stats">
+                    <span class="cost">$0.02</span>
+                    <span class="qty">24 EA</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Connecting Lines -->
+              <div class="connection-lines">
+                <svg class="bom-connections" viewBox="0 0 800 600">
+                  <defs>
+                    <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Level 0 to Level 1 -->
+                  <path d="M400,80 L200,180 M400,80 L400,180 M400,80 L600,180" stroke="url(#connectionGradient)" stroke-width="2" fill="none" class="connection-path" />
+                  <!-- Level 1 to Level 2 -->
+                  <path d="M200,220 L150,320 M400,220 L350,320 M400,220 L450,320 M600,220 L550,320" stroke="url(#connectionGradient)" stroke-width="2" fill="none" class="connection-path" />
+                  <!-- Level 2 to Level 3 -->
+                  <path d="M150,360 L100,460 M350,360 L300,460 M450,360 L400,460 M550,360 L500,460" stroke="url(#connectionGradient)" stroke-width="2" fill="none" class="connection-path" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Design Integration Section -->
+          <div class="design-integration-section">
+            <div class="integration-header">
+              <h3>Tích hợp với bản vẽ thiết kế</h3>
+              <p>Liên kết trực tiếp với file CAD, 3D models và technical drawings</p>
+            </div>
+            
+            <div class="integration-showcase">
+              <div class="design-file-types">
+                <div class="file-type-card" data-type="cad">
+                  <div class="file-icon">
+                    <i class="fas fa-cube"></i>
+                  </div>
+                  <h4>CAD Files</h4>
+                  <p>SolidWorks, AutoCAD, Inventor</p>
+                  <div class="file-formats">
+                    <span>.dwg</span>
+                    <span>.sldprt</span>
+                    <span>.ipt</span>
+                  </div>
+                </div>
+                
+                <div class="file-type-card" data-type="3d">
+                  <div class="file-icon">
+                    <i class="fas fa-shapes"></i>
+                  </div>
+                  <h4>3D Models</h4>
+                  <p>STEP, IGES, STL formats</p>
+                  <div class="file-formats">
+                    <span>.step</span>
+                    <span>.iges</span>
+                    <span>.stl</span>
+                  </div>
+                </div>
+                
+                <div class="file-type-card" data-type="drawing">
+                  <div class="file-icon">
+                    <i class="fas fa-drafting-compass"></i>
+                  </div>
+                  <h4>Technical Drawings</h4>
+                  <p>2D drawings, schematics</p>
+                  <div class="file-formats">
+                    <span>.pdf</span>
+                    <span>.dwg</span>
+                    <span>.svg</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="integration-flow">
+                <div class="flow-step">
+                  <div class="step-icon">
+                    <i class="fas fa-upload"></i>
+                  </div>
+                  <h4>Import Design</h4>
+                  <p>Tự động nhận diện và import file thiết kế</p>
+                </div>
+                
+                <div class="flow-arrow">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="flow-step">
+                  <div class="step-icon">
+                    <i class="fas fa-link"></i>
+                  </div>
+                  <h4>Link to BOM</h4>
+                  <p>Liên kết từng component với BOM item</p>
+                </div>
+                
+                <div class="flow-arrow">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="flow-step">
+                  <div class="step-icon">
+                    <i class="fas fa-sync"></i>
+                  </div>
+                  <h4>Auto Sync</h4>
+                  <p>Đồng bộ tự động khi có thay đổi thiết kế</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Version Management Section -->
+          <div class="version-management-section">
+            <div class="version-header">
+              <h3>Quản lý phiên bản thiết kế</h3>
+              <p>Theo dõi và kiểm soát mọi thay đổi trong quá trình phát triển</p>
+            </div>
+            
+            <div class="version-timeline">
+              <div class="version-item" data-version="1.0">
+                <div class="version-marker">
+                  <span class="version-number">v1.0</span>
+                  <div class="version-status released">Released</div>
+                </div>
+                <div class="version-content">
+                  <h4>Initial Release</h4>
+                  <p>Phiên bản đầu tiên với 127 components</p>
+                  <div class="version-changes">
+                    <span class="change-type added">+127 items</span>
+                    <span class="change-cost">$245.80</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="version-item" data-version="1.1">
+                <div class="version-marker">
+                  <span class="version-number">v1.1</span>
+                  <div class="version-status testing">Testing</div>
+                </div>
+                <div class="version-content">
+                  <h4>Performance Optimization</h4>
+                  <p>Cải thiện hiệu suất và giảm chi phí</p>
+                  <div class="version-changes">
+                    <span class="change-type modified">~15 items</span>
+                    <span class="change-type removed">-3 items</span>
+                    <span class="change-cost">$238.20</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="version-item" data-version="1.2">
+                <div class="version-marker">
+                  <span class="version-number">v1.2</span>
+                  <div class="version-status draft">Draft</div>
+                </div>
+                <div class="version-content">
+                  <h4>New Feature Addition</h4>
+                  <p>Thêm tính năng wireless charging</p>
+                  <div class="version-changes">
+                    <span class="change-type added">+8 items</span>
+                    <span class="change-type modified">~5 items</span>
+                    <span class="change-cost">$251.40</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Cost Management Section -->
+          <div class="cost-management-section">
+            <div class="cost-header">
+              <h3>Quản lý chi phí dự kiến toàn diện</h3>
+              <p>Tính toán chính xác mọi chi phí từ nguyên liệu đến sản phẩm hoàn thiện</p>
+            </div>
+            
+            <div class="cost-breakdown">
+              <div class="cost-categories">
+                <div class="cost-category material">
+                  <div class="category-header">
+                    <div class="category-icon">
+                      <i class="fas fa-boxes"></i>
+                    </div>
+                    <h4>Nguyên phụ liệu</h4>
+                    <span class="category-percentage">45%</span>
+                  </div>
+                  <div class="cost-details">
+                    <div class="cost-item">
+                      <span class="item-name">Raw Materials</span>
+                      <span class="item-cost">$85.20</span>
+                    </div>
+                    <div class="cost-item">
+                      <span class="item-name">Components</span>
+                      <span class="item-cost">$65.80</span>
+                    </div>
+                    <div class="cost-item">
+                      <span class="item-name">Packaging</span>
+                      <span class="item-cost">$8.50</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="cost-category labor">
+                  <div class="category-header">
+                    <div class="category-icon">
+                      <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Nhân công</h4>
+                    <span class="category-percentage">25%</span>
+                  </div>
+                  <div class="cost-details">
+                    <div class="cost-item">
+                      <span class="item-name">Assembly</span>
+                      <span class="item-cost">$32.40</span>
+                    </div>
+                    <div class="cost-item">
+                      <span class="item-name">Testing</span>
+                      <span class="item-cost">$15.60</span>
+                    </div>
+                    <div class="cost-item">
+                      <span class="item-name">Quality Control</span>
+                      <span class="item-cost">$12.80</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="cost-category overhead">
+                  <div class="category-header">
+                    <div class="category-icon">
+                      <i class="fas fa-industry"></i>
+                    </div>
+                    <h4>Chi phí chung</h4>
+                    <span class="category-percentage">20%</span>
+                  </div>
+                  <div class="cost-details">
+                    <div class="cost-item">
+                      <span class="item-name">Machine Time</span>
+                      <span class="item-cost">$28.70</span>
+                    </div>
+                    <div class="cost-item">
+                      <span class="item-name">Utilities</span>
+                      <span class="item-cost">$12.30</span>
+                    </div>
+                    <div class="cost-item">
+                      <span class="item-name">Facility</span>
+                      <span class="item-cost">$8.20</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="cost-category hidden">
+                  <div class="category-header">
+                    <div class="category-icon">
+                      <i class="fas fa-eye-slash"></i>
+                    </div>
+                    <h4>Chi phí ẩn</h4>
+                    <span class="category-percentage">10%</span>
+                  </div>
+                  <div class="cost-details">
+                    <div class="cost-item">
+                      <span class="item-name">Scrap & Rework</span>
+                      <span class="item-cost">$8.90</span>
+                    </div>
+                    <div class="cost-item">
+                      <span class="item-name">Tool Wear</span>
+                      <span class="item-cost">$6.40</span>
+                    </div>
+                    <div class="cost-item">
+                      <span class="item-name">Setup Time</span>
+                      <span class="item-cost">$4.20</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="cost-visualization">
+                <div class="cost-chart">
+                  <div class="chart-center">
+                    <div class="total-cost">
+                      <span class="cost-label">Total Cost</span>
+                      <span class="cost-amount">$354.60</span>
+                      <span class="cost-unit">per unit</span>
+                    </div>
+                  </div>
+                  <div class="chart-segment material-segment" data-percentage="45"></div>
+                  <div class="chart-segment labor-segment" data-percentage="25"></div>
+                  <div class="chart-segment overhead-segment" data-percentage="20"></div>
+                  <div class="chart-segment hidden-segment" data-percentage="10"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1809,7 +3082,7 @@
       <div class="use-cases-container">
         <div class="section-header animate-on-scroll">
           <h2>Ứng dụng đa ngành</h2>
-          <p>Phù hợp với nhiều lĩnh vực và quy mô doanh nghiệp khác nhau</p>
+          <p>Quản lý BOM phù hợp với nhiều lĩnh vực sản xuất khác nhau</p>
         </div>
         <div class="use-cases-grid">
           <div class="use-case-card">
@@ -1818,8 +3091,8 @@
             </div>
             <h3>Ngành ô tô</h3>
             <p>
-              Thiết kế và phát triển các bộ phận ô tô với độ chính xác cao, quản
-              lý phiên bản và kiểm soát chất lượng nghiêm ngặt
+              Quản lý BOM phức tạp cho xe hơi với hàng nghìn linh kiện, 
+              từ động cơ, gearbox đến các chi tiết nhỏ như bu lông, đệm cao su
             </p>
           </div>
           <div class="use-case-card">
@@ -1828,8 +3101,8 @@
             </div>
             <h3>Điện tử</h3>
             <p>
-              Phát triển sản phẩm điện tử từ ý tưởng đến sản xuất, tích hợp PCB
-              design và component management
+              BOM cho PCB, smartphone, laptop với các component nhỏ, 
+              quản lý obsolescence và tương thích giữa các phiên bản
             </p>
           </div>
           <div class="use-case-card">
@@ -1838,8 +3111,8 @@
             </div>
             <h3>Hàng không</h3>
             <p>
-              Quản lý thiết kế các bộ phận hàng không với tiêu chuẩn an toàn cao
-              và quy trình phê duyệt nghiêm ngặt
+              Quản lý BOM cho máy bay với tiêu chuẩn nghiêm ngặt, 
+              traceability đầy đủ và tuân thủ quy định an toàn hàng không
             </p>
           </div>
           <div class="use-case-card">
@@ -1848,8 +3121,8 @@
             </div>
             <h3>Đồ gia dụng</h3>
             <p>
-              Thiết kế và phát triển các sản phẩm gia dụng với focus vào user
-              experience và manufacturing efficiency
+              BOM cho sản phẩm gia dụng như tủ lạnh, máy giặt, 
+              tối ưu hóa chi phí nguyên vật liệu và packaging
             </p>
           </div>
           <div class="use-case-card">
@@ -1858,18 +3131,18 @@
             </div>
             <h3>Cơ khí</h3>
             <p>
-              Quản lý thiết kế máy móc, thiết bị cơ khí với tính năng mô phỏng
-              và kiểm tra độ bền vật liệu
+              Quản lý BOM cho máy móc, thiết bị công nghiệp 
+              với raw materials, semi-finished và finished goods
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
-              <i class="fas fa-pills"></i>
+              <i class="fas fa-tshirt"></i>
             </div>
-            <h3>Y tế</h3>
+            <h3>Dệt may</h3>
             <p>
-              Phát triển thiết bị y tế và dược phẩm với tuân thủ nghiêm ngặt các
-              quy định về an toàn và hiệu quả
+              BOM cho sản phẩm thời trang với fabric, accessories, 
+              quản lý màu sắc, size và seasonal variations
             </p>
           </div>
         </div>
@@ -1880,48 +3153,48 @@
     <section class="benefits">
       <div class="benefits-container">
         <div class="section-header animate-on-scroll">
-          <h2>Lợi ích vượt trội</h2>
-          <p>Những lợi ích thiết thực mà PLM mang lại cho doanh nghiệp</p>
+          <h2>Lợi ích cốt lõi</h2>
+          <p>Các giá trị mà hệ thống quản lý BOM mang lại</p>
         </div>
         <div class="benefits-grid">
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-rocket"></i>
+              <i class="fas fa-dollar-sign"></i>
             </div>
-            <h3>Tăng tốc độ phát triển</h3>
+            <h3>Giảm chi phí sản xuất</h3>
             <p>
-              Rút ngắn thời gian từ ý tưởng đến sản phẩm hoàn thiện nhờ quy
-              trình tự động hóa và AI support
+              Tối ưu hóa nguyên vật liệu, giảm waste, quản lý supplier 
+              hiệu quả và tính toán chi phí chính xác
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-shield-alt"></i>
+              <i class="fas fa-clock"></i>
             </div>
-            <h3>Đảm bảo chất lượng</h3>
+            <h3>Rút ngắn thời gian sản xuất</h3>
             <p>
-              Kiểm soát chất lượng nghiêm ngặt qua từng giai đoạn thiết kế và
-              sản xuất
+              Chuẩn bị nguyên liệu kịp thời, tránh shortage, 
+              tối ưu hóa production planning và inventory
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-coins"></i>
+              <i class="fas fa-chart-line"></i>
             </div>
-            <h3>Tiết kiệm chi phí</h3>
+            <h3>Tăng độ chính xác</h3>
             <p>
-              Giảm chi phí phát triển và sản xuất thông qua tối ưu hóa thiết kế
-              và quy trình
+              Loại bỏ sai sót trong BOM, đảm bảo consistency 
+              giữa design và production
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-sync"></i>
+              <i class="fas fa-sync-alt"></i>
             </div>
-            <h3>Tích hợp liền mạch</h3>
+            <h3>Tự động hóa quy trình</h3>
             <p>
-              Tích hợp dễ dàng với các hệ thống ERP, CRM và production planning
-              hiện có
+              Tự động tính toán cost, generate purchase orders, 
+              update inventory levels và sync với ERP
             </p>
           </div>
         </div>
@@ -1931,9 +3204,9 @@
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="cta-container">
-        <h2>Sẵn sàng cách mạng hóa <br />quy trình thiết kế?</h2>
+        <h2>Sẵn sàng tối ưu hóa <br />quy trình quản lý BOM?</h2>
         <p>
-          Bắt đầu hành trình chuyển đổi số với PLM Quản Lý Thiết Kế của DigiFact
+          Bắt đầu hành trình chuyển đổi số với PLM Quản Lý BOM của DigiFact
         </p>
         <div class="cta-buttons">
           <a href="#" class="cta-btn primary" onclick="openContactPopup()"
@@ -1970,7 +3243,7 @@
               <li><a href="#">Tài liệu</a></li>
               <li><a href="#">Video hướng dẫn</a></li>
               <li><a href="#">FAQ</a></li>
-              <li><a href="#">Hotline: 1900 xxx xxx</a></li>
+              <li><a href="#">Hotline: 033 884 5579</a></li>
             </ul>
           </div>
           <div class="footer-section">
@@ -2007,7 +3280,7 @@
       async function tryAlternativeSubmission(data, status) {
         try {
           const subject = encodeURIComponent(
-            "Liên hệ từ website DigiFact - PLM Quản lý thiết kế"
+            "Liên hệ từ website DigiFact - PLM Quản lý nguyên mẫu"
           );
           const body = encodeURIComponent(`
 Họ tên: ${data.firstName}
@@ -2015,7 +3288,7 @@ Email: ${data.email}
 Số điện thoại: ${data.phone}
 Công ty: ${data.company}
 Nội dung: ${data.message}
-Trang: PLM Quản lý thiết kế
+Trang: PLM Quản lý nguyên mẫu
                 `);
 
           const mailtoLink = `mailto:contact@digifact.vn?subject=${subject}&body=${body}`;
@@ -2110,7 +3383,7 @@ Trang: PLM Quản lý thiết kế
               company: form.company.value,
               message: form.message.value,
               timestamp: new Date().toISOString(),
-              source: "Trang PLM Quản lý thiết kế",
+              source: "Trang PLM Quản lý nguyên mẫu",
             };
 
             try {
@@ -2377,7 +3650,7 @@ Trang: PLM Quản lý thiết kế
               name="message"
               rows="4"
               required
-              placeholder="Bạn cần tư vấn gì về PLM Quản lý thiết kế?"
+              placeholder="Bạn cần tư vấn gì về PLM Quản lý nguyên mẫu?"
             ></textarea>
           </div>
           <button type="submit" class="glass-submit-btn">

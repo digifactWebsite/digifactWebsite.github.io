@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PLM Quản Lý Thiết Kế - DigiFact</title>
+    <title>PLM Theo dõi vòng đời - DigiFact</title>
     <link
       rel="icon"
       href="../Resources/DigiFact_Logo_Noname_Type1.png"
@@ -671,8 +671,8 @@
 
       .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
       }
 
       .stat-card {
@@ -779,6 +779,27 @@
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 1px;
+        font-size: 0.9rem;
+        line-height: 1.2;
+        word-wrap: break-word;
+        hyphens: auto;
+        display: block;
+        text-align: center;
+      }
+
+      /* Long stat labels */
+      .stat-label-long {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 480px) {
+        .stat-label-long {
+          white-space: normal;
+          font-size: 0.8rem;
+        }
       }
 
       /* Use Cases Section */
@@ -1616,6 +1637,551 @@
           font-size: 1.5rem;
         }
       }
+
+      /* Product Lifecycle Infographic - Redesigned */
+      .lifecycle-infographic {
+        background: linear-gradient(135deg, var(--dark-light) 0%, var(--dark-lighter) 100%);
+        padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .lifecycle-infographic::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+        animation: backgroundPulse 8s ease-in-out infinite;
+      }
+
+      .lifecycle-infographic::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.03) 0%, transparent 40%),
+          radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.03) 0%, transparent 40%);
+        animation: backgroundPulse 12s ease-in-out infinite reverse;
+      }
+
+      @keyframes backgroundPulse {
+        0%, 100% { opacity: 0.3; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.05); }
+      }
+
+      .lifecycle-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .lifecycle-header {
+        text-align: center;
+        margin-bottom: 80px;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s ease-out forwards;
+      }
+
+      .lifecycle-header h2 {
+        font-size: 3rem;
+        font-weight: 800;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 20px;
+        letter-spacing: -0.5px;
+        animation: titleGlow 3s ease-in-out infinite alternate;
+      }
+
+      .lifecycle-header p {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.7;
+        animation: fadeInUp 1s ease-out 0.3s forwards;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      @keyframes titleGlow {
+        0% { filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0.3)); }
+        100% { filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.6)); }
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes rotateIn {
+        from {
+          opacity: 0;
+          transform: rotate(-10deg) scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: rotate(0deg) scale(1);
+        }
+      }
+
+      @keyframes bounceIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.3);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+        70% {
+          transform: scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes flowAnimation {
+        0% {
+          transform: translateX(-10px);
+          opacity: 0.5;
+        }
+        50% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(10px);
+          opacity: 0.5;
+        }
+      }
+
+      .lifecycle-stages-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 60px;
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto 60px auto;
+      }
+
+      .lifecycle-stages-grid::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent), var(--success), var(--warning));
+        transform: translateX(-50%);
+        z-index: 1;
+        box-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
+        animation: timelineGlow 4s ease-in-out infinite alternate;
+      }
+
+      @keyframes timelineGlow {
+        0% {
+          box-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
+        }
+        25% {
+          box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+        }
+        75% {
+          box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+        }
+        100% {
+          box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+        }
+      }
+
+      .lifecycle-stages-grid::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        animation: travelTimeline 8s linear infinite;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      }
+
+      @keyframes travelTimeline {
+        0% {
+          top: 0;
+          opacity: 0;
+        }
+        5% {
+          opacity: 1;
+        }
+        95% {
+          opacity: 1;
+        }
+        100% {
+          top: 100%;
+          opacity: 0;
+        }
+      }
+
+      .lifecycle-stage-card {
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid rgba(100, 116, 139, 0.2);
+        border-radius: 20px;
+        padding: 30px;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: staggeredFadeIn 0.6s ease-out forwards;
+        width: 45%;
+        margin: 30px 0;
+        z-index: 2;
+      }
+
+      .lifecycle-stage-card:nth-child(odd) {
+        align-self: flex-start;
+        margin-left: 0;
+        margin-right: auto;
+        transform: translateX(-30px) translateY(30px);
+      }
+
+      .lifecycle-stage-card:nth-child(even) {
+        align-self: flex-end;
+        margin-left: auto;
+        margin-right: 0;
+        transform: translateX(30px) translateY(30px);
+      }
+
+      .lifecycle-stage-card:nth-child(1) { animation-delay: 1s; }
+      .lifecycle-stage-card:nth-child(2) { animation-delay: 1.2s; }
+      .lifecycle-stage-card:nth-child(3) { animation-delay: 1.4s; }
+      .lifecycle-stage-card:nth-child(4) { animation-delay: 1.6s; }
+      .lifecycle-stage-card:nth-child(5) { animation-delay: 1.8s; }
+
+      @keyframes staggeredFadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0) translateX(0);
+        }
+      }
+
+      .lifecycle-stage-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient-1);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+      }
+
+      .lifecycle-stage-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(6, 182, 212, 0.3);
+      }
+
+      .lifecycle-stage-card:nth-child(odd):hover {
+        transform: translateY(-8px) translateX(-5px);
+      }
+
+      .lifecycle-stage-card:nth-child(even):hover {
+        transform: translateY(-8px) translateX(5px);
+      }
+
+      .stage-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+      }
+
+      .stage-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        margin-right: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        animation: bounceIn 0.6s ease-out;
+      }
+
+      .stage-icon:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .stage-icon i {
+        animation: iconFloat 2s ease-in-out infinite;
+      }
+
+      @keyframes iconFloat {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-3px); }
+      }
+
+      .stage-icon.concept { background: var(--gradient-1); }
+      .stage-icon.design { background: var(--gradient-2); }
+      .stage-icon.prototype { background: var(--gradient-3); }
+      .stage-icon.production { background: linear-gradient(135deg, var(--success), var(--primary)); }
+      .stage-icon.lifecycle { background: linear-gradient(135deg, var(--warning), var(--error)); }
+
+      .stage-info h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 5px;
+      }
+
+      .stage-info p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      .stage-activities {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .stage-activities li {
+        padding: 8px 0;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        line-height: 1.5;
+        opacity: 0;
+        transform: translateX(-20px);
+        animation: listItemSlideIn 0.5s ease-out forwards;
+      }
+
+      .stage-activities li:nth-child(1) { animation-delay: 0.1s; }
+      .stage-activities li:nth-child(2) { animation-delay: 0.2s; }
+      .stage-activities li:nth-child(3) { animation-delay: 0.3s; }
+      .stage-activities li:nth-child(4) { animation-delay: 0.4s; }
+      .stage-activities li:nth-child(5) { animation-delay: 0.5s; }
+
+      @keyframes listItemSlideIn {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .stage-activities li::before {
+        content: "✓";
+        color: var(--success);
+        font-weight: bold;
+        margin-right: 12px;
+        font-size: 1rem;
+        animation: checkmarkPop 0.3s ease-out;
+      }
+
+      @keyframes checkmarkPop {
+        0% { transform: scale(0); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+      }
+
+      .stage-activities li:hover {
+        color: var(--text);
+        transform: translateX(5px);
+      }
+
+      .lifecycle-flow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 60px 0;
+        flex-wrap: wrap;
+        gap: 20px;
+        opacity: 0;
+        animation: fadeInUp 1s ease-out 0.6s forwards;
+      }
+
+      .flow-arrow {
+        color: var(--primary);
+        font-size: 2rem;
+        animation: flowAnimation 2s ease-in-out infinite;
+      }
+
+      .flow-stage {
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(100, 116, 139, 0.2);
+        border-radius: 15px;
+        padding: 15px 25px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        transition: all 0.4s ease;
+        cursor: pointer;
+        opacity: 0;
+        transform: scale(0.9);
+        animation: flowStageIn 0.6s ease-out forwards;
+      }
+
+      .flow-stage:nth-child(1) { animation-delay: 0.1s; }
+      .flow-stage:nth-child(3) { animation-delay: 0.2s; }
+      .flow-stage:nth-child(5) { animation-delay: 0.3s; }
+      .flow-stage:nth-child(7) { animation-delay: 0.4s; }
+      .flow-stage:nth-child(9) { animation-delay: 0.5s; }
+
+      @keyframes flowStageIn {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .flow-stage:hover {
+        background: rgba(6, 182, 212, 0.1);
+        border-color: rgba(6, 182, 212, 0.3);
+        transform: scale(1.1) translateY(-5px);
+        box-shadow: 0 10px 25px rgba(6, 182, 212, 0.15);
+      }
+
+      .flow-stage-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 5px;
+      }
+
+      .flow-stage-subtitle {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      @media (max-width: 768px) {
+        .lifecycle-header h2 {
+          font-size: 2.2rem;
+        }
+        
+        .lifecycle-stages-grid {
+          max-width: 100%;
+        }
+        
+        .lifecycle-stages-grid::before {
+          left: 30px;
+        }
+
+        .lifecycle-stages-grid::after {
+          left: 30px;
+          animation: travelTimelineMobile 8s linear infinite;
+        }
+
+        @keyframes travelTimelineMobile {
+          0% {
+            top: 0;
+            opacity: 0;
+          }
+          5% {
+            opacity: 1;
+          }
+          95% {
+            opacity: 1;
+          }
+          100% {
+            top: 100%;
+            opacity: 0;
+          }
+        }
+        
+        .lifecycle-stage-card {
+          width: calc(100% - 60px);
+          margin-left: 60px;
+          margin-right: 0;
+        }
+        
+        .lifecycle-stage-card:nth-child(odd),
+        .lifecycle-stage-card:nth-child(even) {
+          align-self: stretch;
+          transform: translateY(30px);
+        }
+        
+        .stage-header {
+          flex-direction: column;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        
+        .stage-icon {
+          margin: 0 0 15px 0;
+        }
+        
+        .lifecycle-flow {
+          flex-direction: column;
+        }
+        
+        .flow-arrow {
+          transform: rotate(90deg);
+        }
+      }
     </style>
   </head>
   <body>
@@ -1659,13 +2225,159 @@
     <section class="hero">
       <div class="hero-container">
         <div class="hero-icon">
-          <i class="fas fa-cube"></i>
+          <i class="fas fa-recycle"></i>
         </div>
-        <h1>PLM Quản Lý Thiết Kế</h1>
+        <h1>PLM Theo Dõi Vòng Đời</h1>
         <p style="max-width: 1000px;">
-          Hệ thống quản lý vòng đời sản phẩm toàn diện với công nghệ AI tiên tiến, <br/>
-          tối ưu hóa quy trình thiết kế và phát triển sản phẩm
+          Hệ thống quản lý vòng đời sản phẩm từ ý tưởng đến kết thúc đời sống, <br/>
+          tối ưu hóa từng giai đoạn với phần mềm quản lý chuyên biệt
         </p>
+      </div>
+    </section>
+
+    <!-- Product Lifecycle Infographic -->
+    <section class="lifecycle-infographic">
+      <div class="lifecycle-container">
+        <div class="lifecycle-header">
+          <h2>Quản lý vòng đời sản phẩm hiệu quả</h2>
+          <p>Từ ý tưởng đến kết thúc đời sống - Mỗi giai đoạn được tối ưu hóa với giải pháp phần mềm chuyên biệt</p>
+        </div>
+        
+        <!-- Process Flow -->
+        <div class="lifecycle-flow">
+          <div class="flow-stage">
+            <div class="flow-stage-title">1. Concept</div>
+            <div class="flow-stage-subtitle">Ý tưởng</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-stage">
+            <div class="flow-stage-title">2. Design</div>
+            <div class="flow-stage-subtitle">Thiết kế</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-stage">
+            <div class="flow-stage-title">3. Prototype</div>
+            <div class="flow-stage-subtitle">Nguyên mẫu</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-stage">
+            <div class="flow-stage-title">4. Production</div>
+            <div class="flow-stage-subtitle">Sản xuất</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-stage">
+            <div class="flow-stage-title">5. Lifecycle</div>
+            <div class="flow-stage-subtitle">Vận hành</div>
+          </div>
+        </div>
+
+        <!-- Detailed Stage Cards -->
+        <div class="lifecycle-stages-grid">
+          <!-- Stage 1: Concept -->
+          <div class="lifecycle-stage-card">
+            <div class="stage-header">
+              <div class="stage-icon concept">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <div class="stage-info">
+                <h3>Concept</h3>
+                <p>Ý tưởng & Khái niệm</p>
+              </div>
+            </div>
+            
+            <ul class="stage-activities">
+              <li>Thu thập ý tưởng từ khách hàng và thị trường</li>
+              <li>Phân tích xu hướng công nghệ mới</li>
+              <li>Đánh giá khả thi kỹ thuật và kinh doanh</li>
+              <li>Định nghĩa yêu cầu sản phẩm ban đầu</li>
+              <li>Tạo concept design và mockup đầu tiên</li>
+            </ul>
+          </div>
+
+          <!-- Stage 2: Design -->
+          <div class="lifecycle-stage-card">
+            <div class="stage-header">
+              <div class="stage-icon design">
+                <i class="fas fa-drafting-compass"></i>
+              </div>
+              <div class="stage-info">
+                <h3>Design</h3>
+                <p>Thiết kế & Phát triển</p>
+              </div>
+            </div>
+            
+            <ul class="stage-activities">
+              <li>Thiết kế 3D chi tiết và kỹ thuật</li>
+              <li>Simulation và phân tích FEA</li>
+              <li>Quản lý version và revision control</li>
+              <li>Collaboration team thiết kế đa ngành</li>
+              <li>Optimization thiết kế cho sản xuất</li>
+            </ul>
+          </div>
+
+          <!-- Stage 3: Prototype -->
+          <div class="lifecycle-stage-card">
+            <div class="stage-header">
+              <div class="stage-icon prototype">
+                <i class="fas fa-flask"></i>
+              </div>
+              <div class="stage-info">
+                <h3>Prototype</h3>
+                <p>Nguyên mẫu & Kiểm thử</p>
+              </div>
+            </div>
+            
+            <ul class="stage-activities">
+              <li>Sản xuất nguyên mẫu vật lý</li>
+              <li>Testing và validation chức năng</li>
+              <li>Thu thập feedback từ người dùng</li>
+              <li>Cải tiến thiết kế dựa trên test</li>
+              <li>Approval và sign-off giai đoạn</li>
+            </ul>
+          </div>
+
+          <!-- Stage 4: Production -->
+          <div class="lifecycle-stage-card">
+            <div class="stage-header">
+              <div class="stage-icon production">
+                <i class="fas fa-industry"></i>
+              </div>
+              <div class="stage-info">
+                <h3>Production</h3>
+                <p>Sản xuất & Phân phối</p>
+              </div>
+            </div>
+            
+            <ul class="stage-activities">
+              <li>Lập kế hoạch sản xuất và tài nguyên</li>
+              <li>Quản lý chất lượng trong sản xuất</li>
+              <li>Theo dõi tiến độ và KPI</li>
+              <li>Quản lý chuỗi cung ứng</li>
+              <li>Phân phối và logistics</li>
+            </ul>
+          </div>
+
+          <!-- Stage 5: Lifecycle -->
+          <div class="lifecycle-stage-card">
+            <div class="stage-header">
+              <div class="stage-icon lifecycle">
+                <i class="fas fa-recycle"></i>
+              </div>
+              <div class="stage-info">
+                <h3>Lifecycle</h3>
+                <p>Vận hành & Bảo trì</p>
+              </div>
+            </div>
+            
+            <ul class="stage-activities">
+              <li>Hỗ trợ khách hàng và technical support</li>
+              <li>Bảo trì dự báo và preventive maintenance</li>
+              <li>Theo dõi hiệu suất và usage analytics</li>
+              <li>Quản lý end-of-life và disposal</li>
+              <li>Recycling và sustainable practices</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1675,99 +2387,98 @@
         <div class="section-header animate-on-scroll">
           <h2>Tính năng nổi bật</h2>
           <p>
-            Giải pháp PLM hiện đại với đầy đủ tính năng <br />quản lý thiết kế
-            chuyên nghiệp
+            Giải pháp quản lý vòng đời sản phẩm toàn diện <br />từ ý tưởng đến kết thúc đời sống
           </p>
         </div>
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-cube"></i>
+              <i class="fas fa-lightbulb"></i>
             </div>
-            <h3>Thiết kế 3D tương tác</h3>
+            <h3>Quản lý ý tưởng</h3>
             <p>
-              Công cụ thiết kế 3D mạnh mẽ với khả năng tương tác real-time, hỗ
-              trợ nhiều định dạng file CAD phổ biến
+              Thu thập, đánh giá và phát triển ý tưởng sản phẩm từ nhiều nguồn khác nhau, 
+              tích hợp feedback từ khách hàng và thị trường
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-code-branch"></i>
+              <i class="fas fa-drafting-compass"></i>
             </div>
-            <h3>Quản lý phiên bản</h3>
+            <h3>Thiết kế tích hợp</h3>
             <p>
-              Theo dõi và quản lý tất cả các phiên bản thiết kế, đảm bảo tính
-              nhất quán và khả năng rollback
+              Quản lý toàn bộ quy trình thiết kế từ concept đến detailed design,
+              tích hợp CAD/CAM và simulation tools
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-flask"></i>
             </div>
-            <h3>Cộng tác đội nhóm</h3>
+            <h3>Quản lý nguyên mẫu</h3>
             <p>
-              Môi trường cộng tác trực tuyến cho phép nhiều designer làm việc
-              cùng lúc trên một dự án
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-robot"></i>
-            </div>
-            <h3>AI Design Assistant</h3>
-            <p>
-              Trợ lý AI thông minh hỗ trợ tối ưu hóa thiết kế, đề xuất cải tiến
-              và phát hiện lỗi tự động
+              Theo dõi quy trình tạo nguyên mẫu, testing và validation,
+              quản lý feedback và cải tiến thiết kế
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
               <i class="fas fa-industry"></i>
             </div>
-            <h3>Mô phỏng sản xuất</h3>
+            <h3>Tích hợp sản xuất</h3>
             <p>
-              Mô phỏng quy trình sản xuất để tối ưu hóa thiết kế trước khi đưa
-              vào sản xuất thực tế
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-database"></i>
-            </div>
-            <h3>Thư viện linh kiện</h3>
-            <p>
-              Thư viện linh kiện chuẩn phong phú với khả năng tìm kiếm thông
-              minh và phân loại chi tiết
+              Liên kết với hệ thống MES và ERP, quản lý chuyển giao từ thiết kế 
+              sang sản xuất một cách mượt mà
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
               <i class="fas fa-chart-line"></i>
             </div>
-            <h3>Phân tích hiệu suất</h3>
+            <h3>Theo dõi hiệu suất</h3>
             <p>
-              Công cụ phân tích hiệu suất thiết kế với báo cáo chi tiết và
-              visualization trực quan
+              Monitor hiệu suất sản phẩm trong suốt vòng đời,
+              thu thập dữ liệu để cải tiến sản phẩm tương lai
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-cloud"></i>
+              <i class="fas fa-recycle"></i>
             </div>
-            <h3>Cloud Integration</h3>
+            <h3>Quản lý end-of-life</h3>
             <p>
-              Tích hợp cloud để lưu trữ, đồng bộ và truy cập dữ liệu thiết kế từ
-              bất kỳ đâu
+              Lập kế hoạch và quản lý giai đoạn kết thúc đời sống sản phẩm,
+              tối ưu hóa recycle và sustainability
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-mobile-alt"></i>
+              <i class="fas fa-users-cog"></i>
             </div>
-            <h3>Mobile Support</h3>
+            <h3>Cộng tác đa phòng ban</h3>
             <p>
-              Ứng dụng mobile cho phép xem, review và approve thiết kế ngay trên
-              thiết bị di động
+              Môi trường cộng tác giữa R&D, thiết kế, sản xuất, marketing 
+              và service trong suốt vòng đời sản phẩm
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-archive"></i>
+            </div>
+            <h3>Kho tri thức sản phẩm</h3>
+            <p>
+              Lưu trữ và quản lý toàn bộ thông tin, tài liệu, kinh nghiệm
+              và bài học từ mỗi giai đoạn vòng đời
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-route"></i>
+            </div>
+            <h3>Workflow tự động</h3>
+            <p>
+              Tự động hóa quy trình chuyển giao giữa các giai đoạn,
+              thông báo milestone và quản lý approval
             </p>
           </div>
         </div>
@@ -1779,26 +2490,24 @@
       <div class="stats-container">
         <div class="section-header animate-on-scroll">
           <h2>Hiệu quả vượt trội</h2>
-          <p>Những con số ấn tượng từ hệ thống PLM của chúng tôi</p>
+          <p>Những con số ấn tượng từ hệ thống quản lý vòng đời sản phẩm</p>
         </div>
         <div class="stats-grid">
           <div class="stat-card">
-            <span class="stat-number">65%</span>
-            <span style="white-space: nowrap" class="stat-label"
-              >Giảm thời gian thiết kế</span
-            >
-          </div>
-          <div class="stat-card">
             <span class="stat-number">40%</span>
-            <span class="stat-label">Tăng năng suất</span>
+            <span class="stat-label stat-label-long">Giảm thời gian time-to-market</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">85%</span>
-            <span class="stat-label">Giảm lỗi thiết kế</span>
+            <span class="stat-number">65%</span>
+            <span class="stat-label">Cải thiện collaboration</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">99.9%</span>
-            <span class="stat-label">Uptime hệ thống</span>
+            <span class="stat-number">50%</span>
+            <span class="stat-label">Tiết kiệm chi phí R&D</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">90%</span>
+            <span class="stat-label">Tỷ lệ thành công sản phẩm</span>
           </div>
         </div>
       </div>
@@ -1808,68 +2517,80 @@
     <section class="use-cases">
       <div class="use-cases-container">
         <div class="section-header animate-on-scroll">
-          <h2>Ứng dụng đa ngành</h2>
-          <p>Phù hợp với nhiều lĩnh vực và quy mô doanh nghiệp khác nhau</p>
+          <h2>Use Cases Đề Xuất</h2>
+          <p>Ứng dụng quản lý vòng đời sản phẩm trong các ngành công nghiệp</p>
         </div>
         <div class="use-cases-grid">
           <div class="use-case-card">
             <div class="use-case-icon">
               <i class="fas fa-car"></i>
             </div>
-            <h3>Ngành ô tô</h3>
+            <h3>Ngành ô tô - Honda Việt Nam</h3>
             <p>
-              Thiết kế và phát triển các bộ phận ô tô với độ chính xác cao, quản
-              lý phiên bản và kiểm soát chất lượng nghiêm ngặt
+              <strong>Concept:</strong> Nghiên cứu xe điện phù hợp thị trường VN<br>
+              <strong>Design:</strong> Thiết kế 3D với CAD, simulation khí động học<br>
+              <strong>Production:</strong> Tích hợp MES cho dây chuyền lắp ráp<br>
+              <strong>Lifecycle:</strong> Theo dõi hiệu suất, bảo trì dự báo
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
               <i class="fas fa-microchip"></i>
             </div>
-            <h3>Điện tử</h3>
+            <h3>Điện tử - Samsung Display</h3>
             <p>
-              Phát triển sản phẩm điện tử từ ý tưởng đến sản xuất, tích hợp PCB
-              design và component management
+              <strong>Concept:</strong> Phát triển màn hình OLED thế hệ mới<br>
+              <strong>Design:</strong> Thiết kế mạch với Altium Designer<br>
+              <strong>Prototype:</strong> Testing EMC, nhiệt độ, độ bền<br>
+              <strong>Production:</strong> Quản lý chất lượng với MES
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
               <i class="fas fa-plane"></i>
             </div>
-            <h3>Hàng không</h3>
+            <h3>Hàng không - Vietnam Airlines</h3>
             <p>
-              Quản lý thiết kế các bộ phận hàng không với tiêu chuẩn an toàn cao
-              và quy trình phê duyệt nghiêm ngặt
+              <strong>Concept:</strong> Nội thất cabin thân thiện môi trường<br>
+              <strong>Design:</strong> Thiết kế ergonomic với SolidWorks<br>
+              <strong>Testing:</strong> Kiểm thử an toàn, fire resistance<br>
+              <strong>Service:</strong> Theo dõi wear & tear, thay thế định kỳ
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
               <i class="fas fa-home"></i>
             </div>
-            <h3>Đồ gia dụng</h3>
+            <h3>Đồ gia dụng - Sunhouse</h3>
             <p>
-              Thiết kế và phát triển các sản phẩm gia dụng với focus vào user
-              experience và manufacturing efficiency
+              <strong>Concept:</strong> Nồi cơm điện thông minh IoT<br>
+              <strong>Design:</strong> UX/UI app mobile, thiết kế công nghiệp<br>
+              <strong>Testing:</strong> Usability testing, safety compliance<br>
+              <strong>Market:</strong> Phản hồi khách hàng, cải tiến sản phẩm
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
               <i class="fas fa-tools"></i>
             </div>
-            <h3>Cơ khí</h3>
+            <h3>Cơ khí - Thaco</h3>
             <p>
-              Quản lý thiết kế máy móc, thiết bị cơ khí với tính năng mô phỏng
-              và kiểm tra độ bền vật liệu
+              <strong>Concept:</strong> Máy nông nghiệp tự động hóa<br>
+              <strong>Design:</strong> Thiết kế cơ khí với Inventor<br>
+              <strong>Production:</strong> Quản lý sản xuất với ERP<br>
+              <strong>After-sales:</strong> Hỗ trợ kỹ thuật, spare parts
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
               <i class="fas fa-pills"></i>
             </div>
-            <h3>Y tế</h3>
+            <h3>Y tế - Vinmec</h3>
             <p>
-              Phát triển thiết bị y tế và dược phẩm với tuân thủ nghiêm ngặt các
-              quy định về an toàn và hiệu quả
+              <strong>Research:</strong> Nghiên cứu thiết bị chẩn đoán AI<br>
+              <strong>Development:</strong> Prototype với machine learning<br>
+              <strong>Clinical Trial:</strong> Thử nghiệm lâm sàng<br>
+              <strong>Deployment:</strong> Triển khai, training, maintenance
             </p>
           </div>
         </div>
@@ -1881,47 +2602,47 @@
       <div class="benefits-container">
         <div class="section-header animate-on-scroll">
           <h2>Lợi ích vượt trội</h2>
-          <p>Những lợi ích thiết thực mà PLM mang lại cho doanh nghiệp</p>
+          <p>Những lợi ích thiết thực mà quản lý vòng đời sản phẩm mang lại</p>
         </div>
         <div class="benefits-grid">
           <div class="benefit-card">
             <div class="benefit-icon">
               <i class="fas fa-rocket"></i>
             </div>
-            <h3>Tăng tốc độ phát triển</h3>
+            <h3>Tăng tốc Time-to-Market</h3>
             <p>
-              Rút ngắn thời gian từ ý tưởng đến sản phẩm hoàn thiện nhờ quy
-              trình tự động hóa và AI support
+              Rút ngắn thời gian đưa sản phẩm ra thị trường nhờ 
+              quy trình tối ưu và collaboration hiệu quả
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
               <i class="fas fa-shield-alt"></i>
             </div>
-            <h3>Đảm bảo chất lượng</h3>
+            <h3>Nâng cao chất lượng sản phẩm</h3>
             <p>
-              Kiểm soát chất lượng nghiêm ngặt qua từng giai đoạn thiết kế và
-              sản xuất
+              Đảm bảo chất lượng xuyên suốt vòng đời thông qua 
+              quản lý chặt chẽ từng giai đoạn
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
               <i class="fas fa-coins"></i>
             </div>
-            <h3>Tiết kiệm chi phí</h3>
+            <h3>Tiết kiệm chi phí R&D</h3>
             <p>
-              Giảm chi phí phát triển và sản xuất thông qua tối ưu hóa thiết kế
-              và quy trình
+              Giảm chi phí nghiên cứu phát triển thông qua 
+              tái sử dụng tri thức và tối ưu hóa quy trình
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
               <i class="fas fa-sync"></i>
             </div>
-            <h3>Tích hợp liền mạch</h3>
+            <h3>Tích hợp hệ sinh thái</h3>
             <p>
-              Tích hợp dễ dàng với các hệ thống ERP, CRM và production planning
-              hiện có
+              Liền mạch với toàn bộ hệ thống doanh nghiệp: 
+              ERP, CRM, MES, SCM tạo hệ sinh thái thống nhất
             </p>
           </div>
         </div>
@@ -1931,9 +2652,9 @@
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="cta-container">
-        <h2>Sẵn sàng cách mạng hóa <br />quy trình thiết kế?</h2>
+        <h2>Sẵn sàng tối ưu hóa <br />vòng đời sản phẩm?</h2>
         <p>
-          Bắt đầu hành trình chuyển đổi số với PLM Quản Lý Thiết Kế của DigiFact
+          Bắt đầu hành trình chuyển đổi số với PLM Theo Dõi Vòng Đời của DigiFact
         </p>
         <div class="cta-buttons">
           <a href="#" class="cta-btn primary" onclick="openContactPopup()"
@@ -2007,7 +2728,7 @@
       async function tryAlternativeSubmission(data, status) {
         try {
           const subject = encodeURIComponent(
-            "Liên hệ từ website DigiFact - PLM Quản lý thiết kế"
+            "Liên hệ từ website DigiFact - PLM Quản lý nguyên mẫu"
           );
           const body = encodeURIComponent(`
 Họ tên: ${data.firstName}
@@ -2015,7 +2736,7 @@ Email: ${data.email}
 Số điện thoại: ${data.phone}
 Công ty: ${data.company}
 Nội dung: ${data.message}
-Trang: PLM Quản lý thiết kế
+Trang: PLM Quản lý nguyên mẫu
                 `);
 
           const mailtoLink = `mailto:contact@digifact.vn?subject=${subject}&body=${body}`;
@@ -2110,7 +2831,7 @@ Trang: PLM Quản lý thiết kế
               company: form.company.value,
               message: form.message.value,
               timestamp: new Date().toISOString(),
-              source: "Trang PLM Quản lý thiết kế",
+              source: "Trang PLM Quản lý nguyên mẫu",
             };
 
             try {
@@ -2305,6 +3026,86 @@ Trang: PLM Quản lý thiết kế
       // Initialize scroll animations
       addScrollAnimations();
 
+      // Enhanced Lifecycle Animations
+      function initLifecycleAnimations() {
+        const cards = document.querySelectorAll('.lifecycle-stage-card');
+        const flowStages = document.querySelectorAll('.flow-stage');
+        
+        // Intersection Observer for lifecycle cards
+        const cardObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.animation = 'none';
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                entry.target.style.animation = `staggeredFadeIn 0.6s ease-out forwards`;
+                
+                // Animate list items
+                const listItems = entry.target.querySelectorAll('.stage-activities li');
+                listItems.forEach((item, itemIndex) => {
+                  setTimeout(() => {
+                    item.style.animation = `listItemSlideIn 0.5s ease-out forwards`;
+                  }, itemIndex * 100 + 200);
+                });
+              }, index * 200);
+            }
+          });
+        }, { threshold: 0.3 });
+        
+        cards.forEach(card => cardObserver.observe(card));
+        
+        // Flow stages click animation
+        flowStages.forEach((stage, index) => {
+          stage.addEventListener('click', () => {
+            stage.style.animation = 'bounceIn 0.6s ease-out';
+            setTimeout(() => {
+              stage.style.animation = '';
+            }, 600);
+          });
+        });
+        
+        // Stage icon hover animations
+        const stageIcons = document.querySelectorAll('.stage-icon');
+        stageIcons.forEach(icon => {
+          icon.addEventListener('mouseenter', () => {
+            icon.style.animation = 'rotateIn 0.6s ease-out';
+          });
+          
+          icon.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+              icon.style.animation = 'iconFloat 2s ease-in-out infinite';
+            }, 600);
+          });
+        });
+      }
+
+      // Parallax effect for lifecycle section
+      function addLifecycleParallax() {
+        const lifecycleSection = document.querySelector('.lifecycle-infographic');
+        
+        window.addEventListener('scroll', () => {
+          const scrolled = window.pageYOffset;
+          const sectionTop = lifecycleSection.offsetTop;
+          const sectionHeight = lifecycleSection.offsetHeight;
+          const windowHeight = window.innerHeight;
+          
+          if (scrolled > sectionTop - windowHeight && scrolled < sectionTop + sectionHeight) {
+            const rate = (scrolled - sectionTop + windowHeight) / (sectionHeight + windowHeight);
+            const cards = document.querySelectorAll('.lifecycle-stage-card');
+            
+            cards.forEach((card, index) => {
+              const speed = 0.1 + (index * 0.02);
+              card.style.transform = `translateY(${rate * speed * 50}px)`;
+            });
+          }
+        });
+      }
+
+      // Initialize lifecycle animations
+      initLifecycleAnimations();
+      addLifecycleParallax();
+
       // Add CSS for ripple animation
       const style = document.createElement("style");
       style.textContent = `
@@ -2377,7 +3178,7 @@ Trang: PLM Quản lý thiết kế
               name="message"
               rows="4"
               required
-              placeholder="Bạn cần tư vấn gì về PLM Quản lý thiết kế?"
+              placeholder="Bạn cần tư vấn gì về PLM Quản lý nguyên mẫu?"
             ></textarea>
           </div>
           <button type="submit" class="glass-submit-btn">

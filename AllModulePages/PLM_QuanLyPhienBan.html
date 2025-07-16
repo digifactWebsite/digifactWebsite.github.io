@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PLM Quản Lý Thiết Kế - DigiFact</title>
+    <title>PLM Quản Lý Phiên bản - DigiFact</title>
     <link
       rel="icon"
       href="../Resources/DigiFact_Logo_Noname_Type1.png"
@@ -671,8 +671,8 @@
 
       .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
       }
 
       .stat-card {
@@ -779,6 +779,27 @@
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 1px;
+        font-size: 0.9rem;
+        line-height: 1.2;
+        word-wrap: break-word;
+        hyphens: auto;
+        display: block;
+        text-align: center;
+      }
+
+      /* Long stat labels */
+      .stat-label-long {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 480px) {
+        .stat-label-long {
+          white-space: normal;
+          font-size: 0.8rem;
+        }
       }
 
       /* Use Cases Section */
@@ -1659,12 +1680,12 @@
     <section class="hero">
       <div class="hero-container">
         <div class="hero-icon">
-          <i class="fas fa-cube"></i>
+          <i class="fas fa-code-branch"></i>
         </div>
-        <h1>PLM Quản Lý Thiết Kế</h1>
+        <h1>PLM Quản Lý Phiên bản</h1>
         <p style="max-width: 1000px;">
-          Hệ thống quản lý vòng đời sản phẩm toàn diện với công nghệ AI tiên tiến, <br/>
-          tối ưu hóa quy trình thiết kế và phát triển sản phẩm
+          Hệ thống quản lý phiên bản thiết kế chuyên nghiệp, theo dõi mọi thay đổi <br/>
+          từ concept đến sản phẩm cuối cùng với kiểm soát hoàn toàn
         </p>
       </div>
     </section>
@@ -1675,99 +1696,98 @@
         <div class="section-header animate-on-scroll">
           <h2>Tính năng nổi bật</h2>
           <p>
-            Giải pháp PLM hiện đại với đầy đủ tính năng <br />quản lý thiết kế
-            chuyên nghiệp
+            Giải pháp quản lý phiên bản thiết kế chuyên nghiệp <br />cho mọi giai đoạn phát triển sản phẩm
           </p>
         </div>
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-cube"></i>
+              <i class="fas fa-code-branch"></i>
             </div>
-            <h3>Thiết kế 3D tương tác</h3>
+            <h3>Quản lý nhánh và tích hợp</h3>
             <p>
-              Công cụ thiết kế 3D mạnh mẽ với khả năng tương tác real-time, hỗ
-              trợ nhiều định dạng file CAD phổ biến
+              Tạo và quản lý các nhánh phát triển song song, tích hợp thay đổi 
+              một cách an toàn với giải quyết xung đột
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-code-branch"></i>
+              <i class="fas fa-history"></i>
             </div>
-            <h3>Quản lý phiên bản</h3>
+            <h3>Lịch sử thay đổi chi tiết</h3>
             <p>
-              Theo dõi và quản lý tất cả các phiên bản thiết kế, đảm bảo tính
-              nhất quán và khả năng rollback
+              Theo dõi mọi thay đổi với dấu thời gian, tác giả, bình luận và so sánh 
+              khác biệt giữa các phiên bản
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-tags"></i>
+            </div>
+            <h3>Gắn thẻ và phân loại</h3>
+            <p>
+              Đánh dấu các cột mốc quan trọng, phiên bản phát hành và 
+              phân loại theo trạng thái, mức độ ưu tiên
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-undo"></i>
+            </div>
+            <h3>Khôi phục và phục hồi</h3>
+            <p>
+              Khôi phục về phiên bản trước đó một cách nhanh chóng và an toàn 
+              khi gặp sự cố
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
               <i class="fas fa-users"></i>
             </div>
-            <h3>Cộng tác đội nhóm</h3>
+            <h3>Cộng tác và kiểm soát quyền truy cập</h3>
             <p>
-              Môi trường cộng tác trực tuyến cho phép nhiều designer làm việc
-              cùng lúc trên một dự án
+              Phân quyền truy cập chi tiết, quản lý cộng tác nhóm 
+              và quy trình phê duyệt
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-robot"></i>
+              <i class="fas fa-lock"></i>
             </div>
-            <h3>AI Design Assistant</h3>
+            <h3>Nhận và trả file</h3>
             <p>
-              Trợ lý AI thông minh hỗ trợ tối ưu hóa thiết kế, đề xuất cải tiến
-              và phát hiện lỗi tự động
+              Hệ thống khóa file khi chỉnh sửa, ngăn chặn xung đột và 
+              đảm bảo tính toàn vẹn dữ liệu
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-industry"></i>
+              <i class="fas fa-search"></i>
             </div>
-            <h3>Mô phỏng sản xuất</h3>
+            <h3>Tìm kiếm và so sánh</h3>
             <p>
-              Mô phỏng quy trình sản xuất để tối ưu hóa thiết kế trước khi đưa
-              vào sản xuất thực tế
+              Tìm kiếm nhanh theo phiên bản, ngày tháng, tác giả và so sánh 
+              chi tiết giữa các phiên bản
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
-              <i class="fas fa-database"></i>
+              <i class="fas fa-shield-alt"></i>
             </div>
-            <h3>Thư viện linh kiện</h3>
+            <h3>Sao lưu và lưu trữ</h3>
             <p>
-              Thư viện linh kiện chuẩn phong phú với khả năng tìm kiếm thông
-              minh và phân loại chi tiết
+              Sao lưu tự động, lưu trữ lâu dài và khôi phục dữ liệu 
+              từ các bản sao lưu
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
               <i class="fas fa-chart-line"></i>
             </div>
-            <h3>Phân tích hiệu suất</h3>
+            <h3>Phân tích và báo cáo</h3>
             <p>
-              Công cụ phân tích hiệu suất thiết kế với báo cáo chi tiết và
-              visualization trực quan
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-cloud"></i>
-            </div>
-            <h3>Cloud Integration</h3>
-            <p>
-              Tích hợp cloud để lưu trữ, đồng bộ và truy cập dữ liệu thiết kế từ
-              bất kỳ đâu
-            </p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-mobile-alt"></i>
-            </div>
-            <h3>Mobile Support</h3>
-            <p>
-              Ứng dụng mobile cho phép xem, review và approve thiết kế ngay trên
-              thiết bị di động
+              Báo cáo thống kê về hoạt động, hiệu suất và xu hướng 
+              của quá trình phát triển
             </p>
           </div>
         </div>
@@ -1779,26 +1799,24 @@
       <div class="stats-container">
         <div class="section-header animate-on-scroll">
           <h2>Hiệu quả vượt trội</h2>
-          <p>Những con số ấn tượng từ hệ thống PLM của chúng tôi</p>
+          <p>Những con số ấn tượng từ hệ thống quản lý phiên bản thiết kế</p>
         </div>
         <div class="stats-grid">
           <div class="stat-card">
-            <span class="stat-number">65%</span>
-            <span style="white-space: nowrap" class="stat-label"
-              >Giảm thời gian thiết kế</span
-            >
+            <span class="stat-number">80%</span>
+            <span class="stat-label stat-label-long">Giảm xung đột và lỗi</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">40%</span>
-            <span class="stat-label">Tăng năng suất</span>
+            <span class="stat-number">60%</span>
+            <span class="stat-label">Triển khai nhanh hơn</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">85%</span>
-            <span class="stat-label">Giảm lỗi thiết kế</span>
+            <span class="stat-number">95%</span>
+            <span class="stat-label">Độ chính xác phiên bản</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">99.9%</span>
-            <span class="stat-label">Uptime hệ thống</span>
+            <span class="stat-number">99%</span>
+            <span class="stat-label">Tính toàn vẹn dữ liệu</span>
           </div>
         </div>
       </div>
@@ -1809,7 +1827,7 @@
       <div class="use-cases-container">
         <div class="section-header animate-on-scroll">
           <h2>Ứng dụng đa ngành</h2>
-          <p>Phù hợp với nhiều lĩnh vực và quy mô doanh nghiệp khác nhau</p>
+          <p>Giải pháp quản lý phiên bản thiết kế phù hợp cho mọi ngành công nghiệp</p>
         </div>
         <div class="use-cases-grid">
           <div class="use-case-card">
@@ -1818,8 +1836,8 @@
             </div>
             <h3>Ngành ô tô</h3>
             <p>
-              Thiết kế và phát triển các bộ phận ô tô với độ chính xác cao, quản
-              lý phiên bản và kiểm soát chất lượng nghiêm ngặt
+              Quản lý phiên bản thiết kế xe hơi, theo dõi thay đổi từ ý tưởng đến sản xuất, 
+              đảm bảo tuân thủ tiêu chuẩn an toàn
             </p>
           </div>
           <div class="use-case-card">
@@ -1828,8 +1846,8 @@
             </div>
             <h3>Điện tử</h3>
             <p>
-              Phát triển sản phẩm điện tử từ ý tưởng đến sản xuất, tích hợp PCB
-              design và component management
+              Kiểm soát phiên bản cho thiết kế PCB, firmware, theo dõi thay đổi trong 
+              phát triển phần cứng và tích hợp phần mềm
             </p>
           </div>
           <div class="use-case-card">
@@ -1838,38 +1856,38 @@
             </div>
             <h3>Hàng không</h3>
             <p>
-              Quản lý thiết kế các bộ phận hàng không với tiêu chuẩn an toàn cao
-              và quy trình phê duyệt nghiêm ngặt
+              Quản lý phiên bản thiết kế hàng không với độ chính xác cao, 
+              đảm bảo truy xuất nguồn gốc và yêu cầu chứng nhận
             </p>
           </div>
           <div class="use-case-card">
             <div class="use-case-icon">
-              <i class="fas fa-home"></i>
-            </div>
-            <h3>Đồ gia dụng</h3>
-            <p>
-              Thiết kế và phát triển các sản phẩm gia dụng với focus vào user
-              experience và manufacturing efficiency
-            </p>
-          </div>
-          <div class="use-case-card">
-            <div class="use-case-icon">
-              <i class="fas fa-tools"></i>
-            </div>
-            <h3>Cơ khí</h3>
-            <p>
-              Quản lý thiết kế máy móc, thiết bị cơ khí với tính năng mô phỏng
-              và kiểm tra độ bền vật liệu
-            </p>
-          </div>
-          <div class="use-case-card">
-            <div class="use-case-icon">
-              <i class="fas fa-pills"></i>
+              <i class="fas fa-medkit"></i>
             </div>
             <h3>Y tế</h3>
             <p>
-              Phát triển thiết bị y tế và dược phẩm với tuân thủ nghiêm ngặt các
-              quy định về an toàn và hiệu quả
+              Kiểm soát phiên bản cho thiết bị y tế, theo dõi thay đổi quy định 
+              và duy trì tuân thủ với FDA, chứng nhận CE
+            </p>
+          </div>
+          <div class="use-case-card">
+            <div class="use-case-icon">
+              <i class="fas fa-industry"></i>
+            </div>
+            <h3>Chế tạo</h3>
+            <p>
+              Quản lý phiên bản thiết kế máy móc, thay đổi công cụ, 
+              tối ưu hóa quy trình sản xuất và kiểm soát chất lượng
+            </p>
+          </div>
+          <div class="use-case-card">
+            <div class="use-case-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Startup</h3>
+            <p>
+              Kiểm soát phiên bản cho tạo mẫu nhanh, phát triển linh hoạt, 
+              theo dõi các phiên bản MVP và quy trình mở rộng
             </p>
           </div>
         </div>
@@ -1881,47 +1899,47 @@
       <div class="benefits-container">
         <div class="section-header animate-on-scroll">
           <h2>Lợi ích vượt trội</h2>
-          <p>Những lợi ích thiết thực mà PLM mang lại cho doanh nghiệp</p>
+          <p>Những lợi ích thiết thực mà quản lý phiên bản thiết kế mang lại</p>
         </div>
         <div class="benefits-grid">
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-rocket"></i>
-            </div>
-            <h3>Tăng tốc độ phát triển</h3>
-            <p>
-              Rút ngắn thời gian từ ý tưởng đến sản phẩm hoàn thiện nhờ quy
-              trình tự động hóa và AI support
-            </p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">
               <i class="fas fa-shield-alt"></i>
             </div>
-            <h3>Đảm bảo chất lượng</h3>
+            <h3>Đảm bảo tính toàn vẹn</h3>
             <p>
-              Kiểm soát chất lượng nghiêm ngặt qua từng giai đoạn thiết kế và
-              sản xuất
+              Bảo vệ dữ liệu thiết kế khỏi mất mát, hư hỏng với 
+              sao lưu tự động và phục hồi nhanh chóng
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-coins"></i>
+              <i class="fas fa-users"></i>
             </div>
-            <h3>Tiết kiệm chi phí</h3>
+            <h3>Cải thiện cộng tác</h3>
             <p>
-              Giảm chi phí phát triển và sản xuất thông qua tối ưu hóa thiết kế
-              và quy trình
+              Tăng cường hợp tác giữa các nhóm với kiểm soát phiên bản, 
+              giải quyết xung đột và đồng bộ thời gian thực
             </p>
           </div>
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-sync"></i>
+              <i class="fas fa-search"></i>
             </div>
-            <h3>Tích hợp liền mạch</h3>
+            <h3>Truy xuất nguồn gốc hoàn hảo</h3>
             <p>
-              Tích hợp dễ dàng với các hệ thống ERP, CRM và production planning
-              hiện có
+              Theo dõi được mọi thay đổi, dấu vết kiểm tra chi tiết 
+              và tuân thủ các tiêu chuẩn ngành
+            </p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3>Tiết kiệm thời gian</h3>
+            <p>
+              Giảm thời gian xung đột tích hợp, quy trình làm việc tự động 
+              và truy cập tức thì vào lịch sử phiên bản
             </p>
           </div>
         </div>
@@ -1931,9 +1949,9 @@
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="cta-container">
-        <h2>Sẵn sàng cách mạng hóa <br />quy trình thiết kế?</h2>
+        <h2>Sẵn sàng tối ưu hóa <br />quản lý phiên bản thiết kế?</h2>
         <p>
-          Bắt đầu hành trình chuyển đổi số với PLM Quản Lý Thiết Kế của DigiFact
+          Bắt đầu hành trình chuyển đổi số với PLM Quản Lý Phiên Bản của DigiFact
         </p>
         <div class="cta-buttons">
           <a href="#" class="cta-btn primary" onclick="openContactPopup()"
@@ -2007,7 +2025,7 @@
       async function tryAlternativeSubmission(data, status) {
         try {
           const subject = encodeURIComponent(
-            "Liên hệ từ website DigiFact - PLM Quản lý thiết kế"
+            "Liên hệ từ website DigiFact - PLM Quản lý nguyên mẫu"
           );
           const body = encodeURIComponent(`
 Họ tên: ${data.firstName}
@@ -2015,7 +2033,7 @@ Email: ${data.email}
 Số điện thoại: ${data.phone}
 Công ty: ${data.company}
 Nội dung: ${data.message}
-Trang: PLM Quản lý thiết kế
+Trang: PLM Quản lý nguyên mẫu
                 `);
 
           const mailtoLink = `mailto:contact@digifact.vn?subject=${subject}&body=${body}`;
@@ -2110,7 +2128,7 @@ Trang: PLM Quản lý thiết kế
               company: form.company.value,
               message: form.message.value,
               timestamp: new Date().toISOString(),
-              source: "Trang PLM Quản lý thiết kế",
+              source: "Trang PLM Quản lý nguyên mẫu",
             };
 
             try {
@@ -2377,7 +2395,7 @@ Trang: PLM Quản lý thiết kế
               name="message"
               rows="4"
               required
-              placeholder="Bạn cần tư vấn gì về PLM Quản lý thiết kế?"
+              placeholder="Bạn cần tư vấn gì về PLM Quản lý nguyên mẫu?"
             ></textarea>
           </div>
           <button type="submit" class="glass-submit-btn">

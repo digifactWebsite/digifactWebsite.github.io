@@ -2011,6 +2011,45 @@
         border: 1px solid rgba(6, 182, 212, 0.3);
       }
 
+      .tech-card-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .tech-pulse {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+        margin-top: -50px;
+        border: 2px solid rgba(6, 182, 212, 0.4);
+        border-radius: 50%;
+        animation: techPulse 2s ease-in-out infinite;
+        z-index: 0;
+      }
+
+      @keyframes techPulse {
+        0% {
+          transform: scale(0.8);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 0.3;
+        }
+        100% {
+          transform: scale(0.8);
+          opacity: 1;
+        }
+      }
+
       @keyframes rotate {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
@@ -2247,6 +2286,34 @@
             <p>Hệ thống quản lý toàn bộ vòng đời sản phẩm từ ý tưởng đến thị trường</p>
           </div>
           <div class="products-grid">
+             <a href="AllModulePages/PLM_TheoDoiVongDoi.html" class="product-card tech-card">
+              <div class="tech-card-bg">
+                <div class="tech-pattern"></div>
+                <div class="tech-glow"></div>
+              </div>
+              <div class="icon-container tech-icon">
+                <div class="card-icon icon-lifecycle">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,6H13V14H11V6M15.2,7.2L16.6,8.6L10.6,14.6L9.2,13.2L15.2,7.2Z"/>
+                  </svg>
+                  <div class="tech-badge">NEW</div>
+                  <div class="tech-pulse"></div>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Theo dõi vòng đời</h3>
+                <p>
+                  Giám sát toàn bộ vòng đời sản phẩm từ R&D đến khai thác 
+                  với AI analytics và báo cáo thời gian thực.
+                </p>
+                <div class="tech-features">
+                  <span class="tech-tag">Lifecycle Analytics</span>
+                  <span class="tech-tag">Real-time Monitoring</span>
+                  <span class="tech-tag">Performance Tracking</span>
+                </div>
+              </div>
+            </a>
+
             <a href="AllModulePages/PLM_QuanLyThietKe.html" class="product-card tech-card">
               <div class="tech-card-bg">
                 <div class="tech-pattern"></div>
@@ -2262,8 +2329,7 @@
                 </div>
               </div>
               <div class="product-info">
-                <h3>
-                  <span class="tech-highlight">PLM</span> - Quản lý thiết kế sản phẩm
+                <h3>Quản lý thiết kế sản phẩm
                 </h3>
                 <p>
                   Công cụ thiết kế 3D, mô hình hóa và quản lý bản vẽ kỹ thuật 
@@ -2277,7 +2343,35 @@
               </div>
             </a>
 
-            <a href="#" class="product-card">
+            <a href="AllModulePages/PLM_QuanLyBom.html" class="product-card tech-card">
+              <div class="tech-card-bg">
+                <div class="tech-pattern"></div>
+                <div class="tech-glow"></div>
+              </div>
+              <div class="icon-container tech-icon">
+                <div class="card-icon icon-bom">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V5H19V19M17,17H7V15H17V17M17,13H7V11H17V13M17,9H7V7H17V9Z"/>
+                  </svg>
+                  <div class="tech-badge">NEW</div>
+                  <div class="tech-pulse"></div>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>Quản lý BOM</h3>
+                <p>
+                  Quản lý <span class="tech-highlight">danh sách vật liệu</span> và cấu trúc sản phẩm đa cấp 
+                  với AI optimization và cost analysis thông minh.
+                </p>
+                <div class="tech-features">
+                  <span class="tech-tag">Multi-level BOM</span>
+                  <span class="tech-tag">Cost Analysis</span>
+                  <span class="tech-tag">Smart Optimization</span>
+                </div>
+              </div>
+            </a>
+
+            <a href="AllModulePages/PLM_QuanLyNguyenMau.html" class="product-card">
               <div class="icon-container">
                 <div class="card-icon icon-prototype">
                   <svg viewBox="0 0 24 24">
@@ -2293,7 +2387,7 @@
               </div>
             </a>
 
-            <a href="#" class="product-card">
+            <a href="AllModulePages/PLM_QuanLyThuNghiem.html" class="product-card">
               <div class="icon-container">
                 <div class="card-icon icon-testing">
                   <svg viewBox="0 0 24 24">
@@ -2309,39 +2403,7 @@
               </div>
             </a>
 
-            <a href="#" class="product-card">
-              <div class="icon-container">
-                <div class="card-icon icon-lifecycle">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,6H13V14H11V6M15.2,7.2L16.6,8.6L10.6,14.6L9.2,13.2L15.2,7.2Z"/>
-                  </svg>
-                </div>
-              </div>
-              <div class="product-info">
-                <h3>Theo dõi vòng đời</h3>
-                <p>
-                  Giám sát toàn bộ vòng đời sản phẩm từ R&D đến khai thác.
-                </p>
-              </div>
-            </a>
-
-            <a href="#" class="product-card">
-              <div class="icon-container">
-                <div class="card-icon icon-bom">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V5H19V19M17,17H7V15H17V17M17,13H7V11H17V13M17,9H7V7H17V9Z"/>
-                  </svg>
-                </div>
-              </div>
-              <div class="product-info">
-                <h3>Quản lý BOM</h3>
-                <p>
-                  Quản lý danh sách vật liệu và cấu trúc sản phẩm đa cấp.
-                </p>
-              </div>
-            </a>
-
-            <a href="#" class="product-card">
+            <a href="AllModulePages/PLM_QuanLyPhienBan.html" class="product-card">
               <div class="icon-container">
                 <div class="card-icon icon-version">
                   <svg viewBox="0 0 24 24">
@@ -2357,7 +2419,7 @@
               </div>
             </a>
 
-            <a href="#" class="product-card">
+            <a href="AllModulePages/PLM_CongTacNhom.html" class="product-card">
               <div class="icon-container">
                 <div class="card-icon icon-collaboration">
                   <svg viewBox="0 0 24 24">
@@ -2373,7 +2435,7 @@
               </div>
             </a>
 
-            <a href="#" class="product-card">
+            <a href="AllModulePages/PLM_QuanLyThayDoi.html" class="product-card">
               <div class="icon-container">
                 <div class="card-icon icon-change">
                   <svg viewBox="0 0 24 24">
@@ -2389,7 +2451,7 @@
               </div>
             </a>
 
-            <a href="#" class="product-card">
+            <a href="AllModulePages/PLM_HopQuyHopChuan.html" class="product-card">
               <div class="icon-container">
                 <div class="card-icon icon-compliance">
                   <svg viewBox="0 0 24 24">
@@ -2398,9 +2460,9 @@
                 </div>
               </div>
               <div class="product-info">
-                <h3>Tuân thủ quy định</h3>
+                <h3>Hợp quy - Hợp chuẩn</h3>
                 <p>
-                  Đảm bảo sản phẩm tuân thủ các tiêu chuẩn và quy định.
+                  Đảm bảo sản phẩm tuân thủ các tiêu chuẩn, quy định trong và ngoài nước.
                 </p>
               </div>
             </a>
