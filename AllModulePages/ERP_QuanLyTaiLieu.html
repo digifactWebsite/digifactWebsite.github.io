@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý tài liệu - DigiFact ERP</title>
+    <link
+      rel="icon"
+      href="../Resources/DigiFact_Logo_Noname_Type1.png"
+      type="image/png"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #8b5cf6;
+        --accent: #f59e0b;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --light: #f8fafc;
+        --dark: #1e293b;
+        --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--dark);
+        background: var(--light);
+      }
+
+      /* Header */
+      .header {
+        background: white;
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Roboto Mono", monospace;
+        font-weight: 500;
+        font-size: 1.5rem;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .logo i {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 1.8rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white !important;
+      }
+
+      .btn-primary:hover {
+        background: var(--secondary);
+        color: white !important;
+        transform: translateY(-2px);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 6rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 25% 25%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(255, 255, 255, 0.05) 0%,
+            transparent 50%
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        opacity: 0.4;
+        animation: heroPattern 20s linear infinite;
+      }
+
+      @keyframes heroPattern {
+        0% {
+          transform: translateX(0) translateY(0);
+        }
+        50% {
+          transform: translateX(-10px) translateY(-10px);
+        }
+        100% {
+          transform: translateX(0) translateY(0);
+        }
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: titleGlow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes titleGlow {
+        0% {
+          text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        100% {
+          text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+            0 0 40px rgba(103, 126, 234, 0.3);
+        }
+      }
+
+      .hero p {
+        font-size: 1.4rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.95;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        line-height: 1.7;
+      }
+
+      .hero-icon {
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+        animation: iconFloat 4s ease-in-out infinite;
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      }
+
+      @keyframes iconFloat {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(2deg);
+        }
+      }
+
+      .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 3rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-stat {
+        text-align: center;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        min-width: 150px;
+      }
+
+      .hero-stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+        animation: countUp 2s ease-out;
+      }
+
+      .hero-stat-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      @keyframes countUp {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Features Section */
+      .features {
+        padding: 4rem 0;
+        background: white;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .section-title p {
+        font-size: 1.1rem;
+        color: #64748b;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .feature-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.9) 100%
+        );
+        padding: 2.5rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(37, 99, 235, 0.1),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .feature-card:hover::before {
+        left: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        border-color: var(--primary);
+      }
+
+      .feature-icon {
+        width: 90px;
+        height: 90px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2.2rem;
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .feature-card:hover .feature-icon {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .feature-card p {
+        color: #64748b;
+        line-height: 1.6;
+      }
+
+      /* Use Cases Section */
+      .use-cases {
+        padding: 4rem 0;
+        background: var(--light);
+      }
+
+      .use-case-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .use-case-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.9) 100%
+        );
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+      }
+
+      .use-case-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+        border-color: var(--primary);
+      }
+
+      .use-case-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .use-case-header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        animation: ripple 4s linear infinite;
+      }
+
+      @keyframes ripple {
+        0% {
+          transform: scale(0.8) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.2) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .use-case-header i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+        animation: iconPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes iconPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .use-case-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .use-case-body {
+        padding: 2rem;
+      }
+
+      .use-case-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .use-case-list li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .use-case-list li:last-child {
+        border-bottom: none;
+      }
+
+      .use-case-list i {
+        color: var(--success);
+        font-size: 1.2rem;
+      }
+
+      /* Benefits Section */
+      .benefits {
+        padding: 4rem 0;
+        background: white;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .benefit-card {
+        text-align: center;
+        padding: 2.5rem;
+        border-radius: 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.05) 0%,
+          rgba(139, 92, 246, 0.05) 100%
+        );
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .benefit-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.1) 0%,
+          rgba(139, 92, 246, 0.1) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .benefit-card:hover::before {
+        opacity: 1;
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+      }
+
+      .benefit-number {
+        font-size: 3.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 1rem;
+        animation: numberGlow 2s ease-in-out infinite alternate;
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes numberGlow {
+        0% {
+          filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.3));
+        }
+        100% {
+          filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.6));
+        }
+      }
+
+      .benefit-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .benefit-card p {
+        color: #64748b;
+        font-size: 0.9rem;
+      }
+
+      /* Pricing Styles */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .pricing-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        position: relative;
+        text-align: center;
+      }
+
+      .pricing-card.popular {
+        border-color: var(--primary);
+        transform: scale(1.05);
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+      }
+
+      .pricing-card.popular:hover {
+        transform: translateY(-10px) scale(1.07);
+      }
+
+      .popular-badge {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .pricing-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .pricing-price {
+        margin-bottom: 1rem;
+      }
+
+      .price-original {
+        font-size: 1.2rem;
+        color: #64748b;
+        text-decoration: line-through;
+        margin-bottom: 0.5rem;
+        opacity: 0.8;
+      }
+
+      .price-promo {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        position: relative;
+      }
+
+      .price-promo::after {
+        content: "Khuyến mại";
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        color: white;
+        font-size: 0.7rem;
+        padding: 2px 6px;
+        border-radius: 8px;
+        font-weight: 500;
+        transform: rotate(15deg);
+      }
+
+      .price-amount {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .price-period {
+        font-size: 1rem;
+        color: #64748b;
+        margin-left: 0.5rem;
+      }
+
+      .pricing-header p {
+        color: #64748b;
+        margin-bottom: 2rem;
+      }
+
+      .pricing-features ul {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0;
+        text-align: left;
+      }
+
+      .pricing-features li {
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .pricing-features i {
+        color: var(--success);
+        font-size: 1rem;
+      }
+
+      .pricing-footer {
+        margin-top: 2rem;
+      }
+
+      .pricing-footer .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* CTA Section */
+      .cta {
+        background: var(--gradient);
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .cta p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-white {
+        background: white;
+        color: var(--primary);
+      }
+
+      .btn-white:hover {
+        background: var(--light);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+
+      .btn-outline:hover {
+        background: white;
+        color: var(--primary);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--dark);
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      .footer p {
+        opacity: 0.8;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .nav-links {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .hero-stats {
+          gap: 1.5rem;
+        }
+
+        .hero-stat {
+          min-width: 120px;
+        }
+
+        .hero-stat-number {
+          font-size: 2rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .features-grid,
+        .use-case-grid,
+        .benefits-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pricing-card.popular {
+          transform: none;
+        }
+
+        .pricing-card.popular:hover {
+          transform: translateY(-10px) scale(1.02);
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .contact-popup-glass {
+          padding: 24px 20px;
+          max-width: 90vw;
+        }
+
+        .popup-glass-header h2 {
+          font-size: 1.2rem;
+        }
+
+        .popup-glass-icon {
+          width: 48px;
+          height: 48px;
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          padding: 4rem 0;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .hero-icon {
+          font-size: 4rem;
+        }
+
+        .feature-card,
+        .use-case-card,
+        .benefit-card {
+          padding: 1.5rem;
+        }
+
+        .hero-stats {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .hero-stat {
+          max-width: 200px;
+          margin: 0 auto;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      /* Scroll animations */
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .scroll-animate.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Contact Popup Styles */
+      .contact-popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(20, 24, 40, 0.55);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+        transition: background 0.3s;
+        animation: fadeInGlass 0.4s;
+      }
+      @keyframes fadeInGlass {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .contact-popup-glass {
+        background: rgba(30, 41, 59, 0.82);
+        border-radius: 22px;
+        box-shadow: 0 12px 40px rgba(16, 24, 40, 0.45),
+          0 1.5px 8px rgba(37, 99, 235, 0.1);
+        padding: 38px 32px 28px 32px;
+        max-width: 440px;
+        width: 95vw;
+        color: #f1f5f9;
+        position: relative;
+        border: 2.5px solid transparent;
+        background-clip: padding-box;
+        overflow: visible;
+        animation: popupSlideUp 0.5s cubic-bezier(0.23, 1.01, 0.32, 1);
+      }
+      @keyframes popupSlideUp {
+        from {
+          transform: translateY(40px) scale(0.98);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+      .contact-popup-glass::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        padding: 2px;
+        background: linear-gradient(
+          120deg,
+          var(--primary),
+          var(--secondary),
+          var(--accent)
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .close-popup-glass {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        background: rgba(255, 255, 255, 0.08);
+        border: none;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        color: #f1f5f9;
+        cursor: pointer;
+        z-index: 2;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+      }
+      .close-popup-glass:hover {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+        transform: scale(1.08);
+      }
+      .popup-glass-header {
+        text-align: center;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 1;
+      }
+      .popup-glass-icon {
+        width: 54px;
+        height: 54px;
+        margin: 0 auto 10px auto;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        box-shadow: 0 2px 12px rgba(37, 99, 235, 0.18);
+        font-size: 1.7rem;
+        color: #fff;
+        border: 2.5px solid rgba(255, 255, 255, 0.13);
+      }
+      .popup-glass-header h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+        background: linear-gradient(90deg, var(--light), var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        letter-spacing: 0.5px;
+      }
+      .popup-glass-header p {
+        color: #e0e7ef;
+        font-size: 1.01rem;
+        margin-bottom: 0;
+        opacity: 0.85;
+      }
+      .glass-form-group {
+        flex: 1 1 0;
+        margin-bottom: 18px;
+        display: flex;
+        flex-direction: column;
+      }
+      .glass-form-group label {
+        margin-bottom: 6px;
+        font-weight: 500;
+        color: #f1f5f9;
+        font-size: 1rem;
+        letter-spacing: 0.1px;
+      }
+      .glass-form-group input,
+      .glass-form-group textarea {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1.5px solid rgba(100, 116, 139, 0.18);
+        border-radius: 9px;
+        padding: 11px 14px;
+        font-size: 1.07rem;
+        color: #f1f5f9;
+        margin-bottom: 0;
+        outline: none;
+        transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+        box-shadow: 0 1.5px 8px rgba(37, 99, 235, 0.05);
+        font-family: inherit;
+      }
+      .glass-form-group input:focus,
+      .glass-form-group textarea:focus {
+        border: 1.5px solid var(--primary);
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.13);
+        background: rgba(37, 99, 235, 0.08);
+      }
+      .glass-form-group textarea {
+        resize: vertical;
+        min-height: 90px;
+        max-height: 220px;
+      }
+      .glass-submit-btn {
+        width: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        padding: 15px 0;
+        border-radius: 30px;
+        font-size: 1.08rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.18);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 6px;
+        letter-spacing: 0.2px;
+        gap: 8px;
+      }
+      .glass-submit-btn i {
+        font-size: 1.1em;
+      }
+      .glass-submit-btn:hover {
+        background: linear-gradient(
+          90deg,
+          var(--primary-dark),
+          var(--secondary)
+        );
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.22);
+      }
+      #formStatus {
+        font-size: 0.98rem;
+        text-align: center;
+        margin-top: 10px;
+        min-height: 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <a href="../index.html" class="logo">
+          <img
+            src="../Resources/DigiFact_Logo_Noname_Type1.png"
+            alt="DigiFact Logo"
+            style="height: 40px;"
+          />
+          <img
+            src="../Resources/BrandName.png"
+            alt="DigiFact Logo"
+            style="height: 40px;"
+          />
+        </a>
+        <nav class="nav-links">
+          <a href="../index.html">Trang chủ</a>
+          <a href="../AllModules.html">Tất cả Module</a>
+          <a href="#features">Tính năng</a>
+          <a href="#use-cases">Ứng dụng</a>
+          <a href="#benefits">Lợi ích</a>
+          <a href="#pricing">Bảng giá</a>
+          <a class="btn btn-primary" onclick="showContactPopup()"
+            >Dùng thử ngay</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-icon">
+            <i class="fas fa-folder-open"></i>
+          </div>
+          <h1>Quản lý tài liệu</h1>
+          <p>
+            Tổ chức, lưu trữ và quản lý tài liệu một cách hiệu quả với hệ thống
+            quản lý tài liệu thông minh của DigiFact
+          </p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-number">99%</div>
+              <div class="hero-stat-label">Tìm kiếm nhanh</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-number">24/7</div>
+              <div class="hero-stat-label">Truy cập</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-number">100%</div>
+              <div class="hero-stat-label">Bảo mật</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="container">
+          <div class="section-title">
+            <h2>Tính năng nổi bật</h2>
+            <p>
+              Khám phá các tính năng mạnh mẽ của hệ thống quản lý tài liệu
+              DigiFact
+            </p>
+          </div>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-cloud-upload-alt"></i>
+              </div>
+              <h3>Tải lên tài liệu</h3>
+              <p>
+                Tải lên và lưu trữ tài liệu với nhiều định dạng khác nhau một
+                cách dễ dàng và nhanh chóng
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-folder-tree"></i>
+              </div>
+              <h3>Phân loại thông minh</h3>
+              <p>
+                Tự động phân loại và tổ chức tài liệu theo danh mục, dự án hoặc
+                tiêu chí tùy chỉnh
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-search"></i>
+              </div>
+              <h3>Tìm kiếm nhanh</h3>
+              <p>
+                Tìm kiếm tài liệu theo từ khóa, nội dung, ngày tạo với kết quả
+                chính xác trong vài giây
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h3>Chia sẻ & Cộng tác</h3>
+              <p>
+                Chia sẻ tài liệu với đội nhóm và cộng tác chỉnh sửa trong thời
+                gian thực
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-history"></i>
+              </div>
+              <h3>Quản lý phiên bản</h3>
+              <p>
+                Theo dõi các phiên bản tài liệu, khôi phục phiên bản cũ khi cần
+                thiết
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3>Bảo mật cao</h3>
+              <p>
+                Mã hóa dữ liệu, phân quyền truy cập chi tiết để bảo vệ tài liệu
+                quan trọng
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <h3>Truy cập di động</h3>
+              <p>
+                Truy cập và quản lý tài liệu mọi lúc mọi nơi trên smartphone và
+                tablet
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-sync-alt"></i>
+              </div>
+              <h3>Đồng bộ tự động</h3>
+              <p>
+                Đồng bộ tài liệu tự động giữa các thiết bị để luôn có phiên bản
+                mới nhất
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3>Báo cáo chi tiết</h3>
+              <p>
+                Theo dõi hoạt động sử dụng tài liệu và tạo báo cáo thống kê chi
+                tiết
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="use-cases">
+        <div class="container">
+          <div class="section-title">
+            <h2>Ứng dụng thực tế</h2>
+            <p>
+              Hệ thống quản lý tài liệu DigiFact phù hợp với nhiều lĩnh vực và
+              quy mô doanh nghiệp
+            </p>
+          </div>
+          <div class="use-case-grid">
+            <div class="use-case-card">
+              <div class="use-case-header">
+                <i class="fas fa-building"></i>
+                <h3>Doanh nghiệp lớn</h3>
+                <p>Quản lý tài liệu cho tập đoàn</p>
+              </div>
+              <div class="use-case-body">
+                <ul class="use-case-list">
+                  <li>
+                    <i class="fas fa-check-circle"></i> Quản lý hợp đồng và văn
+                    bản pháp lý
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Lưu trữ tài liệu nhân sự
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Quản lý báo cáo tài
+                    chính
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Tài liệu đào tạo nội bộ
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Chính sách và quy trình
+                    công ty
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card">
+              <div class="use-case-header">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Trường học</h3>
+                <p>Quản lý tài liệu giáo dục</p>
+              </div>
+              <div class="use-case-body">
+                <ul class="use-case-list">
+                  <li>
+                    <i class="fas fa-check-circle"></i> Tài liệu giảng dạy
+                  </li>
+                  <li><i class="fas fa-check-circle"></i> Hồ sơ học sinh</li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Báo cáo và đánh giá
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Tài liệu hành chính
+                  </li>
+                  <li><i class="fas fa-check-circle"></i> Thư viện số</li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card">
+              <div class="use-case-header">
+                <i class="fas fa-hospital"></i>
+                <h3>Y tế</h3>
+                <p>Quản lý hồ sơ y tế</p>
+              </div>
+              <div class="use-case-body">
+                <ul class="use-case-list">
+                  <li><i class="fas fa-check-circle"></i> Hồ sơ bệnh án</li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Kết quả xét nghiệm
+                  </li>
+                  <li><i class="fas fa-check-circle"></i> Hình ảnh y tế</li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Tài liệu nghiên cứu
+                  </li>
+                  <li><i class="fas fa-check-circle"></i> Báo cáo y tế</li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card">
+              <div class="use-case-header">
+                <i class="fas fa-balance-scale"></i>
+                <h3>Luật sư</h3>
+                <p>Quản lý hồ sơ pháp lý</p>
+              </div>
+              <div class="use-case-body">
+                <ul class="use-case-list">
+                  <li><i class="fas fa-check-circle"></i> Hồ sơ vụ việc</li>
+                  <li><i class="fas fa-check-circle"></i> Hợp đồng pháp lý</li>
+                  <li><i class="fas fa-check-circle"></i> Tài liệu tòa án</li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Nghiên cứu pháp lý
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Báo cáo chuyên môn
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card">
+              <div class="use-case-header">
+                <i class="fas fa-industry"></i>
+                <h3>Sản xuất</h3>
+                <p>Quản lý tài liệu kỹ thuật</p>
+              </div>
+              <div class="use-case-body">
+                <ul class="use-case-list">
+                  <li><i class="fas fa-check-circle"></i> Bản vẽ kỹ thuật</li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Quy trình sản xuất
+                  </li>
+                  <li><i class="fas fa-check-circle"></i> Hướng dẫn an toàn</li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Báo cáo chất lượng
+                  </li>
+                  <li><i class="fas fa-check-circle"></i> Tài liệu đào tạo</li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card">
+              <div class="use-case-header">
+                <i class="fas fa-store"></i>
+                <h3>Kinh doanh</h3>
+                <p>Quản lý tài liệu kinh doanh</p>
+              </div>
+              <div class="use-case-body">
+                <ul class="use-case-list">
+                  <li>
+                    <i class="fas fa-check-circle"></i> Tài liệu marketing
+                  </li>
+                  <li><i class="fas fa-check-circle"></i> Báo cáo bán hàng</li>
+                  <li><i class="fas fa-check-circle"></i> Hồ sơ khách hàng</li>
+                  <li><i class="fas fa-check-circle"></i> Tài liệu đào tạo</li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Kế hoạch kinh doanh
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="benefits">
+        <div class="container">
+          <div class="section-title">
+            <h2>Lợi ích nổi bật</h2>
+            <p>
+              Những lợi ích thiết thực mà hệ thống quản lý tài liệu DigiFact
+              mang lại
+            </p>
+          </div>
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <div class="benefit-number">80%</div>
+              <h3>Giảm thời gian tìm kiếm</h3>
+              <p>
+                Tìm kiếm tài liệu nhanh chóng với công cụ tìm kiếm thông minh
+              </p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-number">95%</div>
+              <h3>Tăng hiệu quả làm việc</h3>
+              <p>
+                Truy cập và chia sẻ tài liệu dễ dàng, cải thiện năng suất làm
+                việc
+              </p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-number">100%</div>
+              <h3>Bảo mật tuyệt đối</h3>
+              <p>
+                Mã hóa dữ liệu và phân quyền truy cập để bảo vệ thông tin quan
+                trọng
+              </p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-number">50%</div>
+              <h3>Giảm chi phí in ấn</h3>
+              <p>Số hóa tài liệu giúp giảm chi phí in ấn và lưu trữ vật lý</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section id="pricing" class="pricing" style="padding: 4rem 0; background: var(--light);">
+        <div class="container">
+          <div class="section-title scroll-animate">
+            <h2>Toàn bộ gói dịch vụ ERP</h2>
+            <p>Lựa chọn gói phù hợp với quy mô và nhu cầu doanh nghiệp</p>
+          </div>
+          <div class="pricing-grid">
+            <div class="pricing-card scroll-animate">
+              <div class="pricing-header">
+                <h3>Starter</h3>
+                <div class="pricing-price">
+                  <div class="price-original">999.000/tháng</div>
+                  <div class="price-promo">599.000₫ <span class="price-period">/tháng</span></div>
+                </div>
+                <p>Phù hợp cho doanh nghiệp nhỏ</p>
+              </div>
+              <div class="pricing-features">
+                <ul>
+                  <li><i class="fas fa-check"></i> Lên đến 3 users</li>
+                  <li><i class="fas fa-check"></i> Quản lý 1000 sản phẩm</li>
+                  <li><i class="fas fa-check"></i> Quản lý hóa đơn</li>
+                  <li><i class="fas fa-check"></i> CRM cơ bản</li>
+                  <li><i class="fas fa-check"></i> Báo cáo cơ bản</li>
+                  <li><i class="fas fa-check"></i> Hỗ trợ email</li>
+                </ul>
+              </div>
+              <div class="pricing-footer">
+                <button class="btn btn-primary" onclick="showContactPopup()">Dùng thử 30 ngày</button>
+              </div>
+            </div>
+            <div class="pricing-card popular scroll-animate">
+              <div class="popular-badge">Phổ biến</div>
+              <div class="pricing-header">
+                <h3>Professional</h3>
+                <div class="pricing-price">
+                  <div class="price-original">4.999.000/tháng</div>
+                  <div class="price-promo">2.599.000₫ <span class="price-period">/tháng</span></div>
+                </div>
+                <p>Phù hợp cho doanh nghiệp vừa</p>
+              </div>
+              <div class="pricing-features">
+                <ul>
+                  <li><i class="fas fa-check"></i> Lên đến 10 users</li>
+                  <li><i class="fas fa-check"></i> Không giới hạn sản phẩm</li>
+                  <li><i class="fas fa-check"></i> CRM & Phân tích nâng cao</li>
+                  <li><i class="fas fa-check"></i> Ứng dụng di động</li>
+                  <li><i class="fas fa-check"></i> Tích hợp API</li>
+                  <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
+                </ul>
+              </div>
+              <div class="pricing-footer">
+                <button class="btn btn-primary" onclick="showContactPopup()">Dùng thử 30 ngày</button>
+              </div>
+            </div>
+            <div class="pricing-card scroll-animate">
+              <div class="pricing-header">
+                <h3>Enterprise</h3>
+                <div class="pricing-price">
+                  <span class="price-amount">Liên hệ</span>
+                  <span class="price-period">tùy chỉnh</span>
+                </div>
+                <p>Phù hợp cho doanh nghiệp lớn</p>
+              </div>
+              <div class="pricing-features">
+                <ul>
+                  <li><i class="fas fa-check"></i> Không giới hạn người dùng</li>
+                  <li><i class="fas fa-check"></i> Đa công ty</li>
+                  <li><i class="fas fa-check"></i> Tùy chỉnh nâng cao</li>
+                  <li><i class="fas fa-check"></i> Triển khai tại chỗ</li>
+                  <li><i class="fas fa-check"></i> Hỗ trợ chuyên dụng</li>
+                  <li><i class="fas fa-check"></i> Cam kết SLA</li>
+                </ul>
+              </div>
+              <div class="pricing-footer">
+                <button class="btn btn-outline" onclick="showContactPopup()">Liên hệ tư vấn</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="container">
+          <h2>Sẵn sàng quản lý tài liệu chuyên nghiệp?</h2>
+          <p>
+            Hãy liên hệ với chúng tôi ngay hôm nay để được tư vấn và demo sản
+            phẩm
+          </p>
+          <div class="cta-buttons">
+            <a
+              href="javascript:void(0);"
+              class="btn btn-white"
+              onclick="showContactPopup()"
+              >Liên hệ tư vấn</a
+            >
+            <a
+              href="javascript:void(0);"
+              class="btn btn-outline"
+              onclick="showContactPopup()"
+              >Dùng thử miễn phí</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 DigiFact. Bản quyền thuộc về DigiFact.</p>
+      </div>
+    </footer>
+
+    <!-- Contact Popup -->
+    <div id="contactPopup" class="contact-popup-overlay" style="display: none">
+      <div class="contact-popup-glass">
+        <button class="close-popup-glass" onclick="closeContactPopup()">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="popup-glass-header">
+          <div class="popup-glass-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h2>Liên hệ tư vấn</h2>
+          <p>Để lại thông tin để được tư vấn miễn phí</p>
+        </div>
+        <form id="contactForm">
+          <div class="glass-form-group">
+            <label for="name">Họ và tên *</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="glass-form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="glass-form-group">
+            <label for="phone">Số điện thoại *</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+          <div class="glass-form-group">
+            <label for="company">Công ty</label>
+            <input type="text" id="company" name="company" />
+          </div>
+          <div class="glass-form-group">
+            <label for="message">Tin nhắn</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Mô tả nhu cầu của bạn..."
+            ></textarea>
+          </div>
+          <button type="submit" class="glass-submit-btn">
+            <i class="fas fa-paper-plane"></i>
+            Gửi yêu cầu
+          </button>
+          <p class="popup-glass-header" style="margin-top: 10px; font-style: italic;">Hướng dẫn tải về tự động phần mềm dùng thử<br/>miễn phí 30 ngày sẽ được gửi về email của bạn</p>
+        </form>
+        <div id="formStatus"></div>
+      </div>
+    </div>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const elements = document.querySelectorAll(
+          ".feature-card, .use-case-card, .benefit-card, .pricing-card, .scroll-animate"
+        );
+        elements.forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(30px)";
+          el.style.transition = "all 0.8s ease";
+          observer.observe(el);
+        });
+      });
+
+      // Contact popup functions
+      function showContactPopup() {
+        document.getElementById("contactPopup").style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeContactPopup() {
+        document.getElementById("contactPopup").style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      // Close popup when clicking outside
+      document
+        .getElementById("contactPopup")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeContactPopup();
+          }
+        });
+
+      // Form submission
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const formData = new FormData(this);
+          const statusDiv = document.getElementById("formStatus");
+
+          // Show loading
+          statusDiv.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
+          statusDiv.style.color = "#667eea";
+
+          // Simulate form submission
+          setTimeout(() => {
+            statusDiv.innerHTML =
+              '<i class="fas fa-check-circle"></i> Gửi thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.';
+            statusDiv.style.color = "#10b981";
+
+            // Reset form
+            this.reset();
+
+            // Close popup after 2 seconds
+            setTimeout(() => {
+              closeContactPopup();
+              statusDiv.innerHTML = "";
+            }, 2000);
+          }, 1500);
+        });
+
+      // Header scroll effect
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector(".header");
+        if (window.scrollY > 100) {
+          header.style.background = "rgba(255, 255, 255, 0.95)";
+          header.style.backdropFilter = "blur(10px)";
+        } else {
+          header.style.background = "white";
+          header.style.backdropFilter = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

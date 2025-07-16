@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý mua hàng - DigiFact ERP</title>
+    <title>Quản lý kho - DigiFact ERP</title>
     <link
       rel="icon"
       href="../Resources/DigiFact_Logo_Noname_Type1.png"
@@ -381,7 +381,6 @@
         font-size: 1.5rem;
         margin-bottom: 1rem;
         color: var(--dark);
-        white-space: nowrap;
       }
 
       .feature-card p {
@@ -1326,7 +1325,8 @@
           <a href="#features">Tính năng</a>
           <a href="#use-cases">Ứng dụng</a>
           <a href="#benefits">Lợi ích</a>
-          <a class="btn btn-primary" onclick="openContactPopup()"
+          <a href="#pricing">Bảng giá</a>
+          <a class="btn btn-primary" onclick="showContactPopup()"
             >Dùng thử ngay</a
           >
         </nav>
@@ -1337,33 +1337,33 @@
     <section class="hero">
       <div class="hero-content animate-fade-in">
         <div class="hero-icon">
-          <i class="fas fa-shopping-basket"></i>
+          <i class="fas fa-warehouse"></i>
         </div>
-        <h1>Quản lý mua hàng</h1>
+        <h1>Quản lý tồn kho</h1>
         <p>
-          Hệ thống quản lý mua hàng thông minh, tự động hóa quy trình 
-          <br/>từ yêu cầu mua hàng đến thanh toán nhà cung cấp
+          Hệ thống quản lý tồn kho thông minh, theo dõi và kiểm soát hàng hóa
+          <br/>từ nhập kho đến xuất kho một cách chính xác và hiệu quả
         </p>
         <div class="cta-buttons">
           <a href="#features" class="btn btn-white">Khám phá tính năng</a>
           <a
             class="btn btn-outline"
-            onclick="openContactPopup()"
+            onclick="showContactPopup()"
             >Dùng thử ngay</a
           >
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
+            <div class="hero-stat-number">95%</div>
+            <div class="hero-stat-label">Độ chính xác</div>
+          </div>
+          <div class="hero-stat">
             <div class="hero-stat-number">70%</div>
             <div class="hero-stat-label">Giảm chi phí</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number">80%</div>
-            <div class="hero-stat-label">Tiết kiệm thời gian</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-number">500+</div>
-            <div class="hero-stat-label">Nhà cung cấp</div>
+            <div class="hero-stat-number">24/7</div>
+            <div class="hero-stat-label">Giám sát</div>
           </div>
         </div>
       </div>
@@ -1375,74 +1375,74 @@
         <div class="section-title scroll-animate">
           <h2>Tính năng nổi bật</h2>
           <p>
-            Hệ thống quản lý mua hàng toàn diện<br/> với đầy đủ tính năng cần thiết cho mọi doanh nghiệp
+            Hệ thống quản lý tồn kho toàn diện<br/> với đầy đủ tính năng cần thiết cho mọi doanh nghiệp
           </p>
         </div>
         <div class="features-grid">
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
-              <i class="fas fa-file-alt"></i>
+              <i class="fas fa-sign-in-alt"></i>
             </div>
-            <h3>Yêu cầu mua hàng</h3>
+            <h3>Quản lý nhập kho</h3>
             <p>
-              Tạo và quản lý yêu cầu mua hàng với quy trình phê duyệt đa cấp. 
-              Tự động tạo đơn mua hàng từ yêu cầu được duyệt, theo dõi trạng thái 
-              và gửi thông báo tự động cho các bên liên quan
+              Tự động hóa quy trình nhập kho với mã QR/barcode, phiếu nhập kho điện tử,
+              kiểm tra chất lượng tự động. Theo dõi ngày sản xuất, hạn sử dụng và
+              thông báo cảnh báo khi hàng hóa cần kiểm tra
             </p>
           </div>
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
-              <i class="fas fa-shopping-bag"></i>
+              <i class="fas fa-sign-out-alt"></i>
             </div>
-            <h3>Đơn mua hàng</h3>
+            <h3>Quản lý xuất kho</h3>
             <p>
-              Quản lý đơn mua hàng từ tạo → gửi → xác nhận → theo dõi → nhận hàng. 
-              Tích hợp email gửi đơn hàng, theo dõi trạng thái giao hàng, 
-              kiểm tra chất lượng và xác nhận nhận hàng
+              Quy trình xuất kho thông minh với FIFO/LIFO, phiếu xuất kho tự động,
+              kiểm tra tồn kho trước khi xuất. Theo dõi lịch sử xuất kho theo đơn hàng,
+              bộ phận hoặc dự án với báo cáo chi tiết
             </p>
           </div>
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-boxes"></i>
             </div>
-            <h3>Quản lý nhà cung cấp</h3>
+            <h3>Theo dõi tồn kho</h3>
             <p>
-              Hồ sơ nhà cung cấp đầy đủ với đánh giá hiệu suất, lịch sử giao dịch, 
-              điều khoản hợp đồng. Phân loại và xếp hạng nhà cung cấp theo chất lượng, 
-              giá cả, thời gian giao hàng. Tích hợp cổng thông tin nhà cung cấp
+              Cập nhật tồn kho thời gian thực, cảnh báo hàng sắp hết, hàng tồn kho quá lâu.
+              Phân tích ABC, XYZ cho tối ưu hóa kho. Theo dõi tỷ lệ quay vòng hàng tồn kho
+              và giá trị tồn kho theo thời gian
             </p>
           </div>
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
               <i class="fas fa-warehouse"></i>
             </div>
-            <h3>Quản lý kho nhận</h3>
+            <h3>Quản lý vị trí kho</h3>
             <p>
-              Theo dõi hàng hóa nhận vào kho, kiểm tra chất lượng, 
-              quản lý vị trí lưu trữ. Tích hợp mã vạch/QR code, 
-              báo cáo sai lệch và quản lý hàng trả lại nhà cung cấp
+              Sắp xếp hàng hóa theo vị trí cụ thể (kệ-tầng-ô), bản đồ kho 3D,
+              tối ưu hóa tuyến đường picking. Hỗ trợ đa kho với chuyển kho tự động,
+              phân bổ hàng hóa thông minh theo nhu cầu
             </p>
           </div>
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
-              <i class="fas fa-truck"></i>
+              <i class="fas fa-clipboard-check"></i>
             </div>
-            <h3>Theo dõi giao hàng</h3>
+            <h3>Kiểm kê tồn kho</h3>
             <p>
-              Theo dõi trạng thái giao hàng từ nhà cung cấp, 
-              nhận thông báo tự động khi hàng được vận chuyển. 
-              Tích hợp GPS tracking, ước tính thời gian giao hàng
+              Lên kế hoạch kiểm kê định kỳ, kiểm kê chu kỳ, kiểm kê đột xuất.
+              Sử dụng máy đọc mã vạch/RFID để kiểm kê nhanh chóng,
+              so sánh tự động và báo cáo chênh lệch chi tiết
             </p>
           </div>
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
-              <i class="fas fa-chart-bar"></i>
+              <i class="fas fa-chart-line"></i>
             </div>
-            <h3>Phân tích mua hàng</h3>
+            <h3>Báo cáo phân tích</h3>
             <p>
-              Bảng điều khiển thời gian thực với theo dõi KPI mua hàng, 
-              phân tích chi phí, hiệu suất nhà cung cấp, xu hướng giá cả.
-              Báo cáo tổng hợp và dự báo nhu cầu mua hàng
+              Bảng điều khiển tồn kho thời gian thực, phân tích xu hướng tiêu thụ,
+              dự báo nhu cầu bằng AI. Báo cáo hiệu quả kho, chi phí lưu trữ,
+              phân tích hàng chậm luân chuyển và tối ưu hóa mua hàng
             </p>
           </div>
           <div class="feature-card scroll-animate">
@@ -1451,31 +1451,31 @@
             </div>
             <h3>Ứng dụng di động</h3>
             <p>
-              Ứng dụng di động cho đội ngũ mua hàng: tạo yêu cầu mua hàng nhanh, 
-              phê duyệt đơn hàng, theo dõi giao hàng, chụp ảnh kiểm tra hàng hóa,
+              Ứng dụng di động cho nhân viên kho: quét mã vạch nhanh chóng, nhập/xuất kho offline,
+              kiểm kê tồn kho, theo dõi vị trí hàng hóa, chụp ảnh ghi nhận,
               đồng bộ thời gian thực với hệ thống
             </p>
           </div>
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
-              <i class="fas fa-robot"></i>
+              <i class="fas fa-barcode"></i>
             </div>
-            <h3>Tự động hóa mua hàng</h3>
+            <h3>Hệ thống mã vạch</h3>
             <p>
-              Tự động tạo đơn mua hàng khi tồn kho thấp, so sánh giá tự động,
-              quy trình phê duyệt tự động theo ngưỡng, email nhắc nhở,
-              tích hợp AI dự đoán nhu cầu mua dựa theo đơn đặt hàng và tồn kho
+              Tích hợp đầy đủ mã vạch/QR code/RFID, in tem mã vạch tự động,
+              quét mã để nhập/xuất kho nhanh chóng. Theo dõi từng sản phẩm,
+              batch, serial number với độ chính xác cao
             </p>
           </div>
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
-              <i class="fas fa-credit-card"></i>
+              <i class="fas fa-sync-alt"></i>
             </div>
-            <h3>Thanh toán nhà cung cấp</h3>
+            <h3>Tích hợp đa kênh</h3>
             <p>
-              Quản lý thanh toán theo điều khoản hợp đồng, 
-              tích hợp ngân hàng điện tử, theo dõi công nợ,
-              lập lịch thanh toán tự động, báo cáo cash flow
+              Đồng bộ tồn kho với các kênh bán hàng (website, marketplace, POS),
+              cập nhật tự động khi có giao dịch. Tích hợp ERP, CRM, kế toán
+              và các hệ thống khác trong doanh nghiệp
             </p>
           </div>
         </div>
@@ -1488,55 +1488,39 @@
         <div class="section-title scroll-animate">
           <h2>Ứng dụng thực tế</h2>
           <p>
-            Các tình huống sử dụng phổ biến trong quản lý mua hàng doanh nghiệp
+            Các tình huống sử dụng phổ biến trong quản lý tồn kho doanh nghiệp
           </p>
         </div>
         <div class="use-case-grid">
           <div class="use-case-card scroll-animate">
             <div class="use-case-header">
-              <i class="fas fa-store"></i>
-              <h3>Cửa hàng bán lẻ</h3>
-              <p>Quản lý mua hàng cho cửa hàng</p>
-            </div>
-            <div class="use-case-body">
-              <ul class="use-case-list">
-                <li><i class="fas fa-check"></i> Tự động đặt hàng khi tồn kho thấp</li>
-                <li><i class="fas fa-check"></i> Quản lý nhà cung cấp địa phương</li>
-                <li><i class="fas fa-check"></i> Theo dõi hàng hóa theo mùa</li>
-                <li><i class="fas fa-check"></i> Quản lý giá cả và khuyến mãi</li>
-                <li><i class="fas fa-check"></i> Tích hợp với hệ thống POS</li>
-              </ul>
-            </div>
-          </div>
-          <div class="use-case-card scroll-animate">
-            <div class="use-case-header">
               <i class="fas fa-laptop"></i>
               <h3>E-commerce</h3>
-              <p>Mua hàng trực tuyến</p>
+              <p>Kho hàng online</p>
             </div>
             <div class="use-case-body">
               <ul class="use-case-list">
-                <li><i class="fas fa-check"></i> Tích hợp marketplace để tự động mua hàng</li>
-                <li><i class="fas fa-check"></i> So sánh giá từ nhiều nguồn</li>
-                <li><i class="fas fa-check"></i> Quản lý dropshipping</li>
-                <li><i class="fas fa-check"></i> Theo dõi xu hướng sản phẩm</li>
-                <li><i class="fas fa-check"></i> Tối ưu hóa chi phí vận chuyển</li>
+                <li><i class="fas fa-check"></i> Đồng bộ tồn kho đa kênh</li>
+                <li><i class="fas fa-check"></i> Tự động cập nhật khi có đơn</li>
+                <li><i class="fas fa-check"></i> Quản lý fulfillment center</li>
+                <li><i class="fas fa-check"></i> Tracking số lô/batch</li>
+                <li><i class="fas fa-check"></i> Phân tích nhu cầu theo mùa</li>
               </ul>
             </div>
           </div>
           <div class="use-case-card scroll-animate">
             <div class="use-case-header">
-              <i class="fas fa-handshake"></i>
-              <h3>B2B Procurement</h3>
-              <p>Mua hàng doanh nghiệp</p>
+              <i class="fas fa-industry"></i>
+              <h3>Nhà máy sản xuất</h3>
+              <p>Quản lý nguyên vật liệu</p>
             </div>
             <div class="use-case-body">
               <ul class="use-case-list">
-                <li><i class="fas fa-check"></i> Quản lý hợp đồng & thầu phụ</li>
-                <li><i class="fas fa-check"></i> Bậc giá theo khối lượng</li>
-                <li><i class="fas fa-check"></i> Điều khoản thanh toán linh hoạt</li>
-                <li><i class="fas fa-check"></i> Đánh giá nhà cung cấp</li>
-                <li><i class="fas fa-check"></i> Cổng thông tin nhà cung cấp</li>
+                <li><i class="fas fa-check"></i> Quản lý nguyên liệu đầu vào</li>
+                <li><i class="fas fa-check"></i> Theo dõi WIP (Work in Progress)</li>
+                <li><i class="fas fa-check"></i> Quản lý thành phẩm</li>
+                <li><i class="fas fa-check"></i> Kiểm soát chất lượng</li>
+                <li><i class="fas fa-check"></i> Truy xuất nguồn gốc</li>
               </ul>
             </div>
           </div>
@@ -1544,47 +1528,63 @@
             <div class="use-case-header">
               <i class="fas fa-utensils"></i>
               <h3>F&B / Restaurant</h3>
-              <p>Mua hàng nguyên liệu</p>
+              <p>Nhà hàng & thực phẩm</p>
             </div>
             <div class="use-case-body">
               <ul class="use-case-list">
-                <li><i class="fas fa-check"></i> Quản lý nguyên liệu tươi sống</li>
-                <li><i class="fas fa-check"></i> Tính toán nhu cầu theo menu</li>
-                <li><i class="fas fa-check"></i> Quản lý hạn sử dụng</li>
-                <li><i class="fas fa-check"></i> Nhà cung cấp thực phẩm</li>
-                <li><i class="fas fa-check"></i> Kiểm soát chất lượng thực phẩm</li>
+                <li><i class="fas fa-check"></i> Đặt bàn & màn hình bếp</li>
+                <li><i class="fas fa-check"></i> Tính giá công thức & thiết kế menu</li>
+                <li><i class="fas fa-check"></i> Tích hợp ứng dụng giao hàng</li>
+                <li><i class="fas fa-check"></i> Quản lý nhà cung cấp</li>
+                <li><i class="fas fa-check"></i> Tuân thủ an toàn thực phẩm</li>
               </ul>
             </div>
           </div>
           <div class="use-case-card scroll-animate">
             <div class="use-case-header">
-              <i class="fas fa-industry"></i>
-              <h3>Manufacturing</h3>
-              <p>Mua hàng sản xuất</p>
+              <i class="fas fa-truck"></i>
+              <h3>Logistics & Phân phối</h3>
+              <p>Trung tâm phân phối</p>
             </div>
             <div class="use-case-body">
               <ul class="use-case-list">
-                <li><i class="fas fa-check"></i> Mua nguyên liệu theo kế hoạch sản xuất</li>
-                <li><i class="fas fa-check"></i> Quản lý linh kiện & phụ tùng</li>
-                <li><i class="fas fa-check"></i> Kiểm soát chất lượng đầu vào</li>
-                <li><i class="fas fa-check"></i> Theo dõi nguồn gốc nguyên liệu</li>
-                <li><i class="fas fa-check"></i> Tối ưu hóa chi phí nguyên liệu</li>
+                <li><i class="fas fa-check"></i> Quản lý kho trung tâm</li>
+                <li><i class="fas fa-check"></i> Picking & packing tối ưu</li>
+                <li><i class="fas fa-check"></i> Cross-docking</li>
+                <li><i class="fas fa-check"></i> Theo dõi vận chuyển</li>
+                <li><i class="fas fa-check"></i> Quản lý mạng lưới phân phối</li>
               </ul>
             </div>
           </div>
           <div class="use-case-card scroll-animate">
             <div class="use-case-header">
-              <i class="fas fa-briefcase"></i>
-              <h3>Professional Services</h3>
-              <p>Mua hàng dịch vụ</p>
+              <i class="fas fa-heartbeat"></i>
+              <h3>Dược phẩm & Y tế</h3>
+              <p>Kho dược phẩm</p>
             </div>
             <div class="use-case-body">
               <ul class="use-case-list">
-                <li><i class="fas fa-check"></i> Thuê ngoài dịch vụ chuyên nghiệp</li>
-                <li><i class="fas fa-check"></i> Quản lý hợp đồng dịch vụ</li>
-                <li><i class="fas fa-check"></i> Theo dõi tiến độ & chất lượng</li>
-                <li><i class="fas fa-check"></i> Quản lý thanh toán theo milestone</li>
-                <li><i class="fas fa-check"></i> Đánh giá nhà cung cấp dịch vụ</li>
+                <li><i class="fas fa-check"></i> Theo dõi hạn sử dụng</li>
+                <li><i class="fas fa-check"></i> Kiểm soát nhiệt độ</li>
+                <li><i class="fas fa-check"></i> Truy xuất nguồn gốc</li>
+                <li><i class="fas fa-check"></i> Tuân thủ GMP/GSP</li>
+                <li><i class="fas fa-check"></i> Quản lý thu hồi sản phẩm</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-utensils"></i>
+              <h3>Thực phẩm & Đồ uống</h3>
+              <p>Kho thực phẩm</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Quản lý cold chain</li>
+                <li><i class="fas fa-check"></i> Theo dõi độ tươi</li>
+                <li><i class="fas fa-check"></i> FIFO tự động</li>
+                <li><i class="fas fa-check"></i> Kiểm soát vệ sinh</li>
+                <li><i class="fas fa-check"></i> Tuân thủ HACCP</li>
               </ul>
             </div>
           </div>
@@ -1597,25 +1597,30 @@
       <div class="container">
         <div class="section-title scroll-animate">
           <h2>Lợi ích khi sử dụng</h2>
-          <p>Những giá trị mà hệ thống quản lý mua hàng DigiFact mang lại</p>
+          <p>Những giá trị mà hệ thống quản lý tồn kho DigiFact mang lại</p>
         </div>
         <div class="benefits-grid">
           <div class="benefit-card scroll-animate">
-            <div class="benefit-number">70%</div>
-            <h3>Giảm chi phí</h3>
+            <div class="benefit-number">95%</div>
+            <h3>Độ chính xác tồn kho</h3>
             <p>
-              Tối ưu hóa quy trình mua hàng giúp giảm chi phí mua hàng đáng kể
+              Hệ thống theo dõi thời gian thực giúp đạt độ chính xác tồn kho cao
             </p>
           </div>
           <div class="benefit-card scroll-animate">
-            <div class="benefit-number">80%</div>
-            <h3>Tiết kiệm thời gian</h3>
-            <p>Tự động hóa quy trình giúp tiết kiệm thời gian xử lý đơn mua hàng</p>
+            <div class="benefit-number">70%</div>
+            <h3>Giảm chi phí kho</h3>
+            <p>Tối ưu hóa tồn kho giúp giảm chi phí lưu trữ và vận hành</p>
+          </div>
+          <div class="benefit-card scroll-animate">
+            <div class="benefit-number">50%</div>
+            <h3>Giảm thời gian kiểm kê</h3>
+            <p>Tự động hóa quy trình kiểm kê giúp tiết kiệm thời gian đáng kể</p>
           </div>
           <div class="benefit-card scroll-animate">
             <div class="benefit-number">100%</div>
-            <h3>Minh bạch quy trình</h3>
-            <p>Theo dõi và kiểm soát mọi hoạt động mua hàng một cách minh bạch</p>
+            <h3>Kiểm soát chất lượng</h3>
+            <p>Theo dõi và kiểm soát chất lượng hàng hóa một cách toàn diện</p>
           </div>
         </div>
       </div>
@@ -1744,7 +1749,7 @@
     </section>
 
     <!-- Pricing Section -->
-    <section class="pricing" style="padding: 4rem 0; background: var(--light);">
+    <section id="pricing" class="pricing" style="padding: 4rem 0; background: var(--light);">
       <div class="container">
         <div class="section-title scroll-animate">
           <h2>Toàn bộ gói dịch vụ ERP</h2>
@@ -1771,7 +1776,7 @@
               </ul>
             </div>
             <div class="pricing-footer">
-              <button class="btn btn-primary" onclick="openContactPopup()">Dùng thử 30 ngày</button>
+              <button class="btn btn-primary" onclick="showContactPopup()">Dùng thử 30 ngày</button>
             </div>
           </div>
           <div class="pricing-card popular scroll-animate">
@@ -1795,7 +1800,7 @@
               </ul>
             </div>
             <div class="pricing-footer">
-              <button class="btn btn-primary" onclick="openContactPopup()">Dùng thử 30 ngày</button>
+              <button class="btn btn-primary" onclick="showContactPopup()">Dùng thử 30 ngày</button>
             </div>
           </div>
           <div class="pricing-card scroll-animate">
@@ -1818,7 +1823,7 @@
               </ul>
             </div>
             <div class="pricing-footer">
-              <button class="btn btn-outline" onclick="openContactPopup()">Liên hệ tư vấn</button>
+              <button class="btn btn-outline" onclick="showContactPopup()">Liên hệ tư vấn</button>
             </div>
           </div>
         </div>
@@ -1828,7 +1833,7 @@
     <!-- CTA Section -->
     <section class="cta" id="contact">
       <div class="container">
-        <h2>Sẵn sàng tối ưu hóa mua hàng?</h2>
+        <h2>Sẵn sàng tối ưu hóa quản lý kho hàng?</h2>
         <p>
           Liên hệ với chúng tôi để được tư vấn và trải nghiệm hệ thống miễn phí
         </p>
@@ -1839,7 +1844,7 @@
           <a
             href="#contact"
             class="btn btn-outline"
-            onclick="openContactPopup()"
+            onclick="showContactPopup()"
           >
             <i class="fas fa-rocket"></i> Dùng thử ngay
           </a>
@@ -1921,7 +1926,7 @@
           <button type="submit" class="glass-submit-btn">
             <i class="fas fa-paper-plane"></i> Gửi liên hệ
           </button>
-          <p class="popup-glass-header" style="margin-top: 10px; font-style: italic;">Hướng dẫn tải về phần mềm dùng thử miễn phí <br/>30 ngày tự động sẽ được gửi về email của bạn</p>
+          <p class="popup-glass-header" style="margin-top: 10px; font-style: italic;">Hướng dẫn tải về tự động phần mềm dùng thử<br/>miễn phí 30 ngày sẽ được gửi về email của bạn</p>
           <div id="formStatus" style="margin-top: 5px"></div>
         </form>
       </div>
@@ -1933,7 +1938,7 @@
         "https://script.google.com/macros/s/AKfycbzE5F4hF9fMqDkN5KGzQUAFlNaDfmw04ITcyZcvL40d_Z05HgbldjdiunqafMKyo5HWXrdB2oXgUo8JnkRRmvA/exec";
 
       // Contact popup functions
-      function openContactPopup() {
+      function showContactPopup() {
         document.getElementById("contactPopup").style.display = "flex";
       }
 
@@ -1945,7 +1950,7 @@
       async function tryAlternativeSubmission(data, status) {
         try {
           const subject = encodeURIComponent(
-            "Liên hệ từ website DigiFact - Quản lý mua hàng"
+            "Liên hệ từ website DigiFact - Quản lý bán hàng"
           );
           const body = encodeURIComponent(`
 Họ tên: ${data.firstName}
@@ -1953,7 +1958,7 @@ Email: ${data.email}
 Số điện thoại: ${data.phone}
 Công ty: ${data.company}
 Nội dung: ${data.message}
-Trang: Quản lý mua hàng
+Trang: Quản lý bán hàng
                 `);
 
           const mailtoLink = `mailto:contact@digifact.vn?subject=${subject}&body=${body}`;
@@ -2024,7 +2029,7 @@ Trang: Quản lý mua hàng
               company: form.company.value,
               message: form.message.value,
               timestamp: new Date().toISOString(),
-              source: "Trang Quản lý mua hàng",
+              source: "Trang Quản lý bán hàng",
             };
 
             try {

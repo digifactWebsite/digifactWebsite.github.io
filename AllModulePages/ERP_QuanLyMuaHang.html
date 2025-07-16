@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý tài chính - DigiFact ERP</title>
+    <title>Quản lý mua hàng - DigiFact ERP</title>
     <link
       rel="icon"
       href="../Resources/DigiFact_Logo_Noname_Type1.png"
@@ -73,6 +73,7 @@
         font-weight: 500;
         font-size: 1.5rem;
         color: var(--primary);
+        text-decoration: none;
       }
 
       .logo i {
@@ -380,6 +381,7 @@
         font-size: 1.5rem;
         margin-bottom: 1rem;
         color: var(--dark);
+        white-space: nowrap;
       }
 
       .feature-card p {
@@ -511,8 +513,8 @@
 
       .benefits-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
         margin-top: 2rem;
       }
 
@@ -582,6 +584,7 @@
         font-size: 1.25rem;
         margin-bottom: 1rem;
         color: var(--dark);
+        line-height: 1.4;
       }
 
       .benefit-card p {
@@ -695,18 +698,6 @@
           align-items: center;
         }
 
-        .pricing-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .pricing-card.popular {
-          transform: none;
-        }
-
-        .pricing-card.popular:hover {
-          transform: translateY(-10px) scale(1.02);
-        }
-
         .contact-popup-glass {
           padding: 24px 20px;
           max-width: 90vw;
@@ -785,6 +776,176 @@
         transform: translateY(0);
       }
 
+      /* Contact Popup Styles */
+      .contact-popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(20, 24, 40, 0.55);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+        transition: background 0.3s;
+        animation: fadeInGlass 0.4s;
+      }
+
+      /* Implementation Timeline Styles */
+      .implementation-timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 0;
+      }
+
+      .implementation-timeline::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      }
+
+      .timeline-item {
+        display: flex;
+        margin: 2rem 0;
+        position: relative;
+      }
+
+      .timeline-item:nth-child(odd) {
+        flex-direction: row;
+      }
+
+      .timeline-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .timeline-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      }
+
+      .timeline-content {
+        flex: 1;
+        padding: 1.5rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin: 0 2rem;
+        position: relative;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
+      }
+
+      .timeline-content h3 {
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+      }
+
+      .timeline-content p {
+        color: var(--gray);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .timeline-duration {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      /* Success Stories Styles */
+      .stories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .story-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .story-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+      }
+
+      .story-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .company-logo {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+      }
+
+      .company-info h3 {
+        margin: 0;
+        color: var(--dark);
+        font-size: 1.25rem;
+      }
+
+      .company-info p {
+        margin: 0;
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
+      .story-content p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        color: var(--gray);
+      }
+
+      .story-content .highlight {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
       /* Pricing Styles */
       .pricing-grid {
         display: grid;
@@ -841,9 +1002,15 @@
         margin-bottom: 1rem;
       }
 
+      .price-amount {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
       .price-original {
         font-size: 1.2rem;
-        color: #64748b;
+        color: var(--gray);
         text-decoration: line-through;
         margin-bottom: 0.5rem;
         opacity: 0.8;
@@ -870,20 +1037,14 @@
         transform: rotate(15deg);
       }
 
-      .price-amount {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--primary);
-      }
-
       .price-period {
         font-size: 1rem;
-        color: #64748b;
+        color: var(--gray);
         margin-left: 0.5rem;
       }
 
       .pricing-header p {
-        color: #64748b;
+        color: var(--gray);
         margin-bottom: 2rem;
       }
 
@@ -915,21 +1076,43 @@
         justify-content: center;
       }
 
-      /* Contact Popup Styles */
-      .contact-popup-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(20, 24, 40, 0.55);
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        backdrop-filter: blur(8px);
-        transition: background 0.3s;
-        animation: fadeInGlass 0.4s;
+      /* Responsive for new sections */
+      @media (max-width: 768px) {
+        .implementation-timeline::before {
+          left: 30px;
+        }
+        
+        .timeline-item {
+          flex-direction: row !important;
+          margin-left: 0;
+        }
+        
+        .timeline-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+        }
+        
+        .timeline-content {
+          margin-left: 1rem;
+          margin-right: 0;
+        }
+        
+        .stories-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pricing-card.popular {
+          transform: none;
+        }
+
+        .pricing-card.popular:hover {
+          transform: translateY(-10px) scale(1.02);
+        }
       }
       @keyframes fadeInGlass {
         from {
@@ -1154,12 +1337,12 @@
     <section class="hero">
       <div class="hero-content animate-fade-in">
         <div class="hero-icon">
-          <i class="fas fa-chart-line"></i>
+          <i class="fas fa-shopping-basket"></i>
         </div>
-        <h1>Quản lý tài chính</h1>
+        <h1>Quản lý mua hàng</h1>
         <p>
-          Giải pháp quản lý tài chính toàn diện, tự động hóa quy trình kế toán
-          và báo cáo tài chính thời gian thực
+          Hệ thống quản lý mua hàng thông minh, tự động hóa quy trình 
+          <br/>từ yêu cầu mua hàng đến thanh toán nhà cung cấp
         </p>
         <div class="cta-buttons">
           <a href="#features" class="btn btn-white">Khám phá tính năng</a>
@@ -1171,16 +1354,16 @@
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
-            <div class="hero-stat-number">99%</div>
-            <div class="hero-stat-label">Độ chính xác</div>
+            <div class="hero-stat-number">70%</div>
+            <div class="hero-stat-label">Giảm chi phí</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number">24/7</div>
-            <div class="hero-stat-label">Hỗ trợ</div>
+            <div class="hero-stat-number">80%</div>
+            <div class="hero-stat-label">Tiết kiệm thời gian</div>
           </div>
           <div class="hero-stat">
             <div class="hero-stat-number">500+</div>
-            <div class="hero-stat-label">Khách hàng</div>
+            <div class="hero-stat-label">Nhà cung cấp</div>
           </div>
         </div>
       </div>
@@ -1192,69 +1375,107 @@
         <div class="section-title scroll-animate">
           <h2>Tính năng nổi bật</h2>
           <p>
-            Hệ thống quản lý tài chính hiện đại với đầy đủ tính năng cần thiết
-            cho doanh nghiệp
+            Hệ thống quản lý mua hàng toàn diện<br/> với đầy đủ tính năng cần thiết cho mọi doanh nghiệp
           </p>
         </div>
         <div class="features-grid">
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
-              <i class="fas fa-calculator"></i>
+              <i class="fas fa-file-alt"></i>
             </div>
-            <h3>Kế toán tự động</h3>
+            <h3>Yêu cầu mua hàng</h3>
             <p>
-              Tự động ghi nhận và xử lý các giao dịch tài chính, giảm thiểu sai
-              sót và tiết kiệm thời gian
+              Tạo và quản lý yêu cầu mua hàng với quy trình phê duyệt đa cấp. 
+              Tự động tạo đơn mua hàng từ yêu cầu được duyệt, theo dõi trạng thái 
+              và gửi thông báo tự động cho các bên liên quan
             </p>
           </div>
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
-              <i class="fas fa-file-invoice-dollar"></i>
+              <i class="fas fa-shopping-bag"></i>
             </div>
-            <h3>Quản lý hóa đơn</h3>
+            <h3>Đơn mua hàng</h3>
             <p>
-              Tạo, gửi và theo dõi hóa đơn một cách dễ dàng, tích hợp với hệ
-              thống thanh toán online
-            </p>
-          </div>
-          <div class="feature-card scroll-animate">
-            <div class="feature-icon">
-              <i class="fas fa-chart-pie"></i>
-            </div>
-            <h3>Báo cáo tài chính</h3>
-            <p>
-              Tạo báo cáo tài chính chi tiết và trực quan, hỗ trợ ra quyết định
-              kinh doanh
-            </p>
-          </div>
-          <div class="feature-card scroll-animate">
-            <div class="feature-icon">
-              <i class="fas fa-money-check-alt"></i>
-            </div>
-            <h3>Quản lý dòng tiền</h3>
-            <p>
-              Theo dõi dòng tiền vào và ra, dự báo tài chính và quản lý thanh
-              khoản
+              Quản lý đơn mua hàng từ tạo → gửi → xác nhận → theo dõi → nhận hàng. 
+              Tích hợp email gửi đơn hàng, theo dõi trạng thái giao hàng, 
+              kiểm tra chất lượng và xác nhận nhận hàng
             </p>
           </div>
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
               <i class="fas fa-users"></i>
             </div>
-            <h3>Quản lý khách hàng</h3>
+            <h3>Quản lý nhà cung cấp</h3>
             <p>
-              Theo dõi công nợ phải thu, lịch sử giao dịch và mối quan hệ với
-              khách hàng
+              Hồ sơ nhà cung cấp đầy đủ với đánh giá hiệu suất, lịch sử giao dịch, 
+              điều khoản hợp đồng. Phân loại và xếp hạng nhà cung cấp theo chất lượng, 
+              giá cả, thời gian giao hàng. Tích hợp cổng thông tin nhà cung cấp
             </p>
           </div>
           <div class="feature-card scroll-animate">
             <div class="feature-icon">
-              <i class="fas fa-building"></i>
+              <i class="fas fa-warehouse"></i>
             </div>
-            <h3>Quản lý nhà cung cấp</h3>
+            <h3>Quản lý kho nhận</h3>
             <p>
-              Theo dõi công nợ phải trả, đánh giá hiệu suất và quản lý mối quan
-              hệ với nhà cung cấp
+              Theo dõi hàng hóa nhận vào kho, kiểm tra chất lượng, 
+              quản lý vị trí lưu trữ. Tích hợp mã vạch/QR code, 
+              báo cáo sai lệch và quản lý hàng trả lại nhà cung cấp
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-truck"></i>
+            </div>
+            <h3>Theo dõi giao hàng</h3>
+            <p>
+              Theo dõi trạng thái giao hàng từ nhà cung cấp, 
+              nhận thông báo tự động khi hàng được vận chuyển. 
+              Tích hợp GPS tracking, ước tính thời gian giao hàng
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <h3>Phân tích mua hàng</h3>
+            <p>
+              Bảng điều khiển thời gian thực với theo dõi KPI mua hàng, 
+              phân tích chi phí, hiệu suất nhà cung cấp, xu hướng giá cả.
+              Báo cáo tổng hợp và dự báo nhu cầu mua hàng
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Ứng dụng di động</h3>
+            <p>
+              Ứng dụng di động cho đội ngũ mua hàng: tạo yêu cầu mua hàng nhanh, 
+              phê duyệt đơn hàng, theo dõi giao hàng, chụp ảnh kiểm tra hàng hóa,
+              đồng bộ thời gian thực với hệ thống
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3>Tự động hóa mua hàng</h3>
+            <p>
+              Tự động tạo đơn mua hàng khi tồn kho thấp, so sánh giá tự động,
+              quy trình phê duyệt tự động theo ngưỡng, email nhắc nhở,
+              tích hợp AI dự đoán nhu cầu mua dựa theo đơn đặt hàng và tồn kho
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h3>Thanh toán nhà cung cấp</h3>
+            <p>
+              Quản lý thanh toán theo điều khoản hợp đồng, 
+              tích hợp ngân hàng điện tử, theo dõi công nợ,
+              lập lịch thanh toán tự động, báo cáo cash flow
             </p>
           </div>
         </div>
@@ -1267,61 +1488,103 @@
         <div class="section-title scroll-animate">
           <h2>Ứng dụng thực tế</h2>
           <p>
-            Các tình huống sử dụng phổ biến trong quản lý tài chính doanh nghiệp
+            Các tình huống sử dụng phổ biến trong quản lý mua hàng doanh nghiệp
           </p>
         </div>
         <div class="use-case-grid">
           <div class="use-case-card scroll-animate">
             <div class="use-case-header">
               <i class="fas fa-store"></i>
-              <h3>Doanh nghiệp nhỏ</h3>
-              <p>Quản lý tài chính cơ bản</p>
+              <h3>Cửa hàng bán lẻ</h3>
+              <p>Quản lý mua hàng cho cửa hàng</p>
             </div>
             <div class="use-case-body">
               <ul class="use-case-list">
-                <li><i class="fas fa-check"></i> Ghi nhận thu chi hàng ngày</li>
-                <li><i class="fas fa-check"></i> Tạo hóa đơn bán hàng</li>
-                <li>
-                  <i class="fas fa-check"></i> Theo dõi công nợ khách hàng
-                </li>
-                <li><i class="fas fa-check"></i> Báo cáo doanh thu tháng</li>
-                <li>
-                  <i class="fas fa-check"></i> Quản lý tiền mặt và ngân hàng
-                </li>
+                <li><i class="fas fa-check"></i> Tự động đặt hàng khi tồn kho thấp</li>
+                <li><i class="fas fa-check"></i> Quản lý nhà cung cấp địa phương</li>
+                <li><i class="fas fa-check"></i> Theo dõi hàng hóa theo mùa</li>
+                <li><i class="fas fa-check"></i> Quản lý giá cả và khuyến mãi</li>
+                <li><i class="fas fa-check"></i> Tích hợp với hệ thống POS</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-laptop"></i>
+              <h3>E-commerce</h3>
+              <p>Mua hàng trực tuyến</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Tích hợp marketplace để tự động mua hàng</li>
+                <li><i class="fas fa-check"></i> So sánh giá từ nhiều nguồn</li>
+                <li><i class="fas fa-check"></i> Quản lý dropshipping</li>
+                <li><i class="fas fa-check"></i> Theo dõi xu hướng sản phẩm</li>
+                <li><i class="fas fa-check"></i> Tối ưu hóa chi phí vận chuyển</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-handshake"></i>
+              <h3>B2B Procurement</h3>
+              <p>Mua hàng doanh nghiệp</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Quản lý hợp đồng & thầu phụ</li>
+                <li><i class="fas fa-check"></i> Bậc giá theo khối lượng</li>
+                <li><i class="fas fa-check"></i> Điều khoản thanh toán linh hoạt</li>
+                <li><i class="fas fa-check"></i> Đánh giá nhà cung cấp</li>
+                <li><i class="fas fa-check"></i> Cổng thông tin nhà cung cấp</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-utensils"></i>
+              <h3>F&B / Restaurant</h3>
+              <p>Mua hàng nguyên liệu</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Quản lý nguyên liệu tươi sống</li>
+                <li><i class="fas fa-check"></i> Tính toán nhu cầu theo menu</li>
+                <li><i class="fas fa-check"></i> Quản lý hạn sử dụng</li>
+                <li><i class="fas fa-check"></i> Nhà cung cấp thực phẩm</li>
+                <li><i class="fas fa-check"></i> Kiểm soát chất lượng thực phẩm</li>
               </ul>
             </div>
           </div>
           <div class="use-case-card scroll-animate">
             <div class="use-case-header">
               <i class="fas fa-industry"></i>
-              <h3>Doanh nghiệp sản xuất</h3>
-              <p>Quản lý tài chính phức tạp</p>
+              <h3>Manufacturing</h3>
+              <p>Mua hàng sản xuất</p>
             </div>
             <div class="use-case-body">
               <ul class="use-case-list">
-                <li><i class="fas fa-check"></i> Kế toán chi phí sản xuất</li>
-                <li><i class="fas fa-check"></i> Quản lý nguyên vật liệu</li>
-                <li><i class="fas fa-check"></i> Tính giá thành sản phẩm</li>
-                <li><i class="fas fa-check"></i> Phân tích lợi nhuận</li>
-                <li><i class="fas fa-check"></i> Báo cáo thuế chi tiết</li>
+                <li><i class="fas fa-check"></i> Mua nguyên liệu theo kế hoạch sản xuất</li>
+                <li><i class="fas fa-check"></i> Quản lý linh kiện & phụ tùng</li>
+                <li><i class="fas fa-check"></i> Kiểm soát chất lượng đầu vào</li>
+                <li><i class="fas fa-check"></i> Theo dõi nguồn gốc nguyên liệu</li>
+                <li><i class="fas fa-check"></i> Tối ưu hóa chi phí nguyên liệu</li>
               </ul>
             </div>
           </div>
           <div class="use-case-card scroll-animate">
             <div class="use-case-header">
-              <i class="fas fa-building"></i>
-              <h3>Công ty dịch vụ</h3>
-              <p>Quản lý tài chính dịch vụ</p>
+              <i class="fas fa-briefcase"></i>
+              <h3>Professional Services</h3>
+              <p>Mua hàng dịch vụ</p>
             </div>
             <div class="use-case-body">
               <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Thuê ngoài dịch vụ chuyên nghiệp</li>
                 <li><i class="fas fa-check"></i> Quản lý hợp đồng dịch vụ</li>
-                <li>
-                  <i class="fas fa-check"></i> Theo dõi tiến độ thanh toán
-                </li>
-                <li><i class="fas fa-check"></i> Phân bổ chi phí dự án</li>
-                <li><i class="fas fa-check"></i> Báo cáo hiệu quả dự án</li>
-                <li><i class="fas fa-check"></i> Quản lý chi phí nhân sự</li>
+                <li><i class="fas fa-check"></i> Theo dõi tiến độ & chất lượng</li>
+                <li><i class="fas fa-check"></i> Quản lý thanh toán theo milestone</li>
+                <li><i class="fas fa-check"></i> Đánh giá nhà cung cấp dịch vụ</li>
               </ul>
             </div>
           </div>
@@ -1334,30 +1597,147 @@
       <div class="container">
         <div class="section-title scroll-animate">
           <h2>Lợi ích khi sử dụng</h2>
-          <p>Những giá trị mà hệ thống quản lý tài chính DigiFact mang lại</p>
+          <p>Những giá trị mà hệ thống quản lý mua hàng DigiFact mang lại</p>
         </div>
         <div class="benefits-grid">
           <div class="benefit-card scroll-animate">
             <div class="benefit-number">70%</div>
-            <h3>Giảm thời gian xử lý</h3>
+            <h3>Giảm chi phí</h3>
             <p>
-              Tự động hóa quy trình kế toán giúp tiết kiệm đáng kể thời gian
+              Tối ưu hóa quy trình mua hàng giúp giảm chi phí mua hàng đáng kể
             </p>
           </div>
           <div class="benefit-card scroll-animate">
-            <div class="benefit-number">99%</div>
-            <h3>Độ chính xác cao</h3>
-            <p>Giảm thiểu sai sót trong ghi nhận và xử lý dữ liệu tài chính</p>
-          </div>
-          <div class="benefit-card scroll-animate">
-            <div class="benefit-number">24/7</div>
-            <h3>Truy cập mọi lúc</h3>
-            <p>Theo dõi tình hình tài chính bất cứ lúc nào, ở bất kỳ đâu</p>
+            <div class="benefit-number">80%</div>
+            <h3>Tiết kiệm thời gian</h3>
+            <p>Tự động hóa quy trình giúp tiết kiệm thời gian xử lý đơn mua hàng</p>
           </div>
           <div class="benefit-card scroll-animate">
             <div class="benefit-number">100%</div>
-            <h3>Tuân thủ pháp luật</h3>
-            <p>Đảm bảo tuân thủ đầy đủ các quy định pháp luật về kế toán</p>
+            <h3>Minh bạch quy trình</h3>
+            <p>Theo dõi và kiểm soát mọi hoạt động mua hàng một cách minh bạch</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Implementation Process Section -->
+    <section class="implementation" style="padding: 4rem 0; background: var(--light);">
+      <div class="container">
+        <div class="section-title scroll-animate">
+          <h2>Quy trình triển khai</h2>
+          <p>Hệ thống được triển khai theo phương pháp Agile với thời gian biểu rõ ràng</p>
+        </div>
+        <div class="implementation-timeline">
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Phân tích yêu cầu</h3>
+              <p>Khảo sát quy trình hiện tại, xác định điểm nghẽn và mục tiêu cần đạt được</p>
+              <span class="timeline-duration">1-2 tuần</span>
+            </div>
+          </div>
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Cấu hình hệ thống</h3>
+              <p>Thiết lập máy chủ, cơ sở dữ liệu, cấu hình quy trình làm việc và quy tắc kinh doanh theo yêu cầu</p>
+              <span class="timeline-duration">2-3 tuần</span>
+            </div>
+          </div>
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Chuyển đổi dữ liệu</h3>
+              <p>Chuyển đổi dữ liệu từ hệ thống cũ, xác thực và làm sạch dữ liệu</p>
+              <span class="timeline-duration">1-2 tuần</span>
+            </div>
+          </div>
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Đào tạo người dùng</h3>
+              <p>Đào tạo quản trị viên, người dùng cuối, tạo tài liệu hướng dẫn và sổ tay người dùng</p>
+              <span class="timeline-duration">1 tuần</span>
+            </div>
+          </div>
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Triển khai & Hỗ trợ</h3>
+              <p>Triển khai môi trường sản xuất, giám sát và hỗ trợ 24/7 trong giai đoạn đầu</p>
+              <span class="timeline-duration">Liên tục</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section class="success-stories" style="padding: 4rem 0; background: white;">
+      <div class="container">
+        <div class="section-title scroll-animate">
+          <h2>Câu chuyện thành công</h2>
+          <p>Những khách hàng đã thành công với hệ thống quản lý bán hàng DigiFact</p>
+        </div>
+        <div class="stories-grid">
+          <div class="story-card scroll-animate">
+            <div class="story-header">
+              <div class="company-logo">
+                <i class="fas fa-tshirt"></i>
+              </div>
+              <div class="company-info">
+                <h3>Fashion Retail Chain</h3>
+                <p>Chuỗi 50+ cửa hàng thời trang</p>
+              </div>
+            </div>
+            <div class="story-content">
+              <p><strong>Thách thức:</strong> Quản lý tồn kho trên nhiều cửa hàng, giá cả không nhất quán, xử lý đơn hàng chậm</p>
+              <p><strong>Giải pháp:</strong> Nền tảng bán hàng đa kênh với đồng bộ tồn kho thời gian thực</p>
+              <p><strong>Kết quả:</strong> <span class="highlight">40% tăng doanh thu</span>, <span class="highlight">60% giảm thiếu hàng</span></p>
+            </div>
+          </div>
+          <div class="story-card scroll-animate">
+            <div class="story-header">
+              <div class="company-logo">
+                <i class="fas fa-laptop"></i>
+              </div>
+              <div class="company-info">
+                <h3>Electronics Distributor</h3>
+                <p>Nhà phân phối thiết bị điện tử</p>
+              </div>
+            </div>
+            <div class="story-content">
+              <p><strong>Thách thức:</strong> Định giá B2B phức tạp, quy trình báo giá thủ công, thiếu khả năng hiển thị doanh số</p>
+              <p><strong>Giải pháp:</strong> Công cụ định giá tự động và phân tích bán hàng toàn diện</p>
+              <p><strong>Kết quả:</strong> <span class="highlight">50% nhanh hơn từ báo giá đến đơn hàng</span>, <span class="highlight">25% cải thiện biên lợi nhuận</span></p>
+            </div>
+          </div>
+          <div class="story-card scroll-animate">
+            <div class="story-header">
+              <div class="company-logo">
+                <i class="fas fa-utensils"></i>
+              </div>
+              <div class="company-info">
+                <h3>F&B Restaurant Group</h3>
+                <p>Tập đoàn nhà hàng 20+ địa điểm</p>
+              </div>
+            </div>
+            <div class="story-content">
+              <p><strong>Thách thức:</strong> Quản lý đa địa điểm, tính toán chi phí nguyên liệu, tích hợp giao hàng</p>
+              <p><strong>Giải pháp:</strong> Tích hợp POS với nền tảng giao hàng và quản lý chi phí</p>
+              <p><strong>Kết quả:</strong> <span class="highlight">35% tăng đơn hàng giao hàng</span>, <span class="highlight">20% giảm chi phí</span></p>
+            </div>
           </div>
         </div>
       </div>
@@ -1448,7 +1828,7 @@
     <!-- CTA Section -->
     <section class="cta" id="contact">
       <div class="container">
-        <h2>Sẵn sàng tối ưu hóa quản lý tài chính?</h2>
+        <h2>Sẵn sàng tối ưu hóa mua hàng?</h2>
         <p>
           Liên hệ với chúng tôi để được tư vấn và trải nghiệm hệ thống miễn phí
         </p>
@@ -1541,7 +1921,7 @@
           <button type="submit" class="glass-submit-btn">
             <i class="fas fa-paper-plane"></i> Gửi liên hệ
           </button>
-          <p class="popup-glass-header" style="margin-top: 10px; font-style: italic;">Hướng dẫn tải về phần mềm dùng thử miễn phí <br/>30 ngày tự động sẽ được gửi về email của bạn</p>
+          <p class="popup-glass-header" style="margin-top: 10px; font-style: italic;">Hướng dẫn tải về tự động phần mềm dùng thử<br/>miễn phí 30 ngày sẽ được gửi về email của bạn</p>
           <div id="formStatus" style="margin-top: 5px"></div>
         </form>
       </div>
@@ -1565,7 +1945,7 @@
       async function tryAlternativeSubmission(data, status) {
         try {
           const subject = encodeURIComponent(
-            "Liên hệ từ website DigiFact - Quản lý tài chính"
+            "Liên hệ từ website DigiFact - Quản lý mua hàng"
           );
           const body = encodeURIComponent(`
 Họ tên: ${data.firstName}
@@ -1573,7 +1953,7 @@ Email: ${data.email}
 Số điện thoại: ${data.phone}
 Công ty: ${data.company}
 Nội dung: ${data.message}
-Trang: Quản lý tài chính
+Trang: Quản lý mua hàng
                 `);
 
           const mailtoLink = `mailto:contact@digifact.vn?subject=${subject}&body=${body}`;
@@ -1644,7 +2024,7 @@ Trang: Quản lý tài chính
               company: form.company.value,
               message: form.message.value,
               timestamp: new Date().toISOString(),
-              source: "Quản lý tài chính Page",
+              source: "Trang Quản lý mua hàng",
             };
 
             try {
