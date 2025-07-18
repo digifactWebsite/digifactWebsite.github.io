@@ -87,9 +87,11 @@ function doPost(e) {
     let sheet;
     try {
       // Try to get existing spreadsheet by ID (replace with your sheet ID)
-      const SPREADSHEET_ID = 'https://docs.google.com/spreadsheets/d/1mlLVtXcnhXUPqYyTc3zXP5pB8ExR2oM5En4cmmH08MM/edit?usp=sharing'; // Uncomment and set your sheet ID
+      const SPREADSHEET_ID = '1mlLVtXcnhXUPqYyTc3zXP5pB8ExR2oM5En4cmmH08MM'; // Fixed: Use only the ID, not the full URL
       sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getActiveSheet();
       
+      // Fallback code commented out since we're using specific sheet ID
+      /*
       // For now, use active sheet or create new one
       try {
         sheet = SpreadsheetApp.getActiveSheet();
@@ -101,6 +103,7 @@ function doPost(e) {
         console.log('Created new spreadsheet:', spreadsheet.getId());
         console.log('Please copy this spreadsheet ID and update the script if needed');
       }
+      */
     } catch (sheetError) {
       console.error('Error accessing spreadsheet:', sheetError);
       return ContentService
