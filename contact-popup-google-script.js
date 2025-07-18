@@ -87,8 +87,8 @@ function doPost(e) {
     let sheet;
     try {
       // Try to get existing spreadsheet by ID (replace with your sheet ID)
-      // const SPREADSHEET_ID = 'your_spreadsheet_id_here'; // Uncomment and set your sheet ID
-      // sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getActiveSheet();
+      const SPREADSHEET_ID = 'https://docs.google.com/spreadsheets/d/1mlLVtXcnhXUPqYyTc3zXP5pB8ExR2oM5En4cmmH08MM/edit?usp=sharing'; // Uncomment and set your sheet ID
+      sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getActiveSheet();
       
       // For now, use active sheet or create new one
       try {
