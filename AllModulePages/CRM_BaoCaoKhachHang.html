@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Báo cáo phân tích - DigiFact CRM</title>
+    <link
+      rel="icon"
+      href="../Resources/DigiFact_Logo_Noname_Type1.png"
+      type="image/png"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #8b5cf6;
+        --accent: #f59e0b;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --light: #f8fafc;
+        --dark: #1e293b;
+        --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--dark);
+        background: var(--light);
+      }
+
+      /* Header */
+      .header {
+        background: white;
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Roboto Mono", monospace;
+        font-weight: 500;
+        font-size: 1.5rem;
+        color: var(--primary);
+      }
+
+      .logo i {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 1.8rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white !important;
+      }
+
+      .btn-primary:hover {
+        background: var(--secondary);
+        color: white !important;
+        transform: translateY(-2px);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 6rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 25% 25%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(255, 255, 255, 0.05) 0%,
+            transparent 50%
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        opacity: 0.4;
+        animation: heroPattern 20s linear infinite;
+      }
+
+      @keyframes heroPattern {
+        0% {
+          transform: translateX(0) translateY(0);
+        }
+        50% {
+          transform: translateX(-10px) translateY(-10px);
+        }
+        100% {
+          transform: translateX(0) translateY(0);
+        }
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: titleGlow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes titleGlow {
+        0% {
+          text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        100% {
+          text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+            0 0 40px rgba(103, 126, 234, 0.3);
+        }
+      }
+
+      .hero p {
+        font-size: 1.4rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.95;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        line-height: 1.7;
+      }
+
+      .hero-icon {
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+        animation: iconFloat 4s ease-in-out infinite;
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      }
+
+      @keyframes iconFloat {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(2deg);
+        }
+      }
+
+      .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 3rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-stat {
+        text-align: center;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        min-width: 150px;
+      }
+
+      .hero-stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+        animation: countUp 2s ease-out;
+      }
+
+      .hero-stat-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      @keyframes countUp {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Features Section */
+      .features {
+        padding: 4rem 0;
+        background: white;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .section-title p {
+        font-size: 1.1rem;
+        color: #64748b;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .feature-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.9) 100%
+        );
+        padding: 2.5rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(37, 99, 235, 0.1),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .feature-card:hover::before {
+        left: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        border-color: var(--primary);
+      }
+
+      .feature-icon {
+        width: 90px;
+        height: 90px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2.2rem;
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .feature-card:hover .feature-icon {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .feature-card p {
+        color: #64748b;
+        line-height: 1.6;
+      }
+
+      /* Use Cases Section */
+      .use-cases {
+        padding: 4rem 0;
+        background: var(--light);
+      }
+
+      .use-case-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .use-case-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.9) 100%
+        );
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+      }
+
+      .use-case-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+        border-color: var(--primary);
+      }
+
+      .use-case-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .use-case-header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        animation: ripple 4s linear infinite;
+      }
+
+      @keyframes ripple {
+        0% {
+          transform: scale(0.8) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.2) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .use-case-header i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+        animation: iconPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes iconPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .use-case-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .use-case-body {
+        padding: 2rem;
+      }
+
+      .use-case-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .use-case-list li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .use-case-list li:last-child {
+        border-bottom: none;
+      }
+
+      .use-case-list i {
+        color: var(--success);
+        font-size: 1.2rem;
+      }
+
+      /* Benefits Section */
+      .benefits {
+        padding: 4rem 0;
+        background: white;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .benefit-card {
+        text-align: center;
+        padding: 2.5rem;
+        border-radius: 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.05) 0%,
+          rgba(139, 92, 246, 0.05) 100%
+        );
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .benefit-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.1) 0%,
+          rgba(139, 92, 246, 0.1) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .benefit-card:hover::before {
+        opacity: 1;
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+      }
+
+      .benefit-number {
+        font-size: 3.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 1rem;
+        animation: numberGlow 2s ease-in-out infinite alternate;
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes numberGlow {
+        0% {
+          filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.3));
+        }
+        100% {
+          filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.6));
+        }
+      }
+
+      .benefit-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .benefit-card p {
+        color: #64748b;
+        font-size: 0.9rem;
+      }
+
+      /* CTA Section */
+      .cta {
+        background: var(--gradient);
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .cta p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-white {
+        background: white;
+        color: var(--primary);
+      }
+
+      .btn-white:hover {
+        background: var(--light);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+
+      .btn-outline:hover {
+        background: white;
+        color: var(--primary);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--dark);
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      .footer p {
+        opacity: 0.8;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .nav-links {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .hero-stats {
+          gap: 1.5rem;
+        }
+
+        .hero-stat {
+          min-width: 120px;
+        }
+
+        .hero-stat-number {
+          font-size: 2rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .features-grid,
+        .use-case-grid,
+        .benefits-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pricing-card.popular {
+          transform: none;
+        }
+
+        .pricing-card.popular:hover {
+          transform: translateY(-10px) scale(1.02);
+        }
+
+        .contact-popup-glass {
+          padding: 24px 20px;
+          max-width: 90vw;
+        }
+
+        .popup-glass-header h2 {
+          font-size: 1.2rem;
+        }
+
+        .popup-glass-icon {
+          width: 48px;
+          height: 48px;
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          padding: 4rem 0;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .hero-icon {
+          font-size: 4rem;
+        }
+
+        .feature-card,
+        .use-case-card,
+        .benefit-card {
+          padding: 1.5rem;
+        }
+
+        .hero-stats {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .hero-stat {
+          max-width: 200px;
+          margin: 0 auto;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      /* Scroll animations */
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .scroll-animate.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Pricing Styles */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .pricing-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        position: relative;
+        text-align: center;
+      }
+
+      .pricing-card.popular {
+        border-color: var(--primary);
+        transform: scale(1.05);
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+      }
+
+      .pricing-card.popular:hover {
+        transform: translateY(-10px) scale(1.07);
+      }
+
+      .popular-badge {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .pricing-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .pricing-price {
+        margin-bottom: 1rem;
+      }
+
+      .price-original {
+        font-size: 1.2rem;
+        color: #64748b;
+        text-decoration: line-through;
+        margin-bottom: 0.5rem;
+        opacity: 0.8;
+      }
+
+      .price-promo {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        position: relative;
+      }
+
+      .price-promo::after {
+        content: "Khuyến mại";
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        color: white;
+        font-size: 0.7rem;
+        padding: 2px 6px;
+        border-radius: 8px;
+        font-weight: 500;
+        transform: rotate(15deg);
+      }
+
+      .price-amount {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .price-period {
+        font-size: 1rem;
+        color: #64748b;
+        margin-left: 0.5rem;
+      }
+
+      .pricing-header p {
+        color: #64748b;
+        margin-bottom: 2rem;
+      }
+
+      .pricing-features ul {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0;
+        text-align: left;
+      }
+
+      .pricing-features li {
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .pricing-features i {
+        color: var(--success);
+        font-size: 1rem;
+      }
+
+      .pricing-footer {
+        margin-top: 2rem;
+      }
+
+      .pricing-footer .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Contact Popup Styles */
+      .contact-popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(20, 24, 40, 0.55);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+        transition: background 0.3s;
+        animation: fadeInGlass 0.4s;
+      }
+      @keyframes fadeInGlass {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .contact-popup-glass {
+        background: rgba(30, 41, 59, 0.82);
+        border-radius: 22px;
+        box-shadow: 0 12px 40px rgba(16, 24, 40, 0.45),
+          0 1.5px 8px rgba(37, 99, 235, 0.1);
+        padding: 38px 32px 28px 32px;
+        max-width: 440px;
+        width: 95vw;
+        color: #f1f5f9;
+        position: relative;
+        border: 2.5px solid transparent;
+        background-clip: padding-box;
+        overflow: visible;
+        animation: popupSlideUp 0.5s cubic-bezier(0.23, 1.01, 0.32, 1);
+      }
+      @keyframes popupSlideUp {
+        from {
+          transform: translateY(40px) scale(0.98);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+      .contact-popup-glass::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        padding: 2px;
+        background: linear-gradient(
+          120deg,
+          var(--primary),
+          var(--secondary),
+          var(--accent)
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .close-popup-glass {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        background: rgba(255, 255, 255, 0.08);
+        border: none;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        color: #f1f5f9;
+        cursor: pointer;
+        z-index: 2;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+      }
+      .close-popup-glass:hover {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+        transform: scale(1.08);
+      }
+      .popup-glass-header {
+        text-align: center;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 1;
+      }
+      .popup-glass-icon {
+        width: 54px;
+        height: 54px;
+        margin: 0 auto 10px auto;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        box-shadow: 0 2px 12px rgba(37, 99, 235, 0.18);
+        font-size: 1.7rem;
+        color: #fff;
+        border: 2.5px solid rgba(255, 255, 255, 0.13);
+      }
+      .popup-glass-header h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+        background: linear-gradient(90deg, var(--light), var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        letter-spacing: 0.5px;
+      }
+      .popup-glass-header p {
+        color: #e0e7ef;
+        font-size: 1.01rem;
+        margin-bottom: 0;
+        opacity: 0.85;
+      }
+      .glass-form-group {
+        flex: 1 1 0;
+        margin-bottom: 18px;
+        display: flex;
+        flex-direction: column;
+      }
+      .glass-form-group label {
+        margin-bottom: 6px;
+        font-weight: 500;
+        color: #f1f5f9;
+        font-size: 1rem;
+        letter-spacing: 0.1px;
+      }
+      .glass-form-group input,
+      .glass-form-group textarea {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1.5px solid rgba(100, 116, 139, 0.18);
+        border-radius: 9px;
+        padding: 11px 14px;
+        font-size: 1.07rem;
+        color: #f1f5f9;
+        margin-bottom: 0;
+        outline: none;
+        transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+        box-shadow: 0 1.5px 8px rgba(37, 99, 235, 0.05);
+        font-family: inherit;
+      }
+      .glass-form-group input:focus,
+      .glass-form-group textarea:focus {
+        border: 1.5px solid var(--primary);
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.13);
+        background: rgba(37, 99, 235, 0.08);
+      }
+      .glass-form-group textarea {
+        resize: vertical;
+        min-height: 90px;
+        max-height: 220px;
+      }
+      .glass-submit-btn {
+        width: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        padding: 15px 0;
+        border-radius: 30px;
+        font-size: 1.08rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.18);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 6px;
+        letter-spacing: 0.2px;
+        gap: 8px;
+      }
+      .glass-submit-btn i {
+        font-size: 1.1em;
+      }
+      .glass-submit-btn:hover {
+        background: linear-gradient(
+          90deg,
+          var(--primary-dark),
+          var(--secondary)
+        );
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.22);
+      }
+      #formStatus {
+        font-size: 0.98rem;
+        text-align: center;
+        margin-top: 10px;
+        min-height: 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <a href="../index.html" class="logo">
+          <img
+            src="../Resources/DigiFact_Logo_Noname_Type1.png"
+            alt="DigiFact Logo"
+            style="height: 40px;"
+          />
+          <img
+            src="../Resources/BrandName.png"
+            alt="DigiFact Logo"
+            style="height: 40px;"
+          />
+        </a>
+        <nav class="nav-links">
+          <a href="../index.html">Trang chủ</a>
+          <a href="../AllModules.html">Tất cả Module</a>
+          <a href="#features">Tính năng</a>
+          <a href="#use-cases">Ứng dụng</a>
+          <a href="#benefits">Lợi ích</a>
+          <a class="btn btn-primary" onclick="openContactPopup()"
+            >Dùng thử ngay</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content animate-fade-in">
+        <div class="hero-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h1>Báo cáo phân tích khách hàng</h1>
+        <p>
+          Hệ thống báo cáo thông minh với phân tíchdữ liệu khách hàng chi tiết, 
+          theo dõi hiệu suất bán hàng và đo lường ROI để đưa ra <br/> quyết định kinh doanh chính xác
+        </p>
+        <div class="cta-buttons">
+          <a href="#features" class="btn btn-white">Khám phá tính năng</a>
+          <a
+            class="btn btn-outline"
+            onclick="openContactPopup()"
+            >Dùng thử ngay</a
+          >
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-number">95%</div>
+            <div class="hero-stat-label">Độ chính xác báo cáo</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">60%</div>
+            <div class="hero-stat-label">Tiết kiệm thời gian phân tích</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">360°</div>
+            <div class="hero-stat-label">Tầm nhìn toàn diện</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-title scroll-animate">
+          <h2>Tính năng báo cáo nổi bật</h2>
+          <p>
+            Hệ thống báo cáo và phân tích dữ liệu khách hàng toàn diện, 
+            cung cấp thông tin chi tiết để tối ưu hóa chiến lược kinh doanh và bán hàng
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+            <h3>Phân tích <br/>dữ liệu khách hàng</h3>
+            <p>
+              Phân tích chi tiết hành vi, sở thích và giá trị khách hàng 
+              để hiểu rõ đối tượng mục tiêu và tối ưu hóa chiến lược
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <h3>Báo cáo <br/>hiệu suất bán hàng</h3>
+            <p>
+              Theo dõi doanh số, tỷ lệ chuyển đổi và hiệu suất đội ngũ bán hàng 
+              với các chỉ số KPI chi tiết theo thời gian thực
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-funnel-dollar"></i>
+            </div>
+            <h3>Phân tích <br/>phễu bán hàng</h3>
+            <p>
+              Theo dõi từng giai đoạn trong quy trình bán hàng, 
+              xác định điểm nghẽn và tối ưu hóa tỷ lệ chuyển đổi
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-users-cog"></i>
+            </div>
+            <h3>Phân khúc khách hàng</h3>
+            <p>
+              Phân loại khách hàng theo nhiều tiêu chí khác nhau như 
+              giá trị, hành vi mua sắm và mức độ tương tác
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3>Báo cáo theo thời gian</h3>
+            <p>
+              Tạo báo cáo tự động theo ngày, tuần, tháng với khả năng 
+              so sánh xu hướng và dự báo tăng trưởng
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-file-export"></i>
+            </div>
+            <h3>Xuất báo cáo tùy chỉnh</h3>
+            <p>
+              Tạo và xuất báo cáo theo yêu cầu với nhiều định dạng khác nhau, 
+              chia sẻ dễ dàng với ban lãnh đạo
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases" id="use-cases">
+      <div class="container">
+        <div class="section-title scroll-animate">
+          <h2>Các loại báo cáo chuyên biệt</h2>
+          <p>
+            Hệ thống báo cáo đa dạng phục vụ cho các nhu cầu <br/>phân tích khác nhau trong doanh nghiệp
+          </p>
+        </div>
+        <div class="use-case-grid">
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-chart-area"></i>
+              <h3>Báo cáo doanh số</h3>
+              <p>Phân tích doanh thu, hiệu suất bán hàng</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Doanh số theo từng sản phẩm/dịch vụ</li>
+                <li><i class="fas fa-check"></i> Hiệu suất bán hàng theo nhân viên</li>
+                <li><i class="fas fa-check"></i> Xu hướng doanh thu theo thời gian</li>
+                <li><i class="fas fa-check"></i> So sánh mục tiêu và thực tế</li>
+                <li><i class="fas fa-check"></i> Dự báo doanh thu tương lai</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-user-friends"></i>
+              <h3>Phân tích khách hàng</h3>
+              <p>Hiểu rõ hành vi và giá trị khách hàng</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Phân tích RFM (gần đây, tần suất, giá trị)</li>
+                <li><i class="fas fa-check"></i> Vòng đời khách hàng (CLV)</li>
+                <li><i class="fas fa-check"></i> Tỷ lệ khách hàng quay lại</li>
+                <li><i class="fas fa-check"></i> Phân khúc theo hành vi mua sắm</li>
+                <li><i class="fas fa-check"></i> Dự đoán khách hàng rời bỏ</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-tachometer-alt"></i>
+              <h3>Bảng điều khiển KPI</h3>
+              <p>Theo dõi các chỉ số hiệu suất chính</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Tỷ lệ chuyển đổi khách hàng tiềm năng</li>
+                <li><i class="fas fa-check"></i> Thời gian chu kỳ bán hàng</li>
+                <li><i class="fas fa-check"></i> Tỷ lệ thành công của cơ hội</li>
+                <li><i class="fas fa-check"></i> Chi phí thu hút khách hàng (CAC)</li>
+                <li><i class="fas fa-check"></i> Tỷ suất sinh lời (ROI)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+      <div class="container">
+        <div class="section-title scroll-animate">
+          <h2>Lợi ích của báo cáo phân tích</h2>
+          <p>Những giá trị mà hệ thống báo cáo khách hàng DigiFact mang lại cho doanh nghiệp</p>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-card scroll-animate">
+            <div class="benefit-number">95%</div>
+            <h3>Độ chính xác <br/>cao</h3>
+            <p>
+              Dữ liệu được xử lý tự động với độ chính xác cao
+            </p>
+          </div>
+          <div class="benefit-card scroll-animate">
+            <div class="benefit-number">60%</div>
+            <h3>Tiết kiệm <br/>thời gian</h3>
+            <p>Tự động hóa giúp giảm thời gian tạo báo cáo thủ công</p>
+          </div>
+          <div class="benefit-card scroll-animate">
+            <div class="benefit-number">80%</div>
+            <h3>Quyết định <br/>nhanh hơn</h3>
+            <p>Thông tin kịp thời giúp đưa ra quyết định kinh doanh nhanh chóng</p>
+          </div>
+          <div class="benefit-card scroll-animate">
+            <div class="benefit-number">150%</div>
+            <h3>Cải thiện <br/>hiệu suất</h3>
+            <p>Phân tích sâu giúp tối ưu hóa chiến lược và nâng cao hiệu quả kinh doanh</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+     <!-- Pricing Section -->
+    <section class="pricing" style="padding: 4rem 0; background: var(--light);">
+      <div class="container">
+        <div class="section-title scroll-animate">
+          <h2>Gói dịch vụ báo cáo phân tích</h2>
+          <p>Lựa chọn gói phù hợp với quy mô và nhu cầu báo cáo của doanh nghiệp</p>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card scroll-animate">
+            <div class="pricing-header">
+              <h3>Starter</h3>
+              <div class="pricing-price">
+                <div class="price-original">999.000/tháng</div>
+                <div class="price-promo">599.000₫ <span class="price-period">/tháng</span></div>
+              </div>
+              <p>Phù hợp cho doanh nghiệp nhỏ</p>
+            </div>
+            <div class="pricing-features">
+              <ul>
+                <li><i class="fas fa-check"></i> Lên đến 3 người dùng</li>
+                <li><i class="fas fa-check"></i> 5 mẫu báo cáo cơ bản</li>
+                <li><i class="fas fa-check"></i> Báo cáo doanh số hàng tháng</li>
+                <li><i class="fas fa-check"></i> Xuất Excel/PDF</li>
+                <li><i class="fas fa-check"></i> Bảng điều khiển cơ bản</li>
+                <li><i class="fas fa-check"></i> Hỗ trợ qua email</li>
+              </ul>
+            </div>
+            <div class="pricing-footer">
+              <button class="btn btn-primary" onclick="openContactPopup()">Dùng thử 30 ngày</button>
+            </div>
+          </div>
+          <div class="pricing-card popular scroll-animate">
+            <div class="popular-badge">Phổ biến</div>
+            <div class="pricing-header">
+              <h3>Professional</h3>
+              <div class="pricing-price">
+                <div class="price-original">4.999.000/tháng</div>
+                <div class="price-promo">2.599.000₫ <span class="price-period">/tháng</span></div>
+              </div>
+              <p>Phù hợp cho doanh nghiệp vừa</p>
+            </div>
+            <div class="pricing-features">
+              <ul>
+                <li><i class="fas fa-check"></i> Lên đến 10 người dùng</li>
+                <li><i class="fas fa-check"></i> Không giới hạn báo cáo</li>
+                <li><i class="fas fa-check"></i> Phân tích khách hàng nâng cao</li>
+                <li><i class="fas fa-check"></i> Báo cáo thời gian thực</li>
+                <li><i class="fas fa-check"></i> Phân tích RFM và CLV</li>
+                <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
+              </ul>
+            </div>
+            <div class="pricing-footer">
+              <button class="btn btn-primary" onclick="openContactPopup()">Dùng thử 30 ngày</button>
+            </div>
+          </div>
+          <div class="pricing-card scroll-animate">
+            <div class="pricing-header">
+              <h3>Enterprise</h3>
+              <div class="pricing-price">
+                <span class="price-amount">Liên hệ</span>
+                <span class="price-period">tùy chỉnh</span>
+              </div>
+              <p>Phù hợp cho doanh nghiệp lớn</p>
+            </div>
+            <div class="pricing-features">
+              <ul>
+                <li><i class="fas fa-check"></i> Không giới hạn người dùng</li>
+                <li><i class="fas fa-check"></i> Báo cáo tùy chỉnh hoàn toàn</li>
+                <li><i class="fas fa-check"></i> Tích hợp ERP và hệ thống khác</li>
+                <li><i class="fas fa-check"></i> API cho báo cáo tự động</li>
+                <li><i class="fas fa-check"></i> Chuyên gia tư vấn riêng</li>
+                <li><i class="fas fa-check"></i> Cam kết SLA 99.9%</li>
+              </ul>
+            </div>
+            <div class="pricing-footer">
+              <button class="btn btn-outline" onclick="openContactPopup()">Liên hệ tư vấn</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+      <div class="container">
+        <h2>Bắt đầu phân tích <br/>dữ liệu khách hàng?</h2>
+        <p>
+          Liên hệ với chúng tôi để được tư vấn và trải nghiệm hệ thống báo cáo phân tích miễn phí
+        </p>
+        <div class="cta-buttons">
+          <a href="tel:0338845579" class="btn btn-white">
+            <i class="fas fa-phone"></i> Gọi ngay: 033 884 5579
+          </a>
+          <a
+            href="#contact"
+            class="btn btn-outline"
+            onclick="openContactPopup()"
+          >
+            <i class="fas fa-rocket"></i> Dùng thử ngay
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 DigiFact. Tất cả quyền được bảo lưu.</p>
+      </div>
+    </footer>
+
+    <!-- Contact Popup Modal -->
+    <div id="contactPopup" class="contact-popup-overlay" style="display: none">
+      <div class="contact-popup-glass">
+        <button
+          class="close-popup-glass"
+          onclick="closeContactPopup()"
+          aria-label="Đóng"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="popup-glass-header">
+          <div class="popup-glass-icon"><i class="fas fa-paper-plane"></i></div>
+          <h2>Liên hệ với DigiFact</h2>
+          <p>Chúng tôi sẽ phản hồi trong vòng 24h</p>
+        </div>
+        <form id="contactForm" autocomplete="off">
+          <div class="glass-form-group">
+            <label for="firstName">Họ và tên</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              required
+              placeholder="Nhập họ và tên"
+            />
+          </div>
+          <div class="glass-form-group">
+            <label for="phone">Số điện thoại</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Nhập số điện thoại"
+            />
+          </div>
+          <div class="glass-form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="Nhập email"
+            />
+          </div>
+          <div class="glass-form-group">
+            <label for="company">Công ty</label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              placeholder="Tên công ty (nếu có)"
+            />
+          </div>
+          <div class="glass-form-group">
+            <label for="message">Nội dung</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              placeholder="Bạn cần tư vấn gì?"
+            ></textarea>
+          </div>
+          <button type="submit" class="glass-submit-btn">
+            <i class="fas fa-paper-plane"></i> Gửi liên hệ
+          </button>
+          <p class="popup-glass-header" style="margin-top: 10px; font-style: italic;">Hướng dẫn tải về tự động phần mềm dùng thử<br/>miễn phí 30 ngày sẽ được gửi về email của bạn</p>
+          <div id="formStatus" style="margin-top: 5px"></div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Google Apps Script endpoint
+      const CONTACT_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbzE5F4hF9fMqDkN5KGzQUAFlNaDfmw04ITcyZcvL40d_Z05HgbldjdiunqafMKyo5HWXrdB2oXgUo8JnkRRmvA/exec";
+
+      // Contact popup functions
+      function openContactPopup() {
+        document.getElementById("contactPopup").style.display = "flex";
+      }
+
+      function closeContactPopup() {
+        document.getElementById("contactPopup").style.display = "none";
+      }
+
+      // Alternative submission method
+      async function tryAlternativeSubmission(data, status) {
+        try {
+              const subject = encodeURIComponent(
+            "Liên hệ từ website DigiFact - CRM Báo cáo phân tích"
+          );
+          const body = encodeURIComponent(`
+Họ tên: ${data.firstName}
+Email: ${data.email}
+Số điện thoại: ${data.phone}
+Công ty: ${data.company}
+Nội dung: ${data.message}
+Trang: CRM - Báo cáo phân tích
+                `);          const mailtoLink = `mailto:contact@digifact.vn?subject=${subject}&body=${body}`;
+
+          status.textContent = "Đang mở ứng dụng email...";
+          status.style.color = "#f59e0b";
+
+          window.location.href = mailtoLink;
+
+          setTimeout(() => {
+            status.textContent =
+              "Email đã được tạo. Vui lòng gửi từ ứng dụng email.";
+            status.style.color = "#10b981";
+          }, 2000);
+        } catch (err) {
+          console.error("Alternative submission failed:", err);
+          status.textContent =
+            "Vui lòng gửi email trực tiếp đến contact@digifact.vn";
+          status.style.color = "#ef4444";
+        }
+      }
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".scroll-animate").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Contact form submission
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contactForm");
+        if (form) {
+          form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const status = document.getElementById("formStatus");
+            status.textContent = "Đang gửi...";
+            status.style.color = "#2563eb";
+
+            const data = {
+              firstName: form.firstName.value,
+              email: form.email.value,
+              phone: form.phone.value,
+              company: form.company.value,
+              message: form.message.value,
+              timestamp: new Date().toISOString(),
+              source: "CRM - Báo cáo phân tích Page",
+            };
+
+            try {
+              const res = await fetch(CONTACT_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams(data),
+              });
+
+              status.textContent =
+                "Gửi thành công! Chúng tôi sẽ liên hệ lại sớm.";
+              status.style.color = "#10b981";
+              form.reset();
+              setTimeout(() => {
+                closeContactPopup();
+              }, 2000);
+            } catch (err) {
+              console.error("Network error:", err);
+              status.textContent = "Đang thử phương pháp khác...";
+              status.style.color = "#f59e0b";
+
+              setTimeout(() => {
+                tryAlternativeSubmission(data, status);
+              }, 1000);
+            }
+          });
+        }
+      });
+
+      // Close popup on outside click
+      document.addEventListener("click", function (e) {
+        const popup = document.getElementById("contactPopup");
+        if (e.target === popup) {
+          closeContactPopup();
+        }
+      });
+
+      // Close popup on escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeContactPopup();
+        }
+      });
+    </script>
+  </body>
+</html>
