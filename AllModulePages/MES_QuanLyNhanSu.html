@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MES Quản lý nhân sự nhà máy - Hệ thống HR chuyên biệt sản xuất | DigiFact</title>
+    <meta name="description" content="Hệ thống MES Quản lý nhân sự chuyên biệt cho nhà máy sản xuất tại Việt Nam. Quản lý công nhân, kỹ thuật viên, ca làm việc, an toàn lao động theo chuẩn Việt Nam." />
+    <meta name="keywords" content="MES nhân sự, quản lý nhân sự nhà máy, HR sản xuất, công nhân nhà máy, ca làm việc, an toàn lao động, chấm công nhà máy" />
+    <link
+      rel="icon"
+      href="../Resources/DigiFact_Logo_Noname_Type1.png"
+      type="image/png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #10b981;
+        --primary-dark: #047857;
+        --secondary: #059669;
+        --accent: #065f46;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --error: #ef4444;
+        --light: #f1f5f9;
+        --dark: #0f172a;
+        --dark-light: #1e293b;
+        --dark-lighter: #334155;
+        --text: #f8fafc;
+        --text-muted: #94a3b8;
+        --border: rgba(100, 116, 139, 0.2);
+        --gradient-1: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        --gradient-2: linear-gradient(135deg, #059669 0%, #065f46 100%);
+        --gradient-3: linear-gradient(135deg, #065f46 0%, #10b981 100%);
+        --hr-gradient: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+        --transition: all 0.3s ease;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--dark);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Animated Background */
+      .animated-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: radial-gradient(
+            circle at 20% 20%,
+            rgba(16, 185, 129, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(5, 150, 105, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 60%,
+            rgba(6, 95, 70, 0.1) 0%,
+            transparent 50%
+          );
+        animation: backgroundFloat 20s ease-in-out infinite;
+      }
+
+      @keyframes backgroundFloat {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(5deg);
+        }
+      }
+
+      /* Header */
+      .header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        background: transparent;
+      }
+
+      .header-content {
+        height: 80px;
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--light);
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 100px 0 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-icon {
+        font-size: 5rem;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 2;
+        animation: heroIconFloat 4s ease-in-out infinite;
+      }
+
+      @keyframes heroIconFloat {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+          filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.2));
+        }
+        50% {
+          transform: translateY(-8px) rotate(2deg);
+          filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.4));
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        opacity: 0;
+        animation: titleFadeIn 2s ease-out 0.5s forwards;
+      }
+
+      @keyframes titleFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto 40px;
+        opacity: 0;
+        animation: descriptionFadeIn 2s ease-out 1s forwards;
+      }
+
+      @keyframes descriptionFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-btn {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: transparent;
+        color: var(--text);
+        border: 2px solid var(--primary);
+      }
+
+      .hero-btn:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 80px 0;
+        background: rgba(30, 41, 59, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .features-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        background: var(--gradient-2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .section-header p {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background: rgba(51, 65, 85, 0.5);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+        transition: all 0.4s ease;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: slideInUp 0.8s ease forwards;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(16, 185, 129, 0.3);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--text);
+      }
+
+      .feature-card p {
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* Loading Animation */
+      .loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(16, 185, 129, 0.3);
+        border-top: 3px solid var(--primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      @keyframes slideInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .feature-card:nth-child(1) { animation-delay: 0.1s; }
+      .feature-card:nth-child(2) { animation-delay: 0.2s; }
+      .feature-card:nth-child(3) { animation-delay: 0.3s; }
+      .feature-card:nth-child(4) { animation-delay: 0.4s; }
+      .feature-card:nth-child(5) { animation-delay: 0.5s; }
+      .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+      /* Mobile responsive */
+      @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .hero h1 { font-size: 2.5rem; }
+        .features-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <a href="../index.html" class="logo">
+          <img
+            src="../Resources/DigiFact_Logo_Noname_Type1.png"
+            alt="DigiFact Logo"
+            style="height: 40px"
+          />
+          <img
+            src="../Resources/BrandName.png"
+            alt="DigiFact Logo"
+            style="height: 40px"
+          />
+        </a>
+        <nav class="nav-links">
+          <a href="../index.html">Trang chủ</a>
+          <a href="../AllModules.html">Tất cả Module</a>
+          <a href="#features">Tính năng</a>
+          <a class="hero-btn" onclick="openContactPopup()">Dùng thử ngay</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-icon">
+          <i class="fas fa-hard-hat"></i>
+        </div>
+        <h1>MES Quản Lý Nhân Sự Nhà Máy</h1>
+        <p style="max-width: 1000px;">
+          Hệ thống quản lý nhân sự chuyên biệt cho nhà máy sản xuất tại Việt Nam, <br/>
+          quản lý toàn diện công nhân, kỹ thuật viên và đội ngũ sản xuất theo chuẩn địa phương
+        </p>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="features-container">
+        <div class="section-header">
+          <h2>Tính năng chuyên biệt</h2>
+          <p>
+            Giải pháp HR toàn diện <br />cho môi trường sản xuất và nhà máy Việt Nam
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-fingerprint"></i>
+            </div>
+            <h3>Chấm công vân tay và thẻ từ</h3>
+            <p>
+              Hệ thống chấm công sinh trắc học hiện đại với vân tay, thẻ từ và GPS. 
+              Phù hợp với đặc thù nhà máy có đông công nhân và nhiều ca làm việc.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-calendar-week"></i>
+            </div>
+            <h3>Quản lý ca làm việc 24/7</h3>
+            <p>
+              Lập lịch ca sáng, chiều, đêm và ca trực cuối tuần theo quy định Luật lao động. 
+              Tự động tính phụ cấp ca đêm và làm thêm giờ.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-helmet-safety"></i>
+            </div>
+            <h3>An toàn lao động và BHLĐ</h3>
+            <p>
+              Quản lý đầy đủ thiết bị bảo hộ, đào tạo an toàn, theo dõi tai nạn lao động 
+              và báo cáo theo quy định của Bộ LĐ-TB&XH.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <h3>Quản lý tay nghề và bậc thợ</h3>
+            <p>
+              Phân loại công nhân theo tay nghề: thợ bậc 1-7, kỹ thuật viên, trưởng ca. 
+              Quản lý chứng chỉ nghề và lộ trình thăng tiến.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <h3>Tính lương theo Luật lao động VN</h3>
+            <p>
+              Tự động tính lương cơ bản, phụ cấp, lương làm thêm theo công thức của Việt Nam. 
+              Tích hợp BHXH, BHYT, BHTN và thuế TNCN.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Đào tạo và nâng cao tay nghề</h3>
+            <p>
+              Quản lý chương trình đào tạo nghề, học việc, thực tập. 
+              Theo dõi tiến độ nâng bậc thợ và đánh giá năng lực.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" style="padding: 80px 0; background: rgba(15, 23, 42, 0.8);">
+      <div class="stats-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center;">
+        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 60px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+          Hiệu quả được chứng minh
+        </h2>
+        <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+          <div class="stat-card" style="text-align: center; padding: 40px 20px; background: rgba(51, 65, 85, 0.5); border: 1px solid var(--border); border-radius: 20px; transition: all 0.4s ease;">
+            <span class="stat-number" style="font-size: 3.5rem; font-weight: 900; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; display: block;">95%</span>
+            <span class="stat-label" style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem;">Độ chính xác chấm công</span>
+          </div>
+          <div class="stat-card" style="text-align: center; padding: 40px 20px; background: rgba(51, 65, 85, 0.5); border: 1px solid var(--border); border-radius: 20px; transition: all 0.4s ease;">
+            <span class="stat-number" style="font-size: 3.5rem; font-weight: 900; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; display: block;">70%</span>
+            <span class="stat-label" style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem;">Giảm thời gian tính lương</span>
+          </div>
+          <div class="stat-card" style="text-align: center; padding: 40px 20px; background: rgba(51, 65, 85, 0.5); border: 1px solid var(--border); border-radius: 20px; transition: all 0.4s ease;">
+            <span class="stat-number" style="font-size: 3.5rem; font-weight: 900; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; display: block;">85%</span>
+            <span class="stat-label" style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem;">Giảm tai nạn lao động</span>
+          </div>
+          <div class="stat-card" style="text-align: center; padding: 40px 20px; background: rgba(51, 65, 85, 0.5); border: 1px solid var(--border); border-radius: 20px; transition: all 0.4s ease;">
+            <span class="stat-number" style="font-size: 3.5rem; font-weight: 900; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; display: block;">100%</span>
+            <span class="stat-label" style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem;">Tuân thủ Luật lao động</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" style="padding: 100px 0; background: rgba(30, 41, 59, 0.4);">
+      <div class="benefits-container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+        <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+          <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Lợi ích vượt trội</h2>
+          <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">Những giá trị thiết thực cho quản lý nhân sự nhà máy</p>
+        </div>
+        <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+          <div class="benefit-card" style="background: rgba(51, 65, 85, 0.6); border: 1px solid var(--border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s ease;">
+            <div class="benefit-icon" style="font-size: 3rem; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: var(--text);">Tiết kiệm thời gian</h3>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+              Giảm 70% thời gian tính lương và chấm công thủ công, 
+              tập trung vào phát triển nhân sự và cải thiện môi trường làm việc.
+            </p>
+          </div>
+          <div class="benefit-card" style="background: rgba(51, 65, 85, 0.6); border: 1px solid var(--border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s ease;">
+            <div class="benefit-icon" style="font-size: 3rem; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: var(--text);">Tuân thủ pháp luật</h3>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+              Đảm bảo 100% tuân thủ Luật lao động Việt Nam, 
+              quy định BHXH-BHYT và các nghị định mới nhất.
+            </p>
+          </div>
+          <div class="benefit-card" style="background: rgba(51, 65, 85, 0.6); border: 1px solid var(--border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s ease;">
+            <div class="benefit-icon" style="font-size: 3rem; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: var(--text);">Tăng năng suất</h3>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+              Nâng cao năng suất lao động qua quản lý hiệu quả, 
+              đào tạo có hệ thống và môi trường làm việc an toàn.
+            </p>
+          </div>
+          <div class="benefit-card" style="background: rgba(51, 65, 85, 0.6); border: 1px solid var(--border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s ease;">
+            <div class="benefit-icon" style="font-size: 3rem; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: var(--text);">Giữ chân nhân tài</h3>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+              Quản lý lộ trình phát triển nghề nghiệp rõ ràng, 
+              tạo động lực và giữ chân công nhân giỏi lâu dài.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases" style="padding: 100px 0; background: rgba(15, 23, 42, 0.6);">
+      <div class="use-cases-container" style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+        <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+          <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Ứng dụng thực tế</h2>
+          <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">Phù hợp với các loại hình nhà máy sản xuất tại Việt Nam</p>
+        </div>
+        <div class="use-cases-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+          <div class="use-case-card" style="background: rgba(51, 65, 85, 0.6); border: 1px solid var(--border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s ease;">
+            <div class="use-case-icon" style="font-size: 3rem; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              <i class="fas fa-tshirt"></i>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: var(--text);">May mặc xuất khẩu</h3>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+              Quản lý hàng nghìn công nhân may với đa ca làm việc, 
+              theo dõi năng suất từng chuyền và tính lương theo sản phẩm.
+            </p>
+          </div>
+          <div class="use-case-card" style="background: rgba(51, 65, 85, 0.6); border: 1px solid var(--border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s ease;">
+            <div class="use-case-icon" style="font-size: 3rem; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: var(--text);">Điện tử Samsung, LG</h3>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+              Quản lý kỹ thuật viên chuyên môn cao, chứng chỉ quốc tế 
+              và an toàn lao động trong môi trường công nghệ cao.
+            </p>
+          </div>
+          <div class="use-case-card" style="background: rgba(51, 65, 85, 0.6); border: 1px solid var(--border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s ease;">
+            <div class="use-case-icon" style="font-size: 3rem; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              <i class="fas fa-industry"></i>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: var(--text);">Cơ khí chế tạo</h3>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+              Quản lý thợ máy các bậc từ 1-7, theo dõi chứng chỉ nghề 
+              và đào tạo nâng cao tay nghề liên tục.
+            </p>
+          </div>
+          <div class="use-case-card" style="background: rgba(51, 65, 85, 0.6); border: 1px solid var(--border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s ease;">
+            <div class="use-case-icon" style="font-size: 3rem; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: var(--text);">Thực phẩm đồ uống</h3>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+              Quản lý nhân viên với yêu cầu vệ sinh nghiêm ngặt, 
+              kiểm tra sức khỏe định kỳ và đào tạo HACCP.
+            </p>
+          </div>
+          <div class="use-case-card" style="background: rgba(51, 65, 85, 0.6); border: 1px solid var(--border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s ease;">
+            <div class="use-case-icon" style="font-size: 3rem; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              <i class="fas fa-car"></i>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: var(--text);">Ô tô linh kiện</h3>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+              Quản lý công nhân với tiêu chuẩn chất lượng cao, 
+              đào tạo 5S và kiểm soát chất lượng nghiêm ngặt.
+            </p>
+          </div>
+          <div class="use-case-card" style="background: rgba(51, 65, 85, 0.6); border: 1px solid var(--border); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s ease;">
+            <div class="use-case-icon" style="font-size: 3rem; margin-bottom: 20px; background: var(--hr-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              <i class="fas fa-building"></i>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: var(--text);">Vật liệu xây dựng</h3>
+            <p style="color: var(--text-muted); line-height: 1.6;">
+              Quản lý công nhân môi trường khắc nghiệt, 
+              theo dõi bảo hộ lao động và an toàn nghiêm ngặt.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" style="padding: 100px 0; background: var(--hr-gradient); text-align: center;">
+      <div class="cta-container" style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+        <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: white;">
+          Sẵn sàng nâng cao <br />quản lý nhân sự nhà máy?
+        </h2>
+        <p style="font-size: 1.3rem; margin-bottom: 40px; color: rgba(255, 255, 255, 0.9);">
+          Bắt đầu digitalization HR với giải pháp chuyên biệt cho nhà máy Việt Nam
+        </p>
+        <a href="#" onclick="openContactPopup()" style="background: white; color: var(--primary); padding: 18px 36px; border: none; border-radius: 10px; font-weight: 700; font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
+          <i class="fas fa-rocket"></i>
+          Dùng thử miễn phí 30 ngày
+        </a>
+      </div>
+    </section>
+
+    <script>
+      // Contact Popup Function
+      function openContactPopup() {
+        // Create contact modal
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.8);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 10000;
+        `;
+        
+        modal.innerHTML = `
+          <div style="
+            background: var(--dark-light);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--border);
+            position: relative;
+          ">
+            <button onclick="this.closest('div').parentElement.remove()" style="
+              position: absolute;
+              top: 15px;
+              right: 20px;
+              background: none;
+              border: none;
+              color: var(--text);
+              font-size: 24px;
+              cursor: pointer;
+            ">&times;</button>
+            
+            <h3 style="color: var(--primary); margin-bottom: 20px; text-align: center;">
+              <i class="fas fa-hard-hat"></i> Tư Vấn MES Nhân Sự Nhà Máy
+            </h3>
+            
+            <form onsubmit="handleContactSubmit(event)">
+              <div style="margin-bottom: 20px;">
+                <label style="display: block; color: var(--text); margin-bottom: 5px;">Họ tên *</label>
+                <input type="text" required style="
+                  width: 100%;
+                  padding: 12px;
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  background: var(--dark);
+                  color: var(--text);
+                " placeholder="Nhập họ tên của bạn">
+              </div>
+              
+              <div style="margin-bottom: 20px;">
+                <label style="display: block; color: var(--text); margin-bottom: 5px;">Email *</label>
+                <input type="email" required style="
+                  width: 100%;
+                  padding: 12px;
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  background: var(--dark);
+                  color: var(--text);
+                " placeholder="email@company.com">
+              </div>
+              
+              <div style="margin-bottom: 20px;">
+                <label style="display: block; color: var(--text); margin-bottom: 5px;">Công ty/Nhà máy</label>
+                <input type="text" style="
+                  width: 100%;
+                  padding: 12px;
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  background: var(--dark);
+                  color: var(--text);
+                " placeholder="Tên nhà máy/công ty">
+              </div>
+              
+              <div style="margin-bottom: 20px;">
+                <label style="display: block; color: var(--text); margin-bottom: 5px;">Số lượng công nhân</label>
+                <select style="
+                  width: 100%;
+                  padding: 12px;
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  background: var(--dark);
+                  color: var(--text);
+                ">
+                  <option value="">Chọn quy mô nhà máy</option>
+                  <option value="50-200">50-200 công nhân</option>
+                  <option value="200-500">200-500 công nhân</option>
+                  <option value="500-1000">500-1000 công nhân</option>
+                  <option value="1000+">Trên 1000 công nhân</option>
+                </select>
+              </div>
+              
+              <div style="margin-bottom: 30px;">
+                <label style="display: block; color: var(--text); margin-bottom: 5px;">Nhu cầu cụ thể</label>
+                <textarea rows="3" style="
+                  width: 100%;
+                  padding: 12px;
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  background: var(--dark);
+                  color: var(--text);
+                  resize: vertical;
+                " placeholder="Vd: Cần hệ thống chấm công vân tay, tính lương tự động..."></textarea>
+              </div>
+              
+              <button type="submit" style="
+                width: 100%;
+                padding: 15px;
+                background: var(--hr-gradient);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 16px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+              ">
+                <i class="fas fa-paper-plane"></i> Nhận Tư Vấn Miễn Phí
+              </button>
+            </form>
+            
+            <p style="
+              text-align: center;
+              color: var(--text-muted);
+              font-size: 14px;
+              margin-top: 15px;
+              font-style: italic;
+            ">
+              💼 Chuyên gia HR nhà máy sẽ liên hệ trong 24h
+            </p>
+          </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Close on background click
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.remove();
+          }
+        });
+      }
+
+      function handleContactSubmit(event) {
+        event.preventDefault();
+        
+        // Show success message
+        const successDiv = document.createElement('div');
+        successDiv.style.cssText = `
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: var(--hr-gradient);
+          color: white;
+          padding: 20px 40px;
+          border-radius: 10px;
+          z-index: 10001;
+          text-align: center;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        `;
+        
+        successDiv.innerHTML = `
+          <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 10px;"></i>
+          <h4>Cảm ơn bạn đã quan tâm!</h4>
+          <p style="margin: 10px 0;">Chuyên gia HR sẽ liên hệ trong 24h</p>
+          <small>Demo và báo giá sẽ được gửi qua email</small>
+        `;
+        
+        document.body.appendChild(successDiv);
+        
+        // Remove success message and modal after 3 seconds
+        setTimeout(() => {
+          successDiv.remove();
+          document.querySelector('div[style*="rgba(0, 0, 0, 0.8)"]')?.remove();
+        }, 3000);
+      }
+
+      // Loading animation
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          document.getElementById('loading').style.display = 'none';
+        }, 1000);
+      });
+
+      // Add hover effects for cards
+      document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.stat-card, .benefit-card, .use-case-card');
+        cards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.borderColor = 'var(--primary)';
+            this.style.boxShadow = '0 15px 35px rgba(16, 185, 129, 0.2)';
+          });
+          
+          card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.borderColor = 'var(--border)';
+            this.style.boxShadow = 'none';
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

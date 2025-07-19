@@ -2998,7 +2998,7 @@
           flex-direction: column;
           gap: 0;
         }
-      }
+      } 
     </style>
     <script>
       // Google Apps Script endpoint - Updated URL
@@ -3011,11 +3011,11 @@
           // Try direct email fallback
           const subject = encodeURIComponent("Liên hệ từ website DigiFact");
           const body = encodeURIComponent(`
-Họ tên: ${data.firstName}
-Email: ${data.email}
-Số điện thoại: ${data.phone}
-Công ty: ${data.company}
-Nội dung: ${data.message}
+            Họ tên: ${data.firstName}
+            Email: ${data.email}
+            Số điện thoại: ${data.phone}
+            Công ty: ${data.company}
+            Nội dung: ${data.message}
         `);
 
           const mailtoLink = `mailto:contact@digifact.vn?subject=${subject}&body=${body}`;
