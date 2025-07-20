@@ -1,0 +1,2393 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Báo cáo thời gian thực | DigiFact - Smart Factory Companion</title>
+    <meta name="description" content="Hệ thống dashboard báo cáo thời gian thực với Power BI integration. Real-time interactive KPI dashboard, OEE monitoring, SQCD analytics, energy usage tracking, resource planning và human labor analytics. Big data ecosystem với AI chatbot cho data insights, optimized database cho high-speed analytics và manufacturing intelligence." />
+    <meta name="keywords" content="dashboard OEE, real-time reporting, interactive dashboard, KPI monitoring, SQCD analytics, energy usage tracking, resource planning, human labor analytics, Power BI integration, big data analytics, AI chatbot, data insights, manufacturing intelligence, real-time KPI, production dashboard" />
+    <link
+      rel="icon"
+      href="../Resources/DigiFact_Logo_Noname_Type1.png"
+      type="image/png"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #8b5cf6;
+        --accent: #f59e0b;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --light: #f8fafc;
+        --dark: #1e293b;
+        --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--dark);
+        background: var(--light);
+      }
+
+      /* Header */
+      .header {
+        background: white;
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Roboto Mono", monospace;
+        font-weight: 500;
+        font-size: 1.5rem;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .logo i {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 1.8rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white !important;
+      }
+
+      .btn-primary:hover {
+        background: var(--secondary);
+        color: white !important;
+        transform: translateY(-2px);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 6rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 25% 25%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(255, 255, 255, 0.05) 0%,
+            transparent 50%
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        opacity: 0.4;
+        animation: heroPattern 20s linear infinite;
+      }
+
+      @keyframes heroPattern {
+        0% {
+          transform: translateX(0) translateY(0);
+        }
+        50% {
+          transform: translateX(-10px) translateY(-10px);
+        }
+        100% {
+          transform: translateX(0) translateY(0);
+        }
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: titleGlow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes titleGlow {
+        0% {
+          text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        100% {
+          text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+            0 0 40px rgba(103, 126, 234, 0.3);
+        }
+      }
+
+      .hero p {
+        font-size: 1.4rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.95;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        line-height: 1.7;
+      }
+
+      .hero-icon {
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+        animation: iconFloat 4s ease-in-out infinite;
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      }
+
+      @keyframes iconFloat {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(2deg);
+        }
+      }
+
+      .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 3rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-stat {
+        text-align: center;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        min-width: 150px;
+      }
+
+      .hero-stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+        animation: countUp 2s ease-out;
+      }
+
+      .hero-stat-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      @keyframes countUp {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Features Section */
+      .features {
+        padding: 4rem 0;
+        background: white;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .section-title p {
+        font-size: 1.1rem;
+        color: #64748b;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .feature-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.9) 100%
+        );
+        padding: 2.5rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(37, 99, 235, 0.1),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .feature-card:hover::before {
+        left: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        border-color: var(--primary);
+      }
+
+      .feature-icon {
+        width: 90px;
+        height: 90px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2.2rem;
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .feature-card:hover .feature-icon {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .feature-card p {
+        color: #64748b;
+        line-height: 1.6;
+      }
+
+      /* Use Cases Section */
+      .use-cases {
+        padding: 4rem 0;
+        background: var(--light);
+      }
+
+      .use-case-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .use-case-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.9) 100%
+        );
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+      }
+
+      .use-case-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+        border-color: var(--primary);
+      }
+
+      .use-case-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .use-case-header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        animation: ripple 4s linear infinite;
+      }
+
+      @keyframes ripple {
+        0% {
+          transform: scale(0.8) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.2) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .use-case-header i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+        animation: iconPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes iconPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .use-case-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .use-case-body {
+        padding: 2rem;
+      }
+
+      .use-case-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .use-case-list li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .use-case-list li:last-child {
+        border-bottom: none;
+      }
+
+      .use-case-list i {
+        color: var(--success);
+        font-size: 1.2rem;
+      }
+
+      /* Benefits Section */
+      .benefits {
+        padding: 4rem 0;
+        background: white;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        margin-top: 2rem;
+      }
+
+      .benefit-card {
+        text-align: center;
+        padding: 2.5rem;
+        border-radius: 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.05) 0%,
+          rgba(139, 92, 246, 0.05) 100%
+        );
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .benefit-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.1) 0%,
+          rgba(139, 92, 246, 0.1) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .benefit-card:hover::before {
+        opacity: 1;
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+      }
+
+      .benefit-number {
+        font-size: 3.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 1rem;
+        animation: numberGlow 2s ease-in-out infinite alternate;
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes numberGlow {
+        0% {
+          filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.3));
+        }
+        100% {
+          filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.6));
+        }
+      }
+
+      .benefit-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+        line-height: 1.4;
+      }
+
+      .benefit-card p {
+        color: #64748b;
+        font-size: 0.9rem;
+      }
+
+      /* CTA Section */
+      .cta {
+        background: var(--gradient);
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .cta p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-white {
+        background: white;
+        color: var(--primary);
+      }
+
+      .btn-white:hover {
+        background: var(--light);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+
+      .btn-outline:hover {
+        background: white;
+        color: var(--primary);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--dark);
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      .footer p {
+        opacity: 0.8;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .nav-links {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .hero-stats {
+          gap: 1.5rem;
+        }
+
+        .hero-stat {
+          min-width: 120px;
+        }
+
+        .hero-stat-number {
+          font-size: 2rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .features-grid,
+        .use-case-grid,
+        .benefits-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .contact-popup-glass {
+          padding: 24px 20px;
+          max-width: 90vw;
+        }
+
+        .popup-glass-header h2 {
+          font-size: 1.2rem;
+        }
+
+        .popup-glass-icon {
+          width: 48px;
+          height: 48px;
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          padding: 4rem 0;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .hero-icon {
+          font-size: 4rem;
+        }
+
+        .feature-card,
+        .use-case-card,
+        .benefit-card {
+          padding: 1.5rem;
+        }
+
+        .hero-stats {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .hero-stat {
+          max-width: 200px;
+          margin: 0 auto;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      /* Scroll animations */
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .scroll-animate.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Contact Popup Styles */
+      .contact-popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(20, 24, 40, 0.55);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+        transition: background 0.3s;
+        animation: fadeInGlass 0.4s;
+      }
+
+      /* Implementation Timeline Styles */
+      .implementation-timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 0;
+      }
+
+      .implementation-timeline::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      }
+
+      .timeline-item {
+        display: flex;
+        margin: 2rem 0;
+        position: relative;
+      }
+
+      .timeline-item:nth-child(odd) {
+        flex-direction: row;
+      }
+
+      .timeline-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .timeline-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      }
+
+      .timeline-content {
+        flex: 1;
+        padding: 1.5rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin: 0 2rem;
+        position: relative;
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
+      }
+
+      .timeline-content h3 {
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+      }
+
+      .timeline-content p {
+        color: var(--gray);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .timeline-duration {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      /* Success Stories Styles */
+      .stories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .story-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .story-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+      }
+
+      .story-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .company-logo {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+      }
+
+      .company-info h3 {
+        margin: 0;
+        color: var(--dark);
+        font-size: 1.25rem;
+      }
+
+      .company-info p {
+        margin: 0;
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
+      .story-content p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        color: var(--gray);
+      }
+
+      .story-content .highlight {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      /* Pricing Styles */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .pricing-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        position: relative;
+        text-align: center;
+      }
+
+      .pricing-card.popular {
+        border-color: var(--primary);
+        transform: scale(1.05);
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+      }
+
+      .pricing-card.popular:hover {
+        transform: translateY(-10px) scale(1.07);
+      }
+
+      .popular-badge {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .pricing-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .pricing-price {
+        margin-bottom: 1rem;
+      }
+
+      .price-amount {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .price-original {
+        font-size: 1.2rem;
+        color: var(--gray);
+        text-decoration: line-through;
+        margin-bottom: 0.5rem;
+        opacity: 0.8;
+      }
+
+      .price-promo {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        position: relative;
+      }
+
+      .price-promo::after {
+        content: "Khuyến mại";
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        color: white;
+        font-size: 0.7rem;
+        padding: 2px 6px;
+        border-radius: 8px;
+        font-weight: 500;
+        transform: rotate(15deg);
+      }
+
+      .price-period {
+        font-size: 1rem;
+        color: var(--gray);
+        margin-left: 0.5rem;
+      }
+
+      .pricing-header p {
+        color: var(--gray);
+        margin-bottom: 2rem;
+      }
+
+      .pricing-features ul {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0;
+        text-align: left;
+      }
+
+      .pricing-features li {
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .pricing-features i {
+        color: var(--success);
+        font-size: 1rem;
+      }
+
+      .pricing-footer {
+        margin-top: 2rem;
+      }
+
+      .pricing-footer .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Responsive for new sections */
+      @media (max-width: 768px) {
+        .implementation-timeline::before {
+          left: 30px;
+        }
+        
+        .timeline-item {
+          flex-direction: row !important;
+          margin-left: 0;
+        }
+        
+        .timeline-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+        }
+        
+        .timeline-content {
+          margin-left: 1rem;
+          margin-right: 0;
+        }
+        
+        .stories-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pricing-card.popular {
+          transform: none;
+        }
+
+        .pricing-card.popular:hover {
+          transform: translateY(-10px) scale(1.02);
+        }
+      }
+      @keyframes fadeInGlass {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .contact-popup-glass {
+        background: rgba(30, 41, 59, 0.82);
+        border-radius: 22px;
+        box-shadow: 0 12px 40px rgba(16, 24, 40, 0.45),
+          0 1.5px 8px rgba(37, 99, 235, 0.1);
+        padding: 38px 32px 28px 32px;
+        max-width: 440px;
+        width: 95vw;
+        color: #f1f5f9;
+        position: relative;
+        border: 2.5px solid transparent;
+        background-clip: padding-box;
+        overflow: visible;
+        animation: popupSlideUp 0.5s cubic-bezier(0.23, 1.01, 0.32, 1);
+      }
+      @keyframes popupSlideUp {
+        from {
+          transform: translateY(40px) scale(0.98);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+      .contact-popup-glass::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        padding: 2px;
+        background: linear-gradient(
+          120deg,
+          var(--primary),
+          var(--secondary),
+          var(--accent)
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .close-popup-glass {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        background: rgba(255, 255, 255, 0.08);
+        border: none;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        color: #f1f5f9;
+        cursor: pointer;
+        z-index: 2;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+      }
+      .close-popup-glass:hover {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+        transform: scale(1.08);
+      }
+      .popup-glass-header {
+        text-align: center;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 1;
+      }
+      .popup-glass-icon {
+        width: 54px;
+        height: 54px;
+        margin: 0 auto 10px auto;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        box-shadow: 0 2px 12px rgba(37, 99, 235, 0.18);
+        font-size: 1.7rem;
+        color: #fff;
+        border: 2.5px solid rgba(255, 255, 255, 0.13);
+      }
+      .popup-glass-header h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+        background: linear-gradient(90deg, var(--light), var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        letter-spacing: 0.5px;
+      }
+      .popup-glass-header p {
+        color: #e0e7ef;
+        font-size: 1.01rem;
+        margin-bottom: 0;
+        opacity: 0.85;
+      }
+      .glass-form-group {
+        flex: 1 1 0;
+        margin-bottom: 18px;
+        display: flex;
+        flex-direction: column;
+      }
+      .glass-form-group label {
+        margin-bottom: 6px;
+        font-weight: 500;
+        color: #f1f5f9;
+        font-size: 1rem;
+        letter-spacing: 0.1px;
+      }
+      .glass-form-group input,
+      .glass-form-group textarea {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1.5px solid rgba(100, 116, 139, 0.18);
+        border-radius: 9px;
+        padding: 11px 14px;
+        font-size: 1.07rem;
+        color: #f1f5f9;
+        margin-bottom: 0;
+        outline: none;
+        transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+        box-shadow: 0 1.5px 8px rgba(37, 99, 235, 0.05);
+        font-family: inherit;
+      }
+      .glass-form-group input:focus,
+      .glass-form-group textarea:focus {
+        border: 1.5px solid var(--primary);
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.13);
+        background: rgba(37, 99, 235, 0.08);
+      }
+      .glass-form-group textarea {
+        resize: vertical;
+        min-height: 90px;
+        max-height: 220px;
+      }
+      .glass-submit-btn {
+        width: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        padding: 15px 0;
+        border-radius: 30px;
+        font-size: 1.08rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.18);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 6px;
+        letter-spacing: 0.2px;
+        gap: 8px;
+      }
+      .glass-submit-btn i {
+        font-size: 1.1em;
+      }
+      .glass-submit-btn:hover {
+        background: linear-gradient(
+          90deg,
+          var(--primary-dark),
+          var(--secondary)
+        );
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.22);
+      }
+      #formStatus {
+        font-size: 0.98rem;
+        text-align: center;
+        margin-top: 10px;
+        min-height: 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <a href="../index.html" class="logo">
+          <img
+            src="../Resources/DigiFact_Logo_Noname_Type1.png"
+            alt="DigiFact Logo"
+            style="height: 40px;"
+          />
+          <img
+            src="../Resources/BrandName.png"
+            alt="DigiFact Logo"
+            style="height: 40px;"
+          />
+        </a>
+        <nav class="nav-links">
+          <a href="../index.html">Trang chủ</a>
+          <a href="../AllModules.html">Tất cả Module</a>
+          <a href="#features">Tính năng</a>
+          <a href="#use-cases">Ứng dụng</a>
+          <a href="#benefits">Lợi ích</a>
+          <a class="btn btn-primary" onclick="openContactPopup()"
+            >Dùng thử ngay</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content animate-fade-in">
+        <div class="hero-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h1>Dashboard OEE - Báo Cáo Thời Gian Thực</h1>
+        <p>
+          Hệ thống dashboard tương tác với Power BI integration cho KPI, OEE, SQCD monitoring
+          <br/>Big data ecosystem với AI chatbot cho data insights và manufacturing intelligence
+        </p>
+        <div class="cta-buttons">
+          <a href="#features" class="btn btn-white">Khám phá tính năng</a>
+          <a
+            class="btn btn-outline"
+            onclick="openContactPopup()"
+            >Dùng thử ngay</a
+          >
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-number">95%</div>
+            <div class="hero-stat-label">OEE Performance</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">1TB+</div>
+            <div class="hero-stat-label">Data Processing</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">24/7</div>
+            <div class="hero-stat-label">Real-time Analytics</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-title scroll-animate">
+          <h2>Tính năng Dashboard OEE & Analytics</h2>
+          <p>
+            Hệ sinh thái báo cáo tương tác với Power BI<br/> Big data processing và AI-powered insights cho manufacturing intelligence
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-tachometer-alt"></i>
+            </div>
+            <h3>Real-time OEE Dashboard</h3>
+            <p>
+              Theo dõi Overall Equipment Effectiveness (OEE) real-time với breakdown 
+              Availability (Khả dụng), Performance (Hiệu suất) và Quality (Chất lượng). 
+              Interactive Power BI dashboard với drill-down capabilities và trend analysis
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <h3>SQCD Analytics Dashboard</h3>
+            <p>
+              Safety (An toàn), Quality (Chất lượng), Cost (Chi phí), Delivery (Giao hàng) 
+              monitoring với real-time KPI tracking. Lean manufacturing metrics 
+              và performance benchmarking với industry standards
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Energy Usage Monitoring</h3>
+            <p>
+              Real-time energy consumption tracking cho machines, production lines 
+              và facilities. Energy efficiency analytics, carbon footprint monitoring 
+              và cost optimization recommendations với predictive insights
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-users-cog"></i>
+            </div>
+            <h3>Resource Planning Analytics</h3>
+            <p>
+              Capacity utilization monitoring, resource allocation optimization 
+              và workforce productivity analytics. Machine utilization heatmaps, 
+              bottleneck identification và resource efficiency recommendations
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-hard-hat"></i>
+            </div>
+            <h3>Human Labor Analytics</h3>
+            <p>
+              Labor productivity tracking, skill matrix analysis và workforce 
+              performance monitoring. Overtime analysis, training effectiveness 
+              measurement và human resource optimization insights
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            <h3>Big Data Ecosystem</h3>
+            <p>
+              Thu thập dữ liệu ngầm định từ sensors, PLCs và manufacturing systems. 
+              Data lake architecture cho massive data processing, real-time streaming 
+              analytics và historical data warehousing tối ưu cho high-speed queries
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3>AI Chatbot Data Insights</h3>
+            <p>
+              Natural Language Processing (NLP) chatbot cho instant data queries. 
+              "Tìm OEE tuần này", "So sánh energy usage tháng trước" - 
+              AI assistant tự động phân tích và trả lời với visualizations
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>High-Speed Analytics Engine</h3>
+            <p>
+              Optimized database với columnar storage, in-memory processing 
+              và distributed computing. Sub-second query response cho millions 
+              of records, real-time aggregations và predictive analytics
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Power BI Integration</h3>
+            <p>
+              Native integration với Microsoft Power BI cho professional reporting. 
+              Custom visuals, automated report generation, mobile-responsive dashboards 
+              và enterprise-grade security với role-based access control
+            </p>
+          </div>
+        </div>
+      </div>
+    </section> 
+              nhân lực và tài nguyên. Real-time capacity analysis, load balancing 
+              và automatic rescheduling khi có thay đổi về đơn hàng hoặc capacity
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-sitemap"></i>
+            </div>
+            <h3>Work Order Management</h3>
+            <p>
+              Quản lý lệnh sản xuất từ lúc tạo đến hoàn thành. Tracking progress, 
+              material consumption, labor hours và quality checkpoints. 
+              Auto-generate work instructions và real-time status updates
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-balance-scale"></i>
+            </div>
+            <h3>Load Balancing & Optimization</h3>
+            <p>
+              Cân bằng tải công việc giữa các máy móc, dây chuyền và ca làm việc. 
+              Minimize bottlenecks, reduce idle time và maximize throughput. 
+              Dynamic load redistribution khi có equipment breakdown
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-stopwatch"></i>
+            </div>
+            <h3>Real-time Shop Floor Control</h3>
+            <p>
+              Theo dõi và điều khiển hoạt động shop floor real-time. 
+              Live production status, machine utilization, quality metrics 
+              và instant alerts khi có deviation từ planned schedule
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-search-plus"></i>
+            </div>
+            <h3>Bottleneck Analysis</h3>
+            <p>
+              Tự động phát hiện và phân tích bottlenecks trong quy trình sản xuất. 
+              Theory of Constraints (TOC) implementation, constraint identification 
+              và optimization recommendations để improve overall equipment effectiveness
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <h3>Multi-level BOM Planning</h3>
+            <p>
+              Lập kế hoạch cho BOM đa cấp với material requirements planning (MRP). 
+              Explode requirements, calculate lead times và coordinate supplier deliveries 
+              để đảm bảo material availability đúng thời điểm
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Mobile Shop Floor App</h3>
+            <p>
+              Ứng dụng mobile cho operators và supervisors. 
+              Real-time task assignment, progress reporting, quality data entry 
+              và instant communication giữa shop floor và planning team
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Performance Analytics</h3>
+            <p>
+              Dashboard và reporting cho production KPIs: OEE, cycle time, 
+              delivery performance, resource utilization. Predictive analytics 
+              cho maintenance scheduling và capacity planning
+            </p>
+          </div>
+        </div>
+      </div>
+    </section> 
+              sản phẩm được sản xuất từ một batch nguyên liệu cụ thể, khách hàng 
+              đã nhận hàng và phạm vi ảnh hưởng khi cần thu hồi sản phẩm
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-qrcode"></i>
+            </div>
+            <h3>Multi-format ID Tracking</h3>
+            <p>
+              Hỗ trợ đa dạng định dạng mã: Barcode (1D/2D), QR Code, RFID, NFC. 
+              Tích hợp máy quét di động, PDA handheld và automated scanning systems. 
+              Real-time capture và validation dữ liệu traceability
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-sitemap"></i>
+            </div>
+            <h3>Product Genealogy Tree</h3>
+            <p>
+              Visualize cây gia phả sản phẩm với parent-child relationships. 
+              Theo dõi assembly/disassembly process, component transformation 
+              và mixing ratios. Đặc biệt hữu ích cho ngành dược phẩm và thực phẩm
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-route"></i>
+            </div>
+            <h3>Supply Chain Visibility</h3>
+            <p>
+              Theo dõi hành trình sản phẩm qua các giai đoạn: procurement, 
+              receiving, production, quality control, packaging, shipping. 
+              Real-time location tracking và status updates cho toàn bộ chuỗi cung ứng
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3>Recall Management</h3>
+            <p>
+              Hệ thống thu hồi sản phẩm tự động với impact analysis. Xác định 
+              instantly tất cả sản phẩm liên quan, customers affected và 
+              required actions. Generate recall notices và tracking recall effectiveness
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Compliance & Audit Trail</h3>
+            <p>
+              Tuân thủ các tiêu chuẩn: ISO 22005, HACCP, FDA 21 CFR Part 11, 
+              EU 178/2002. Maintain complete audit trail với timestamps, 
+              user accountability và tamper-proof data integrity
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Analytics & Reporting</h3>
+            <p>
+              Dashboard theo dõi traceability KPIs: coverage percentage, 
+              recall response time, supply chain efficiency. Predictive analytics 
+              cho risk management và continuous improvement initiatives
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Mobile Integration</h3>
+            <p>
+              Ứng dụng mobile cho operators, inspectors và customers. 
+              Scan-to-verify functionality, real-time data entry và 
+              instant access to product history ngay tại production floor
+            </p>
+          </div>
+        </div>
+      </div>
+    </section> 
+              Material (Vật liệu), Method (Phương pháp), Measurement (Đo lường), 
+              Environment (Môi trường). Tìm hiểu tường tận nguyên nhân sự cố
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>3. Biểu đồ kiểm soát (Control Chart)</h3>
+            <p>
+              Giám sát quy trình sản xuất theo thời gian thực với giới hạn kiểm soát UCL/LCL.
+              Phát hiện sớm xu hướng bất thường, biến động đặc biệt và duy trì 
+              tính ổn định của quy trình sản xuất
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-chart-area"></i>
+            </div>
+            <h3>4. Biểu đồ tần số (Histogram)</h3>
+            <p>
+              Hiển thị phân phối dữ liệu chất lượng để hiểu rõ tình trạng quy trình. 
+              Phát hiện độ lệch, đánh giá khả năng đáp ứng thông số kỹ thuật,
+              xác định xu hướng trung tâm và độ phân tán của dữ liệu
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-braille"></i>
+            </div>
+            <h3>5. Biểu đồ phân tán (Scatter Diagram)</h3>
+            <p>
+              Phân tích mối tương quan giữa hai biến số trong quy trình sản xuất.
+              Xác định mối quan hệ nhân-quả, dự đoán xu hướng và tối ưu hóa 
+              các thông số để cải thiện chất lượng sản phẩm
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
+            <h3>6. Bảng kiểm tra (Check Sheet)</h3>
+            <p>
+              Thu thập dữ liệu có hệ thống để theo dõi tần suất xuất hiện lỗi.
+              Ghi nhận các vấn đề chất lượng theo thời gian, ca làm việc, 
+              dây chuyền sản xuất để hỗ trợ phân tích và cải tiến
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-sitemap"></i>
+            </div>
+            <h3>7. Sơ đồ quy trình (Flowchart)</h3>
+            <p>
+              Mô tả các bước trong quy trình sản xuất để hiểu rõ luồng công việc.
+              Xác định điểm kiểm tra chất lượng, phát hiện bottleneck và 
+              tối ưu hóa quy trình để nâng cao hiệu quả sản xuất
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h3>Ứng dụng thực tế trong nhà máy</h3>
+            <p>
+              Triển khai 7 QC Tools vào hoạt động hàng ngày: phân tích lỗi sản phẩm,
+              cải tiến quy trình, giảm biến động chất lượng, tối ưu hóa hiệu suất
+              và xây dựng văn hóa chất lượng trong tổ chức
+            </p>
+          </div>
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Đào tạo và Hướng dẫn</h3>
+            <p>
+              Chương trình đào tạo toàn diện về 7 QC Tools cho nhân viên.
+              Hướng dẫn từng bước, ví dụ thực tế, bài tập thực hành và 
+              chứng chỉ hoàn thành để nâng cao năng lực đội ngũ
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases" id="use-cases">
+      <div class="container">
+        <div class="section-title scroll-animate">
+          <h2>Ứng dụng Dashboard Analytics</h2>
+          <p>
+            Các ngành công nghiệp áp dụng Big Data Analytics và Real-time Dashboards để tối ưu hóa operations
+          </p>
+        </div>
+        <div class="use-case-grid">
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-car"></i>
+              <h3>Ngành ô tô</h3>
+              <p>Automotive manufacturing intelligence</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Real-time OEE monitoring cho assembly lines</li>
+                <li><i class="fas fa-check"></i> Quality defect analysis với AI insights</li>
+                <li><i class="fas fa-check"></i> Energy consumption optimization dashboard</li>
+                <li><i class="fas fa-check"></i> Predictive maintenance alerts</li>
+                <li><i class="fas fa-check"></i> SQCD performance benchmarking</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-microchip"></i>
+              <h3>Sản xuất điện tử</h3>
+              <p>Electronics manufacturing analytics</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> SMT line efficiency dashboard</li>
+                <li><i class="fas fa-check"></i> Component yield analysis</li>
+                <li><i class="fas fa-check"></i> Test equipment utilization tracking</li>
+                <li><i class="fas fa-check"></i> Power consumption monitoring</li>
+                <li><i class="fas fa-check"></i> Production cycle time optimization</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-pills"></i>
+              <h3>Công nghiệp dược phẩm</h3>
+              <p>Pharmaceutical compliance analytics</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Batch production KPI monitoring</li>
+                <li><i class="fas fa-check"></i> cGMP compliance dashboard</li>
+                <li><i class="fas fa-check"></i> Environmental monitoring analytics</li>
+                <li><i class="fas fa-check"></i> Critical process parameter tracking</li>
+                <li><i class="fas fa-check"></i> Quality trend analysis</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-apple-alt"></i>
+              <h3>Chế biến thực phẩm</h3>
+              <p>Food safety & efficiency analytics</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> HACCP monitoring dashboard</li>
+                <li><i class="fas fa-check"></i> Cold chain temperature analytics</li>
+                <li><i class="fas fa-check"></i> Production line efficiency tracking</li>
+                <li><i class="fas fa-check"></i> Waste reduction analytics</li>
+                <li><i class="fas fa-check"></i> Energy cost optimization</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-industry"></i>
+              <h3>Hóa chất & Công nghiệp</h3>
+              <p>Process manufacturing intelligence</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Continuous process optimization</li>
+                <li><i class="fas fa-check"></i> Reactor performance analytics</li>
+                <li><i class="fas fa-check"></i> Utility consumption monitoring</li>
+                <li><i class="fas fa-check"></i> Safety incident tracking</li>
+                <li><i class="fas fa-check"></i> Yield improvement analytics</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-tshirt"></i>
+              <h3>Dệt may & Thời trang</h3>
+              <p>Textile production analytics</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Production efficiency dashboard</li>
+                <li><i class="fas fa-check"></i> Quality control analytics</li>
+                <li><i class="fas fa-check"></i> Machine utilization tracking</li>
+                <li><i class="fas fa-check"></i> Labor productivity monitoring</li>
+                <li><i class="fas fa-check"></i> Energy usage optimization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+            <div class="use-case-header">
+              <i class="fas fa-pills"></i>
+              <h3>Công nghiệp dược phẩm</h3>
+              <p>Batch production compliance</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Campaign scheduling cho multi-product facilities</li>
+                <li><i class="fas fa-check"></i> Cleaning validation và equipment changeover</li>
+                <li><i class="fas fa-check"></i> Batch genealogy và material traceability</li>
+                <li><i class="fas fa-check"></i> cGMP compliance trong production planning</li>
+                <li><i class="fas fa-check"></i> Shelf-life constraints và expiry management</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-apple-alt"></i>
+              <h3>Chế biến thực phẩm</h3>
+              <p>Seasonal demand planning</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Seasonal production planning và inventory build-up</li>
+                <li><i class="fas fa-check"></i> Multi-site coordination cho fresh products</li>
+                <li><i class="fas fa-check"></i> Cold storage capacity optimization</li>
+                <li><i class="fas fa-check"></i> FIFO/FEFO inventory rotation planning</li>
+                <li><i class="fas fa-check"></i> Co-packing và private label scheduling</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-industry"></i>
+              <h3>Hóa chất & Công nghiệp</h3>
+              <p>Process manufacturing optimization</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Continuous process optimization</li>
+                <li><i class="fas fa-check"></i> Reactor scheduling và batch sizing</li>
+                <li><i class="fas fa-check"></i> Energy cost optimization timing</li>
+                <li><i class="fas fa-check"></i> Intermediate storage tank management</li>
+                <li><i class="fas fa-check"></i> Maintenance scheduling coordination</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-tshirt"></i>
+              <h3>Dệt may & Thời trang</h3>
+              <p>Fast fashion production</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Quick response manufacturing</li>
+                <li><i class="fas fa-check"></i> Color và size matrix optimization</li>
+                <li><i class="fas fa-check"></i> Cut-make-trim workflow coordination</li>
+                <li><i class="fas fa-check"></i> Seasonal capacity planning</li>
+                <li><i class="fas fa-check"></i> Fabric utilization maximization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Component traceability trong vehicle assembly</li>
+                <li><i class="fas fa-check"></i> Supplier certification tracking</li>
+                <li><i class="fas fa-check"></i> Warranty claim root cause analysis</li>
+                <li><i class="fas fa-check"></i> Safety recall management cho vehicle defects</li>
+                <li><i class="fas fa-check"></i> Quality audit trail cho regulatory compliance</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-microchip"></i>
+              <h3>Sản xuất điện tử</h3>
+              <p>Electronics component tracking</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> PCB assembly component mapping</li>
+                <li><i class="fas fa-check"></i> Semiconductor wafer lot tracking</li>
+                <li><i class="fas fa-check"></i> Conformal coating process history</li>
+                <li><i class="fas fa-check"></i> RoHS compliance material verification</li>
+                <li><i class="fas fa-check"></i> Field failure analysis và component recall</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-tshirt"></i>
+              <h3>Dệt may & Thời trang</h3>
+              <p>Textile supply chain transparency</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Cotton origin và sustainable sourcing</li>
+                <li><i class="fas fa-check"></i> Dye lot tracking cho color consistency</li>
+                <li><i class="fas fa-check"></i> Ethical manufacturing verification</li>
+                <li><i class="fas fa-check"></i> Chemical usage compliance tracking</li>
+                <li><i class="fas fa-check"></i> Brand authenticity protection</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-industry"></i>
+              <h3>Hóa chất & Vật liệu</h3>
+              <p>Chemical batch management</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Chemical reaction batch genealogy</li>
+                <li><i class="fas fa-check"></i> Hazardous material tracking</li>
+                <li><i class="fas fa-check"></i> Quality certificate chain of custody</li>
+                <li><i class="fas fa-check"></i> Environmental impact traceability</li>
+                <li><i class="fas fa-check"></i> Regulatory compliance documentation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Control Chart giám sát nhiệt độ reflow</li>
+                <li><i class="fas fa-check"></i> Histogram phân tích độ chính xác placement</li>
+                <li><i class="fas fa-check"></i> Scatter Diagram tương quan độ ẩm - lỗi hàn</li>
+                <li><i class="fas fa-check"></i> Flowchart quy trình kiểm tra AOI</li>
+                <li><i class="fas fa-check"></i> Check Sheet kiểm tra thành phần PCB</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-pills"></i>
+              <h3>Công nghiệp dược phẩm</h3>
+              <p>Tuân thủ cGMP & FDA</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Control Chart theo dõi content uniformity</li>
+                <li><i class="fas fa-check"></i> Pareto Chart phân tích OOS (Out of Specification)</li>
+                <li><i class="fas fa-check"></i> Fishbone Diagram root cause analysis</li>
+                <li><i class="fas fa-check"></i> Check Sheet validation quy trình sản xuất</li>
+                <li><i class="fas fa-check"></i> Flowchart quy trình batch record</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-apple-alt"></i>
+              <h3>Chế biến thực phẩm</h3>
+              <p>An toàn thực phẩm HACCP</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Control Chart giám sát nhiệt độ pasteurization</li>
+                <li><i class="fas fa-check"></i> Check Sheet theo dõi CCP (Critical Control Points)</li>
+                <li><i class="fas fa-check"></i> Pareto Chart phân tích contamination sources</li>
+                <li><i class="fas fa-check"></i> Histogram phân tích water activity</li>
+                <li><i class="fas fa-check"></i> Flowchart quy trình SSOP cleaning</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-tshirt"></i>
+              <h3>Công nghiệp dệt may</h3>
+              <p>Kiểm soát chất lượng vải</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Histogram phân tích độ bền sợi</li>
+                <li><i class="fas fa-check"></i> Control Chart giám sát color fastness</li>
+                <li><i class="fas fa-check"></i> Pareto Chart phân tích fabric defects</li>
+                <li><i class="fas fa-check"></i> Scatter Diagram tương quan độ ẩm - shrinkage</li>
+                <li><i class="fas fa-check"></i> Check Sheet kiểm tra dimensional stability</li>
+              </ul>
+            </div>
+          </div>
+          <div class="use-case-card scroll-animate">
+            <div class="use-case-header">
+              <i class="fas fa-industry"></i>
+              <h3>Sản xuất kim loại</h3>
+              <p>Kiểm soát chất lượng gia công</p>
+            </div>
+            <div class="use-case-body">
+              <ul class="use-case-list">
+                <li><i class="fas fa-check"></i> Control Chart giám sát độ chính xác CNC</li>
+                <li><i class="fas fa-check"></i> Fishbone Diagram phân tích surface roughness</li>
+                <li><i class="fas fa-check"></i> Histogram phân tích hardness testing</li>
+                <li><i class="fas fa-check"></i> Scatter Diagram tương quan speed - tool wear</li>
+                <li><i class="fas fa-check"></i> Flowchart quy trình heat treatment</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+      <div class="container">
+        <div class="section-title scroll-animate">
+          <h2>Lợi ích của Dashboard Analytics Ecosystem</h2>
+          <p>Những giá trị mà Big Data Analytics và AI-powered insights mang lại</p>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-card scroll-animate">
+            <div class="benefit-number">95%</div>
+            <h3>OEE Performance</h3>
+            <p>
+              Real-time monitoring và optimization để đạt hiệu suất thiết bị cao nhất
+            </p>
+          </div>
+          <div class="benefit-card scroll-animate">
+            <div class="benefit-number">1TB+</div>
+            <h3>Data Processing Daily</h3>
+            <p>Big data ecosystem xử lý massive data để tạo actionable insights</p>
+          </div>
+          <div class="benefit-card scroll-animate">
+            <div class="benefit-number">Sub-sec</div>
+            <h3>Query Response Time</h3>
+            <p>High-speed analytics engine cho instant data insights và decision support</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Implementation Process Section -->
+    <section class="implementation" style="padding: 4rem 0; background: var(--light);">
+      <div class="container">
+        <div class="section-title scroll-animate">
+          <h2>Quy trình triển khai Analytics Ecosystem</h2>
+          <p>Triển khai hệ sinh thái Big Data Analytics với Power BI integration theo best practices</p>
+        </div>
+        <div class="implementation-timeline">
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Data source assessment & mapping</h3>
+              <p>Phân tích data sources hiện tại, xác định KPIs và setup data collection infrastructure</p>
+              <span class="timeline-duration">2-3 tuần</span>
+            </div>
+          </div>
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Big Data platform setup</h3>
+              <p>Cấu hình data lake, ETL pipelines và real-time streaming analytics với optimized database</p>
+              <span class="timeline-duration">3-4 tuần</span>
+            </div>
+          </div>
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Power BI dashboard development</h3>
+              <p>Thiết kế interactive dashboards, OEE monitoring và SQCD analytics với custom visuals</p>
+              <span class="timeline-duration">2-3 tuần</span>
+            </div>
+          </div>
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>AI chatbot & training</h3>
+              <p>Deploy AI assistant cho data insights, đào tạo users về dashboard analytics và best practices</p>
+              <span class="timeline-duration">1 tuần</span>
+            </div>
+          </div>
+          <div class="timeline-item scroll-animate">
+            <div class="timeline-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Go-live & optimization</h3>
+              <p>Deploy production environment, monitor performance và continuous improvement cycle</p>
+              <span class="timeline-duration">Liên tục</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+      <div class="container">
+        <h2>Sẵn sàng unlock manufacturing intelligence?</h2>
+        <p>
+          Liên hệ với chúng tôi để được tư vấn và trải nghiệm hệ thống Dashboard Analytics miễn phí
+        </p>
+        <div class="cta-buttons">
+          <a href="tel:0338845579" class="btn btn-white">
+            <i class="fas fa-phone"></i> Gọi ngay: 033 884 5579
+          </a>
+          <a
+            href="#contact"
+            class="btn btn-outline"
+            onclick="openContactPopup()"
+          >
+            <i class="fas fa-rocket"></i> Dùng thử ngay
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 DigiFact. Tất cả quyền được bảo lưu.</p>
+      </div>
+    </footer>
+
+    <!-- Contact Popup Modal -->
+    <div id="contactPopup" class="contact-popup-overlay" style="display: none">
+      <div class="contact-popup-glass">
+        <button
+          class="close-popup-glass"
+          onclick="closeContactPopup()"
+          aria-label="Đóng"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="popup-glass-header">
+          <div class="popup-glass-icon"><i class="fas fa-paper-plane"></i></div>
+          <h2>Liên hệ với DigiFact</h2>
+          <p>Chúng tôi sẽ phản hồi trong vòng 24h</p>
+        </div>
+        <form id="contactForm" autocomplete="off">
+          <div class="glass-form-group">
+            <label for="firstName">Họ và tên</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              required
+              placeholder="Nhập họ và tên"
+            />
+          </div>
+          <div class="glass-form-group">
+            <label for="phone">Số điện thoại</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Nhập số điện thoại"
+            />
+          </div>
+          <div class="glass-form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="Nhập email"
+            />
+          </div>
+          <div class="glass-form-group">
+            <label for="company">Công ty</label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              placeholder="Tên công ty (nếu có)"
+            />
+          </div>
+          <div class="glass-form-group">
+            <label for="message">Nội dung</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              placeholder="Bạn cần tư vấn gì?"
+            ></textarea>
+          </div>
+          <button type="submit" class="glass-submit-btn">
+            <i class="fas fa-paper-plane"></i> Gửi liên hệ
+          </button>
+          <p class="popup-glass-header" style="margin-top: 10px; font-style: italic;">Hướng dẫn tải về tự động phần mềm dùng thử<br/>miễn phí 30 ngày sẽ được gửi về email của bạn</p>
+          <div id="formStatus" style="margin-top: 5px"></div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Google Apps Script endpoint
+      const CONTACT_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbwQWnnLKSTYl50gEt9Ag5kEI4uGJwv3zbBNPTWB9l_BvsDhXrTrN0MEu3Mbpffub-w/exec";
+
+      // Contact popup functions
+      function openContactPopup() {
+        document.getElementById("contactPopup").style.display = "flex";
+      }
+
+      function closeContactPopup() {
+        document.getElementById("contactPopup").style.display = "none";
+      }
+
+      // Alternative submission method
+      async function tryAlternativeSubmission(data, status) {
+        try {
+          const subject = encodeURIComponent(
+            "Liên hệ từ website DigiFact - Quản lý bán hàng"
+          );
+          const body = encodeURIComponent(`
+Họ tên: ${data.firstName}
+Email: ${data.email}
+Số điện thoại: ${data.phone}
+Công ty: ${data.company}
+Nội dung: ${data.message}
+Trang: Quản lý bán hàng
+                `);
+
+          const mailtoLink = `mailto:contact@digifact.vn?subject=${subject}&body=${body}`;
+
+          status.textContent = "Đang mở ứng dụng email...";
+          status.style.color = "#f59e0b";
+
+          window.location.href = mailtoLink;
+
+          setTimeout(() => {
+            status.textContent =
+              "Email đã được tạo. Vui lòng gửi từ ứng dụng email.";
+            status.style.color = "#10b981";
+          }, 2000);
+        } catch (err) {
+          console.error("Alternative submission failed:", err);
+          status.textContent =
+            "Vui lòng gửi email trực tiếp đến contact@digifact.vn";
+          status.style.color = "#ef4444";
+        }
+      }
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".scroll-animate").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Contact form submission
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contactForm");
+        if (form) {
+          form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const status = document.getElementById("formStatus");
+            status.textContent = "Đang gửi...";
+            status.style.color = "#2563eb";
+
+            const data = {
+              firstName: form.firstName.value,
+              email: form.email.value,
+              phone: form.phone.value,
+              company: form.company.value,
+              message: form.message.value,
+              timestamp: new Date().toISOString(),
+              source: "Trang Quản lý bán hàng",
+            };
+
+            try {
+              const res = await fetch(CONTACT_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams(data),
+              });
+
+              status.textContent =
+                "Gửi thành công! Chúng tôi sẽ liên hệ lại sớm.";
+              status.style.color = "#10b981";
+              form.reset();
+              setTimeout(() => {
+                closeContactPopup();
+              }, 2000);
+            } catch (err) {
+              console.error("Network error:", err);
+              status.textContent = "Đang thử phương pháp khác...";
+              status.style.color = "#f59e0b";
+
+              setTimeout(() => {
+                tryAlternativeSubmission(data, status);
+              }, 1000);
+            }
+          });
+        }
+      });
+
+      // Close popup on outside click
+      document.addEventListener("click", function (e) {
+        const popup = document.getElementById("contactPopup");
+        if (e.target === popup) {
+          closeContactPopup();
+        }
+      });
+
+      // Close popup on escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeContactPopup();
+        }
+      });
+    </script>
+  </body>
+</html>

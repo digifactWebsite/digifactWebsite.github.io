@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../Resources/DigiFact_Logo_Noname_Type1.png"
+    />
+    <title>Báo cáo Gartner: Phân tích thị trường MES 2025 - DigiFact</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+        line-height: 1.6;
+        color: #0f172a;
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        min-height: 100vh;
+        padding: 24px;
+      }
+      .header-nav {
+        background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 1rem 0;
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+      }
+      .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .back-btn {
+        background: linear-gradient(90deg, #2563eb, #10b981);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .back-btn:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+      }
+      .lang-switcher {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      #lang-toggle {
+        display: none;
+      }
+      .lang-toggle-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 70px;
+        height: 34px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 17px;
+        cursor: pointer;
+        position: relative;
+        transition: background-color 0.2s;
+      }
+      .lang-toggle-label::after {
+        content: '';
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background-color: white;
+        top: 3px;
+        left: 4px;
+        transition: transform 0.2s;
+      }
+      #lang-toggle:checked + .lang-toggle-label::after {
+        transform: translateX(35px);
+      }
+      .lang-switcher span {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: white;
+        padding: 0 8px;
+        z-index: 1;
+      }
+      .lang-vi {
+        padding-left: 8px;
+      }
+      .lang-en {
+        padding-right: 8px;
+      }
+      .container {
+        max-width: 900px;
+        margin: 80px auto 0;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .header-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #3b82f6, #10b981);
+        color: white;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+      }
+      .header h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, #3b82f6, #10b981);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .header p {
+        font-size: 1.125rem;
+        color: #64748b;
+        max-width: 768px;
+        margin: 0 auto;
+      }
+      .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+        overflow: hidden;
+        margin-bottom: 32px;
+      }
+      .content-section {
+        padding: 32px 40px;
+      }
+      .content-section h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1e3a8a;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid rgba(59, 130, 246, 0.1);
+      }
+      .content-section h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1e3a8a;
+        margin-bottom: 12px;
+      }
+      .content-section p {
+        color: #334155;
+        margin-bottom: 16px;
+        line-height: 1.7;
+      }
+      .stats { display: flex; justify-content: space-around; flex-wrap: wrap; margin-bottom: 20px; }
+      .stat-box { background: #e6f2ff; border-radius: 8px; padding: 20px; flex: 1 1 180px; margin: 10px; text-align: center; }
+      .stat-box strong { font-size: 26px; color: #005bbb; }
+      .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .step { background: #f9fafc; border: 1px solid #ddd; border-radius: 8px; padding: 20px; position: relative; }
+      .step:before { content: attr(data-step); position: absolute; top: -10px; left: -10px; background: #ff6600; color: #fff; font-weight: bold; border-radius: 50%; padding: 8px 12px; font-size: 18px; }
+      .tools { display: flex; flex-wrap: wrap; gap: 15px; }
+      .tool { background: #005bbb; color: #fff; padding: 10px 16px; border-radius: 20px; font-size: 14px; }
+      .cta { background: #ff6600; color: #fff; text-align: center; padding: 30px 20px; }
+      .cta h2 { margin: 0 0 10px; font-size: 24px; }
+      .cta p { margin: 0 0 20px; }
+      .cta a { display: inline-block; background: #fff; color: #ff6600; padding: 12px 20px; font-weight: bold; border-radius: 8px; text-decoration: none; }
+      footer { text-align: center; font-size: 14px; color: #666; padding: 20px; }
+      .lang-vi-active [lang="en"], .lang-en-active [lang="vi"] {
+        display: none;
+      }
+      .lang-vi-active [lang="vi"], .lang-en-active [lang="en"] {
+        display: initial;
+      }
+      @media (max-width: 768px) {
+        .header h1 { font-size: 2rem; }
+        body { padding: 16px; }
+        .container { margin-top: 60px; }
+      }
+      @media (max-width: 600px) { .steps { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <!-- Header Navigation -->
+    <div class="header-nav">
+      <div class="nav-container">
+        <div>
+          <img
+            src="../Resources/DigiFact_Logo_Fullname_Type1_White.png"
+            alt="DigiFact Logo"
+            style="height: 40px; margin-right: 10px"
+          />
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div class="lang-switcher">
+            <input type="checkbox" id="lang-toggle">
+            <label for="lang-toggle" class="lang-toggle-label">
+              <span class="lang-vi">VI</span>
+              <span class="lang-en">EN</span>
+            </label>
+          </div>
+          <a href="../index.html" class="back-btn"
+            ><i class="fas fa-arrow-left"></i> 
+            <span lang="vi">Quay lại trang chủ</span>
+            <span lang="en">Back to Home</span>
+          </a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-badge">
+          <i class="fas fa-chart-bar"></i> 
+          <span lang="vi">Báo cáo Gartner</span>
+          <span lang="en">Gartner Report</span>
+        </div>
+        <h1>
+          <span lang="vi">Phân tích thị trường cho <br/>các hệ thống điều hành sản xuất</span>
+          <span lang="en">Market Guide for <br/>Manufacturing Execution Systems (MES)</span>
+        </h1>
+        <p>
+          <span lang="vi">
+            Ngày 5 tháng 5 năm 2025 - ID G00822587 - Đọc 33 phút <br/> 
+            Bởi Jake Cunningham, Christian Hestermann <br/><br/>
+            Các giải pháp MES là nền tảng cho sản xuất kỹ thuật số. Thị trường MES đang thích nghi khi cộng đồng nhà cung cấp hiện có chuyển sang các công nghệ mới hơn như AI và IoT để bắt kịp các công ty khởi nghiệp. Các nhà lãnh đạo chiến lược sản xuất nên sử dụng nghiên cứu này để điều hướng thị trường MES đang phát triển.
+          </span>
+          <span lang="en">
+            5 May 2025 - ID G00822587 - 33 min read <br/>
+            By Jake Cunningham, Christian Hestermann <br/><br/>
+            MES solutions are the foundation for digital manufacturing. The MES market is adapting as the existing vendor community pivots to newer technologies like AI and IoT to keep up with startups. Manufacturing strategic leaders should use this research to navigate the evolving MES market.
+          </span>
+        </p>
+      </div>
+
+      <!-- Tổng quan -->
+      <div class="card overview-section">
+        <div class="content-section">
+          <h2 class="overview-title">
+            <i class="fas fa-eye pulse-icon"></i> 
+            <span lang="vi">🔎 Tổng quan</span>
+            <span lang="en">🔎 Overview</span>
+          </h2>
+          <p class="overview-intro">
+            <span lang="vi">
+              Các phát hiện chính
+            </span>
+            <span lang="en">
+              Key Findings
+            </span>
+          </p>
+          <div class="update-info">
+            <p>
+              <span lang="vi"><strong>📅 Cập nhật:</strong> Tài liệu này đã được tái bản vào ngày 7 và 16 tháng 5 năm 2025. Tài liệu bạn đang xem là phiên bản đã được sửa đổi. Để biết thêm thông tin, hãy xem trang Điều chỉnh trên gartner.com.</span>
+              <span lang="en"><strong>📅 Updated:</strong> This document was reprinted on 7 and 16 May 2025. The document you are viewing is the corrected version. For more information, see the Corrections page on gartner.com.</span>
+            </p>
+          </div>
+          <style>
+            .update-info {
+              background: linear-gradient(135deg, #fef3c7, #fbbf24);
+              border-radius: 12px;
+              padding: 16px;
+              margin-top: 20px;
+              border-left: 4px solid #f59e0b;
+            }
+            .update-info p {
+              margin: 0;
+              color: #92400e;
+              font-weight: 500;
+            }
+          </style>
+        </div>
+      </div>
+
+      <!-- Những phát hiện chính -->
+      <div class="card">
+        <div class="content-section">
+          <h2>
+            <i class="fas fa-star"></i> 
+            <span lang="vi">🌟 Những phát hiện chính</span>
+            <span lang="en">🌟 Key Findings</span>
+          </h2>
+          <div class="findings-grid">
+            <div class="finding-card" data-finding="1">
+              <div class="finding-icon">
+                <i class="fas fa-cloud"></i>
+              </div>
+              <h3>
+                <span lang="vi">Điện toán đám mây trong MES</span>
+                <span lang="en">Cloud Adoption in MES</span>
+              </h3>
+              <p>
+                <span lang="vi">Việc áp dụng đám mây tiếp tục tăng trong thị trường hệ thống điều hành sản xuất (MES). Các nhà cung cấp tiếp tục đầu tư vào các giải pháp dựa trên web, cũng như các công nghệ gốc đám mây, để hỗ trợ lộ trình của họ. Kiến trúc biên đang nổi lên để giải quyết các lo ngại về kết nối đám mây. Điều này mang lại cho người mua nhiều lựa chọn hơn.</span>
+                <span lang="en">Cloud adoption continues to grow in the manufacturing execution system (MES) market. Vendors continue to invest in web-based solutions, as well as cloud-native technologies, to support their roadmaps. Edge architecture is emerging to address cloud connectivity concerns. This gives buyers more options.</span>
+              </p>
+            </div>
+            <div class="finding-card" data-finding="2">
+              <div class="finding-icon">
+                <i class="fas fa-credit-card"></i>
+              </div>
+              <h3>
+                <span lang="vi">Chuyển đổi mô hình giấy phép</span>
+                <span lang="en">License Model Transformation</span>
+              </h3>
+              <p>
+                <span lang="vi">Bất kể mô hình triển khai (SaaS, đám mây riêng, tại chỗ), các nhà cung cấp MES đang ngày càng chuyển từ cấp phép vĩnh viễn truyền thống sang mô hình dựa trên đăng ký. Đối với khách hàng, điều này có nghĩa là giá cao hơn đối với hợp đồng kỳ hạn ba năm hoặc năm năm, thúc đẩy việc cân nhắc thay đổi.</span>
+                <span lang="en">Regardless of the deployment model (SaaS, private cloud, on-premises), MES vendors are increasingly shifting from traditional perpetual licensing to a subscription-based model. For customers, this means higher prices for three- or five-year term contracts, prompting consideration of a change.</span>
+              </p>
+            </div>
+            <div class="finding-card" data-finding="3">
+              <div class="finding-icon">
+                <i class="fas fa-code"></i>
+              </div>
+              <h3>
+                <span lang="vi">Khả năng mở rộng Low-code</span>
+                <span lang="en">Low-Code Extensibility</span>
+              </h3>
+              <p>
+                <span lang="vi">Khả năng mở rộng tách rời dưới dạng trình tạo mã thấp hoặc API mở tiếp tục trưởng thành trong các nền tảng của nhà cung cấp MES. Điều này cho phép người mua mở rộng việc mua MES của họ mà không phải chịu nợ kỹ thuật và thách thức nâng cấp.</span>
+                <span lang="en">Decoupled extensibility in the form of low-code builders or open APIs continues to mature in MES vendor platforms. This allows buyers to extend their MES purchase without incurring technical debt and upgrade challenges.</span>
+              </p>
+            </div>
+            <div class="finding-card" data-finding="4">
+              <div class="finding-icon">
+                <i class="fas fa-robot"></i>
+              </div>
+              <h3>
+                <span lang="vi">AI sinh (GenAI)</span>
+                <span lang="en">Generative AI (GenAI)</span>
+              </h3>
+              <p>
+                <span lang="vi">AI tạo sinh (GenAI) đang bắt đầu xuất hiện trong MES dưới dạng trợ lý GenAI để giúp nhà xưởng. Khi công nghệ này tiếp tục phát triển vượt ra ngoài các thông cáo báo chí, các nhà cung cấp MES đang định vị mình để tận dụng các trường hợp sử dụng bổ sung, chẳng hạn như hoàn thành giao dịch trong hệ thống.</span>
+                <span lang="en">Generative AI (GenAI) is beginning to appear in MES in the form of a GenAI assistant to help the shop floor. As this technology continues to evolve beyond press releases, MES vendors are positioning themselves to take advantage of additional use cases, such as completing transactions within the system.</span>
+              </p>
+            </div>
+          </div>
+          <style>
+            .findings-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 24px;
+              margin-top: 24px;
+            }
+
+            .finding-card {
+              background: linear-gradient(135deg, #f8fafc, #ffffff);
+              border-radius: 16px;
+              padding: 24px;
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+              border: 1px solid rgba(59, 130, 246, 0.1);
+              transition: all 0.3s ease;
+              position: relative;
+              overflow: hidden;
+              opacity: 0;
+              transform: translateY(20px);
+              animation: fadeInUp 0.6s ease forwards;
+            }
+
+            .finding-card:nth-child(1) { animation-delay: 0.1s; }
+            .finding-card:nth-child(2) { animation-delay: 0.2s; }
+            .finding-card:nth-child(3) { animation-delay: 0.3s; }
+            .finding-card:nth-child(4) { animation-delay: 0.4s; }
+
+            .finding-card:hover {
+              transform: translateY(-8px);
+              box-shadow: 0 12px 30px rgba(59, 130, 246, 0.15);
+            }
+
+            .finding-card::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 4px;
+              background: linear-gradient(90deg, #3b82f6, #10b981);
+              opacity: 0;
+              transition: opacity 0.3s ease;
+            }
+
+            .finding-card:hover::before {
+              opacity: 1;
+            }
+
+            .finding-icon {
+              width: 60px;
+              height: 60px;
+              background: linear-gradient(135deg, #3b82f6, #10b981);
+              border-radius: 12px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-bottom: 16px;
+              font-size: 1.5rem;
+              color: white;
+              box-shadow: 0 6px 20px rgba(59, 130, 246, 0.25);
+              animation: float 3s ease-in-out infinite;
+            }
+
+            .finding-card h3 {
+              font-size: 1.25rem;
+              color: #1e3a8a;
+              margin-bottom: 12px;
+              font-weight: 600;
+            }
+
+            .finding-card p {
+              color: #475569;
+              line-height: 1.6;
+              margin: 0;
+              font-size: 0.95rem;
+            }
+
+            @keyframes float {
+              0%, 100% {
+                transform: translateY(0);
+              }
+              50% {
+                transform: translateY(-3px);
+              }
+            }
+
+            @keyframes fadeInUp {
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+          </style>
+        </div>
+      </div>
+
+      <!-- Giả định chiến lược -->
+      <div class="card">
+        <div class="content-section">
+          <h2>
+            <i class="fas fa-chart-line"></i> 
+            <span lang="vi">📈 Giả định chiến lược</span>
+            <span lang="en">📈 Strategic Planning Assumptions</span>
+          </h2>
+          
+          <div class="strategic-assumptions">
+            <div class="assumption-card">
+              <div class="assumption-header">
+                <div class="assumption-icon">
+                  <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>
+                  <span lang="vi">Dự báo tới năm 2030</span>
+                  <span lang="en">Forecast to 2030</span>
+                </h3>
+              </div>
+              <div class="assumption-content">
+                <p>
+                  <span lang="vi">Đến năm 2030, 75% các công ty sản xuất sẽ chạy các cài đặt MES mới hoặc được nâng cấp của họ trên đám mây như một phần của kiến trúc lai đầu cuối, tăng từ 38% hiện nay.</span>
+                  <span lang="en">By 2030, 75% of manufacturing companies will be running their new or upgraded MES installations on the cloud as part of an end-to-end hybrid architecture, up from 38% today.</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="assumption-card">
+              <div class="assumption-header">
+                <div class="assumption-icon">
+                  <i class="fas fa-microchip"></i>
+                </div>
+                <h3>
+                  <span lang="vi">Vai trò của AI</span>
+                  <span lang="en">The Role of AI</span>
+                </h3>
+              </div>
+              <div class="assumption-content">
+                <p>
+                  <span lang="vi">Các khả năng AI sẽ được tích hợp nhiều hơn vào nền tảng MES, với ít nhất 50% các triển khai MES mới sẽ bao gồm một số khả năng AI vào năm 2026.</span>
+                  <span lang="en">AI capabilities will be more integrated into MES platforms, with at least 50% of new MES deployments including some AI capabilities by 2026.</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="assumption-card">
+              <div class="assumption-header">
+                <div class="assumption-icon">
+                  <i class="fas fa-cloud"></i>
+                </div>
+                <h3>
+                  <span lang="vi">Chuyển đổi cloud</span>
+                  <span lang="en">Cloud Transformation</span>
+                </h3>
+              </div>
+              <div class="assumption-content">
+                <p>
+                  <span lang="vi">Tốc độ áp dụng MES dựa trên đám mây sẽ tăng lên, với 60% các triển khai MES mới sẽ sử dụng một số hình thức triển khai đám mây vào năm 2027.</span>
+                  <span lang="en">The adoption rate of cloud-based MES will increase, with 60% of new MES deployments using some form of cloud deployment by 2027.</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="assumption-card">
+              <div class="assumption-header">
+                <div class="assumption-icon">
+                  <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <h3>
+                  <span lang="vi">Tích hợp hệ thống</span>
+                  <span lang="en">System Integration</span>
+                </h3>
+              </div>
+              <div class="assumption-content">
+                <p>
+                  <span lang="vi">MES sẽ ngày càng trở thành trung tâm tích hợp cho các hệ thống khác, kết nối ERP, PLM, WMS và các hệ thống khác trong doanh nghiệp.</span>
+                  <span lang="en">MES will increasingly become the integration hub for other systems, connecting ERP, PLM, WMS, and other enterprise systems.</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="assumption-card">
+              <div class="assumption-header">
+                <div class="assumption-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <h3>
+                  <span lang="vi">Trải nghiệm người dùng</span>
+                  <span lang="en">User Experience</span>
+                </h3>
+              </div>
+              <div class="assumption-content">
+                <p>
+                  <span lang="vi">Các nhà cung cấp MES sẽ đầu tư mạnh vào cải thiện giao diện người dùng, với tập trung vào mobile-first và giao diện trực quan để tăng tỷ lệ áp dụng.</span>
+                  <span lang="en">MES vendors will invest heavily in improving the user interface, with a focus on mobile-first and intuitive interfaces to increase adoption rates.</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="assumption-card">
+              <div class="assumption-header">
+                <div class="assumption-icon">
+                  <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>
+                  <span lang="vi">Bảo mật và tuân thủ</span>
+                  <span lang="en">Security and Compliance</span>
+                </h3>
+              </div>
+              <div class="assumption-content">
+                <p>
+                  <span lang="vi">Các yêu cầu về bảo mật và tuân thủ quy định sẽ thúc đẩy nhu cầu về các giải pháp MES có khả năng truy vết và kiểm toán mạnh mẽ.</span>
+                  <span lang="en">Security and regulatory compliance requirements will drive the demand for MES solutions with strong traceability and auditing capabilities.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            .strategic-assumptions {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+              gap: 24px;
+              margin-top: 24px;
+            }
+
+            .assumption-card {
+              background: #ffffff;
+              border-radius: 16px;
+              padding: 24px;
+              box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+              border: 1px solid rgba(59, 130, 246, 0.1);
+              transition: all 0.3s ease;
+              position: relative;
+              overflow: hidden;
+              opacity: 0;
+              transform: translateY(20px);
+              animation: fadeInUp 0.6s ease forwards;
+            }
+
+            .assumption-card:nth-child(1) { animation-delay: 0.1s; }
+            .assumption-card:nth-child(2) { animation-delay: 0.2s; }
+            .assumption-card:nth-child(3) { animation-delay: 0.3s; }
+            .assumption-card:nth-child(4) { animation-delay: 0.4s; }
+            .assumption-card:nth-child(5) { animation-delay: 0.5s; }
+            .assumption-card:nth-child(6) { animation-delay: 0.6s; }
+
+            .assumption-card:hover {
+              transform: translateY(-8px);
+              box-shadow: 0 15px 40px rgba(59, 130, 246, 0.15);
+            }
+
+            .assumption-card::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 4px;
+              background: linear-gradient(90deg, #3b82f6, #10b981);
+              opacity: 0;
+              transition: opacity 0.3s ease;
+            }
+
+            .assumption-card:hover::before {
+              opacity: 1;
+            }
+
+            .assumption-header {
+              display: flex;
+              align-items: center;
+              gap: 16px;
+              margin-bottom: 16px;
+              padding-bottom: 12px;
+              border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            }
+
+            .assumption-icon {
+              width: 50px;
+              height: 50px;
+              background: linear-gradient(135deg, #3b82f6, #10b981);
+              border-radius: 12px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 1.2rem;
+              color: white;
+              box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+              animation: float 3s ease-in-out infinite;
+            }
+
+            .assumption-header h3 {
+              font-size: 1.2rem;
+              color: #1e3a8a;
+              margin: 0;
+              font-weight: 600;
+            }
+
+            .assumption-content p {
+              color: #475569;
+              line-height: 1.6;
+              margin: 0;
+              font-size: 0.95rem;
+            }
+
+            @keyframes float {
+              0%, 100% {
+                transform: translateY(0);
+              }
+              50% {
+                transform: translateY(-3px);
+              }
+            }
+
+            @media (max-width: 768px) {
+              .strategic-assumptions {
+                grid-template-columns: 1fr;
+                gap: 20px;
+              }
+
+              .assumption-card {
+                padding: 20px;
+              }
+
+              .assumption-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+              }
+            }
+          </style>
+        </div>
+      </div>
+
+      <!-- Phân tích nhà cung cấp -->
+      <div class="card">
+        <div class="content-section">
+          <h2>
+            <i class="fas fa-users"></i> 
+            <span lang="vi">🏢 Phân tích nhà cung cấp</span>
+            <span lang="en">🏢 Vendor Analysis</span>
+          </h2>
+          
+          <div class="vendor-analysis-intro">
+            <p class="intro-text">
+              <span lang="vi">Thị trường MES hiện có nhiều nhà cung cấp với các thế mạnh khác nhau. Báo cáo phân tích các nhà cung cấp theo khả năng thực thi và tầm nhìn hoàn thiện.</span>
+              <span lang="en">The MES market features many vendors with different strengths. The report analyzes vendors based on their ability to execute and completeness of vision.</span>
+            </p>
+          </div>
+          
+          <div class="vendor-categories">
+            <div class="vendor-category">
+              <div class="category-header">
+                <div class="category-icon leaders">
+                  <i class="fas fa-crown"></i>
+                </div>
+                <h3>
+                  <span lang="vi">Leaders (Dẫn đầu)</span>
+                  <span lang="en">Leaders</span>
+                </h3>
+              </div>
+              <div class="vendor-list">
+                <div class="vendor-item">
+                  <strong>Siemens</strong>
+                  <p>
+                    <span lang="vi">Opcenter thống trị thị trường với tích hợp mạnh mẽ Digital Factory và PLM</span>
+                    <span lang="en">Opcenter dominates the market with strong Digital Factory and PLM integration.</span>
+                  </p>
+                </div>
+                <div class="vendor-item">
+                  <strong>Dassault Systèmes</strong>
+                  <p>
+                    <span lang="vi">DELMIA mạnh về mô phỏng và tối ưu hóa quy trình sản xuất</span>
+                    <span lang="en">DELMIA is strong in simulation and optimization of production processes.</span>
+                  </p>
+                </div>
+                <div class="vendor-item">
+                  <strong>SAP</strong>
+                  <p>
+                    <span lang="vi">SAP Manufacturing hưởng lợi từ hệ sinh thái ERP mạnh mẽ</span>
+                    <span lang="en">SAP Manufacturing benefits from a strong ERP ecosystem.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="vendor-category">
+              <div class="category-header">
+                <div class="category-icon challengers">
+                  <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>
+                  <span lang="vi">Challengers (Thách thức)</span>
+                  <span lang="en">Challengers</span>
+                </h3>
+              </div>
+              <div class="vendor-list">
+                <div class="vendor-item">
+                  <strong>Rockwell Automation</strong>
+                  <p>
+                    <span lang="vi">FactoryTalk Production Centre mạnh trong tự động hóa và điều khiển</span>
+                    <span lang="en">FactoryTalk Production Centre is strong in automation and control.</span>
+                  </p>
+                </div>
+                <div class="vendor-item">
+                  <strong>General Electric</strong>
+                  <p>
+                    <span lang="vi">Proficy tích hợp tốt với các giải pháp Industrial IoT</span>
+                    <span lang="en">Proficy integrates well with Industrial IoT solutions.</span>
+                  </p>
+                </div>
+                <div class="vendor-item">
+                  <strong>Schneider Electric</strong>
+                  <p>
+                    <span lang="vi">EcoStruxure Plant có thế mạnh về quản lý năng lượng</span>
+                    <span lang="en">EcoStruxure Plant has strengths in energy management.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="vendor-category">
+              <div class="category-header">
+                <div class="category-icon visionaries">
+                  <i class="fas fa-eye"></i>
+                </div>
+                <h3>
+                  <span lang="vi">Visionaries (Tầm nhìn)</span>
+                  <span lang="en">Visionaries</span>
+                </h3>
+              </div>
+              <div class="vendor-list">
+                <div class="vendor-item">
+                  <strong>Tulip Interfaces</strong>
+                  <p>
+                    <span lang="vi">Nền tảng no-code/low-code tiên phong cho ứng dụng tại xưởng</span>
+                    <span lang="en">A pioneering no-code/low-code platform for shop-floor applications.</span>
+                  </p>
+                </div>
+                <div class="vendor-item">
+                  <strong>Lighthouse Systems</strong>
+                  <p>
+                    <span lang="vi">Siri for Manufacturing - AI-driven MES platform</span>
+                    <span lang="en">Siri for Manufacturing - AI-driven MES platform.</span>
+                  </p>
+                </div>
+                <div class="vendor-item">
+                  <strong>Critical Manufacturing</strong>
+                  <p>
+                    <span lang="vi">Chuyên sâu về ngành bán dẫn và thiết bị y tế</span>
+                    <span lang="en">Specializing in the semiconductor and medical device industries.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="vendor-category">
+              <div class="category-header">
+                <div class="category-icon niche">
+                  <i class="fas fa-gem"></i>
+                </div>
+                <h3>
+                  <span lang="vi">Niche Players (Chuyên biệt)</span>
+                  <span lang="en">Niche Players</span>
+                </h3>
+              </div>
+              <div class="vendor-list">
+                <div class="vendor-item">
+                  <strong>Apriso (Dassault)</strong>
+                  <p>
+                    <span lang="vi">Mạnh về quản lý chất lượng và tuân thủ quy định</span>
+                    <span lang="en">Strong in quality management and regulatory compliance.</span>
+                  </p>
+                </div>
+                <div class="vendor-item">
+                  <strong>Aegis (Applied Materials)</strong>
+                  <p>
+                    <span lang="vi">Chuyên sâu cho ngành điện tử và bán dẫn</span>
+                    <span lang="en">Specializing in the electronics and semiconductor industries.</span>
+                  </p>
+                </div>
+                <div class="vendor-item">
+                  <strong>FORCAM</strong>
+                  <p>
+                    <span lang="vi">Tập trung vào SME và giải pháp plug-and-play</span>
+                    <span lang="en">Focused on SMEs and plug-and-play solutions.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="selection-criteria">
+            <h3>
+              <i class="fas fa-clipboard-check"></i> 
+              <span lang="vi">Tiêu chí lựa chọn quan trọng</span>
+              <span lang="en">Important Selection Criteria</span>
+            </h3>
+            <div class="criteria-grid">
+              <div class="criteria-item">
+                <i class="fas fa-industry"></i>
+                <span lang="vi">Phù hợp với ngành nghề</span>
+                <span lang="en">Industry Fit</span>
+              </div>
+              <div class="criteria-item">
+                <i class="fas fa-expand-arrows-alt"></i>
+                <span lang="vi">Khả năng mở rộng</span>
+                <span lang="en">Scalability</span>
+              </div>
+              <div class="criteria-item">
+                <i class="fas fa-plug"></i>
+                <span lang="vi">Tích hợp với hệ thống hiện có</span>
+                <span lang="en">Integration Capabilities</span>
+              </div>
+              <div class="criteria-item">
+                <i class="fas fa-dollar-sign"></i>
+                <span lang="vi">Tổng chi phí sở hữu (TCO)</span>
+                <span lang="en">Total Cost of Ownership (TCO)</span>
+              </div>
+              <div class="criteria-item">
+                <i class="fas fa-headset"></i>
+                <span lang="vi">Hỗ trợ và đào tạo</span>
+                <span lang="en">Support and Training</span>
+              </div>
+              <div class="criteria-item">
+                <i class="fas fa-road"></i>
+                <span lang="vi">Lộ trình phát triển</span>
+                <span lang="en">Development Roadmap</span>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            .vendor-analysis-intro {
+              background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+              border-radius: 12px;
+              padding: 20px;
+              margin-bottom: 32px;
+              border-left: 4px solid #3b82f6;
+            }
+
+            .intro-text {
+              color: #334155;
+              line-height: 1.6;
+              margin: 0;
+              font-size: 1rem;
+            }
+
+            .vendor-categories {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 24px;
+              margin-bottom: 40px;
+            }
+
+            .vendor-category {
+              background: #ffffff;
+              border-radius: 16px;
+              padding: 24px;
+              box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+              border: 1px solid rgba(59, 130, 246, 0.1);
+              transition: all 0.3s ease;
+            }
+
+            .vendor-category:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 12px 35px rgba(59, 130, 246, 0.15);
+            }
+
+            .category-header {
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              margin-bottom: 20px;
+              padding-bottom: 12px;
+              border-bottom: 2px solid rgba(59, 130, 246, 0.1);
+            }
+
+            .category-icon {
+              width: 48px;
+              height: 48px;
+              border-radius: 12px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 1.3rem;
+              color: white;
+              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .category-icon.leaders {
+              background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            }
+
+            .category-icon.challengers {
+              background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            }
+
+            .category-icon.visionaries {
+              background: linear-gradient(135deg, #10b981, #059669);
+            }
+
+            .category-icon.niche {
+              background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            }
+
+            .category-header h3 {
+              color: #1e3a8a;
+              margin: 0;
+              font-size: 1.2rem;
+              font-weight: 600;
+            }
+
+            .vendor-list {
+              display: flex;
+              flex-direction: column;
+              gap: 16px;
+            }
+
+            .vendor-item {
+              padding: 16px;
+              background: #f8fafc;
+              border-radius: 8px;
+              border-left: 4px solid #3b82f6;
+              transition: background 0.2s ease;
+            }
+
+            .vendor-item:hover {
+              background: #f1f5f9;
+            }
+
+            .vendor-item strong {
+              display: block;
+              color: #1e3a8a;
+              margin-bottom: 6px;
+              font-size: 1rem;
+            }
+
+            .vendor-item p {
+              color: #64748b;
+              margin: 0;
+              font-size: 0.9rem;
+              line-height: 1.5;
+            }
+
+            .selection-criteria {
+              background: #f8fafc;
+              border-radius: 16px;
+              padding: 28px;
+              border: 1px solid rgba(59, 130, 246, 0.1);
+            }
+
+            .selection-criteria h3 {
+              color: #1e3a8a;
+              margin-bottom: 20px;
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              font-size: 1.2rem;
+            }
+
+            .criteria-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              gap: 16px;
+            }
+
+            .criteria-item {
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              padding: 12px 16px;
+              background: white;
+              border-radius: 8px;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+              transition: transform 0.2s ease;
+            }
+
+            .criteria-item:hover {
+              transform: translateX(5px);
+            }
+
+            .criteria-item i {
+              color: #3b82f6;
+              font-size: 1.1rem;
+            }
+
+            .criteria-item span {
+              color: #334155;
+              font-size: 0.95rem;
+              font-weight: 500;
+            }
+
+            @media (max-width: 768px) {
+              .vendor-categories {
+                grid-template-columns: 1fr;
+                gap: 20px;
+              }
+
+              .criteria-grid {
+                grid-template-columns: 1fr;
+              }
+            }
+          </style>
+        </div>
+      </div>
+        </div>
+      </div>
+
+      <!-- Kết luận & CTA -->
+      <div class="conclusion-section">
+        <div class="conclusion-content">
+          <div class="conclusion-header">
+            <div class="conclusion-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>
+              <span lang="vi">Kết luận từ báo cáo Gartner</span>
+              <span lang="en">Conclusion from the Gartner Report</span>
+            </h2>
+          </div>
+          
+          <div class="conclusion-cards">
+            <div class="insight-card">
+              <i class="fas fa-cloud card-icon"></i>
+              <h3>
+                <span lang="vi">Chuyển đổi Cloud</span>
+                <span lang="en">Cloud Transformation</span>
+              </h3>
+              <p>
+                <span lang="vi">Điện toán đám mây sẽ trở thành tiêu chuẩn cho các triển khai MES mới, mang lại tính linh hoạt và khả năng mở rộng</span>
+                <span lang="en">Cloud computing will become the standard for new MES deployments, offering flexibility and scalability.</span>
+              </p>
+            </div>
+            
+            <div class="insight-card">
+              <i class="fas fa-robot card-icon"></i>
+              <h3>
+                <span lang="vi">AI tích hợp</span>
+                <span lang="en">Integrated AI</span>
+              </h3>
+              <p>
+                <span lang="vi">Trí tuệ nhân tạo sẽ được tích hợp sâu hơn vào MES, từ dự báo đến tối ưu hóa quy trình sản xuất</span>
+                <span lang="en">Artificial intelligence will be more deeply integrated into MES, from forecasting to production process optimization.</span>
+              </p>
+            </div>
+            
+            <div class="insight-card">
+              <i class="fas fa-puzzle-piece card-icon"></i>
+              <h3>
+                <span lang="vi">Tích hợp toàn diện</span>
+                <span lang="en">Comprehensive Integration</span>
+              </h3>
+              <p>
+                <span lang="vi">MES sẽ trở thành trung tâm kết nối các hệ thống trong doanh nghiệp, từ ERP đến IoT và analytics</span>
+                <span lang="en">MES will become the central hub connecting enterprise systems, from ERP to IoT and analytics.</span>
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <i class="fas fa-mobile-alt card-icon"></i>
+              <h3>
+                <span lang="vi">Trải nghiệm người dùng</span>
+                <span lang="en">User Experience</span>
+              </h3>
+              <p>
+                <span lang="vi">Giao diện thân thiện và mobile-first sẽ quyết định tỷ lệ áp dụng và thành công của dự án MES</span>
+                <span lang="en">A friendly, mobile-first interface will determine the adoption rate and success of MES projects.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="gartner-quote">
+            <div class="quote-content">
+              <i class="fas fa-quote-left quote-icon"></i>
+              <p class="quote-text">
+                <span lang="vi">"Các tổ chức nên coi MES như một nền tảng chiến lược, không chỉ là một công cụ sản xuất. Sự đầu tư vào MES hiện đại sẽ tạo nền tảng cho các khả năng số hóa và tự động hóa trong tương lai."</span>
+                <span lang="en">"Organizations should view MES as a strategic platform, not just a production tool. Investing in a modern MES will build the foundation for future digitalization and automation capabilities."</span>
+              </p>
+              <div class="quote-author">
+                <strong>Gartner Research</strong>
+                <span>Market Guide for Manufacturing Execution Systems</span>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            .gartner-quote {
+              margin: 40px 0;
+              background: linear-gradient(135deg, #f8fafc, #e0f2fe);
+              border-radius: 16px;
+              padding: 32px;
+              border-left: 4px solid #3b82f6;
+              position: relative;
+            }
+
+            .quote-content {
+              position: relative;
+            }
+
+            .quote-icon {
+              color: #3b82f6;
+              font-size: 2rem;
+              margin-bottom: 16px;
+              opacity: 0.7;
+            }
+
+            .quote-text {
+              font-size: 1.1rem;
+              color: #1e3a8a;
+              line-height: 1.6;
+              font-style: italic;
+              margin-bottom: 20px;
+            }
+
+            .quote-author {
+              text-align: right;
+            }
+
+            .quote-author strong {
+              display: block;
+              color: #1e3a8a;
+              font-size: 1rem;
+              margin-bottom: 4px;
+            }
+
+            .quote-author span {
+              color: #64748b;
+              font-size: 0.9rem;
+            }
+          </style>
+          <div class="cta-section">
+            <div class="cta-background">
+              <div class="gradient-sphere"></div>
+              <div class="gradient-sphere"></div>
+            </div>
+            
+            <div class="cta-content">
+              <div class="cta-text-content">
+                <h2 class="cta-title">
+                  <span lang="vi"><span class="highlight-text">Khám phá</span> giải pháp <span class="gradient-text">MES của DigiFact</span> cho doanh nghiệp</span>
+                  <span lang="en"><span class="highlight-text">Discover</span> DigiFact's <span class="gradient-text">MES Solution</span> for Your Business</span>
+                </h2>
+                <p class="cta-description">
+                  <span lang="vi">Được phát triển dựa trên những khuyến nghị của Gartner<br/>Liên hệ để được tư vấn giải pháp MES phù hợp nhất</span>
+                  <span lang="en">Developed based on Gartner's recommendations.<br/>Contact us for a consultation on the most suitable MES solution.</span>
+                </p>
+              </div>
+
+              <div class="cta-actions">
+                <!-- Contact Buttons -->
+                <div class="contact-buttons">
+                  <a href="mailto:contact@digifact.vn" class="contact-button primary">
+                    <i class="fas fa-envelope"></i>
+                    <span lang="vi">Nhận tư vấn miễn phí</span>
+                    <span lang="en">Get a Free Consultation</span>
+                  </a>
+                  <a href="tel:0338845579" class="contact-button secondary">
+                    <i class="fas fa-phone"></i>
+                    <span>Hotline: 033 884 5579</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            .conclusion-section {
+              margin-top: 80px;
+              padding: 0 20px;
+              opacity: 0;
+              transform: translateY(20px);
+              animation: fadeInUp 0.8s ease-out forwards;
+            }
+
+            .conclusion-content {
+              max-width: 1200px;
+              margin: 0 auto;
+            }
+
+            .conclusion-header {
+              text-align: center;
+              margin-bottom: 60px;
+              position: relative;
+            }
+
+            .conclusion-icon {
+              width: 80px;
+              height: 80px;
+              background: linear-gradient(135deg, #00c6ff, #0072ff);
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 20px;
+              color: white;
+              font-size: 2rem;
+              box-shadow: 0 10px 30px rgba(0, 114, 255, 0.2);
+              animation: pulseLight 2s infinite;
+            }
+
+            .conclusion-header h2 {
+              font-size: 2.5rem;
+              color: #1a365d;
+              font-weight: 800;
+              margin: 0;
+              opacity: 0;
+              transform: translateY(20px);
+              animation: fadeInUp 0.8s ease-out forwards 0.3s;
+            }
+
+            .conclusion-cards {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 30px;
+              margin-bottom: 60px;
+            }
+
+            .insight-card {
+              background: white;
+              padding: 40px 30px;
+              border-radius: 20px;
+              text-align: center;
+              transition: all 0.3s ease;
+              border: 1px solid rgba(0, 114, 255, 0.1);
+              opacity: 0;
+              transform: translateY(30px);
+              animation: fadeInUp 0.8s ease-out forwards;
+            }
+
+            .insight-card:nth-child(1) { animation-delay: 0.4s; }
+            .insight-card:nth-child(2) { animation-delay: 0.6s; }
+            .insight-card:nth-child(3) { animation-delay: 0.8s; }
+            .insight-card:nth-child(4) { animation-delay: 1s; }
+
+            .insight-card:hover {
+              transform: translateY(-10px);
+              box-shadow: 0 20px 40px rgba(0, 114, 255, 0.1);
+            }
+
+            .card-icon {
+              font-size: 2.5rem;
+              color: #0072ff;
+              margin-bottom: 20px;
+              animation: swingIcon 3s ease-in-out infinite;
+            }
+
+            @keyframes swingIcon {
+              0%, 100% { transform: rotate(-5deg); }
+              50% { transform: rotate(5deg); }
+            }
+
+            .insight-card h3 {
+              font-size: 1.5rem;
+              color: #1a365d;
+              margin-bottom: 15px;
+            }
+
+            .insight-card p {
+              color: #4a5568;
+              line-height: 1.6;
+              margin: 0;
+            }
+
+            .cta-section {
+              background: linear-gradient(135deg, #1a365d, #0072ff);
+              border-radius: 30px;
+              padding: 80px 40px;
+              position: relative;
+              overflow: hidden;
+              margin-top: 60px;
+            }
+
+            .cta-background {
+              position: absolute;
+              inset: 0;
+              z-index: 1;
+            }
+
+            .gradient-sphere {
+              position: absolute;
+              border-radius: 50%;
+              background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+              animation: floatSphere 20s infinite;
+            }
+
+            .gradient-sphere:nth-child(1) {
+              width: 400px;
+              height: 400px;
+              top: -100px;
+              left: -100px;
+              animation-delay: 0s;
+            }
+
+            .gradient-sphere:nth-child(2) {
+              width: 300px;
+              height: 300px;
+              bottom: -50px;
+              right: -50px;
+              animation-delay: -5s;
+            }
+
+            .gradient-sphere:nth-child(3) {
+              width: 200px;
+              height: 200px;
+              top: 50%;
+              left: 50%;
+              animation-delay: -10s;
+            }
+
+            .cta-content {
+              position: relative;
+              z-index: 2;
+              text-align: center;
+              color: white;
+            }
+
+            .cta-text-content {
+              max-width: 800px;
+              margin: 0 auto;
+            }
+
+            .cta-title {
+              font-size: 3.5rem;
+              font-weight: 800;
+              line-height: 1.2;
+              margin-bottom: 30px;
+            }
+
+            .highlight-text {
+              color: #7dd3fc;
+            }
+
+            .gradient-text {
+              background: linear-gradient(120deg, #7dd3fc, #38bdf8);
+              -webkit-background-clip: text;
+              background-clip: text;
+              -webkit-text-fill-color: transparent;
+              display: inline-block;
+            }
+
+            .cta-description {
+              font-size: 1.25rem;
+              line-height: 1.6;
+              margin-bottom: 40px;
+              opacity: 0.9;
+            }
+
+            .contact-buttons {
+              display: flex;
+              gap: 20px;
+              justify-content: center;
+              flex-wrap: wrap;
+            }
+
+            .contact-button {
+              display: inline-flex;
+              align-items: center;
+              gap: 12px;
+              padding: 20px 40px;
+              border-radius: 50px;
+              font-weight: 700;
+              font-size: 1.1rem;
+              text-decoration: none;
+              transition: all 0.3s ease;
+            }
+
+            .contact-button.primary {
+              background: white;
+              color: #0072ff;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .contact-button.secondary {
+              background: rgba(255, 255, 255, 0.1);
+              color: white;
+              border: 2px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .contact-button.primary:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            }
+
+            .contact-button.secondary:hover {
+              background: rgba(255, 255, 255, 0.2);
+              transform: translateY(-5px);
+            }
+
+            @keyframes pulseLight {
+              0%, 100% { box-shadow: 0 10px 30px rgba(0, 114, 255, 0.2); }
+              50% { box-shadow: 0 10px 40px rgba(0, 114, 255, 0.4); }
+            }
+
+            @keyframes floatSphere {
+              0%, 100% { transform: translate(0, 0) rotate(0deg); }
+              50% { transform: translate(30px, -30px) rotate(180deg); }
+            }
+
+            @media (max-width: 768px) {
+              .conclusion-section { margin-top: 40px; }
+              .conclusion-header h2 { font-size: 2rem; }
+              .cta-title { font-size: 2.5rem; }
+              .cta-section { padding: 40px 20px; }
+              .contact-button { width: 100%; justify-content: center; }
+            }
+          </style>
+        </div>
+      </div>
+
+      <footer style="margin:48px auto 0; max-width:1000px; background:linear-gradient(135deg,#f8fafc,#f1f5f9); border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.03); padding:24px; color:#64748b; text-align:center;">
+        <img src="../Resources/DigiFact_Logo_Fullname_Type1.png" alt="DigiFact Logo" style="height:32px; margin-bottom:16px;">
+        <div style="font-size:0.95rem; margin-top:12px;">
+          <span lang="vi">© 2025 DigiFact. Bản quyền nội dung thuộc về DigiFact.</span>
+          <span lang="en">© 2025 DigiFact. Content copyright belongs to DigiFact.</span>
+          <br>
+          <span style="color:#94a3b8; font-size:0.9rem;">Website: digifact.vn | Email: contact@digifact.vn | Hotline: 033 884 5579</span>
+        </div>
+      </footer>
+      
+      <style>
+        @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      </style>
+    </div>
+
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+      // Header scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector(".header-nav");
+        if (window.scrollY > 100) {
+          header.style.background = "linear-gradient(135deg, #2563eb 0%, #059669 100%)";
+        } else {
+          header.style.background = "linear-gradient(135deg, #3b82f6 0%, #10b981 100%)";
+        }
+      });
+
+      // Language switcher logic
+      const langToggle = document.getElementById('lang-toggle');
+      const body = document.body;
+      const pageTitle = document.querySelector('title');
+
+      const enTitle = "Gartner Report: MES Market Analysis 2025 - DigiFact";
+      const viTitle = "Báo cáo Gartner: Phân tích thị trường MES 2025 - DigiFact";
+
+      function setLanguage(lang) {
+        if (lang === 'en') {
+          body.classList.add('lang-en-active');
+          body.classList.remove('lang-vi-active');
+          pageTitle.textContent = enTitle;
+          langToggle.checked = true;
+        } else {
+          body.classList.add('lang-vi-active');
+          body.classList.remove('lang-en-active');
+          pageTitle.textContent = viTitle;
+          langToggle.checked = false;
+        }
+      }
+
+      // Set initial language
+      setLanguage('vi'); // Default to Vietnamese
+
+      langToggle.addEventListener('change', function() {
+        if (this.checked) {
+          setLanguage('en');
+        } else {
+          setLanguage('vi');
+        }
+      });
+    </script>
+  </body>
+</html>
