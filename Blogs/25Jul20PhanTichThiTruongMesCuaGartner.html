@@ -463,6 +463,475 @@
             <span lang="vi">📈 Giả định chiến lược</span>
             <span lang="en">📈 Strategic Planning Assumptions</span>
           </h2>
+
+          <!-- MES Architecture Overview -->
+          <div class="mes-architecture-section">
+            <div class="architecture-intro">
+              <p>
+                <span lang="vi">Để hiểu rõ hơn về vai trò của MES trong hệ sinh thái sản xuất hiện đại, Gartner đã phác thảo kiến trúc tổng thể của hệ thống MES và cách nó tích hợp với các hệ thống khác trong doanh nghiệp.</span>
+                <span lang="en">To better understand the role of MES in the modern manufacturing ecosystem, Gartner has outlined the overall architecture of MES systems and how they integrate with other enterprise systems.</span>
+              </p>
+            </div>
+            
+            <div class="architecture-diagram">
+              <h3 class="diagram-title">
+                <span lang="vi">🏗️ Kiến trúc tổng thể của hệ thống MES</span>
+                <span lang="en">🏗️ Manufacturing Execution Systems Overview</span>
+              </h3>
+              <div class="diagram-wrapper">
+                <img src="../Resources/Figure_1_Manufacturing_Execution_Systems_Overview.png" 
+                     alt="Gartner MES Overview Diagram" 
+                     class="architecture-image"
+                     loading="lazy">
+                <div class="diagram-caption">
+                  <p>
+                    <span lang="vi"><strong>Nguồn:</strong> Gartner Market Guide for Manufacturing Execution Systems (2025). Sơ đồ minh họa cách MES kết nối các tầng khác nhau trong kiến trúc sản xuất thông minh.</span>
+                    <span lang="en"><strong>Source:</strong> Gartner Market Guide for Manufacturing Execution Systems (2025). Diagram illustrating how MES connects different layers in smart manufacturing architecture.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="architecture-layers">
+              <h4 class="layers-title">
+                <span lang="vi">🔗 Các tầng tích hợp trong kiến trúc MES</span>
+                <span lang="en">🔗 Integration Layers in MES Architecture</span>
+              </h4>
+              
+              <div class="layers-grid">
+                <div class="layer-card enterprise">
+                  <div class="layer-icon">
+                    <i class="fas fa-building"></i>
+                  </div>
+                  <h5>
+                    <span lang="vi">Tầng Doanh nghiệp</span>
+                    <span lang="en">Enterprise Layer</span>
+                  </h5>
+                  <p>
+                    <span lang="vi">ERP, PLM, CRM - Quản lý toàn bộ chu trình kinh doanh và kế hoạch chiến lược dài hạn.</span>
+                    <span lang="en">ERP, PLM, CRM - Managing the entire business cycle and long-term strategic planning.</span>
+                  </p>
+                </div>
+
+                <div class="layer-card manufacturing">
+                  <div class="layer-icon">
+                    <i class="fas fa-cogs"></i>
+                  </div>
+                  <h5>
+                    <span lang="vi">Tầng Sản xuất</span>
+                    <span lang="en">Manufacturing Layer</span>
+                  </h5>
+                  <p>
+                    <span lang="vi">MES, WMS, QMS - Điều phối và kiểm soát các hoạt động sản xuất thời gian thực.</span>
+                    <span lang="en">MES, WMS, QMS - Coordinating and controlling real-time manufacturing operations.</span>
+                  </p>
+                </div>
+
+                <div class="layer-card control">
+                  <div class="layer-icon">
+                    <i class="fas fa-microchip"></i>
+                  </div>
+                  <h5>
+                    <span lang="vi">Tầng Điều khiển</span>
+                    <span lang="en">Control Layer</span>
+                  </h5>
+                  <p>
+                    <span lang="vi">SCADA, HMI, PLC - Giám sát và điều khiển trực tiếp các thiết bị sản xuất.</span>
+                    <span lang="en">SCADA, HMI, PLC - Direct monitoring and control of manufacturing equipment.</span>
+                  </p>
+                </div>
+
+                <div class="layer-card field">
+                  <div class="layer-icon">
+                    <i class="fas fa-industry"></i>
+                  </div>
+                  <h5>
+                    <span lang="vi">Tầng Thiết bị</span>
+                    <span lang="en">Field Layer</span>
+                  </h5>
+                  <p>
+                    <span lang="vi">Sensors, Actuators, IoT - Thu thập dữ liệu từ máy móc và thiết bị sản xuất.</span>
+                    <span lang="en">Sensors, Actuators, IoT - Collecting data from machines and manufacturing equipment.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="integration-benefits">
+              <h4 class="benefits-title">
+                <span lang="vi">✨ Lợi ích của kiến trúc tích hợp</span>
+                <span lang="en">✨ Benefits of Integrated Architecture</span>
+              </h4>
+              <div class="benefits-list">
+                <div class="benefit-item">
+                  <i class="fas fa-sync-alt"></i>
+                  <span lang="vi">Đồng bộ hóa dữ liệu real-time giữa các tầng</span>
+                  <span lang="en">Real-time data synchronization between layers</span>
+                </div>
+                <div class="benefit-item">
+                  <i class="fas fa-eye"></i>
+                  <span lang="vi">Tầm nhìn toàn diện về hoạt động sản xuất</span>
+                  <span lang="en">Comprehensive visibility into manufacturing operations</span>
+                </div>
+                <div class="benefit-item">
+                  <i class="fas fa-bolt"></i>
+                  <span lang="vi">Phản ứng nhanh với các sự cố và thay đổi</span>
+                  <span lang="en">Quick response to incidents and changes</span>
+                </div>
+                <div class="benefit-item">
+                  <i class="fas fa-chart-bar"></i>
+                  <span lang="vi">Tối ưu hóa hiệu suất dựa trên dữ liệu</span>
+                  <span lang="en">Data-driven performance optimization</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            .mes-architecture-section {
+              background: linear-gradient(135deg, #fef3c7, #fef9e7);
+              border-radius: 20px;
+              padding: 40px;
+              margin: 40px 0;
+              border: 1px solid rgba(251, 191, 36, 0.2);
+              box-shadow: 0 8px 30px rgba(251, 191, 36, 0.1);
+            }
+
+            .architecture-intro {
+              text-align: center;
+              margin-bottom: 30px;
+            }
+
+            .architecture-intro p {
+              font-size: 1.1rem;
+              color: #92400e;
+              line-height: 1.6;
+              max-width: 800px;
+              margin: 0 auto;
+              font-weight: 500;
+            }
+
+            .architecture-diagram {
+              text-align: center;
+              margin-bottom: 40px;
+            }
+
+            .diagram-title {
+              font-size: 1.6rem;
+              color: #92400e;
+              margin-bottom: 25px;
+              font-weight: 700;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 12px;
+            }
+
+            .diagram-wrapper {
+              position: relative;
+              display: inline-block;
+              border-radius: 16px;
+              overflow: hidden;
+              box-shadow: 0 12px 40px rgba(146, 64, 14, 0.15);
+              background: white;
+              padding: 20px;
+            }
+
+            .architecture-image {
+              max-width: 100%;
+              height: auto;
+              border-radius: 12px;
+              transition: transform 0.3s ease;
+            }
+
+            .architecture-image:hover {
+              transform: scale(1.02);
+            }
+
+            .diagram-caption {
+              margin-top: 20px;
+              padding: 16px;
+              background: linear-gradient(135deg, #fef3c7, #fbbf24);
+              border-radius: 12px;
+              border-left: 4px solid #f59e0b;
+            }
+
+            .diagram-caption p {
+              color: #92400e;
+              font-size: 0.95rem;
+              line-height: 1.6;
+              margin: 0;
+              font-style: italic;
+            }
+
+            .architecture-layers {
+              margin-bottom: 40px;
+            }
+
+            .layers-title {
+              font-size: 1.4rem;
+              color: #92400e;
+              margin-bottom: 25px;
+              text-align: center;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 10px;
+            }
+
+            .layers-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+              gap: 20px;
+            }
+
+            .layer-card {
+              background: white;
+              border-radius: 12px;
+              padding: 24px;
+              text-align: center;
+              box-shadow: 0 6px 20px rgba(146, 64, 14, 0.1);
+              border: 1px solid rgba(251, 191, 36, 0.2);
+              transition: all 0.3s ease;
+              position: relative;
+              overflow: hidden;
+            }
+
+            .layer-card:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 12px 30px rgba(146, 64, 14, 0.2);
+            }
+
+            .layer-card::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 4px;
+              opacity: 0;
+              transition: opacity 0.3s ease;
+            }
+
+            .layer-card.enterprise::before {
+              background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            }
+            .layer-card.manufacturing::before {
+              background: linear-gradient(90deg, #10b981, #059669);
+            }
+            .layer-card.control::before {
+              background: linear-gradient(90deg, #f59e0b, #d97706);
+            }
+            .layer-card.field::before {
+              background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+            }
+
+            .layer-card:hover::before {
+              opacity: 1;
+            }
+
+            .layer-icon {
+              width: 60px;
+              height: 60px;
+              background: linear-gradient(135deg, #f59e0b, #d97706);
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 16px;
+              color: white;
+              font-size: 1.5rem;
+              box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+            }
+
+            .layer-card h5 {
+              color: #92400e;
+              margin-bottom: 12px;
+              font-size: 1.1rem;
+              font-weight: 600;
+            }
+
+            .layer-card p {
+              color: #a16207;
+              line-height: 1.5;
+              margin: 0;
+              font-size: 0.9rem;
+            }
+
+            .integration-benefits {
+              background: white;
+              border-radius: 16px;
+              padding: 30px;
+              box-shadow: 0 6px 25px rgba(146, 64, 14, 0.1);
+            }
+
+            .benefits-title {
+              font-size: 1.4rem;
+              color: #92400e;
+              margin-bottom: 25px;
+              text-align: center;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 10px;
+            }
+
+            .benefits-list {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 16px;
+            }
+
+            .benefit-item {
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              padding: 16px;
+              background: linear-gradient(135deg, #fef3c7, #fbbf24);
+              border-radius: 8px;
+              transition: transform 0.2s ease;
+              border-left: 4px solid #f59e0b;
+            }
+
+            .benefit-item:hover {
+              transform: translateX(5px);
+            }
+
+            .benefit-item i {
+              color: #d97706;
+              font-size: 1.2rem;
+              min-width: 20px;
+            }
+
+            .benefit-item span {
+              color: #92400e;
+              font-size: 0.95rem;
+              font-weight: 500;
+            }
+
+            @media (max-width: 768px) {
+              .mes-architecture-section {
+                padding: 20px;
+              }
+
+              .diagram-title {
+                font-size: 1.3rem;
+                flex-direction: column;
+                gap: 8px;
+              }
+
+              .layers-title, .benefits-title {
+                font-size: 1.2rem;
+                flex-direction: column;
+                gap: 8px;
+              }
+
+              .layers-grid, .benefits-list {
+                grid-template-columns: 1fr;
+              }
+            }
+          </style>
+
+          <!-- Strategic Transition -->
+          <div class="strategic-transition">
+            <div class="transition-content">
+              <h3>
+                <span lang="vi">🚀 Hướng đến tương lai: Dự báo chiến lược của Gartner</span>
+                <span lang="en">🚀 Towards the Future: Gartner's Strategic Forecasts</span>
+              </h3>
+              <p>
+                <span lang="vi">Dựa trên phân tích kiến trúc tổng thể và xu hướng thị trường hiện tại, Gartner đưa ra những dự báo chiến lược quan trọng cho sự phát triển của MES trong 5 năm tới. Những giả định này sẽ định hình cách các doanh nghiệp lựa chọn và triển khai giải pháp MES.</span>
+                <span lang="en">Based on overall architecture analysis and current market trends, Gartner provides important strategic forecasts for MES development over the next 5 years. These assumptions will shape how enterprises choose and deploy MES solutions.</span>
+              </p>
+              <div class="transition-highlight">
+                <i class="fas fa-lightbulb"></i>
+                <span lang="vi">Các dự báo dưới đây dựa trên nghiên cứu chuyên sâu của Gartner về hơn 200 doanh nghiệp sản xuất toàn cầu</span>
+                <span lang="en">The following forecasts are based on Gartner's in-depth research of over 200 global manufacturing enterprises</span>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            .strategic-transition {
+              background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+              border-radius: 16px;
+              padding: 32px;
+              margin: 40px 0;
+              border: 1px solid rgba(59, 130, 246, 0.2);
+              position: relative;
+              overflow: hidden;
+            }
+
+            .strategic-transition::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 4px;
+              background: linear-gradient(90deg, #3b82f6, #10b981);
+            }
+
+            .transition-content h3 {
+              color: #1e3a8a;
+              font-size: 1.5rem;
+              margin-bottom: 20px;
+              font-weight: 700;
+              text-align: center;
+            }
+
+            .transition-content p {
+              color: #334155;
+              line-height: 1.7;
+              font-size: 1.05rem;
+              text-align: center;
+              max-width: 800px;
+              margin: 0 auto 25px;
+            }
+
+            .transition-highlight {
+              background: rgba(59, 130, 246, 0.1);
+              border-radius: 12px;
+              padding: 20px;
+              text-align: center;
+              border-left: 4px solid #3b82f6;
+              margin-top: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 12px;
+              flex-wrap: wrap;
+            }
+
+            .transition-highlight i {
+              color: #3b82f6;
+              font-size: 1.3rem;
+            }
+
+            .transition-highlight span {
+              color: #1e3a8a;
+              font-weight: 600;
+              font-size: 1rem;
+            }
+
+            @media (max-width: 768px) {
+              .strategic-transition {
+                padding: 20px;
+              }
+
+              .transition-content h3 {
+                font-size: 1.3rem;
+              }
+
+              .transition-highlight {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+              }
+            }
+          </style>
           
           <div class="strategic-assumptions">
             <div class="assumption-card">
@@ -705,6 +1174,274 @@
               <span lang="en">The MES market features many vendors with different strengths. The report analyzes vendors based on their ability to execute and completeness of vision.</span>
             </p>
           </div>
+
+          <!-- Gartner Magic Quadrant Visualization -->
+          <div class="gartner-chart-section">
+            <div class="chart-container">
+              <h3 class="chart-title">
+                <span lang="vi">📊 Biểu đồ Magic Quadrant của Gartner cho các nhà cung cấp MES</span>
+                <span lang="en">📊 Gartner Magic Quadrant for MES Vendors</span>
+              </h3>
+              <div class="chart-image-wrapper">
+                <img src="../Resources/Figure_3_MES_Vendor_Coverage_for_Discrete_Manufacturing.png" 
+                     alt="Gartner MES Vendor Coverage Chart" 
+                     class="gartner-chart"
+                     loading="lazy">
+                <div class="chart-caption">
+                  <p>
+                    <span lang="vi"><strong>Nguồn:</strong> Gartner Market Guide for Manufacturing Execution Systems (2025). Biểu đồ thể hiện vị trí của các nhà cung cấp MES hàng đầu dựa trên khả năng thực thi và tầm nhìn hoàn thiện.</span>
+                    <span lang="en"><strong>Source:</strong> Gartner Market Guide for Manufacturing Execution Systems (2025). This chart shows the position of leading MES vendors based on their ability to execute and completeness of vision.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="quadrant-explanation">
+              <div class="quadrant-intro">
+                <p>
+                  <span lang="vi">Magic Quadrant của Gartner chia các nhà cung cấp thành 4 nhóm chính dựa trên 2 tiêu chí quan trọng:</span>
+                  <span lang="en">Gartner's Magic Quadrant divides vendors into 4 main groups based on 2 important criteria:</span>
+                </p>
+              </div>
+              
+              <div class="quadrant-grid">
+                <div class="quadrant-item leaders">
+                  <div class="quadrant-header">
+                    <i class="fas fa-crown"></i>
+                    <h4>
+                      <span lang="vi">Leaders (Dẫn đầu)</span>
+                      <span lang="en">Leaders</span>
+                    </h4>
+                  </div>
+                  <p>
+                    <span lang="vi">Có khả năng thực thi mạnh và tầm nhìn hoàn thiện. Đây là những nhà cung cấp được khuyến nghị cho các dự án MES quy mô lớn.</span>
+                    <span lang="en">Strong execution capabilities and complete vision. These are recommended vendors for large-scale MES projects.</span>
+                  </p>
+                </div>
+                
+                <div class="quadrant-item challengers">
+                  <div class="quadrant-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>
+                      <span lang="vi">Challengers (Thách thức)</span>
+                      <span lang="en">Challengers</span>
+                    </h4>
+                  </div>
+                  <p>
+                    <span lang="vi">Khả năng thực thi tốt nhưng tầm nhìn còn hạn chế. Phù hợp cho các doanh nghiệp có yêu cầu cụ thể về tích hợp.</span>
+                    <span lang="en">Good execution capabilities but limited vision. Suitable for enterprises with specific integration requirements.</span>
+                  </p>
+                </div>
+                
+                <div class="quadrant-item visionaries">
+                  <div class="quadrant-header">
+                    <i class="fas fa-eye"></i>
+                    <h4>
+                      <span lang="vi">Visionaries (Tầm nhìn)</span>
+                      <span lang="en">Visionaries</span>
+                    </h4>
+                  </div>
+                  <p>
+                    <span lang="vi">Tầm nhìn đổi mới mạnh mẽ nhưng khả năng thực thi còn phát triển. Lý tưởng cho các công ty muốn tiên phong công nghệ.</span>
+                    <span lang="en">Strong innovative vision but developing execution capabilities. Ideal for companies wanting to pioneer technology.</span>
+                  </p>
+                </div>
+                
+                <div class="quadrant-item niche">
+                  <div class="quadrant-header">
+                    <i class="fas fa-gem"></i>
+                    <h4>
+                      <span lang="vi">Niche Players (Chuyên biệt)</span>
+                      <span lang="en">Niche Players</span>
+                    </h4>
+                  </div>
+                  <p>
+                    <span lang="vi">Tập trung vào các lĩnh vực chuyên biệt hoặc thị trường địa phương. Phù hợp cho các ngành nghề có yêu cầu đặc thù.</span>
+                    <span lang="en">Focus on specialized areas or local markets. Suitable for industries with specific requirements.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            .gartner-chart-section {
+              background: linear-gradient(135deg, #f8fafc, #ffffff);
+              border-radius: 20px;
+              padding: 40px;
+              margin: 40px 0;
+              border: 1px solid rgba(59, 130, 246, 0.1);
+              box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            }
+
+            .chart-container {
+              text-align: center;
+              margin-bottom: 40px;
+            }
+
+            .chart-title {
+              font-size: 1.8rem;
+              color: #1e3a8a;
+              margin-bottom: 30px;
+              font-weight: 700;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 12px;
+            }
+
+            .chart-image-wrapper {
+              position: relative;
+              display: inline-block;
+              border-radius: 16px;
+              overflow: hidden;
+              box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+              background: white;
+              padding: 20px;
+            }
+
+            .gartner-chart {
+              max-width: 100%;
+              height: auto;
+              border-radius: 12px;
+              transition: transform 0.3s ease;
+            }
+
+            .gartner-chart:hover {
+              transform: scale(1.02);
+            }
+
+            .chart-caption {
+              margin-top: 20px;
+              padding: 16px;
+              background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+              border-radius: 12px;
+              border-left: 4px solid #3b82f6;
+            }
+
+            .chart-caption p {
+              color: #334155;
+              font-size: 0.95rem;
+              line-height: 1.6;
+              margin: 0;
+              font-style: italic;
+            }
+
+            .quadrant-explanation {
+              margin-top: 40px;
+            }
+
+            .quadrant-intro {
+              text-align: center;
+              margin-bottom: 30px;
+            }
+
+            .quadrant-intro p {
+              font-size: 1.1rem;
+              color: #334155;
+              font-weight: 600;
+            }
+
+            .quadrant-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 24px;
+            }
+
+            .quadrant-item {
+              background: white;
+              border-radius: 16px;
+              padding: 24px;
+              box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+              border: 1px solid rgba(59, 130, 246, 0.1);
+              transition: all 0.3s ease;
+              position: relative;
+              overflow: hidden;
+            }
+
+            .quadrant-item:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 12px 35px rgba(59, 130, 246, 0.15);
+            }
+
+            .quadrant-item::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 4px;
+              opacity: 0;
+              transition: opacity 0.3s ease;
+            }
+
+            .quadrant-item.leaders::before {
+              background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            }
+            .quadrant-item.challengers::before {
+              background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            }
+            .quadrant-item.visionaries::before {
+              background: linear-gradient(90deg, #10b981, #059669);
+            }
+            .quadrant-item.niche::before {
+              background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+            }
+
+            .quadrant-item:hover::before {
+              opacity: 1;
+            }
+
+            .quadrant-header {
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              margin-bottom: 16px;
+              padding-bottom: 12px;
+              border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            }
+
+            .quadrant-header i {
+              font-size: 1.2rem;
+              color: #3b82f6;
+            }
+
+            .quadrant-header h4 {
+              color: #1e3a8a;
+              margin: 0;
+              font-size: 1.1rem;
+              font-weight: 600;
+            }
+
+            .quadrant-item p {
+              color: #64748b;
+              line-height: 1.6;
+              margin: 0;
+              font-size: 0.95rem;
+            }
+
+            @media (max-width: 768px) {
+              .gartner-chart-section {
+                padding: 20px;
+                margin: 20px 0;
+              }
+
+              .chart-title {
+                font-size: 1.4rem;
+                flex-direction: column;
+                gap: 8px;
+              }
+
+              .chart-image-wrapper {
+                padding: 15px;
+              }
+
+              .quadrant-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+              }
+            }
+          </style>
           
           <div class="vendor-categories">
             <div class="vendor-category">
@@ -1126,6 +1863,30 @@
                 <span lang="en">A friendly, mobile-first interface will determine the adoption rate and success of MES projects.</span>
               </p>
             </div>
+
+            <div class="insight-card">
+              <i class="fas fa-shield-alt card-icon"></i>
+              <h3>
+                <span lang="vi">Bảo mật và tuân thủ</span>
+                <span lang="en">Security & Compliance</span>
+              </h3>
+              <p>
+                <span lang="vi">Các yêu cầu bảo mật nghiêm ngặt và tuân thủ quy định sẽ thúc đẩy nhu cầu về MES với khả năng truy vết mạnh mẽ</span>
+                <span lang="en">Strict security requirements and regulatory compliance will drive demand for MES with strong traceability capabilities.</span>
+              </p>
+            </div>
+
+            <div class="insight-card">
+              <i class="fas fa-chart-line card-icon"></i>
+              <h3>
+                <span lang="vi">Phân tích dữ liệu</span>
+                <span lang="en">Data Analytics</span>
+              </h3>
+              <p>
+                <span lang="vi">MES tương lai sẽ tập trung vào khả năng phân tích dữ liệu real-time để đưa ra quyết định thông minh và tối ưu hóa</span>
+                <span lang="en">Future MES will focus on real-time data analytics capabilities for intelligent decision-making and optimization.</span>
+              </p>
+            </div>
           </div>
 
           <div class="gartner-quote">
@@ -1540,6 +2301,103 @@
           setLanguage('vi');
         }
       });
+
+      // Contact popup functions
+      function openContactPopup() {
+        document.getElementById("contactPopup").style.display = "flex";
+      }
+      
+      function closeContactPopup() {
+        document.getElementById("contactPopup").style.display = "none";
+      }
+
+      // Close popup when clicking outside
+      document.addEventListener('click', function(e) {
+        const popup = document.getElementById('contactPopup');
+        if (popup && e.target === popup) {
+          closeContactPopup();
+        }
+      });
+    </script>
+
+    <!-- Contact Popup -->
+    <div id="contactPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center;">
+      <div style="background: white; border-radius: 15px; padding: 30px; max-width: 400px; width: 90%; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+        <button onclick="closeContactPopup()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">&times;</button>
+        
+        <h2 style="text-align: center; margin-bottom: 20px; color: #2563eb;">
+          <span lang="vi">Liên hệ với DigiFact</span>
+          <span lang="en">Contact DigiFact</span>
+        </h2>
+        
+        <form id="contactForm" onsubmit="submitForm(event)" style="display: flex; flex-direction: column; gap: 15px;">
+          <div>
+            <label style="display: block; margin-bottom: 5px; font-weight: 500;">
+              <span lang="vi">Họ và tên</span>
+              <span lang="en">Full Name</span>
+            </label>
+            <input type="text" name="firstName" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+          </div>
+          
+          <div>
+            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Email</label>
+            <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+          </div>
+          
+          <div>
+            <label style="display: block; margin-bottom: 5px; font-weight: 500;">
+              <span lang="vi">Số điện thoại</span>
+              <span lang="en">Phone</span>
+            </label>
+            <input type="tel" name="phone" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+          </div>
+          
+          <div>
+            <label style="display: block; margin-bottom: 5px; font-weight: 500;">
+              <span lang="vi">Công ty</span>
+              <span lang="en">Company</span>
+            </label>
+            <input type="text" name="company" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+          </div>
+          
+          <div>
+            <label style="display: block; margin-bottom: 5px; font-weight: 500;">
+              <span lang="vi">Nội dung</span>
+              <span lang="en">Message</span>
+            </label>
+            <textarea name="message" rows="4" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical; box-sizing: border-box;"></textarea>
+          </div>
+          
+          <button type="submit" style="background: linear-gradient(90deg, #2563eb, #8b5cf6); color: white; border: none; padding: 12px 20px; border-radius: 25px; font-weight: 600; cursor: pointer; transition: transform 0.2s;">
+            <span lang="vi">Gửi liên hệ</span>
+            <span lang="en">Send Message</span>
+          </button>
+          
+          <div id="formStatus" style="text-align: center; margin-top: 10px; font-size: 14px;"></div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function submitForm(event) {
+        event.preventDefault();
+        const form = event.target;
+        const status = document.getElementById('formStatus');
+        
+        status.textContent = 'Đang gửi...';
+        status.style.color = '#2563eb';
+        
+        // Simulate form submission
+        setTimeout(() => {
+          status.textContent = 'Gửi thành công! Chúng tôi sẽ liên hệ lại sớm.';
+          status.style.color = '#10b981';
+          form.reset();
+          
+          setTimeout(() => {
+            closeContactPopup();
+          }, 2000);
+        }, 1000);
+      }
     </script>
   </body>
 </html>

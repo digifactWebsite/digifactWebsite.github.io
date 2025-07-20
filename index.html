@@ -1548,18 +1548,212 @@
         }
       }
 
+      /* Contact Popup Styles - Glass Morphism Design */
       .contact-popup-overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(20, 24, 40, 0.55);
         z-index: 9999;
         display: flex;
         align-items: center;
         justify-content: center;
+        backdrop-filter: blur(8px);
+        transition: background 0.3s;
+        animation: fadeInGlass 0.4s;
       }
+      @keyframes fadeInGlass {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .contact-popup-glass {
+        background: rgba(30, 41, 59, 0.82);
+        border-radius: 22px;
+        box-shadow: 0 12px 40px rgba(16, 24, 40, 0.45),
+          0 1.5px 8px rgba(37, 99, 235, 0.1);
+        padding: 38px 32px 28px 32px;
+        max-width: 440px;
+        width: 95vw;
+        color: #f1f5f9;
+        position: relative;
+        border: 2.5px solid transparent;
+        background-clip: padding-box;
+        overflow: visible;
+        animation: popupSlideUp 0.5s cubic-bezier(0.23, 1.01, 0.32, 1);
+      }
+      @keyframes popupSlideUp {
+        from {
+          transform: translateY(40px) scale(0.98);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+      .contact-popup-glass::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        padding: 2px;
+        background: linear-gradient(
+          120deg,
+          #2563eb,
+          #8b5cf6,
+          #f59e0b
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .close-popup-glass {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        background: rgba(255, 255, 255, 0.08);
+        border: none;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        color: #f1f5f9;
+        cursor: pointer;
+        z-index: 2;
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+      }
+      .close-popup-glass:hover {
+        background: linear-gradient(135deg, #2563eb, #8b5cf6);
+        color: #fff;
+        transform: scale(1.08);
+      }
+      .popup-glass-header {
+        text-align: center;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 1;
+      }
+      .popup-glass-icon {
+        width: 54px;
+        height: 54px;
+        margin: 0 auto 10px auto;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #2563eb, #8b5cf6);
+        box-shadow: 0 2px 12px rgba(37, 99, 235, 0.18);
+        font-size: 1.7rem;
+        color: #fff;
+        border: 2.5px solid rgba(255, 255, 255, 0.13);
+      }
+      .popup-glass-header h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+        background: linear-gradient(90deg, #f8fafc, #2563eb);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        letter-spacing: 0.5px;
+      }
+      .popup-glass-header p {
+        color: #e0e7ef;
+        font-size: 1.01rem;
+        margin-bottom: 0;
+        opacity: 0.85;
+      }
+      .glass-form-group {
+        flex: 1 1 0;
+        margin-bottom: 18px;
+        display: flex;
+        flex-direction: column;
+      }
+      .glass-form-group label {
+        margin-bottom: 6px;
+        font-weight: 500;
+        color: #f1f5f9;
+        font-size: 1rem;
+        letter-spacing: 0.1px;
+      }
+      .glass-form-group input,
+      .glass-form-group textarea {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1.5px solid rgba(100, 116, 139, 0.18);
+        border-radius: 9px;
+        padding: 11px 14px;
+        font-size: 1.07rem;
+        color: #f1f5f9;
+        margin-bottom: 0;
+        outline: none;
+        transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+        box-shadow: 0 1.5px 8px rgba(37, 99, 235, 0.05);
+        font-family: inherit;
+      }
+      .glass-form-group input::placeholder,
+      .glass-form-group textarea::placeholder {
+        color: rgba(241, 245, 249, 0.6);
+      }
+      .glass-form-group input:focus,
+      .glass-form-group textarea:focus {
+        border: 1.5px solid #2563eb;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.13);
+        background: rgba(37, 99, 235, 0.08);
+      }
+      .glass-form-group textarea {
+        resize: vertical;
+        min-height: 90px;
+        max-height: 220px;
+      }
+      .glass-submit-btn {
+        width: 100%;
+        background: linear-gradient(90deg, #2563eb, #8b5cf6);
+        color: white;
+        border: none;
+        padding: 15px 0;
+        border-radius: 30px;
+        font-size: 1.08rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.18);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 6px;
+        letter-spacing: 0.2px;
+        gap: 8px;
+      }
+      .glass-submit-btn i {
+        font-size: 1.1em;
+      }
+      .glass-submit-btn:hover {
+        background: linear-gradient(90deg, #1d4ed8, #8b5cf6);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.22);
+      }
+      #formStatus {
+        font-size: 0.98rem;
+        text-align: center;
+        margin-top: 10px;
+        min-height: 22px;
+      }
+
+      /* Legacy CSS for backward compatibility */
       .contact-popup {
         background: #fff;
         color: #222;
@@ -1616,10 +1810,6 @@
       }
       .submit-btn:hover {
         background: linear-gradient(90deg, #1d4ed8, #7c3aed);
-      }
-      #formStatus {
-        font-size: 0.98rem;
-        text-align: center;
       }
     </style>
   </head>
@@ -2800,250 +2990,46 @@
           <button type="submit" class="glass-submit-btn">
             <i class="fas fa-paper-plane"></i> Gửi liên hệ
           </button>
-          <p class="popup-glass-header" style="margin-top: 10px; font-style: italic;">Hướng dẫn tải về tự động phần mềm dùng thử<br/>miễn phí 30 ngày  sẽ được gửi về email của bạn</p>
+          <p class="popup-glass-header" style="margin-top: 10px; font-style: italic;">Hướng dẫn tải về tự động phần mềm dùng thử<br/>miễn phí 30 ngày sẽ được gửi về email của bạn</p>
           <div id="formStatus" style="margin-top: 5px"></div>
         </form>
       </div>
     </div>
-    <style>
-      .contact-popup-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(20, 24, 40, 0.55);
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        backdrop-filter: blur(8px);
-        transition: background 0.3s;
-        animation: fadeInGlass 0.4s;
-      }
-      @keyframes fadeInGlass {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-      .contact-popup-glass {
-        background: rgba(30, 41, 59, 0.82);
-        border-radius: 22px;
-        box-shadow: 0 12px 40px rgba(16, 24, 40, 0.45),
-          0 1.5px 8px rgba(37, 99, 235, 0.1);
-        padding: 38px 32px 28px 32px;
-        max-width: 440px;
-        width: 95vw;
-        color: #f1f5f9;
-        position: relative;
-        border: 2.5px solid transparent;
-        background-clip: padding-box;
-        overflow: visible;
-        animation: popupSlideUp 0.5s cubic-bezier(0.23, 1.01, 0.32, 1);
-      }
-      @keyframes popupSlideUp {
-        from {
-          transform: translateY(40px) scale(0.98);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0) scale(1);
-          opacity: 1;
-        }
-      }
-      .contact-popup-glass::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 22px;
-        padding: 2px;
-        background: linear-gradient(
-          120deg,
-          var(--primary),
-          var(--secondary),
-          var(--accent)
-        );
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
-        z-index: 0;
-      }
-      .close-popup-glass {
-        position: absolute;
-        top: 18px;
-        right: 22px;
-        background: rgba(255, 255, 255, 0.08);
-        border: none;
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.3rem;
-        color: #f1f5f9;
-        cursor: pointer;
-        z-index: 2;
-        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
-        transition: background 0.2s, color 0.2s, transform 0.2s;
-      }
-      .close-popup-glass:hover {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: #fff;
-        transform: scale(1.08);
-      }
-      .popup-glass-header {
-        text-align: center;
-        margin-bottom: 18px;
-        position: relative;
-        z-index: 1;
-      }
-      .popup-glass-icon {
-        width: 54px;
-        height: 54px;
-        margin: 0 auto 10px auto;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        box-shadow: 0 2px 12px rgba(37, 99, 235, 0.18);
-        font-size: 1.7rem;
-        color: #fff;
-        border: 2.5px solid rgba(255, 255, 255, 0.13);
-      }
-      .popup-glass-header h2 {
-        font-size: 1.35rem;
-        font-weight: 700;
-        margin-bottom: 4px;
-        background: linear-gradient(90deg, var(--light), var(--primary));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        letter-spacing: 0.5px;
-      }
-      .popup-glass-header p {
-        color: #e0e7ef;
-        font-size: 1.01rem;
-        margin-bottom: 0;
-        opacity: 0.85;
-      }
-      .glass-form-row {
-        display: block;
-      }
-      .glass-form-group {
-        flex: 1 1 0;
-        margin-bottom: 18px;
-        display: flex;
-        flex-direction: column;
-      }
-      .glass-form-group label {
-        margin-bottom: 6px;
-        font-weight: 500;
-        color: #f1f5f9;
-        font-size: 1rem;
-        letter-spacing: 0.1px;
-      }
-      .glass-form-group input,
-      .glass-form-group textarea {
-        background: rgba(255, 255, 255, 0.07);
-        border: 1.5px solid rgba(100, 116, 139, 0.18);
-        border-radius: 9px;
-        padding: 11px 14px;
-        font-size: 1.07rem;
-        color: #f1f5f9;
-        margin-bottom: 0;
-        outline: none;
-        transition: border 0.2s, box-shadow 0.2s, background 0.2s;
-        box-shadow: 0 1.5px 8px rgba(37, 99, 235, 0.05);
-        font-family: inherit;
-      }
-      .glass-form-group input:focus,
-      .glass-form-group textarea:focus {
-        border: 1.5px solid var(--primary);
-        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.13);
-        background: rgba(37, 99, 235, 0.08);
-      }
-      .glass-form-group textarea {
-        resize: vertical;
-        min-height: 90px;
-        max-height: 220px;
-      }
-      .glass-submit-btn {
-        width: 100%;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
-        color: white;
-        border: none;
-        padding: 15px 0;
-        border-radius: 30px;
-        font-size: 1.08rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: var(--transition);
-        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.18);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 6px;
-        letter-spacing: 0.2px;
-        gap: 8px;
-      }
-      .glass-submit-btn i {
-        font-size: 1.1em;
-      }
-      .glass-submit-btn:hover {
-        background: linear-gradient(
-          90deg,
-          var(--primary-dark),
-          var(--secondary)
-        );
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.22);
-      }
-      #formStatus {
-        font-size: 0.98rem;
-        text-align: center;
-        margin-top: 10px;
-        min-height: 22px;
-      }
-      @media (max-width: 600px) {
-        .contact-popup-glass {
-          padding: 16px 3vw 16px 3vw;
-          max-width: 99vw;
-        }
-        .glass-form-row {
-          flex-direction: column;
-          gap: 0;
-        }
-      } 
-    </style>
+
     <script>
       // Google Apps Script endpoint - Updated URL
       const CONTACT_SCRIPT_URL =
         "https://script.google.com/macros/s/AKfycbwQWnnLKSTYl50gEt9Ag5kEI4uGJwv3zbBNPTWB9l_BvsDhXrTrN0MEu3Mbpffub-w/exec";
 
+      // Contact popup functions
+      function openContactPopup() {
+        document.getElementById("contactPopup").style.display = "flex";
+      }
+
+      function closeContactPopup() {
+        document.getElementById("contactPopup").style.display = "none";
+      }
+
       // Alternative submission method
       async function tryAlternativeSubmission(data, status) {
         try {
-          // Try direct email fallback
-          const subject = encodeURIComponent("Liên hệ từ website DigiFact");
+          const subject = encodeURIComponent(
+            "Liên hệ từ website DigiFact"
+          );
           const body = encodeURIComponent(`
-            Họ tên: ${data.firstName}
-            Email: ${data.email}
-            Số điện thoại: ${data.phone}
-            Công ty: ${data.company}
-            Nội dung: ${data.message}
-        `);
+Họ tên: ${data.firstName}
+Email: ${data.email}
+Số điện thoại: ${data.phone}
+Công ty: ${data.company}
+Nội dung: ${data.message}
+Trang: Trang chủ
+                `);
 
           const mailtoLink = `mailto:contact@digifact.vn?subject=${subject}&body=${body}`;
 
           status.textContent = "Đang mở ứng dụng email...";
           status.style.color = "#f59e0b";
 
-          // Open email client
           window.location.href = mailtoLink;
 
           setTimeout(() => {
@@ -3059,13 +3045,6 @@
         }
       }
 
-      function openContactPopup() {
-        document.getElementById("contactPopup").style.display = "flex";
-      }
-      function closeContactPopup() {
-        document.getElementById("contactPopup").style.display = "none";
-      }
-
       document.addEventListener("DOMContentLoaded", function () {
         const form = document.getElementById("contactForm");
         if (form) {
@@ -3074,6 +3053,7 @@
             const status = document.getElementById("formStatus");
             status.textContent = "Đang gửi...";
             status.style.color = "#2563eb";
+
             const data = {
               firstName: form.firstName.value,
               email: form.email.value,
@@ -3081,10 +3061,10 @@
               company: form.company.value,
               message: form.message.value,
               timestamp: new Date().toISOString(),
-              source: "Popup Form",
+              source: "Homepage Popup Form",
             };
+
             try {
-              // First try the standard fetch approach
               const res = await fetch(CONTACT_SCRIPT_URL, {
                 method: "POST",
                 mode: "no-cors",
@@ -3094,8 +3074,6 @@
                 body: new URLSearchParams(data),
               });
 
-              // Since we're using no-cors, we can't read the response
-              // Assume success and show success message
               status.textContent =
                 "Gửi thành công! Chúng tôi sẽ liên hệ lại sớm.";
               status.style.color = "#10b981";
@@ -3108,13 +3086,27 @@
               status.textContent = "Đang thử phương pháp khác...";
               status.style.color = "#f59e0b";
 
-              // Try alternative method
               setTimeout(() => {
                 tryAlternativeSubmission(data, status);
               }, 1000);
             }
           });
         }
+
+        // Close popup on outside click
+        document.addEventListener("click", function (e) {
+          const popup = document.getElementById("contactPopup");
+          if (e.target === popup) {
+            closeContactPopup();
+          }
+        });
+
+        // Close popup on escape key
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            closeContactPopup();
+          }
+        });
       });
     </script>
   </body>
