@@ -380,8 +380,8 @@ function sendEmailNotification(data, vietnamTime) {
     }
     
     // Configure email settings - UPDATE THESE
-    const recipient = 'dangdg@digifact.vn'; // Updated to your specific email
-    const ccRecipient = 'contact@digifact.vn'; // Secondary recipient
+    const recipient = 'contact@digifact.vn'; // Updated to your specific email
+    const ccRecipient = 'dangdg@digifact.vn'; // Secondary recipient
     const customerName = data.firstName || 'Khách hàng không tên';
     const subject = `🔔 Liên hệ mới từ website - ${customerName}`;
     
@@ -545,6 +545,10 @@ Chúng tôi đã nhận được thông tin liên hệ của bạn và sẽ ph�
 • MES - Hệ thống thực thi sản xuất
 • Giải pháp số hóa doanh nghiệp
 
+Bấm vào đường dẫn này để tải phần mềm dùng thử trên PC không cần cài đặt: bit.ly/4eZgy6s
+
+Mã kích hoạt phần mềm: 3EJ24S5YX46P7JGB4ZE7
+
 📞 LIÊN HỆ TRỰC TIẾP:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 • Email: contact@digifact.vn
@@ -616,12 +620,12 @@ function sendAutoReplyViaMailcow(data) {
     // Mailcow configuration - UPDATE THESE VALUES WITH YOUR ACTUAL SETTINGS
     const MAILCOW_CONFIG = {
       // Step 1: Your Mailcow server URL (replace with your actual server)
-      apiUrl: 'https://mail.digifact.vn/api/v1//send-mail', // ✅ Already correct for your domain
+      apiUrl: 'http://58.186.85.60:5000/api/send-email', // ✅ Already correct for your domain
       
       // Step 2: API key from Mailcow admin panel (REQUIRED)
-      // Go to: https://mail.digifact.vn/admin → System → Configuration → API → Read-Write Access
+      // Go to: http://58.186.85.60:5000/api/send-email → System → Configuration → API → Read-Write Access
       // Required permissions: Read domains, Read mailboxes, Send mail
-      apiKey: '9C4BCB-C1548C-3B2B3C-60968A-5535E0', // 🔑 REPLACE: Format: mcow-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      apiKey: '27fb5cc6ef85f680767733874527ebcbb67f6e657186eb59a18c9d2877e4c77d', // 🔑 REPLACE: Format: mcow-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
       
       // Step 3: Sender configuration (already correct)
       fromEmail: 'contact@digifact.vn', // ✅ This should match your mailbox
@@ -638,39 +642,39 @@ function sendAutoReplyViaMailcow(data) {
     const subject = '✅ Đã nhận được liên hệ của bạn - DigiFact';
     
     const emailBody = `
-Xin chào ${customerName},
+      Xin chào ${customerName},
 
-Cảm ơn bạn đã liên hệ với DigiFact! 🙏
+      Cảm ơn bạn đã liên hệ với DigiFact! 🙏
 
-Chúng tôi đã nhận được thông tin liên hệ của bạn và sẽ phản hồi trong vòng 24 giờ làm việc.
+      Chúng tôi đã nhận được thông tin liên hệ của bạn và sẽ phản hồi trong vòng 24 giờ làm việc.
 
-📋 THÔNG TIN BẠN ĐÃ GỬI:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-• Email: ${data.email || 'Không cung cấp'}
-• Số điện thoại: ${data.phone || 'Không cung cấp'}
-• Công ty: ${data.company || 'Không cung cấp'}
-• Nội dung: ${data.message ? data.message.substring(0, 100) + (data.message.length > 100 ? '...' : '') : 'Không có nội dung cụ thể'}
+      📋 THÔNG TIN BẠN ĐÃ GỬI:
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      • Email: ${data.email || 'Không cung cấp'}
+      • Số điện thoại: ${data.phone || 'Không cung cấp'}
+      • Công ty: ${data.company || 'Không cung cấp'}
+      • Nội dung: ${data.message ? data.message.substring(0, 100) + (data.message.length > 100 ? '...' : '') : 'Không có nội dung cụ thể'}
 
-🚀 DỊCH VỤ CỦA CHÚNG TÔI:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-• ERP - Quản lý tài nguyên doanh nghiệp
-• CRM - Quản lý quan hệ khách hàng  
-• PLM - Quản lý vòng đời sản phẩm
-• MES - Hệ thống thực thi sản xuất
-• Giải pháp số hóa doanh nghiệp
+      🚀 DỊCH VỤ CỦA CHÚNG TÔI:
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      • ERP - Quản lý tài nguyên doanh nghiệp
+      • CRM - Quản lý quan hệ khách hàng  
+      • PLM - Quản lý vòng đời sản phẩm
+      • MES - Hệ thống thực thi sản xuất
+      • Giải pháp số hóa doanh nghiệp
 
-📞 LIÊN HỆ TRỰC TIẾP:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-• Email: contact@digifact.vn
-• Hotline: +84 (0) 33 884 5579
-• Website: https://www.digifact.vn
+      📞 LIÊN HỆ TRỰC TIẾP:
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      • Email: contact@digifact.vn
+      • Hotline: +84 (0) 33 884 5579
+      • Website: https://www.digifact.vn
 
-Trân trọng,
-Đội ngũ DigiFact
+      Trân trọng,
+      Đội ngũ DigiFact
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📧 Email này được gửi từ hệ thống tự động của DigiFact
-📞 Để được hỗ trợ trực tiếp, vui lòng reply email này hoặc gọi hotline
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      📧 Email này được gửi từ hệ thống tự động của DigiFact
+      📞 Để được hỗ trợ trực tiếp, vui lòng reply email này hoặc gọi hotline
     `;
     
     // Method 1: Using Mailcow API (preferred)
@@ -701,25 +705,22 @@ Trân trọng,
  */
 function sendViaMailcowAPI(config, toEmail, subject, body) {
   const payload = {
-    from: `${config.fromName} <${config.fromEmail}>`,
     to: toEmail,
     subject: subject,
-    text: body,
     html: body.replace(/\n/g, '<br>') // Convert line breaks to HTML
   };
   
   const options = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      'X-API-Key': config.apiKey
+      'x-api-key': config.apiKey
     },
     payload: JSON.stringify(payload)
   };
   
-  console.log('Making API call to:', `${config.apiUrl}/send-mail`);
+  console.log('Making API call to:', `${config.apiUrl}`);
   
-  const response = UrlFetchApp.fetch(`${config.apiUrl}/send-mail`, options);
+  const response = UrlFetchApp.fetch(`${config.apiUrl}`, options);
   const responseCode = response.getResponseCode();
   const responseText = response.getContentText();
   
