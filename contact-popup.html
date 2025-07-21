@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Response:', result);
         
         if (res.ok && result.includes('success')) {
-          status.textContent = 'Gửi thành công! Chúng tôi sẽ liên hệ lại sớm.';
+          status.textContent = 'Gửi thành công - Kiểm tra hộp thư đến hoặc spam của bạn.';
           status.style.color = '#10b981';
           form.reset();
           setTimeout(() => {
