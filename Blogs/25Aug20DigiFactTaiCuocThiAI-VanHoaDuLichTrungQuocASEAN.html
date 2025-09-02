@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiFact tự hào tại Cuộc thi AI - Văn hóa Du lịch Trung Quốc ASEAN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #334155;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Article Header */
+        .article-header {
+            background: white;
+            padding: 60px 0;
+            text-align: center;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Article Content */
+        .article-content {
+            background: white;
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-content h2 {
+            color: #1e293b;
+            font-size: 1.8rem;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3b82f6;
+            position: relative;
+        }
+
+        .article-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .article-content h3 {
+            color: #334155;
+            font-size: 1.4rem;
+            margin: 30px 0 15px 0;
+            color: #3b82f6;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .article-content ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Contest Gallery */
+        .contest-gallery {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-title {
+            text-align: center;
+            color: #1e293b;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            text-align: center;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        /* Team Cards */
+        .team-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        .team-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .team-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 4px solid #10b981;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            color: #10b981;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        /* Social Share */
+        .social-share {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .share-title {
+            color: #1e293b;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn.facebook {
+            background: #1877f2;
+            color: white;
+        }
+
+        .share-btn.twitter {
+            background: #1da1f2;
+            color: white;
+        }
+
+        .share-btn.linkedin {
+            background: #0a66c2;
+            color: white;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-content, .contest-gallery, .team-section {
+                padding: 30px 20px;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Responsive for inline images */
+            div[style*="display: flex"] {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+
+            div[style*="display: flex"] div {
+                flex: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="../Resources/DigiFact_Logo_Noname_Type1.png" alt="DigiFact Logo">
+                    <span>DigiFact</span>
+                </div>
+                <a href="../index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Về trang chủ
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Header -->
+    <section class="article-header">
+        <div class="container">
+            <h1 class="article-title">DigiFact tự hào tại Cuộc thi AI - Văn hóa Du lịch Trung Quốc ASEAN</h1>
+            <div class="article-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>20 tháng 8, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-user"></i>
+                    <span>Đội ngũ DigiFact</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>5 phút đọc</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contest Gallery -->
+    <section class="contest-gallery">
+        <div class="container">
+            <h2 class="gallery-title">Hình ảnh tại cuộc thi</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="../Contest/2025_08/474A7676-opq3919086757.jpg" alt="Đội thi DigiFact tại cuộc thi">
+                    <div class="gallery-caption">Đội ngũ DigiFact chuẩn bị thuyết trình</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="../Contest/2025_08/474A7689-opq3919059981.jpg" alt="Buổi thuyết trình dự án">
+                    <div class="gallery-caption">Buổi thuyết trình dự án TourLink</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="../Contest/2025_08/474A7697-opq3919086466.jpg" alt="Demo sản phẩm">
+                    <div class="gallery-caption">Demo trực tiếp sản phẩm AI</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="../Contest/2025_08/474A7700-opq3919078604.jpg" alt="Trao đổi với ban giám khảo">
+                    <div class="gallery-caption">Trao đổi với ban giám khảo quốc tế</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="../Contest/2025_08/z6927763672786_dd5dabbc99a1eadcd5295ca810023862.jpg" alt="Đội thi DigiFact">
+                    <div class="gallery-caption">Toàn cảnh đội thi DigiFact</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <article class="article-content">
+        <div class="container">
+            <div class="highlight-box">
+                <p>Tháng 8 năm 2025, DigiFact đã vinh dự tham gia Cuộc thi Sáng tạo Ứng dụng AI - Văn hóa Du lịch Trung Quốc ASEAN với hai sản phẩm đột phá: TourLink và VirtualQuest, khẳng định vị thế của công ty trong lĩnh vực công nghệ AI ứng dụng.</p>
+            </div>
+
+            <h2>Giới thiệu về cuộc thi</h2>
+            <p>Cuộc thi Sáng tạo Ứng dụng AI - Văn hóa Du lịch Trung Quốc ASEAN là một sự kiện công nghệ quan trọng, thu hút sự tham gia của hàng trăm đội thi đến từ các quốc gia ASEAN và Trung Quốc. Cuộc thi nhằm mục đích thúc đẩy sự phát triển của công nghệ trí tuệ nhân tạo trong lĩnh vực văn hóa và du lịch, tạo ra những giải pháp sáng tạo phục vụ cho ngành công nghiệp du lịch khu vực.</p>
+
+            <p>Với tiêu chí đánh giá khắt khe về tính sáng tạo, khả năng ứng dụng thực tế và tác động xã hội, cuộc thi đã trở thành một sân chơi chất lượng cao cho các doanh nghiệp công nghệ và các nhà phát triển ứng dụng AI.</p>
+
+            <h2>Hai sản phẩm AI đột phá của DigiFact</h2>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <img src="../Contest/2025_08/474A7689-opq3919059981.jpg" alt="Thuyết trình sản phẩm AI" style="max-width: 100%; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);">
+                <p style="font-style: italic; color: #64748b; margin-top: 10px;">Đội ngũ DigiFact thuyết trình về các sản phẩm AI tại cuộc thi</p>
+            </div>
+
+            <h3>1. TourLink - Nền tảng kết nối du lịch thông minh</h3>
+            <p>TourLink là một nền tảng du lịch thông minh sử dụng công nghệ AI để kết nối du khách với các điểm du lịch, dịch vụ và trải nghiệm địa phương. Sản phẩm này được phát triển với các tính năng nổi bật:</p>
+            
+            <ul>
+                <li><strong>Gợi ý cá nhân hóa:</strong> Sử dụng thuật toán machine learning để phân tích sở thích và hành vi của người dùng, từ đó đưa ra những gợi ý du lịch phù hợp nhất.</li>
+                <li><strong>Hỗ trợ đa ngôn ngữ:</strong> Tích hợp công nghệ NLP (Natural Language Processing) hỗ trợ nhiều ngôn ngữ ASEAN và Trung Quốc.</li>
+                <li><strong>Thực tế ảo (AR):</strong> Ứng dụng công nghệ AR để tạo ra trải nghiệm du lịch tương tác, giúp du khách khám phá điểm đến một cách sinh động.</li>
+                <li><strong>Chatbot AI:</strong> Hỗ trợ tư vấn 24/7 với khả năng hiểu ngữ cảnh và cảm xúc của người dùng.</li>
+            </ul>
+
+            <h3>2. VirtualQuest - Trải nghiệm du lịch ảo immersive</h3>
+            <p>VirtualQuest mang đến trải nghiệm du lịch ảo hoàn toàn mới, cho phép người dùng khám phá các điểm đến văn hóa một cách sống động ngay tại nhà. Sản phẩm này có những đặc điểm nổi bật:</p>
+
+            <ul>
+                <li><strong>Môi trường 3D chân thực:</strong> Sử dụng công nghệ rendering 3D tiên tiến để tái tạo các di tích, cảnh quan với độ chi tiết cao.</li>
+                <li><strong>AI Avatar hướng dẫn:</strong> Các nhân vật ảo được trang bị AI có thể tương tác và cung cấp thông tin lịch sử, văn hóa.</li>
+                <li><strong>Tương tác đa giác quan:</strong> Kết hợp âm thanh, hình ảnh và thậm chí là mô phỏng mùi hương để tạo trải nghiệm toàn diện.</li>
+                <li><strong>Học máy thích ứng:</strong> Hệ thống học hỏi từ hành vi người dùng để điều chỉnh nội dung phù hợp.</li>
+            </ul>
+
+            <div class="quote-box">
+                <p>Chúng tôi không chỉ phát triển công nghệ, mà còn tạo ra những cầu nối văn hóa, giúp con người hiểu và yêu thương di sản của nhau hơn thông qua trải nghiệm công nghệ.</p>
+            </div>
+
+            <h2>Thành tựu và ghi nhận tại cuộc thi</h2>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <img src="../Contest/2025_08/474A7700-opq3919078604.jpg" alt="Trao đổi với ban giám khảo" style="max-width: 100%; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);">
+                <p style="font-style: italic; color: #64748b; margin-top: 10px;">Đội thi DigiFact trao đổi với ban giám khảo quốc tế</p>
+            </div>
+            
+            <p>Tại cuộc thi, cả hai sản phẩm của DigiFact đều nhận được sự đánh giá cao từ ban giám khảo quốc tế. Đặc biệt, TourLink đã được ghi nhận về khả năng ứng dụng thực tế trong việc thúc đẩy du lịch bền vững, trong khi VirtualQuest được khen ngợi về tính sáng tạo trong việc bảo tồn và quảng bá di sản văn hóa.</p>
+
+            <p>Các giám khảo đã đặc biệt ấn tượng với:</p>
+            <ul>
+                <li>Tính ứng dụng cao của các giải pháp AI trong thực tế</li>
+                <li>Khả năng mở rộng và phát triển bền vững</li>
+                <li>Tác động tích cực đến cộng đồng và xã hội</li>
+                <li>Chất lượng kỹ thuật và giao diện người dùng</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p>Sự tham gia thành công tại cuộc thi không chỉ khẳng định năng lực công nghệ của DigiFact mà còn mở ra những cơ hội hợp tác quốc tế trong lĩnh vực AI và du lịch số.</p>
+            </div>
+
+            <h2>Tác động và ý nghĩa</h2>
+            <p>Việc tham gia thành công tại cuộc thi này mang lại nhiều ý nghĩa quan trọng:</p>
+
+            <h3>Đối với DigiFact:</h3>
+            <ul>
+                <li>Khẳng định vị thế dẫn đầu trong lĩnh vực AI ứng dụng tại Việt Nam</li>
+                <li>Mở rộng mạng lưới đối tác quốc tế trong khu vực ASEAN và Trung Quốc</li>
+                <li>Tạo cơ hội phát triển sản phẩm cho thị trường quốc tế</li>
+                <li>Nâng cao uy tín và thương hiệu công ty</li>
+            </ul>
+
+            <h3>Đối với ngành công nghệ Việt Nam:</h3>
+            <ul>
+                <li>Chứng minh khả năng cạnh tranh của doanh nghiệp công nghệ Việt Nam trên trường quốc tế</li>
+                <li>Thúc đẩy sự phát triển của hệ sinh thái AI tại Việt Nam</li>
+                <li>Tạo động lực cho các startup công nghệ khác</li>
+            </ul>
+
+            <h3>Đối với ngành du lịch:</h3>
+            <ul>
+                <li>Mở ra hướng phát triển mới cho ngành du lịch số</li>
+                <li>Cung cấp công cụ mới để quảng bá văn hóa và di sản</li>
+                <li>Tạo ra trải nghiệm du lịch an toàn và bền vững</li>
+            </ul>
+
+            <h2>Kế hoạch phát triển tương lai</h2>
+            
+            <div style="display: flex; gap: 20px; margin: 30px 0; align-items: center;">
+                <div style="flex: 1;">
+                    <img src="../Contest/2025_08/474A7676-opq3919086757.jpg" alt="Đội ngũ DigiFact" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);">
+                </div>
+                <div style="flex: 1;">
+                    <img src="../Contest/2025_08/474A7697-opq3919086466.jpg" alt="Demo sản phẩm tương lai" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);">
+                </div>
+            </div>
+            <p style="text-align: center; font-style: italic; color: #64748b; margin-bottom: 20px;">Đội ngũ DigiFact với tầm nhìn và kế hoạch phát triển tương lai</p>
+            
+            <p>Sau thành công tại cuộc thi, DigiFact đang có những kế hoạch phát triển tham vọng:</p>
+
+            <h3>Ngắn hạn (6-12 tháng):</h3>
+            <ul>
+                <li>Hoàn thiện và thương mại hóa TourLink cho thị trường Việt Nam</li>
+                <li>Triển khai pilot VirtualQuest tại một số điểm du lịch trọng điểm</li>
+                <li>Xây dựng đối tác chiến lược với các công ty du lịch lớn</li>
+            </ul>
+
+            <h3>Trung hạn (1-2 năm):</h3>
+            <ul>
+                <li>Mở rộng TourLink ra các thị trường ASEAN</li>
+                <li>Phát triển phiên bản enterprise của VirtualQuest cho các bảo tàng và khu di tích</li>
+                <li>Tích hợp thêm các công nghệ mới như Web3 và Blockchain</li>
+            </ul>
+
+            <h3>Dài hạn (3-5 năm):</h3>
+            <ul>
+                <li>Trở thành nền tảng du lịch AI hàng đầu khu vực</li>
+                <li>Phát triển hệ sinh thái du lịch số toàn diện</li>
+                <li>Mở rộng ra thị trường toàn cầu</li>
+            </ul>
+
+            <div class="quote-box">
+                <p>Chúng tôi tin rằng công nghệ AI không chỉ thay đổi cách chúng ta làm việc mà còn thay đổi cách chúng ta trải nghiệm và kết nối với thế giới xung quanh.</p>
+            </div>
+
+            <h2>Lời cảm ơn và cam kết</h2>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <img src="../Contest/2025_08/z6927763672786_dd5dabbc99a1eadcd5295ca810023862.jpg" alt="Toàn cảnh đội thi DigiFact" style="max-width: 100%; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);">
+                <p style="font-style: italic; color: #64748b; margin-top: 10px;">Toàn cảnh đội thi DigiFact tại cuộc thi AI - Văn hóa Du lịch Trung Quốc ASEAN</p>
+            </div>
+            
+            <p>DigiFact xin gửi lời cảm ơn chân thành đến ban tổ chức cuộc thi đã tạo ra một sân chơi chất lượng cao cho các doanh nghiệp công nghệ. Chúng tôi cũng cảm ơn các đối tác, khách hàng và đội ngũ nhân viên đã đồng hành và hỗ trợ trong suốt quá trình phát triển sản phẩm.</p>
+
+            <p>Với tinh thần không ngừng sáng tạo và đổi mới, DigiFact cam kết sẽ tiếp tục phát triển những giải pháp công nghệ tiên tiến, góp phần thúc đẩy sự phát triển của ngành du lịch và công nghệ Việt Nam.</p>
+
+            <div class="highlight-box">
+                <p>Hành trình của chúng tôi mới chỉ bắt đầu. Với những thành tựu đạt được tại cuộc thi này, DigiFact sẽ tiếp tục hướng tới mục tiêu trở thành một trong những công ty công nghệ hàng đầu trong lĩnh vực AI và chuyển đổi số tại khu vực.</p>
+            </div>
+
+            <p>Chúng tôi mong muốn chia sẻ hành trình này với cộng đồng và mời gọi sự đồng hành của các đối tác, nhà đầu tư và khách hàng trong việc xây dựng một tương lai số tươi sáng hơn.</p>
+        </div>
+    </article>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 style="text-align: center; color: #1e293b; margin-bottom: 20px;">Đội ngũ tham gia cuộc thi</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-logo">T</div>
+                    <div class="team-name">Team TourLink</div>
+                    <div class="team-description">
+                        Đội phát triển nền tảng kết nối du lịch thông minh với công nghệ AI và AR tiên tiến.
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-logo">V</div>
+                    <div class="team-name">Team VirtualQuest</div>
+                    <div class="team-description">
+                        Đội chuyên về trải nghiệm du lịch ảo và công nghệ 3D immersive.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Share -->
+    <section class="social-share">
+        <div class="container">
+            <h3 class="share-title">Chia sẻ bài viết</h3>
+            <div class="share-buttons">
+                <a href="#" class="share-btn facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    Facebook
+                </a>
+                <a href="#" class="share-btn twitter">
+                    <i class="fab fa-twitter"></i>
+                    Twitter
+                </a>
+                <a href="#" class="share-btn linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Social sharing
+        document.querySelector('.share-btn.facebook').addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+        });
+
+        document.querySelector('.share-btn.twitter').addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank', 'width=600,height=400');
+        });
+
+        document.querySelector('.share-btn.linkedin').addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=600,height=400');
+        });
+
+        // Image lazy loading
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Gallery hover effects
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
