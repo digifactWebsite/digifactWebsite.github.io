@@ -533,6 +533,96 @@
         margin-bottom: 15px;
       }
 
+      /* Video Introduction Section */
+      .video-intro {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .video-intro::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,85.3C672,75,768,85,864,112C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+        background-size: cover;
+        pointer-events: none;
+      }
+
+      .video-container {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        background: #000;
+      }
+
+      .intro-video {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+      }
+
+      .video-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .play-button {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: var(--primary);
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .play-button:hover {
+        background: white;
+        transform: scale(1.1);
+      }
+
+      @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+      }
+
+      .video-intro .section-title h2 {
+        color: white;
+      }
+
+      .video-intro .section-title p {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
       /* News Section */
       .news {
         background-color: var(--dark);
@@ -1400,6 +1490,31 @@
         .data-particle:nth-child(3),
         .data-particle:nth-child(5) {
           display: block;
+        }
+
+        /* Video section mobile styles */
+        .video-intro {
+          padding: 60px 0;
+        }
+
+        .video-container {
+          margin: 0 20px;
+          border-radius: 15px;
+        }
+
+        .play-button {
+          width: 60px;
+          height: 60px;
+          font-size: 18px;
+        }
+
+        .video-intro .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .video-intro .section-title p {
+          font-size: 1rem;
+          padding: 0 20px;
         }
       }
 
@@ -2500,6 +2615,36 @@
       </div>
     </section>
 
+    <!-- Video Introduction Section -->
+    <section class="video-intro" id="video-intro">
+      <div class="container">
+        <div class="section-title">
+          <h2>Giới thiệu DigiFact</h2>
+          <p style="max-width: 800px; margin: 0 auto">
+            Khám phá hành trình chuyển đổi số và các giải pháp công nghệ tiên tiến của DigiFact
+          </p>
+        </div>
+        <div class="video-container">
+          <video 
+            id="introVideo" 
+            class="intro-video" 
+            muted 
+            loop 
+            playsinline
+            poster=""
+          >
+            <source src="Contest/2025_09/DigiFact Intro Video - English.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ video HTML5.
+          </video>
+          <div class="video-overlay">
+            <div class="play-button" id="playButton">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- News Section -->
     <section class="news" id="news">
       <div class="container">
@@ -3132,6 +3277,68 @@ Trang: Trang chủ
             closeContactPopup();
           }
         });
+
+        // Video Introduction Functionality
+        const video = document.getElementById('introVideo');
+        const playButton = document.getElementById('playButton');
+        const videoOverlay = document.querySelector('.video-overlay');
+        
+        if (video && playButton && videoOverlay) {
+          // Intersection Observer for auto-play when scrolled into view
+          const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                // Auto-play when 50% of video is visible
+                if (entry.intersectionRatio > 0.5) {
+                  video.play().catch(e => {
+                    console.log('Auto-play prevented by browser:', e);
+                  });
+                  videoOverlay.classList.add('hidden');
+                }
+              } else {
+                // Pause when out of view
+                video.pause();
+                videoOverlay.classList.remove('hidden');
+              }
+            });
+          }, {
+            threshold: [0.3, 0.5, 0.7]
+          });
+          
+          videoObserver.observe(video);
+          
+          // Play button click handler
+          playButton.addEventListener('click', () => {
+            video.play();
+            videoOverlay.classList.add('hidden');
+          });
+          
+          // Video click handler
+          video.addEventListener('click', () => {
+            if (video.paused) {
+              video.play();
+              videoOverlay.classList.add('hidden');
+            } else {
+              video.pause();
+              videoOverlay.classList.remove('hidden');
+            }
+          });
+          
+          // Show overlay when video ends (though it loops)
+          video.addEventListener('ended', () => {
+            videoOverlay.classList.remove('hidden');
+          });
+          
+          // Hide overlay when video starts playing
+          video.addEventListener('play', () => {
+            videoOverlay.classList.add('hidden');
+          });
+          
+          // Show overlay when video is paused
+          video.addEventListener('pause', () => {
+            videoOverlay.classList.remove('hidden');
+          });
+        }
       });
     </script>
   </body>
