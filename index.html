@@ -536,9 +536,37 @@
       /* Video Introduction Section */
       .video-intro {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 80px 0;
+        padding: 100px 0;
         position: relative;
         overflow: hidden;
+        text-align: center;
+      }
+
+      .video-intro .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .video-intro .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .video-intro .section-title h2 {
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .video-intro .section-title p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.2rem;
+        line-height: 1.6;
+        max-width: 700px;
+        margin: 0 auto;
       }
 
       .video-intro::before {
@@ -555,12 +583,19 @@
 
       .video-container {
         position: relative;
-        max-width: 900px;
+        max-width: 800px;
         margin: 0 auto;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
         background: #000;
+        transform: translateY(0);
+        transition: transform 0.3s ease;
+      }
+
+      .video-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5);
       }
 
       .intro-video {
@@ -615,12 +650,31 @@
         100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
       }
 
-      .video-intro .section-title h2 {
-        color: white;
+      /* Video behavior without controls */
+      .intro-video {
+        object-fit: cover;
+        background: #000;
+        pointer-events: auto;
       }
 
-      .video-intro .section-title p {
-        color: rgba(255, 255, 255, 0.9);
+      /* Hide video controls */
+      .intro-video::-webkit-media-controls,
+      .intro-video::-webkit-media-controls-panel,
+      .intro-video::-webkit-media-controls-play-button,
+      .intro-video::-webkit-media-controls-start-playback-button {
+        display: none !important;
+      }
+
+      .intro-video::-moz-media-controls {
+        display: none !important;
+      }
+
+      .intro-video::-ms-media-controls {
+        display: none !important;
+      }
+
+      .video-container:hover .intro-video {
+        transform: scale(1.02);
       }
 
       /* News Section */
@@ -1494,18 +1548,11 @@
 
         /* Video section mobile styles */
         .video-intro {
-          padding: 60px 0;
+          padding: 80px 0;
         }
 
-        .video-container {
-          margin: 0 20px;
-          border-radius: 15px;
-        }
-
-        .play-button {
-          width: 60px;
-          height: 60px;
-          font-size: 18px;
+        .video-intro .section-title {
+          margin-bottom: 40px;
         }
 
         .video-intro .section-title h2 {
@@ -1514,7 +1561,19 @@
 
         .video-intro .section-title p {
           font-size: 1rem;
-          padding: 0 20px;
+          padding: 0 15px;
+        }
+
+        .video-container {
+          margin: 0 15px;
+          border-radius: 15px;
+          max-width: calc(100% - 30px);
+        }
+
+        .play-button {
+          width: 60px;
+          height: 60px;
+          font-size: 18px;
         }
       }
 
@@ -2631,6 +2690,7 @@
             muted 
             loop 
             playsinline
+            autoplay
             poster=""
           >
             <source src="Contest/2025_09/DigiFact Intro Video - English.mp4" type="video/mp4">
@@ -2657,10 +2717,11 @@
         </div>
 
         <div class="news-grid">
+          <!-- Tin mới nhất: 20/08/2025 -->
           <div class="news-card">
             <div class="news-img">
               <img
-                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                src="Contest/2025_08/474A7676-opq3919086757.jpg"
                 alt="DigiFact tại cuộc thi AI Trung Quốc ASEAN"
               />
             </div>
@@ -2682,48 +2743,22 @@
             </div>
           </div>
 
+          <!-- Tin thứ 2: 20/07/2025 -->
           <div class="news-card">
             <div class="news-img">
               <img
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
-                alt="Xu hướng MES"
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                alt="Báo cáo Gartner phân tích thị trường MES"
               />
             </div>
             <div class="news-content">
-              <span class="news-date">11/07/2025</span>
-              <h3>
-                Top 5 phần mềm quản lý<br />
-                đội nhóm hiệu quả 2025
-              </h3>
+              <span class="news-date">20/07/2025</span>
+              <h3>Báo cáo Gartner: Phân tích thị trường MES 2025</h3>
               <p>
-                Khám phá những phần mềm quản lý đội nhóm hàng đầu năm 2025 giúp
-                tối ưu hóa quy trình làm việc và nâng cao hiệu suất làm việc
-                nhóm...
+                Báo cáo chuyên sâu từ Gartner về thị trường Hệ thống Thực thi Sản xuất (MES), xu hướng cloud, AI và phân tích nhà cung cấp hàng đầu.
               </p>
               <a
-                href="./Blogs/Top5PhanMemQuanLyDoiNhom2025.html"
-                class="news-link"
-                >Đọc tiếp <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="news-card">
-            <div class="news-img">
-              <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
-                alt="Chuyển đổi số nhà máy"
-              />
-            </div>
-            <div class="news-content">
-              <span class="news-date">12/07/2025</span>
-              <h3>Thảo luận: Chuyển đổi số nhà máy bắt đầu từ đâu?</h3>
-              <p>
-                Phân tích các quan điểm khác nhau về điểm khởi đầu tối ưu cho
-                hành trình chuyển đổi số trong sản xuất công nghiệp...
-              </p>
-              <a
-                href="Blogs/25Jul12TranhLuanChuyenDoiSoNhaMay.html"
+                href="Blogs/25Jul20PhanTichThiTruongMesCuaGartner.html"
                 class="news-link"
                 target="_blank"
                 >Đọc tiếp <i class="fas fa-arrow-right"></i
@@ -2731,6 +2766,7 @@
             </div>
           </div>
 
+          <!-- Tin thứ 3: 15/07/2025 -->
           <div class="news-card">
             <div class="news-img">
               <img
@@ -2754,23 +2790,52 @@
             </div>
           </div>
 
+          <!-- Tin thứ 4: 12/07/2025 -->
           <div class="news-card">
             <div class="news-img">
               <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
-                alt="Báo cáo Gartner phân tích thị trường MES"
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                alt="Chuyển đổi số nhà máy"
               />
             </div>
             <div class="news-content">
-              <span class="news-date">20/07/2025</span>
-              <h3>Báo cáo Gartner: Phân tích thị trường MES 2025</h3>
+              <span class="news-date">12/07/2025</span>
+              <h3>Thảo luận: Chuyển đổi số nhà máy bắt đầu từ đâu?</h3>
               <p>
-                Báo cáo chuyên sâu từ Gartner về thị trường Hệ thống Thực thi Sản xuất (MES), xu hướng cloud, AI và phân tích nhà cung cấp hàng đầu.
+                Phân tích các quan điểm khác nhau về điểm khởi đầu tối ưu cho
+                hành trình chuyển đổi số trong sản xuất công nghiệp...
               </p>
               <a
-                href="Blogs/25Jul20PhanTichThiTruongMesCuaGartner.html"
+                href="Blogs/25Jul12TranhLuanChuyenDoiSoNhaMay.html"
                 class="news-link"
                 target="_blank"
+                >Đọc tiếp <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Tin thứ 5: 11/07/2025 -->
+          <div class="news-card">
+            <div class="news-img">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+                alt="Xu hướng MES"
+              />
+            </div>
+            <div class="news-content">
+              <span class="news-date">11/07/2025</span>
+              <h3>
+                Top 5 phần mềm quản lý<br />
+                đội nhóm hiệu quả 2025
+              </h3>
+              <p>
+                Khám phá những phần mềm quản lý đội nhóm hàng đầu năm 2025 giúp
+                tối ưu hóa quy trình làm việc và nâng cao hiệu suất làm việc
+                nhóm...
+              </p>
+              <a
+                href="./Blogs/Top5PhanMemQuanLyDoiNhom2025.html"
+                class="news-link"
                 >Đọc tiếp <i class="fas fa-arrow-right"></i
               ></a>
             </div>
@@ -3284,21 +3349,33 @@ Trang: Trang chủ
         const videoOverlay = document.querySelector('.video-overlay');
         
         if (video && playButton && videoOverlay) {
+          let isPlaying = false;
+          
+          // Hide overlay initially since video will autoplay
+          setTimeout(() => {
+            if (!video.paused) {
+              videoOverlay.classList.add('hidden');
+              isPlaying = true;
+            }
+          }, 1000);
+          
           // Intersection Observer for auto-play when scrolled into view
           const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
               if (entry.isIntersecting) {
                 // Auto-play when 50% of video is visible
                 if (entry.intersectionRatio > 0.5) {
-                  video.play().catch(e => {
+                  video.play().then(() => {
+                    videoOverlay.classList.add('hidden');
+                    isPlaying = true;
+                  }).catch(e => {
                     console.log('Auto-play prevented by browser:', e);
+                    videoOverlay.classList.remove('hidden');
                   });
-                  videoOverlay.classList.add('hidden');
                 }
               } else {
-                // Pause when out of view
-                video.pause();
-                videoOverlay.classList.remove('hidden');
+                // Keep playing when out of view
+                // Don't pause to maintain continuous playback
               }
             });
           }, {
@@ -3309,34 +3386,52 @@ Trang: Trang chủ
           
           // Play button click handler
           playButton.addEventListener('click', () => {
-            video.play();
-            videoOverlay.classList.add('hidden');
+            video.play().then(() => {
+              videoOverlay.classList.add('hidden');
+              isPlaying = true;
+            });
           });
           
           // Video click handler
           video.addEventListener('click', () => {
             if (video.paused) {
-              video.play();
-              videoOverlay.classList.add('hidden');
+              video.play().then(() => {
+                videoOverlay.classList.add('hidden');
+                isPlaying = true;
+              });
             } else {
               video.pause();
               videoOverlay.classList.remove('hidden');
+              isPlaying = false;
             }
           });
           
-          // Show overlay when video ends (though it loops)
-          video.addEventListener('ended', () => {
-            videoOverlay.classList.remove('hidden');
-          });
-          
-          // Hide overlay when video starts playing
+          // Auto-hide overlay when video starts playing
           video.addEventListener('play', () => {
             videoOverlay.classList.add('hidden');
+            isPlaying = true;
           });
           
           // Show overlay when video is paused
           video.addEventListener('pause', () => {
             videoOverlay.classList.remove('hidden');
+            isPlaying = false;
+          });
+          
+          // Ensure video loops continuously
+          video.addEventListener('ended', () => {
+            video.currentTime = 0;
+            video.play();
+          });
+          
+          // Try to start video immediately
+          video.addEventListener('loadeddata', () => {
+            video.play().then(() => {
+              videoOverlay.classList.add('hidden');
+              isPlaying = true;
+            }).catch(e => {
+              console.log('Auto-play blocked:', e);
+            });
           });
         }
       });
