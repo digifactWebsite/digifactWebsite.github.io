@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chuẩn bị pitch deck cho vòng 1 TEC Startup - DigiFact Blog</title>
-    <base href="../../../">
-    <link rel="icon" type="image/png" href="Resources/DigiFact_Logo_Noname_Type1.png">
+    <title>DigiFact TEC Startup Program 2025 - Pitch Deck</title>
+    <link rel="icon" type="image/png" href="../../Resources/DigiFact_Logo_Noname_Type1.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -14,666 +15,541 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            overflow: hidden;
         }
 
-        /* Header */
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 20px 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        /* PDF Viewer Container */
+        .pdf-viewer-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Navigation Header */
+        .nav-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
         }
 
-        .logo {
+        .nav-left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 1rem;
         }
 
-        .logo img {
-            height: 50px;
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-back {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .back-home {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
-            padding: 12px 24px;
+            padding: 0.75rem 1.5rem;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
         }
 
-        .nav-back:hover {
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102,126,234,0.3);
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 60px 20px 40px;
-            text-align: center;
-            color: white;
-        }
-
-        .hero-meta {
+        /* PDF Canvas Container */
+        .pdf-canvas-container {
+            flex: 1;
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-
-        .hero-excerpt {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .status-badge {
-            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            margin-top: 20px;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .pdf-slide {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover:not(.disabled) {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .nav-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-info {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Page Input */
+        .page-input {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            width: 80px;
+            text-align: center;
             font-weight: 600;
         }
 
-        .status-badge i {
-            animation: spin 2s linear infinite;
+        .page-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        /* Main Content */
-        .main-content {
-            background: white;
-            margin: -20px 20px 0;
-            border-radius: 20px 20px 0 0;
-            min-height: 600px;
-            position: relative;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 40px;
-        }
-
-        .article-content h2 {
-            color: #1e3a8a;
-            font-size: 1.8rem;
-            margin: 40px 0 20px;
-            font-weight: 700;
-        }
-
-        .article-content h3 {
-            color: #1e40af;
-            font-size: 1.4rem;
-            margin: 30px 0 15px;
-            font-weight: 600;
-        }
-
-        .article-content p {
-            margin-bottom: 20px;
-            color: #374151;
-            font-size: 1.05rem;
-        }
-
-        .article-content ul, .article-content ol {
-            margin: 20px 0;
-            padding-left: 30px;
-        }
-
-        .article-content li {
-            margin-bottom: 10px;
-            color: #374151;
-        }
-
-        .pitch-deck-flow {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .slide-card {
-            background: #f8fafc;
-            border: 2px solid #e2e8f0;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .slide-card:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102,126,234,0.1);
-        }
-
-        .slide-number {
-            position: absolute;
-            top: -10px;
-            left: 15px;
-            background: #667eea;
+        /* PDF Download */
+        .pdf-download {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .slide-title {
-            color: #1e40af;
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-
-        .slide-description {
-            color: #64748b;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .progress-tracker {
-            background: linear-gradient(135deg, #f0f7ff, #e0f2fe);
-            border: 2px solid #667eea;
-            border-radius: 20px;
-            padding: 30px;
-            margin: 40px 0;
-        }
-
-        .progress-tracker h3 {
-            color: #1e40af;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .progress-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .progress-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .progress-item.completed {
-            border-color: #10b981;
-            background: #f0fdf4;
-        }
-
-        .progress-item.in-progress {
-            border-color: #f59e0b;
-            background: #fffbeb;
-        }
-
-        .progress-icon {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-
-        .progress-item.completed .progress-icon {
-            background: #10b981;
-            color: white;
-        }
-
-        .progress-item.in-progress .progress-icon {
-            background: #f59e0b;
-            color: white;
-        }
-
-        .progress-item.pending .progress-icon {
-            background: #e5e7eb;
-            color: #6b7280;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #f0f7ff, #e0f2fe);
-            border-left: 4px solid #667eea;
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .highlight-box h4 {
-            color: #1e40af;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .challenge-box {
-            background: linear-gradient(135deg, #fef2f2, #fee2e2);
-            border-left: 4px solid #ef4444;
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .challenge-box h4 {
-            color: #dc2626;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .demo-section {
-            background: #1e3a8a;
-            color: white;
-            padding: 40px;
-            border-radius: 20px;
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .demo-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        .demo-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .demo-stat {
-            text-align: center;
-        }
-
-        .demo-stat .number {
-            font-size: 2rem;
-            font-weight: 800;
-            display: block;
-            color: #60a5fa;
-        }
-
-        .demo-stat .label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .cta-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .cta-btn {
-            background: white;
-            color: #667eea;
-            padding: 12px 24px;
+            padding: 0.75rem 1.5rem;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
         }
 
-        .cta-btn:hover {
+        .pdf-download:hover {
+            background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Fullscreen Mode */
+        .fullscreen-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Error Message */
+        .error-message {
+            background: rgba(239, 68, 68, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            margin: 1rem;
+            text-align: center;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .hero-meta { flex-direction: column; gap: 10px; }
-            .container { padding: 40px 20px; }
-            .pitch-deck-flow { grid-template-columns: repeat(2, 1fr); }
-            .cta-buttons { flex-direction: column; align-items: center; }
+            .nav-header {
+                padding: 1rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .nav-left,
+            .nav-right {
+                gap: 0.5rem;
+            }
+            
+            .pdf-canvas-container {
+                padding: 1rem;
+            }
+            
+            .nav-controls {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .slide-info {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <img src="Resources/DigiFact_Logo_Noname_Type1.png" alt="DigiFact Logo">
-                <span class="logo-text">DigiFact</span>
+</head>
+<body>
+    <div class="pdf-viewer-container">
+        <!-- Navigation Header -->
+        <div class="nav-header">
+            <div class="nav-left">
+                <a href="../../index.html" class="back-home">
+                    <i class="fas fa-home"></i>
+                    <span>Trang chủ</span>
+                </a>
+                <a href="../PITCHDECK TEC STARTUP PROGRAM 2025.pdf" class="pdf-download" target="_blank">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Tải PDF</span>
+                </a>
             </div>
-            <a href="tec-startupprogram2025/blog/index.html" class="nav-back">
-                <i class="fas fa-arrow-left"></i>
-                Quay lại Blog
-            </a>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-meta">
-            <span><i class="far fa-calendar"></i> 05/09/2025</span>
-            <span><i class="fas fa-tag"></i> Giai đoạn 3</span>
-            <span><i class="far fa-clock"></i> 12 phút đọc</span>
-        </div>
-        <h1>Chuẩn bị pitch deck cho vòng 1 TEC Startup</h1>
-        <p class="hero-excerpt">Quá trình xây dựng bộ slides thuyết trình chuyên nghiệp. Từ storytelling đến data visualization và demo sản phẩm.</p>
-        <div class="status-badge">
-            <i class="fas fa-spinner"></i>
-            Đang trong quá trình hoàn thiện
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <div class="article-content">
-                <p>Sau khi hoàn thành training program, team DigiFact đã bắt đầu giai đoạn quan trọng nhất - chuẩn bị pitch deck cho vòng pitching đầu tiên. Đây là lúc chúng tôi cần transform tất cả insights và learnings từ 3 tháng qua thành một presentation compelling và convincing trong vòng 10 phút.</p>
-
-                <div class="progress-tracker">
-                    <h3><i class="fas fa-tasks"></i> Tiến độ chuẩn bị Pitch Deck</h3>
-                    <div class="progress-items">
-                        <div class="progress-item completed">
-                            <div class="progress-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div>
-                                <strong>Research & Strategy</strong><br>
-                                <small>Phân tích judges, format và tiêu chí đánh giá</small>
-                            </div>
-                        </div>
-                        <div class="progress-item completed">
-                            <div class="progress-icon">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div>
-                                <strong>Story Structure</strong><br>
-                                <small>Outline câu chuyện và message flow</small>
-                            </div>
-                        </div>
-                        <div class="progress-item in-progress">
-                            <div class="progress-icon">
-                                <i class="fas fa-edit"></i>
-                            </div>
-                            <div>
-                                <strong>Slide Design</strong><br>
-                                <small>Visual design và data visualization</small>
-                            </div>
-                        </div>
-                        <div class="progress-item pending">
-                            <div class="progress-icon">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <div>
-                                <strong>Demo Integration</strong><br>
-                                <small>Live demo và video walkthrough</small>
-                            </div>
-                        </div>
-                        <div class="progress-item pending">
-                            <div class="progress-icon">
-                                <i class="fas fa-microphone"></i>
-                            </div>
-                            <div>
-                                <strong>Presentation Practice</strong><br>
-                                <small>Rehearsal và Q&A preparation</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h2>Pitch Deck Structure - 10 Slides, 10 Minutes</h2>
-                <p>Dựa trên guideline từ TEC và advice từ mentors, chúng tôi đã structure pitch deck thành 10 slides core, mỗi slide average 1 phút presentation time:</p>
-
-                <div class="pitch-deck-flow">
-                    <div class="slide-card">
-                        <div class="slide-number">1</div>
-                        <div class="slide-title">Problem</div>
-                        <div class="slide-description">Manufacturing SMEs struggle với manual processes, leading to inefficiency và lost revenue</div>
-                    </div>
-                    
-                    <div class="slide-card">
-                        <div class="slide-number">2</div>
-                        <div class="slide-title">Solution</div>
-                        <div class="slide-description">DigiFact - Integrated MES/ERP platform để digitize và optimize manufacturing operations</div>
-                    </div>
-                    
-                    <div class="slide-card">
-                        <div class="slide-number">3</div>
-                        <div class="slide-title">Market Size</div>
-                        <div class="slide-description">$2.5B TAM trong Vietnam manufacturing software market với 12% annual growth</div>
-                    </div>
-                    
-                    <div class="slide-card">
-                        <div class="slide-number">4</div>
-                        <div class="slide-title">Product Demo</div>
-                        <div class="slide-description">Live walkthrough của DigiFact platform highlighting key features và user experience</div>
-                    </div>
-                    
-                    <div class="slide-card">
-                        <div class="slide-number">5</div>
-                        <div class="slide-title">Business Model</div>
-                        <div class="slide-description">SaaS subscription model với tiered pricing và value-based upselling strategy</div>
-                    </div>
-                    
-                    <div class="slide-card">
-                        <div class="slide-number">6</div>
-                        <div class="slide-title">Traction</div>
-                        <div class="slide-description">$25K ARR, 95% customer satisfaction, 3 paying customers với strong testimonials</div>
-                    </div>
-                    
-                    <div class="slide-card">
-                        <div class="slide-number">7</div>
-                        <div class="slide-title">Competition</div>
-                        <div class="slide-description">Competitive landscape analysis và unique differentiation factors of DigiFact</div>
-                    </div>
-                    
-                    <div class="slide-card">
-                        <div class="slide-number">8</div>
-                        <div class="slide-title">Team</div>
-                        <div class="slide-description">Founder backgrounds, core team expertise và advisory board credentials</div>
-                    </div>
-                    
-                    <div class="slide-card">
-                        <div class="slide-number">9</div>
-                        <div class="slide-title">Financial Projections</div>
-                        <div class="slide-description">3-year revenue forecast, unit economics và path to profitability timeline</div>
-                    </div>
-                    
-                    <div class="slide-card">
-                        <div class="slide-number">10</div>
-                        <div class="slide-title">Ask & Use of Funds</div>
-                        <div class="slide-description">Funding requirement, capital allocation plan và expected milestones achievement</div>
-                    </div>
-                </div>
-
-                <h2>Storytelling Strategy</h2>
-                <p>Pitch deck không chỉ là presentation về product và numbers, mà quan trọng hơn là một compelling story về vision và potential impact của DigiFact. Chúng tôi đã craft storyline theo mô hình classic "Hero's Journey":</p>
-
-                <h3>1. The Current State (Problem)</h3>
-                <p>Chúng tôi bắt đầu bằng việc paint picture của một typical manufacturing SME đang struggle với outdated processes. Thay vì generic statistics, chúng tôi use specific customer case study:</p>
-
-                <div class="highlight-box">
-                    <h4><i class="fas fa-quote-left"></i> Customer Story</h4>
-                    <p><strong>Công ty ABC Food Processing</strong> - 150 nhân viên, revenue $5M/year. Đang lose 15% efficiency do manual tracking, inventory management bằng Excel, và quality control inconsistent. Owner Mr. Đức spend 3 hours/day just reviewing reports instead of focusing on business growth.</p>
-                </div>
-
-                <h3>2. The Vision (Solution)</h3>
-                <p>DigiFact không chỉ là software, mà là complete digital transformation enabler. Chúng tôi position DigiFact như một "co-pilot" for manufacturing executives, helping them make data-driven decisions và scale operations efficiently.</p>
-
-                <h3>3. The Proof (Traction & Demo)</h3>
-                <p>Demo section là heart của presentation. Thay vì lengthy feature walkthrough, chúng tôi focus vào specific user scenarios và measurable outcomes.</p>
-
-                <div class="demo-section">
-                    <h3><i class="fas fa-desktop"></i> Demo Highlights</h3>
-                    <p>Live demonstration showing real customer data và impact metrics</p>
-                    <div class="demo-stats">
-                        <div class="demo-stat">
-                            <span class="number">25%</span>
-                            <span class="label">Efficiency Increase</span>
-                        </div>
-                        <div class="demo-stat">
-                            <span class="number">40%</span>
-                            <span class="label">Report Time Reduction</span>
-                        </div>
-                        <div class="demo-stat">
-                            <span class="number">90%</span>
-                            <span class="label">Data Accuracy</span>
-                        </div>
-                        <div class="demo-stat">
-                            <span class="number">6 months</span>
-                            <span class="label">ROI Payback Period</span>
-                        </div>
-                    </div>
-                </div>
-
-                <h2>Key Design Principles</h2>
-
-                <h3>1. Visual Clarity over Complexity</h3>
-                <p>Mỗi slide follow "one key message" principle. No bullet point overload, use powerful visuals và minimal text. Color scheme consistent với DigiFact branding - blues và gradients conveying trust và innovation.</p>
-
-                <h3>2. Data Storytelling</h3>
-                <p>Instead of raw numbers, chúng tôi use infographics và progressive disclosure để make complex data digestible. Financial projections được present as growth narrative rather than spreadsheet dump.</p>
-
-                <h3>3. Authentic Testimonials</h3>
-                <p>Include real customer photos, quotes, và video testimonials để build credibility. Judges cần see rằng DigiFact đang solve real problems for real customers.</p>
-
-                <h2>Challenges & Iterations</h2>
-
-                <div class="challenge-box">
-                    <h4><i class="fas fa-exclamation-triangle"></i> Major Challenge: Technical Complexity</h4>
-                    <p>Manufacturing software inherently complex với nhiều technical concepts. Challenge là explain value proposition without getting lost in technical details. Solution: Focus on business outcomes rather than technical features.</p>
-                </div>
-
-                <h3>Iteration 1: Too Technical</h3>
-                <p>First draft quá focus vào technical architecture và feature set. Feedback từ mentor: "Judges care about business impact, not your tech stack." Chúng tôi đã simplify và shift focus về customer value.</p>
-
-                <h3>Iteration 2: Generic Messaging</h3>
-                <p>Second version lack specific differentiation. Competitor analysis slide generic và không clear về unique positioning. Rewrite để emphasize DigiFact's manufacturing domain expertise và localization advantages.</p>
-
-                <h3>Iteration 3: Demo Flow</h3>
-                <p>Initial demo script too long và unfocused. Redesign thành 2-minute focused walkthrough highlighting 3 core capabilities: real-time monitoring, automated reporting, và predictive analytics.</p>
-
-                <div class="highlight-box">
-                    <h4><i class="fas fa-lightbulb"></i> Key Insight</h4>
-                    <p>Pitch deck effectiveness measure bằng clarity của message, không phải sophistication của slides. Simple, compelling story beats complex visuals every time.</p>
-                </div>
-
-                <h2>Next Steps & Timeline</h2>
-                <p>Với 1 tuần remaining trước pitching round, chúng tôi có clear plan để finalize preparation:</p>
-
-                <ul>
-                    <li><strong>09/06 - 09/08:</strong> Complete slide design và finalize demo script</li>
-                    <li><strong>09/09 - 09/10:</strong> Internal rehearsals với timing và Q&A practice</li>
-                    <li><strong>09/11 - 09/12:</strong> Final review với mentors và last-minute adjustments</li>
-                    <li><strong>09/13:</strong> Final presentation dress rehearsal</li>
-                    <li><strong>09/15:</strong> Pitch Day - TEC Startup Program Round 1</li>
-                </ul>
-
-                <div class="highlight-box">
-                    <h4><i class="fas fa-target"></i> Success Metrics</h4>
-                    <p>Đánh giá success của pitch presentation based on:</p>
-                    <ul>
-                        <li>Clear understanding của problem và solution từ judges</li>
-                        <li>Engaged audience participation during Q&A</li>
-                        <li>Positive feedback về traction evidence và business model</li>
-                        <li>Advance to next round với high scoring</li>
-                    </ul>
-                </div>
-
-                <h2>Final Thoughts</h2>
-                <p>Quá trình chuẩn bị pitch deck đã teaching team DigiFact rất nhiều về business clarity và communication effectiveness. Không chỉ prepare cho competition, mà còn help chúng tôi crystallize vision và strategy cho long-term growth.</p>
-
-                <p>Một điều chúng tôi learned: Great pitch deck là outcome of great business understanding, không phải great design skills. Khi bạn truly understand customers, market, và value proposition, presentation naturally becomes compelling.</p>
-
-                <div class="cta-section">
-                    <h3>Wish us luck!</h3>
-                    <p>Pitch Day đang đến gần. Theo dõi để update kết quả và experience!</p>
-                    <div class="cta-buttons">
-                        <a href="tec-startupprogram2025/blog/hau-truong-team.html" class="cta-btn">
-                            <i class="fas fa-arrow-right"></i>
-                            Bài tiếp theo: Hậu trường team
-                        </a>
-                        <a href="tec-startupprogram2025/blog/index.html" class="cta-btn">
-                            <i class="fas fa-list"></i>
-                            Tất cả bài viết
-                        </a>
-                    </div>
+            <div class="nav-right">
+                <div class="fullscreen-btn" onclick="toggleFullscreen()">
+                    <i class="fas fa-expand"></i>
                 </div>
             </div>
         </div>
-    </main>
+
+        <!-- PDF Canvas Container -->
+        <div class="pdf-canvas-container" id="pdfContainer">
+            <div class="loading" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>Đang tải PDF...</p>
+            </div>
+            <canvas id="pdfCanvas" class="pdf-slide" style="display: none;"></canvas>
+            <div id="errorMessage" class="error-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Không thể tải file PDF. Vui lòng thử lại sau.</p>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <div class="nav-btn" id="prevBtn" onclick="previousPage()">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            
+            <div class="slide-info">
+                <span>Trang</span>
+                <input type="number" id="pageInput" class="page-input" min="1" onchange="goToPage()">
+                <span>/</span>
+                <span id="totalPages">0</span>
+            </div>
+            
+            <div class="nav-btn" id="nextBtn" onclick="nextPage()">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+        let scale = 1.5;
+
+        const canvas = document.getElementById('pdfCanvas');
+        const ctx = canvas.getContext('2d');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const errorMessage = document.getElementById('errorMessage');
+        const pageInput = document.getElementById('pageInput');
+        const totalPagesSpan = document.getElementById('totalPages');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Load PDF
+        async function loadPDF() {
+            try {
+                const pdfPath = '../PITCHDECK TEC STARTUP PROGRAM 2025.pdf';
+                pdfDoc = await pdfjsLib.getDocument(pdfPath).promise;
+                
+                totalPagesSpan.textContent = pdfDoc.numPages;
+                pageInput.max = pdfDoc.numPages;
+                pageInput.value = pageNum;
+                
+                // Hide loading, show canvas
+                loadingSpinner.style.display = 'none';
+                canvas.style.display = 'block';
+                
+                // Render first page
+                renderPage(pageNum);
+                updateNavButtons();
+                
+            } catch (error) {
+                console.error('Error loading PDF:', error);
+                loadingSpinner.style.display = 'none';
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        // Render specific page
+        async function renderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+                return;
+            }
+            
+            pageRendering = true;
+            
+            try {
+                const page = await pdfDoc.getPage(num);
+                
+                // Calculate scale to fit container
+                const container = document.getElementById('pdfContainer');
+                const containerWidth = container.clientWidth - 40; // padding
+                const containerHeight = container.clientHeight - 40;
+                
+                const viewport = page.getViewport({ scale: 1 });
+                const scaleX = containerWidth / viewport.width;
+                const scaleY = containerHeight / viewport.height;
+                scale = Math.min(scaleX, scaleY, 2); // Max scale of 2
+                
+                const scaledViewport = page.getViewport({ scale: scale });
+                
+                canvas.height = scaledViewport.height;
+                canvas.width = scaledViewport.width;
+                
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: scaledViewport
+                };
+                
+                await page.render(renderContext).promise;
+                
+                pageRendering = false;
+                
+                if (pageNumPending !== null) {
+                    renderPage(pageNumPending);
+                    pageNumPending = null;
+                }
+                
+            } catch (error) {
+                console.error('Error rendering page:', error);
+                pageRendering = false;
+            }
+        }
+
+        // Navigation functions
+        function previousPage() {
+            if (pageNum <= 1) return;
+            pageNum--;
+            pageInput.value = pageNum;
+            renderPage(pageNum);
+            updateNavButtons();
+        }
+
+        function nextPage() {
+            if (pageNum >= pdfDoc.numPages) return;
+            pageNum++;
+            pageInput.value = pageNum;
+            renderPage(pageNum);
+            updateNavButtons();
+        }
+
+        function goToPage() {
+            const inputPage = parseInt(pageInput.value);
+            if (inputPage >= 1 && inputPage <= pdfDoc.numPages) {
+                pageNum = inputPage;
+                renderPage(pageNum);
+                updateNavButtons();
+            } else {
+                pageInput.value = pageNum; // Reset to current page
+            }
+        }
+
+        function updateNavButtons() {
+            prevBtn.classList.toggle('disabled', pageNum <= 1);
+            nextBtn.classList.toggle('disabled', pageNum >= pdfDoc.numPages);
+        }
+
+        // Fullscreen functionality
+        function toggleFullscreen() {
+            const elem = document.documentElement;
+            const icon = document.querySelector('.fullscreen-btn i');
+            
+            if (!document.fullscreenElement) {
+                elem.requestFullscreen().then(() => {
+                    icon.className = 'fas fa-compress';
+                });
+            } else {
+                document.exitFullscreen().then(() => {
+                    icon.className = 'fas fa-expand';
+                });
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                previousPage();
+            } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                nextPage();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                pageNum = 1;
+                pageInput.value = pageNum;
+                renderPage(pageNum);
+                updateNavButtons();
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                pageNum = pdfDoc.numPages;
+                pageInput.value = pageNum;
+                renderPage(pageNum);
+                updateNavButtons();
+            } else if (e.key === 'F11') {
+                e.preventDefault();
+                toggleFullscreen();
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        canvas.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        canvas.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextPage(); // Swipe left - next page
+                } else {
+                    previousPage(); // Swipe right - previous page
+                }
+            }
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (pdfDoc && pageNum) {
+                renderPage(pageNum);
+            }
+        });
+
+        // Handle fullscreen change
+        document.addEventListener('fullscreenchange', () => {
+            const icon = document.querySelector('.fullscreen-btn i');
+            if (document.fullscreenElement) {
+                icon.className = 'fas fa-compress';
+            } else {
+                icon.className = 'fas fa-expand';
+            }
+            
+            // Re-render page to adjust scale
+            setTimeout(() => {
+                if (pdfDoc && pageNum) {
+                    renderPage(pageNum);
+                }
+            }, 100);
+        });
+
+        // Initialize
+        loadPDF();
+    </script>
 </body>
 </html>
