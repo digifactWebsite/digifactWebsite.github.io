@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test PDF - TechXpo 2025</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .pdf-info {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .pdf-viewer {
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: #fafafa;
+        }
+        .loading {
+            color: #666;
+        }
+        .error {
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .success {
+            color: #2e7d32;
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .controls {
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+        .btn {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #1565c0;
+        }
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #pdfCanvas {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-file-pdf"></i> Test PDF Viewer - TechXpo 2025</h1>
+        
+        <div class="pdf-info">
+            <h3>PDF Information</h3>
+            <p><strong>File:</strong> TECHXPO BÁN KẾT.pdf</p>
+            <p><strong>Status:</strong> <span id="pdfStatus">Đang kiểm tra...</span></p>
+            <p><strong>Total Pages:</strong> <span id="totalPages">-</span></p>
+        </div>
+
+        <div class="controls">
+            <button class="btn" id="prevBtn" onclick="previousPage()" disabled>
+                <i class="fas fa-chevron-left"></i> Trước
+            </button>
+            <span>Trang <input type="number" id="pageInput" min="1" style="width: 60px; text-align: center;" onchange="goToPage()"> / <span id="pageCount">0</span></span>
+            <button class="btn" id="nextBtn" onclick="nextPage()" disabled>
+                Sau <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div class="pdf-viewer" id="pdfViewer">
+            <div class="loading" id="loadingMsg">
+                <i class="fas fa-spinner fa-spin"></i> Đang tải PDF...
+            </div>
+            <canvas id="pdfCanvas" style="display: none;"></canvas>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <a href="TECHXPO BÁN KẾT.pdf" target="_blank" class="btn">
+                <i class="fas fa-external-link-alt"></i> Mở PDF trong tab mới
+            </a>
+            <a href="chuanbipitchingbanket.html" class="btn" style="background: #4caf50;">
+                <i class="fas fa-presentation"></i> Xem Presentation
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Set PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+
+        const canvas = document.getElementById('pdfCanvas');
+        const ctx = canvas.getContext('2d');
+        const loadingMsg = document.getElementById('loadingMsg');
+        const pdfStatus = document.getElementById('pdfStatus');
+        const totalPages = document.getElementById('totalPages');
+        const pageCount = document.getElementById('pageCount');
+        const pageInput = document.getElementById('pageInput');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Load PDF
+        async function loadPDF() {
+            try {
+                console.log('Loading PDF: TECHXPO BÁN KẾT.pdf');
+                pdfDoc = await pdfjsLib.getDocument('TECHXPO BÁN KẾT.pdf').promise;
+                
+                console.log(`PDF loaded successfully: ${pdfDoc.numPages} pages`);
+                
+                // Update UI
+                pdfStatus.innerHTML = '<span class="success">✅ Tải thành công</span>';
+                totalPages.textContent = pdfDoc.numPages;
+                pageCount.textContent = pdfDoc.numPages;
+                pageInput.max = pdfDoc.numPages;
+                pageInput.value = pageNum;
+                
+                // Show canvas, hide loading
+                loadingMsg.style.display = 'none';
+                canvas.style.display = 'block';
+                
+                // Enable buttons
+                updateButtons();
+                
+                // Render first page
+                renderPage(pageNum);
+                
+            } catch (error) {
+                console.error('Error loading PDF:', error);
+                pdfStatus.innerHTML = '<span class="error">❌ Lỗi: ' + error.message + '</span>';
+                loadingMsg.innerHTML = '<div class="error">Không thể tải PDF. Vui lòng kiểm tra file có tồn tại.</div>';
+            }
+        }
+
+        // Render specific page
+        async function renderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+                return;
+            }
+            
+            pageRendering = true;
+            
+            try {
+                const page = await pdfDoc.getPage(num);
+                
+                // Calculate scale
+                const viewport = page.getViewport({ scale: 1 });
+                const maxWidth = 800;
+                const scale = maxWidth / viewport.width;
+                const scaledViewport = page.getViewport({ scale: scale });
+                
+                canvas.height = scaledViewport.height;
+                canvas.width = scaledViewport.width;
+                
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: scaledViewport
+                };
+                
+                await page.render(renderContext).promise;
+                
+                pageRendering = false;
+                
+                if (pageNumPending !== null) {
+                    renderPage(pageNumPending);
+                    pageNumPending = null;
+                }
+                
+                // Update page number display
+                pageInput.value = num;
+                updateButtons();
+                
+            } catch (error) {
+                console.error('Error rendering page:', error);
+                pageRendering = false;
+            }
+        }
+
+        // Navigation functions
+        function previousPage() {
+            if (pageNum <= 1) return;
+            pageNum--;
+            renderPage(pageNum);
+        }
+
+        function nextPage() {
+            if (pageNum >= pdfDoc.numPages) return;
+            pageNum++;
+            renderPage(pageNum);
+        }
+
+        function goToPage() {
+            const inputPage = parseInt(pageInput.value);
+            if (inputPage >= 1 && inputPage <= pdfDoc.numPages) {
+                pageNum = inputPage;
+                renderPage(pageNum);
+            } else {
+                pageInput.value = pageNum;
+            }
+        }
+
+        function updateButtons() {
+            prevBtn.disabled = (pageNum <= 1);
+            nextBtn.disabled = (pageNum >= pdfDoc.numPages);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousPage();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextPage();
+            }
+        });
+
+        // Initialize
+        loadPDF();
+    </script>
+</body>
+</html>

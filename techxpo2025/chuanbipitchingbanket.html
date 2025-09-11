@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiFact TechXpo 2025 - Bán Kết Presentation</title>
+    <link rel="icon" type="image/png" href="../Resources/DigiFact_Logo_Noname_Type1.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --accent: #06b6d4;
+            --success: #059669;
+            --warning: #f59e0b;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        /* PDF Viewer Container */
+        .pdf-viewer-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        /* Navigation Header */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-home {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Image Slide Container */
+        .image-slide-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .slide-image {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: white;
+            transition: all 0.3s ease;
+            object-fit: contain;
+        }
+
+        /* PDF Canvas Container */
+        .pdf-canvas-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .pdf-slide {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover:not(.disabled) {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .nav-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-info {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Page Input */
+        .page-input {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            width: 80px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .page-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* PDF Download */
+        .pdf-download {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pdf-download:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Fullscreen Mode */
+        .fullscreen-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Error Message */
+        .error-message {
+            background: rgba(239, 68, 68, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            margin: 1rem;
+            text-align: center;
+        }
+
+        /* Custom styles for TechXpo theme */
+        .techxpo-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .presentation-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-header {
+                padding: 1rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .nav-left,
+            .nav-right {
+                gap: 0.5rem;
+            }
+            
+            .pdf-canvas-container {
+                padding: 1rem;
+            }
+            
+            .nav-controls {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .slide-info {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .presentation-title {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Fallback content when PDF.js not available */
+        .fallback-slides {
+            display: none;
+            height: 100vh;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .fallback-slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            scroll-snap-align: start;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: all 0.6s ease;
+        }
+
+        .fallback-slide:nth-child(even) {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .fallback-slide:nth-child(3n) {
+            background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            text-align: center;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .slide-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .slide-content h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .slide-content p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pdf-viewer-container">
+        <!-- Navigation Header -->
+        <div class="nav-header">
+            <div class="nav-left">
+                <a href="../index.html" class="back-home">
+                    <i class="fas fa-home"></i>
+                    <span>Trang chủ</span>
+                </a>
+                <a href="mainblog.html" class="back-home">
+                    <i class="fas fa-route"></i>
+                    <span>Hành trình TechXpo</span>
+                </a>
+                <a href="TECHXPO BÁN KẾT.pdf" class="pdf-download" target="_blank">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Tải PDF</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <div class="techxpo-badge">
+                    <i class="fas fa-trophy"></i>
+                    <span class="presentation-title">TechXpo 2025 - Bán Kết</span>
+                </div>
+                <div class="fullscreen-btn" onclick="toggleFullscreen()">
+                    <i class="fas fa-expand"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Slide Container (for exported slides) -->
+        <div class="image-slide-container" id="imageContainer" style="display: none;">
+            <img id="slideImage" class="slide-image" alt="Presentation Slide">
+        </div>
+
+        <!-- PDF Canvas Container -->
+        <div class="pdf-canvas-container" id="pdfContainer">
+            <div class="loading" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>Đang tải PDF presentation...</p>
+            </div>
+            <canvas id="pdfCanvas" class="pdf-slide" style="display: none;"></canvas>
+            <div id="errorMessage" class="error-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Không thể tải file PDF. Đang chuyển sang phiên bản dự phòng...</p>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <div class="nav-btn" id="prevBtn" onclick="previousPage()">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            
+            <div class="slide-info">
+                <span>Slide</span>
+                <input type="number" id="pageInput" class="page-input" min="1" onchange="goToPage()">
+                <span>/</span>
+                <span id="totalPages">0</span>
+            </div>
+            
+            <div class="nav-btn" id="nextBtn" onclick="nextPage()">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fallback Slides -->
+    <div class="fallback-slides" id="fallbackSlides">
+        <!-- Slide 1: Cover -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h1>DigiFact</h1>
+                <h2>TechXpo 2025 - Bán Kết</h2>
+                <p>Nền tảng số hóa sản xuất thông minh</p>
+                <p>Chuyển đổi số toàn diện cho doanh nghiệp Việt Nam</p>
+            </div>
+        </section>
+
+        <!-- Slide 2: Problem -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>🏭 Thách thức hiện tại</h2>
+                <p>Doanh nghiệp sản xuất Việt Nam đang đối mặt với:</p>
+                <ul style="text-align: left; max-width: 800px; margin: 2rem auto; font-size: 1.2rem;">
+                    <li>Thiếu khả năng giám sát sản xuất real-time</li>
+                    <li>Quy trình quản lý thủ công, không hiệu quả</li>
+                    <li>Khó khăn trong tích hợp dữ liệu từ nhiều nguồn</li>
+                    <li>Chi phí vận hành cao, năng suất thấp</li>
+                    <li>Không có insights để ra quyết định nhanh</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 3: Solution -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>💡 Giải pháp DigiFact</h2>
+                <p>Nền tảng tích hợp toàn diện với 4 module chính:</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 2rem auto;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
+                        <h3>🏭 MES</h3>
+                        <p>Manufacturing Execution System - Quản lý sản xuất real-time</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
+                        <h3>📊 ERP</h3>
+                        <p>Enterprise Resource Planning - Quản lý tài nguyên tổng thể</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
+                        <h3>👥 CRM</h3>
+                        <p>Customer Relationship Management - Quản lý khách hàng</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
+                        <h3>🔧 PLM</h3>
+                        <p>Product Lifecycle Management - Quản lý vòng đời sản phẩm</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Technology -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>🚀 Công nghệ tiên tiến</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 2rem auto;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <i class="fas fa-cloud" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>Cloud Native</h3>
+                        <p>Triển khai trên AWS/Azure</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <i class="fas fa-brain" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>AI/ML</h3>
+                        <p>Dự đoán & tối ưu hóa</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <i class="fas fa-mobile-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>Mobile App</h3>
+                        <p>Quản lý mọi lúc mọi nơi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Demo -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>🎯 Demo sản phẩm</h2>
+                <p style="font-size: 1.5rem; margin-bottom: 3rem;">Trải nghiệm DigiFact Platform</p>
+                <div style="background: rgba(255,255,255,0.1); padding: 3rem; border-radius: 20px; max-width: 800px; margin: 0 auto;">
+                    <h3 style="margin-bottom: 2rem;">Tính năng chính được demo:</h3>
+                    <ul style="text-align: left; font-size: 1.2rem; line-height: 2;">
+                        <li>🏭 Dashboard giám sát sản xuất real-time</li>
+                        <li>📈 Báo cáo phân tích hiệu suất (OEE)</li>
+                        <li>🔧 Quản lý đơn hàng và lập kế hoạch</li>
+                        <li>📱 Mobile app cho công nhân</li>
+                        <li>🤖 AI dự đoán bảo trì thiết bị</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Market Opportunity -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>📊 Cơ hội thị trường</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 2rem auto;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 3rem; font-weight: 900; margin-bottom: 1rem;">$2.5B</div>
+                        <div>TAM - Total Addressable Market</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 3rem; font-weight: 900; margin-bottom: 1rem;">500K+</div>
+                        <div>Doanh nghiệp sản xuất Việt Nam</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 3rem; font-weight: 900; margin-bottom: 1rem;">15%</div>
+                        <div>Tăng trưởng hàng năm</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Competitive Advantage -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>🏆 Lợi thế cạnh tranh</h2>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; max-width: 1000px; margin: 2rem auto;">
+                    <div>
+                        <h3 style="margin-bottom: 2rem; font-size: 1.8rem;">✅ Điểm mạnh</h3>
+                        <ul style="text-align: left; font-size: 1.1rem; line-height: 1.8;">
+                            <li>Tích hợp 4-trong-1 (MES+ERP+CRM+PLM)</li>
+                            <li>Thiết kế dành riêng cho SME Việt Nam</li>
+                            <li>Chi phí thấp hơn 60% so với đối thủ</li>
+                            <li>Triển khai nhanh chóng (1-2 tuần)</li>
+                            <li>Hỗ trợ tiếng Việt 24/7</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 2rem; font-size: 1.8rem;">🎯 Khác biệt</h3>
+                        <ul style="text-align: left; font-size: 1.1rem; line-height: 1.8;">
+                            <li>No-code/Low-code customization</li>
+                            <li>AI-powered insights & automation</li>
+                            <li>Mobile-first approach</li>
+                            <li>Subscription model linh hoạt</li>
+                            <li>Strong local partnerships</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Traction & Growth -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>📈 Traction & Tăng trường</h2>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1000px; margin: 2rem auto;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">25+</div>
+                        <div>Khách hàng trả phí</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">$50K</div>
+                        <div>ARR hiện tại</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">40%</div>
+                        <div>MoM growth</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem;">95%</div>
+                        <div>Satisfaction score</div>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; font-size: 1.2rem;">Pipeline: 100+ prospects trong giai đoạn đàm phán</p>
+            </div>
+        </section>
+
+        <!-- Slide 9: Future Roadmap -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>🛣️ Roadmap 2025-2027</h2>
+                <div style="max-width: 900px; margin: 2rem auto;">
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; display: flex; align-items: center; gap: 2rem;">
+                            <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px; min-width: 120px; text-align: center; font-weight: 700;">Q4 2025</div>
+                            <div style="text-align: left;">
+                                <h4>Product Enhancement</h4>
+                                <p>Advanced AI features, IoT integration, Mobile 2.0</p>
+                            </div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; display: flex; align-items: center; gap: 2rem;">
+                            <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px; min-width: 120px; text-align: center; font-weight: 700;">2026</div>
+                            <div style="text-align: left;">
+                                <h4>Market Expansion</h4>
+                                <p>100+ customers, $1M ARR, Regional expansion</p>
+                            </div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; display: flex; align-items: center; gap: 2rem;">
+                            <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px; min-width: 120px; text-align: center; font-weight: 700;">2027</div>
+                            <div style="text-align: left;">
+                                <h4>Scale & International</h4>
+                                <p>ASEAN markets, $10M ARR, IPO preparation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Thank You -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h1>Cảm ơn TechXpo 2025!</h1>
+                <h2>🚀 DigiFact - Future of Manufacturing</h2>
+                <div style="margin: 3rem 0;">
+                    <p style="font-size: 1.5rem; margin-bottom: 1rem;">📧 contact@digifact.vn</p>
+                    <p style="font-size: 1.5rem; margin-bottom: 1rem;">🌐 www.digifact.vn</p>
+                    <p style="font-size: 1.5rem;">📱 Đặt lịch demo: +84 xxx xxx xxx</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; max-width: 600px; margin: 0 auto;">
+                    <h3>Hãy cùng chúng tôi xây dựng tương lai sản xuất thông minh!</h3>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Set PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+        let scale = 1.5;
+        let isUsingFallback = false;
+        let isUsingImages = false;
+        let totalSlides = 0;
+        let slideImages = [];
+
+        const canvas = document.getElementById('pdfCanvas');
+        const ctx = canvas.getContext('2d');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const errorMessage = document.getElementById('errorMessage');
+        const pageInput = document.getElementById('pageInput');
+        const totalPagesSpan = document.getElementById('totalPages');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideImage = document.getElementById('slideImage');
+        const imageContainer = document.getElementById('imageContainer');
+        const pdfContainer = document.getElementById('pdfContainer');
+        const fallbackSlides = document.getElementById('fallbackSlides');
+        const presentationContainer = document.querySelector('.pdf-viewer-container');
+
+        // Check for exported slide images
+        async function checkSlideImages() {
+            console.log('Checking for exported slide images...');
+            slideImages = [];
+            
+            // Try to find slide images (assuming they're named slide_01.png, slide_02.png, etc.)
+            for (let i = 1; i <= 20; i++) { // Check up to 20 slides
+                const slideName = `slides/slide_${i.toString().padStart(2, '0')}.png`;
+                try {
+                    const response = await fetch(slideName, { method: 'HEAD' });
+                    if (response.ok) {
+                        slideImages.push(slideName);
+                    } else {
+                        break; // Stop checking if image doesn't exist
+                    }
+                } catch (error) {
+                    break; // Stop checking on error
+                }
+            }
+            
+            if (slideImages.length > 0) {
+                console.log(`Found ${slideImages.length} slide images`);
+                return true;
+            }
+            return false;
+        }
+
+        // Load presentation using exported images
+        async function loadPresentationImages() {
+            console.log('Using exported slide images');
+            isUsingImages = true;
+            totalSlides = slideImages.length;
+            
+            // Hide PDF container and loading, show image container
+            pdfContainer.style.display = 'none';
+            loadingSpinner.style.display = 'none';
+            imageContainer.style.display = 'flex';
+            
+            // Set up navigation
+            totalPagesSpan.textContent = totalSlides;
+            pageInput.max = totalSlides;
+            pageInput.value = 1;
+            pageNum = 1;
+            
+            // Load first slide
+            displaySlideImage(1);
+            updateNavButtons();
+        }
+
+        // Display specific slide image
+        function displaySlideImage(slideNumber) {
+            if (slideNumber >= 1 && slideNumber <= slideImages.length) {
+                slideImage.src = slideImages[slideNumber - 1];
+                slideImage.onerror = () => {
+                    console.error(`Failed to load slide ${slideNumber}`);
+                    // Fallback to content slides if image fails
+                    loadPresentationFallback();
+                };
+            }
+        }
+
+        // Convert PowerPoint to PDF for display (fallback approach)
+        async function loadPresentationFallback() {
+            console.log('Using fallback slide content');
+            isUsingFallback = true;
+            
+            // Hide other containers and show fallback
+            pdfContainer.style.display = 'none';
+            imageContainer.style.display = 'none';
+            fallbackSlides.style.display = 'block';
+            presentationContainer.style.display = 'none';
+            
+            // Set up fallback navigation
+            const slides = document.querySelectorAll('.fallback-slide');
+            totalPagesSpan.textContent = slides.length;
+            pageInput.max = slides.length;
+            pageInput.value = 1;
+            updateNavButtons();
+            
+            // Auto-scroll to first slide
+            slides[0].scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Try to load PDF first, then images, finally fallback to content slides
+        async function loadPresentation() {
+            try {
+                // First, try to load the actual PDF file
+                const pdfPath = 'TECHXPO BÁN KẾT.pdf';
+                pdfDoc = await pdfjsLib.getDocument(pdfPath).promise;
+                
+                console.log(`PDF loaded successfully: ${pdfDoc.numPages} pages`);
+                
+                totalPagesSpan.textContent = pdfDoc.numPages;
+                pageInput.max = pdfDoc.numPages;
+                pageInput.value = pageNum;
+                
+                // Hide loading, show canvas
+                loadingSpinner.style.display = 'none';
+                canvas.style.display = 'block';
+                
+                // Render first page
+                renderPage(pageNum);
+                updateNavButtons();
+                
+            } catch (error) {
+                console.log('PDF loading failed, trying slide images...', error);
+                
+                // Second, try to check for exported slide images
+                const hasSlideImages = await checkSlideImages();
+                
+                if (hasSlideImages) {
+                    await loadPresentationImages();
+                    return;
+                }
+                
+                // Finally, fallback to content slides
+                console.log('No images found, using fallback slides');
+                loadingSpinner.style.display = 'none';
+                errorMessage.style.display = 'block';
+                
+                // Wait 2 seconds then switch to fallback
+                setTimeout(() => {
+                    loadPresentationFallback();
+                }, 2000);
+            }
+        }
+
+        // Render specific page (for PDF mode)
+        async function renderPage(num) {
+            if (isUsingFallback || pageRendering) {
+                if (!isUsingFallback) pageNumPending = num;
+                return;
+            }
+            
+            pageRendering = true;
+            
+            try {
+                const page = await pdfDoc.getPage(num);
+                
+                // Calculate scale to fit container
+                const container = document.getElementById('pdfContainer');
+                const containerWidth = container.clientWidth - 40;
+                const containerHeight = container.clientHeight - 40;
+                
+                const viewport = page.getViewport({ scale: 1 });
+                const scaleX = containerWidth / viewport.width;
+                const scaleY = containerHeight / viewport.height;
+                scale = Math.min(scaleX, scaleY, 2);
+                
+                const scaledViewport = page.getViewport({ scale: scale });
+                
+                canvas.height = scaledViewport.height;
+                canvas.width = scaledViewport.width;
+                
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: scaledViewport
+                };
+                
+                await page.render(renderContext).promise;
+                
+                pageRendering = false;
+                
+                if (pageNumPending !== null) {
+                    renderPage(pageNumPending);
+                    pageNumPending = null;
+                }
+                
+            } catch (error) {
+                console.error('Error rendering page:', error);
+                pageRendering = false;
+            }
+        }
+
+        // Navigation functions
+        function previousPage() {
+            if (isUsingImages) {
+                if (pageNum > 1) {
+                    pageNum--;
+                    pageInput.value = pageNum;
+                    displaySlideImage(pageNum);
+                    updateNavButtons();
+                }
+            } else if (isUsingFallback) {
+                const slides = document.querySelectorAll('.fallback-slide');
+                if (pageNum > 1) {
+                    pageNum--;
+                    pageInput.value = pageNum;
+                    slides[pageNum - 1].scrollIntoView({ behavior: 'smooth' });
+                    updateNavButtons();
+                }
+            } else {
+                if (pageNum <= 1) return;
+                pageNum--;
+                pageInput.value = pageNum;
+                renderPage(pageNum);
+                updateNavButtons();
+            }
+        }
+
+        function nextPage() {
+            const totalPages = isUsingImages ? slideImages.length :
+                isUsingFallback ? document.querySelectorAll('.fallback-slide').length : 
+                (pdfDoc ? pdfDoc.numPages : 0);
+                
+            if (pageNum >= totalPages) return;
+            
+            if (isUsingImages) {
+                pageNum++;
+                pageInput.value = pageNum;
+                displaySlideImage(pageNum);
+                updateNavButtons();
+            } else if (isUsingFallback) {
+                const slides = document.querySelectorAll('.fallback-slide');
+                pageNum++;
+                pageInput.value = pageNum;
+                slides[pageNum - 1].scrollIntoView({ behavior: 'smooth' });
+                updateNavButtons();
+            } else {
+                pageNum++;
+                pageInput.value = pageNum;
+                renderPage(pageNum);
+                updateNavButtons();
+            }
+        }
+
+        function goToPage() {
+            const inputPage = parseInt(pageInput.value);
+            const totalPages = isUsingImages ? slideImages.length :
+                isUsingFallback ? document.querySelectorAll('.fallback-slide').length : 
+                (pdfDoc ? pdfDoc.numPages : 0);
+                
+            if (inputPage >= 1 && inputPage <= totalPages) {
+                pageNum = inputPage;
+                
+                if (isUsingImages) {
+                    displaySlideImage(pageNum);
+                } else if (isUsingFallback) {
+                    const slides = document.querySelectorAll('.fallback-slide');
+                    slides[pageNum - 1].scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    renderPage(pageNum);
+                }
+                updateNavButtons();
+            } else {
+                pageInput.value = pageNum;
+            }
+        }
+
+        function updateNavButtons() {
+            const totalPages = isUsingImages ? slideImages.length :
+                isUsingFallback ? document.querySelectorAll('.fallback-slide').length : 
+                (pdfDoc ? pdfDoc.numPages : 0);
+                
+            prevBtn.classList.toggle('disabled', pageNum <= 1);
+            nextBtn.classList.toggle('disabled', pageNum >= totalPages);
+        }
+
+        // Fullscreen functionality
+        function toggleFullscreen() {
+            const elem = document.documentElement;
+            const icon = document.querySelector('.fullscreen-btn i');
+            
+            if (!document.fullscreenElement) {
+                elem.requestFullscreen().then(() => {
+                    icon.className = 'fas fa-compress';
+                });
+            } else {
+                document.exitFullscreen().then(() => {
+                    icon.className = 'fas fa-expand';
+                });
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                previousPage();
+            } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                nextPage();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                pageNum = 1;
+                pageInput.value = pageNum;
+                if (isUsingImages) {
+                    displaySlideImage(pageNum);
+                } else if (isUsingFallback) {
+                    document.querySelectorAll('.fallback-slide')[0].scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    renderPage(pageNum);
+                }
+                updateNavButtons();
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                const totalPages = isUsingImages ? slideImages.length :
+                    isUsingFallback ? document.querySelectorAll('.fallback-slide').length : 
+                    (pdfDoc ? pdfDoc.numPages : 0);
+                pageNum = totalPages;
+                pageInput.value = pageNum;
+                if (isUsingImages) {
+                    displaySlideImage(pageNum);
+                } else if (isUsingFallback) {
+                    document.querySelectorAll('.fallback-slide')[pageNum - 1].scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    renderPage(pageNum);
+                }
+                updateNavButtons();
+            } else if (e.key === 'F11') {
+                e.preventDefault();
+                toggleFullscreen();
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextPage();
+                } else {
+                    previousPage();
+                }
+            }
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (pdfDoc && pageNum && !isUsingFallback && !isUsingImages) {
+                renderPage(pageNum);
+            }
+        });
+
+        // Handle fullscreen change
+        document.addEventListener('fullscreenchange', () => {
+            const icon = document.querySelector('.fullscreen-btn i');
+            if (document.fullscreenElement) {
+                icon.className = 'fas fa-compress';
+            } else {
+                icon.className = 'fas fa-expand';
+            }
+            
+            // Re-render page to adjust scale
+            if (!isUsingFallback && !isUsingImages) {
+                setTimeout(() => {
+                    if (pdfDoc && pageNum) {
+                        renderPage(pageNum);
+                    }
+                }, 100);
+            }
+        });
+
+        // Initialize
+        loadPresentation();
+    </script>
+</body>
+</html>

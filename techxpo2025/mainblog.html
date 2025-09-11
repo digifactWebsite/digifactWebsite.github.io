@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiFact TechXpo 2025 - Hành Trình Đổi Mới Sáng Tạo</title>
+    <base href="../">
+    <link rel="icon" type="image/png" href="Resources/DigiFact_Logo_Noname_Type1.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+            color: #0f172a;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(59,130,246,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .nav-back {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-back:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.1"><circle cx="30" cy="30" r="2"/></g></svg>') repeat;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #3b82f6, #10b981);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+
+        .timeline-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(15,23,42,0.1);
+            border: 1px solid rgba(59,130,246,0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(15,23,42,0.15);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            right: -15px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-left-color: white;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-right-color: white;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(59,130,246,0.3);
+        }
+
+        .timeline-date {
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .timeline-desc {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .timeline-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59,130,246,0.3);
+        }
+
+        /* Blog Posts Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(15,23,42,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59,130,246,0.1);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(15,23,42,0.15);
+        }
+
+        .blog-card-header {
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .blog-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .blog-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .blog-card-date {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .blog-card-content {
+            padding: 25px;
+        }
+
+        .blog-card-desc {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .blog-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59,130,246,0.3);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            color: white;
+            padding: 60px 20px;
+            margin: 80px 0;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.1"><circle cx="30" cy="30" r="2"/></g></svg>') repeat;
+            opacity: 0.5;
+        }
+
+        .stats-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: calc(100% - 80px);
+                left: 60px !important;
+            }
+
+            .timeline-item .timeline-content::after {
+                display: none;
+            }
+
+            .timeline-icon {
+                left: 30px;
+                transform: translateX(-50%);
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="Resources/DigiFact_Logo_Noname_Type1.png" alt="DigiFact Logo">
+                <span class="logo-text">DigiFact</span>
+            </div>
+            <a href="index.html" class="nav-back">
+                <i class="fas fa-home"></i>
+                Quay lại trang chủ
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Hành Trình TechXpo 2025</h1>
+            <p>Theo dõi từng bước trong cuộc hành trình đổi mới sáng tạo của DigiFact tại TechXpo 2025 - từ giai đoạn nộp đề án đến vòng bán kết cùng VinTechTalent</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="section-title">
+                <h2>Timeline Hành Trình</h2>
+                <p>Khám phá từng cột mốc quan trọng trong hành trình TechXpo 2025</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tháng 8, 2025</div>
+                        <h3 class="timeline-title">Nộp Đề Án - Vòng Sơ Loại</h3>
+                        <p class="timeline-desc">Chuẩn bị và nộp hồ sơ đề án tham gia TechXpo 2025. Trình bày ý tưởng về nền tảng số hóa sản xuất DigiFact với các tính năng MES, ERP, CRM tích hợp.</p>
+                        <a href="techxpo2025/vongnopdean.html" class="timeline-link">
+                            <span>Đọc chi tiết</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tháng 9, 2025</div>
+                        <h3 class="timeline-title">Lọt Vào Bán Kết</h3>
+                        <p class="timeline-desc">Nhận được thông báo chính thức lọt vào vòng bán kết TechXpo 2025. Chuẩn bị cho giai đoạn demo sản phẩm và pitching trước ban giám khảo chuyên nghiệp.</p>
+                        <a href="techxpo2025/sansangchobanket.html" class="timeline-link">
+                            <span>Xem hành trình</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-presentation-screen"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sắp tới</div>
+                        <h3 class="timeline-title">Demo & Pitching</h3>
+                        <p class="timeline-desc">Trình diễn sản phẩm DigiFact trước ban giám khảo và các nhà đầu tư. Giới thiệu các tính năng công nghệ tiên tiến và kế hoạch phát triển thị trường.</p>
+                        <div class="timeline-link" style="opacity: 0.7; cursor: not-allowed;">
+                            <span>Đang chuẩn bị</span>
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sắp tới</div>
+                        <h3 class="timeline-title">Kết Quả Chung Kết</h3>
+                        <p class="timeline-desc">Công bố kết quả chung kết TechXpo 2025. Hy vọng DigiFact sẽ đạt được thành tích cao và nhận được sự đầu tư từ các quỹ uy tín.</p>
+                        <div class="timeline-link" style="opacity: 0.7; cursor: not-allowed;">
+                            <span>Chờ kết quả</span>
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-content">
+                <h2>Thành Tích TechXpo 2025</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">TOP 20</span>
+                        <span class="stat-label">Vào bán kết</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Đội tham gia</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Vòng thi</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Cam kết</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Posts Grid -->
+        <section class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-card-header">
+                    <div class="blog-card-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="blog-card-title">Hành Trình Nộp Đề Án</h3>
+                    <p class="blog-card-date">Tháng 8, 2025</p>
+                </div>
+                <div class="blog-card-content">
+                    <p class="blog-card-desc">Chi tiết quá trình chuẩn bị và nộp hồ sơ đề án TechXpo 2025. Từ việc nghiên cứu yêu cầu đến hoàn thiện ý tưởng sản phẩm.</p>
+                    <a href="techxpo2025/vongnopdean.html" class="blog-card-link">
+                        <span>Đọc thêm</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-header">
+                    <div class="blog-card-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="blog-card-title">Sẵn Sàng Cho Bán Kết</h3>
+                    <p class="blog-card-date">Tháng 9, 2025</p>
+                </div>
+                <div class="blog-card-content">
+                    <p class="blog-card-desc">Cảm xúc và chuẩn bị khi nhận được thông báo lọt vào bán kết. Kế hoạch demo sản phẩm và chiến lược pitching.</p>
+                    <a href="techxpo2025/sansangchobanket.html" class="blog-card-link">
+                        <span>Xem ngay</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
