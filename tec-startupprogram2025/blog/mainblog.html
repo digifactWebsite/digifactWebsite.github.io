@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiFact TEC Startup Program 2025 - Hành Trình Khởi Nghiệp</title>
+    <base href="../../">
+    <link rel="icon" type="image/png" href="Resources/DigiFact_Logo_Noname_Type1.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-back {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102,126,234,0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            margin: -40px 20px 0;
+            border-radius: 20px 20px 0 0;
+            min-height: 600px;
+            position: relative;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102,126,234,0.1);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(102,126,234,0.2);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .blog-phase {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.9);
+            color: #667eea;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .blog-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        .blog-content {
+            padding: 30px;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .blog-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-status {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .status-ongoing {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-upcoming {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .blog-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .blog-link:hover {
+            color: #764ba2;
+            transform: translateX(5px);
+        }
+
+        /* Timeline Progress */
+        .timeline-progress {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-progress h2 {
+            text-align: center;
+            color: #1e293b;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #e2e8f0;
+            z-index: 1;
+        }
+
+        .progress-steps::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 66%;
+            height: 4px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            z-index: 2;
+            transition: width 0.5s ease;
+        }
+
+        .progress-step {
+            background: white;
+            border: 4px solid #e2e8f0;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.completed {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .progress-step.active {
+            border-color: #764ba2;
+            background: #764ba2;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(118, 75, 162, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(118, 75, 162, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(118, 75, 162, 0); }
+        }
+
+        .step-label {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #64748b;
+            white-space: nowrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .container { padding: 40px 20px; }
+            .progress-steps { flex-direction: column; gap: 20px; }
+            .progress-steps::before,
+            .progress-steps::after { display: none; }
+            .step-label { position: static; transform: none; margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="Resources/DigiFact_Logo_Noname_Type1.png" alt="DigiFact Logo">
+                <span class="logo-text">DigiFact</span>
+            </div>
+            <a href="tec-startupprogram2025/tec-startupprogram2025.html" class="nav-back">
+                <i class="fas fa-arrow-left"></i>
+                Quay lại TEC 2025
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Hành Trình TEC Startup Program 2025</h1>
+        <p>Theo dõi từng bước trong cuộc hành trình khởi nghiệp của DigiFact tại chương trình TEC Startup Program 2025 - từ khâu chuẩn bị hồ sơ đến pitching trước ban giám khảo</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Giai đoạn hoàn thành</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">45</span>
+                <span class="stat-label">Ngày tham gia</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Bài viết chia sẻ</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Timeline Progress -->
+            <div class="timeline-progress">
+                <h2>Tiến Độ Chương Trình</h2>
+                <div class="progress-steps">
+                    <div class="progress-step completed">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="step-label">Sơ loại<br>hồ sơ</div>
+                    </div>
+                    <div class="progress-step completed">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="step-label">Training<br>TEC</div>
+                    </div>
+                    <div class="progress-step active">
+                        <i class="fas fa-presentation"></i>
+                        <div class="step-label">Chuẩn bị<br>Pitching</div>
+                    </div>
+                    <div class="progress-step">
+                        <i class="fas fa-trophy"></i>
+                        <div class="step-label">Vòng chung<br>kết</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Articles -->
+            <div class="blog-grid">
+                <!-- Article 1: Sơ loại hồ sơ -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-phase">Giai đoạn 1</div>
+                        <i class="fas fa-file-check blog-icon"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">
+                                <i class="far fa-calendar"></i>
+                                28/07/2025
+                            </span>
+                            <span class="blog-status status-completed">Hoàn thành</span>
+                        </div>
+                        <h3 class="blog-title">Vượt qua vòng sơ loại TEC Startup Program 2025</h3>
+                        <p class="blog-excerpt">Chia sẻ quá trình chuẩn bị và nộp hồ sơ tham gia TEC Startup Program 2025. Từ ý tưởng ban đầu đến business plan hoàn chỉnh...</p>
+                        <a href="tec-startupprogram2025/blog/so-loai-ho-so.html" class="blog-link">
+                            Đọc thêm <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 2: Training TEC -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-phase">Giai đoạn 2</div>
+                        <i class="fas fa-chalkboard-teacher blog-icon"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">
+                                <i class="far fa-calendar"></i>
+                                15/08/2025
+                            </span>
+                            <span class="blog-status status-completed">Hoàn thành</span>
+                        </div>
+                        <h3 class="blog-title">Kinh nghiệm từ khóa training TEC Startup Program</h3>
+                        <p class="blog-excerpt">Những bài học quý giá từ chương trình đào tạo của TEC. Từ business model canvas đến marketing strategy và financial planning...</p>
+                        <a href="tec-startupprogram2025/blog/training-tec.html" class="blog-link">
+                            Đọc thêm <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 3: Chuẩn bị Pitching -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-phase">Giai đoạn 3</div>
+                        <i class="fas fa-presentation blog-icon"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">
+                                <i class="far fa-calendar"></i>
+                                05/09/2025
+                            </span>
+                            <span class="blog-status status-ongoing">Đang thực hiện</span>
+                        </div>
+                        <h3 class="blog-title">Chuẩn bị pitch deck cho vòng 1 TEC Startup</h3>
+                        <p class="blog-excerpt">Quá trình xây dựng bộ slides thuyết trình chuyên nghiệp. Từ storytelling đến data visualization và demo sản phẩm...</p>
+                        <a href="tec-startupprogram2025/blog/chuan-bi-pitching.html" class="blog-link">
+                            Đọc thêm <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 4: Behind the scenes -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-phase">Hậu trường</div>
+                        <i class="fas fa-camera blog-icon"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">
+                                <i class="far fa-calendar"></i>
+                                10/09/2025
+                            </span>
+                            <span class="blog-status status-completed">Hoàn thành</span>
+                        </div>
+                        <h3 class="blog-title">Hậu trường team DigiFact tại TEC Startup Program</h3>
+                        <p class="blog-excerpt">Những khoảnh khắc thú vị của team DigiFact trong suốt quá trình tham gia chương trình. Từ brainstorming đến networking...</p>
+                        <a href="tec-startupprogram2025/blog/hau-truong-team.html" class="blog-link">
+                            Đọc thêm <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 5: Lessons learned -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-phase">Chia sẻ</div>
+                        <i class="fas fa-lightbulb blog-icon"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">
+                                <i class="far fa-calendar"></i>
+                                11/09/2025
+                            </span>
+                            <span class="blog-status status-ongoing">Đang cập nhật</span>
+                        </div>
+                        <h3 class="blog-title">5 bài học từ hành trình TEC Startup Program</h3>
+                        <p class="blog-excerpt">Những insight quý giá cho các startup khác muốn tham gia TEC. Từ chuẩn bị hồ sơ đến presentation skills...</p>
+                        <a href="tec-startupprogram2025/blog/bai-hoc-kinh-nghiem.html" class="blog-link">
+                            Đọc thêm <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 6: Future plans -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-phase">Tương lai</div>
+                        <i class="fas fa-rocket blog-icon"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">
+                                <i class="far fa-calendar"></i>
+                                20/09/2025
+                            </span>
+                            <span class="blog-status status-upcoming">Sắp tới</span>
+                        </div>
+                        <h3 class="blog-title">Kế hoạch phát triển DigiFact sau TEC 2025</h3>
+                        <p class="blog-excerpt">Roadmap phát triển sản phẩm và mở rộng thị trường của DigiFact dựa trên feedback từ TEC Startup Program...</p>
+                        <a href="tec-startupprogram2025/blog/ke-hoach-tuong-lai.html" class="blog-link">
+                            Đọc thêm <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

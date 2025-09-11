@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../">
+    <title>TEC Startup Program 2025 - DigiFact</title>
+    <link rel="icon" type="image/png" href="Resources/DigiFact_Logo_Noname_Type1.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Modern CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            /* Color System */
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            
+            /* Neutral Colors */
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            
+            /* Typography */
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 50%, var(--gray-50) 100%);
+            min-height: 100vh;
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-lg) var(--space-xl);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--gray-100);
+            transform: translateX(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-xl);
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: 50px;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-lg);
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: var(--font-size-lg);
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Card Component */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-2xl);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-2px);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .image-container img {
+            transform: scale(1.05);
+        }
+
+        .content-section {
+            padding: var(--space-2xl);
+        }
+
+        .content-section h2 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-lg);
+        }
+
+        .content-section h2 i {
+            color: var(--primary);
+        }
+
+        .content-section p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: var(--space-lg);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: var(--space-lg) 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 140px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--space-2xl);
+            gap: var(--space-lg);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 132px;
+            top: 20px;
+            width: 18px;
+            height: 18px;
+            background: var(--white);
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            transform: scale(1.2);
+            box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.2);
+        }
+
+        .timeline-date {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: var(--space-md) var(--space-lg);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            min-width: 120px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--white);
+            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .timeline-content h4 {
+            color: var(--gray-900);
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+
+        .timeline-content p {
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        /* Stats Grid */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .stat-box strong {
+            display: block;
+            font-size: var(--font-size-3xl);
+            font-weight: 800;
+            margin-bottom: var(--space-sm);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        .feature-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            text-align: center;
+            border: 2px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card .icon {
+            font-size: var(--font-size-3xl);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-lg);
+            display: block;
+        }
+
+        .feature-card h4 {
+            color: var(--gray-900);
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-card p {
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        /* Scroll Reveal Animation */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: var(--space-2xl);
+            color: var(--gray-500);
+            font-size: var(--font-size-sm);
+            border-top: 1px solid var(--gray-200);
+            margin-top: var(--space-3xl);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-xl) var(--space-lg);
+            }
+
+            .header h1 {
+                font-size: var(--font-size-3xl);
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: var(--space-md);
+                margin-bottom: var(--space-xl);
+                padding-left: 50px;
+            }
+
+            .timeline-item::before {
+                left: 12px;
+                top: 8px;
+            }
+
+            .timeline-date {
+                min-width: auto;
+                align-self: flex-start;
+            }
+
+            .timeline-content {
+                margin: 0;
+            }
+        }
+
+        /* Focus States for Accessibility */
+        .back-btn:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-nav">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Về trang chủ
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <section class="header">
+            <div class="header-badge">
+                <i class="fas fa-rocket"></i>
+                TEC Startup Program 2025
+            </div>
+            <h1>DigiFact tại TEC Startup Program 2025</h1>
+            <p>Hành trình phát triển và khẳng định vị thế của DigiFact trong chương trình ươm tạo startup công nghệ hàng đầu Việt Nam</p>
+        </section>
+
+        <!-- Program Overview -->
+        <div class="card scroll-reveal">
+            <div class="image-container">
+                <img src="tec-startup-program-backdrop.png" alt="TEC Startup Program 2025" />
+            </div>
+            <div class="content-section">
+                <h2><i class="fas fa-lightbulb"></i>Giới thiệu TEC Startup Program 2025</h2>
+                <p>TEC Startup Program 2025 là chương trình ươm tạo startup công nghệ lớn nhất Việt Nam, được tổ chức bởi Trung tâm Đổi mới sáng tạo và Khởi nghiệp Quốc gia (TEC). Chương trình tập trung vào việc phát triển hệ sinh thái khởi nghiệp, kết nối các startup với nhà đầu tư, doanh nghiệp lớn và các chuyên gia hàng đầu.</p>
+                
+                <div class="stats">
+                    <div class="stat-box">
+                        <strong>500+</strong>
+                        <span>Startup tham gia</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>50+</strong>
+                        <span>Nhà đầu tư</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>10 tỷ+</strong>
+                        <span>Giá trị đầu tư</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="card scroll-reveal">
+            <div class="content-section">
+                <h2><i class="fas fa-calendar-alt"></i>Lịch trình hành trình DigiFact</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Tháng 9/2025</div>
+                        <div class="timeline-content">
+                            <h4>Đăng ký và Sơ loại</h4>
+                            <p>Hoàn thiện hồ sơ tham gia với business plan chi tiết về nền tảng DigiFact cho ngành sản xuất. Vượt qua vòng sơ loại với 120/500 startup được chọn.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Tháng 10/2025</div>
+                        <div class="timeline-content">
+                            <h4>Training & Mentoring</h4>
+                            <p>3 tuần đào tạo chuyên sâu về business model, customer development, financial planning và go-to-market strategy cùng các mentor hàng đầu trong ngành công nghệ.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Tháng 11/2025</div>
+                        <div class="timeline-content">
+                            <h4>Pitching & Demo</h4>
+                            <p>Presentation trước ban giám khảo với demo trực tiếp các module MES, ERP, PLM của DigiFact. Nhận feedback từ industry experts và potential investors.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Tháng 12/2025</div>
+                        <div class="timeline-content">
+                            <h4>Demo Day & Kết quả</h4>
+                            <p>Tham gia Demo Day với sự hiện diện của toàn bộ ecosystem. Cơ hội kết nối với các nhà đầu tư tiềm năng và các đối tác chiến lược trong ngành manufacturing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DigiFact Platform -->
+        <div class="card scroll-reveal">
+            <div class="content-section">
+                <h2><i class="fas fa-cogs"></i>Nền tảng DigiFact tại TEC Program</h2>
+                <p>DigiFact mang đến giải pháp tích hợp toàn diện cho chuyển đổi số trong sản xuất, với các module được thiết kế đặc biệt cho doanh nghiệp Việt Nam.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-industry"></i></div>
+                        <h4>Manufacturing Execution System (MES)</h4>
+                        <p>Quản lý thực thi sản xuất real-time với IoT integration và quality control tự động</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-chart-line"></i></div>
+                        <h4>Enterprise Resource Planning (ERP)</h4>
+                        <p>Tích hợp quản lý toàn bộ tài nguyên doanh nghiệp từ tài chính đến nhân sự</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <h4>Customer Relationship Management (CRM)</h4>
+                        <p>Quản lý khách hàng và marketing automation với AI-powered insights</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-cube"></i></div>
+                        <h4>Product Lifecycle Management (PLM)</h4>
+                        <p>Quản lý vòng đời sản phẩm từ concept, design đến production và maintenance</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-desktop"></i></div>
+                        <h4>Shop Floor Control (SFC)</h4>
+                        <p>Điều khiển sàn sản xuất thông minh với real-time monitoring và predictive maintenance</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-chart-pie"></i></div>
+                        <h4>Business Intelligence & Analytics</h4>
+                        <p>Dashboard thông minh và predictive analytics cho decision making</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="card scroll-reveal">
+            <div class="content-section">
+                <h2><i class="fas fa-trophy"></i>Thành tựu đạt được</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-network-wired"></i></div>
+                        <h4>Mạng lưới kết nối</h4>
+                        <p>Kết nối với 100+ founders, 20+ mentors và investor ecosystem trong lĩnh vực Industry 4.0</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-brain"></i></div>
+                        <h4>Kiến thức chuyên sâu</h4>
+                        <p>Lean startup methodology, customer development, financial modeling và scaling strategies</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-rocket"></i></div>
+                        <h4>Product Evolution</h4>
+                        <p>Cải tiến sản phẩm dựa trên customer feedback và market insights từ manufacturing sector</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-handshake"></i></div>
+                        <h4>Strategic Partnerships</h4>
+                        <p>Thiết lập partnerships với startups và tech companies trong ecosystem Industry 4.0</p>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-box">
+                        <strong>25+</strong>
+                        <span>Khách hàng pilot</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>$50K</strong>
+                        <span>ARR hiện tại</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>95%</strong>
+                        <span>Customer satisfaction</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>15+</strong>
+                        <span>Tech partnerships</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Future Vision -->
+        <div class="card scroll-reveal">
+            <div class="content-section">
+                <h2><i class="fas fa-eye"></i>Tầm nhìn tương lai</h2>
+                <p>Với kinh nghiệm và connections từ TEC Startup Program 2025, DigiFact đặt mục tiêu trở thành nền tảng digital transformation hàng đầu cho ngành sản xuất Việt Nam.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">🎯</div>
+                        <h4>Mục tiêu 2026</h4>
+                        <p>Mở rộng ra 100+ doanh nghiệp sản xuất với $1M ARR và 50+ nhân sự</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🌏</div>
+                        <h4>Mở rộng quốc tế</h4>
+                        <p>Tiến vào thị trường ASEAN với focus vào manufacturing hubs tại Thailand và Malaysia</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔬</div>
+                        <h4>R&D Innovation</h4>
+                        <p>Phát triển AI/ML solutions cho predictive maintenance và autonomous manufacturing</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">💡</div>
+                        <h4>Ecosystem Building</h4>
+                        <p>Xây dựng partner ecosystem với hardware providers và system integrators</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 DigiFact. All rights reserved. | Proudly participating in TEC Startup Program 2025</p>
+    </footer>
+
+    <script>
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Initialize animations when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe all scroll-reveal elements
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add smooth hover effects
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-4px)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Stat box animations
+            document.querySelectorAll('.stat-box').forEach(box => {
+                box.addEventListener('click', () => {
+                    box.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        box.style.transform = 'translateY(-4px)';
+                    }, 150);
+                });
+            });
+        });
+
+        // Header scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const header = document.querySelector('.header-nav');
+            
+            if (currentScroll > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>

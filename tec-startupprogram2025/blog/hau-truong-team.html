@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hậu trường team DigiFact tại TEC Startup Program - DigiFact Blog</title>
+    <base href="../../../">
+    <link rel="icon" type="image/png" href="Resources/DigiFact_Logo_Noname_Type1.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-back {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102,126,234,0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 20px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-excerpt {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            margin: -20px 20px 0;
+            border-radius: 20px 20px 0 0;
+            min-height: 600px;
+            position: relative;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .article-content h2 {
+            color: #1e3a8a;
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            font-weight: 700;
+        }
+
+        .article-content h3 {
+            color: #1e40af;
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            font-weight: 600;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+            color: #374151;
+            font-size: 1.05rem;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .photo-card {
+            background: #f8fafc;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(102,126,234,0.2);
+        }
+
+        .photo-placeholder {
+            height: 180px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            opacity: 0.8;
+        }
+
+        .photo-caption {
+            padding: 15px;
+            color: #374151;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .team-moments {
+            background: linear-gradient(135deg, #f0f7ff, #e0f2fe);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .team-moments h3 {
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .moment-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .moment-emoji {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .moment-content h4 {
+            color: #1e40af;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .moment-content p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .quote-section {
+            background: #1e3a8a;
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-section::before {
+            content: '"';
+            font-size: 6rem;
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            opacity: 0.2;
+        }
+
+        .quote-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-author {
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .timeline-day {
+            border-left: 3px solid #667eea;
+            padding-left: 25px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .timeline-day::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .day-title {
+            color: #1e40af;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .day-description {
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .highlight-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .cta-btn {
+            background: white;
+            color: #667eea;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-meta { flex-direction: column; gap: 10px; }
+            .container { padding: 40px 20px; }
+            .photo-gallery { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="Resources/DigiFact_Logo_Noname_Type1.png" alt="DigiFact Logo">
+                <span class="logo-text">DigiFact</span>
+            </div>
+            <a href="tec-startupprogram2025/blog/index.html" class="nav-back">
+                <i class="fas fa-arrow-left"></i>
+                Quay lại Blog
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-meta">
+            <span><i class="far fa-calendar"></i> 10/09/2025</span>
+            <span><i class="fas fa-tag"></i> Hậu trường</span>
+            <span><i class="far fa-clock"></i> 8 phút đọc</span>
+        </div>
+        <h1>Hậu trường team DigiFact tại TEC Startup Program</h1>
+        <p class="hero-excerpt">Những khoảnh khắc thú vị của team DigiFact trong suốt quá trình tham gia chương trình. Từ brainstorming đến networking và team bonding.</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="article-content">
+                <p>TEC Startup Program không chỉ là về competition và learning, mà còn là về những kỷ niệm đáng nhớ, friendship và team spirit. Trong bài viết này, chúng tôi muốn share những khoảnh khắc behind-the-scenes của team DigiFact trong suốt 3 tháng qua.</p>
+
+                <div class="highlight-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Hours brainstorming</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">25</span>
+                        <span class="stat-label">Pizza orders</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Cups of coffee</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Unforgettable memories</span>
+                    </div>
+                </div>
+
+                <h2>Team DigiFact - The Faces Behind the Startup</h2>
+                <p>Trước khi dive vào những moments thú vị, hãy meet the team đã cùng nhau trải qua journey này:</p>
+
+                <div class="team-moments">
+                    <h3><i class="fas fa-users"></i> Meet the Team</h3>
+                    
+                    <div class="moment-item">
+                        <div class="moment-emoji">👨‍💼</div>
+                        <div class="moment-content">
+                            <h4>Nguyễn Văn A - CEO & Co-founder</h4>
+                            <p>15 năm kinh nghiệm trong manufacturing industry. Người đặt nền móng cho vision của DigiFact. Coffee addict và workaholic (theo healthy way).</p>
+                        </div>
+                    </div>
+
+                    <div class="moment-item">
+                        <div class="moment-emoji">👩‍💻</div>
+                        <div class="moment-content">
+                            <h4>Trần Thị B - CTO & Co-founder</h4>
+                            <p>Tech genius với 12 năm experience trong enterprise software development. Architect của DigiFact platform. Đam mê coding và board games.</p>
+                        </div>
+                    </div>
+
+                    <div class="moment-item">
+                        <div class="moment-emoji">🎯</div>
+                        <div class="moment-content">
+                            <h4>Lê Văn C - Head of Business Development</h4>
+                            <p>Sales và marketing expert. Người đưa DigiFact đến customers. Master of presentation và storytelling. Hobby: photography và travel.</p>
+                        </div>
+                    </div>
+
+                    <div class="moment-item">
+                        <div class="moment-emoji">📊</div>
+                        <div class="moment-content">
+                            <h4>Phạm Thị D - Head of Operations</h4>
+                            <p>Operations wizard với background trong lean manufacturing. Keep everything organized và on track. Yoga enthusiast và healthy living advocate.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Journey Timeline - Những khoảnh khắc đáng nhớ</h2>
+
+                <div class="timeline-day">
+                    <h4 class="day-title">Ngày nộp hồ sơ (28/07/2025)</h4>
+                    <p class="day-description">Last-minute panic khi discover typo trong business plan. Cả team stay up đến 3 AM để review lần cuối. Nhưng deadline stress cũng bring team closer together.</p>
+                </div>
+
+                <div class="timeline-day">
+                    <h4 class="day-title">Ngày nhận kết quả sơ loại (05/08/2025)</h4>
+                    <p class="day-description">Cả team gather around laptop để đọc email. Khi thấy "Congratulations", everyone jumped và group hug spontaneous. Office neighbors nghĩ chúng tôi win lottery! 😄</p>
+                </div>
+
+                <div class="timeline-day">
+                    <h4 class="day-title">Training Week 1 (12-16/08/2025)</h4>
+                    <p class="day-description">First impression: TEC program rất intensive! Mỗi ngày từ 8 AM đến 6 PM training, về nhà continue brainstorming đến khuya. Pizza đã become staple food.</p>
+                </div>
+
+                <div class="timeline-day">
+                    <h4 class="day-title">Breakthrough moment (22/08/2025)</h4>
+                    <p class="day-description">Trong workshop với mentor, chúng tôi realize pivot trong business model. Aha moment này change everything về approach của DigiFact. Victory dance in the office!</p>
+                </div>
+
+                <div class="timeline-day">
+                    <h4 class="day-title">Networking night (28/08/2025)</h4>
+                    <p class="day-description">TEC organize networking event with other startups. Team DigiFact practice elevator pitch với nhau trước khi đến event. Kết quả: 15 business cards và 3 potential partnerships.</p>
+                </div>
+
+                <div class="timeline-day">
+                    <h4 class="day-title">Pitch deck marathon (02-08/09/2025)</h4>
+                    <p class="day-description">1 tuần intensive để create perfect pitch deck. Office trở thành war room với whiteboards full of sketches, coffee cups everywhere, và energy drink cans "decorating" the desk.</p>
+                </div>
+
+                <h2>Memorable Moments Gallery</h2>
+                <p>Một số khoảnh khắc đáng nhớ mà camera đã capture được:</p>
+
+                <div class="photo-gallery">
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="photo-caption">
+                            Brainstorming session đến 2 AM với whiteboard full of ideas và empty pizza boxes
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="photo-caption">
+                            First meeting với potential customer - nervous nhưng excited energy của cả team
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="photo-caption">
+                            Training session với mentor - taking notes furiously và asking tons of questions
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="photo-caption">
+                            Demo preparation session - testing every feature để make sure everything works perfectly
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="photo-caption">
+                            Team dinner celebration sau khi complete training program - tired but happy faces
+                        </div>
+                    </div>
+
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-presentation"></i>
+                        </div>
+                        <div class="photo-caption">
+                            Presentation practice trong office với projector và timing với stopwatch
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Fun Facts & Inside Stories</h2>
+
+                <div class="team-moments">
+                    <h3><i class="fas fa-smile"></i> Behind-the-Scenes Stories</h3>
+                    
+                    <div class="moment-item">
+                        <div class="moment-emoji">☕</div>
+                        <div class="moment-content">
+                            <h4>Coffee Consumption Championship</h4>
+                            <p>CTO Trần Thị B hold record với 8 cups coffee trong 1 ngày training. CEO Nguyễn Văn A runner-up với 7 cups. Office coffee machine probably need maintenance after TEC program!</p>
+                        </div>
+                    </div>
+
+                    <div class="moment-item">
+                        <div class="moment-emoji">🍕</div>
+                        <div class="moment-content">
+                            <h4>Pizza Supplier Partnership</h4>
+                            <p>Local pizza shop probably think DigiFact office là their biggest customer. Delivery guy know our names và order preferences by heart. Chúng tôi đã consider họ như unofficial team member!</p>
+                        </div>
+                    </div>
+
+                    <div class="moment-item">
+                        <div class="moment-emoji">💡</div>
+                        <div class="moment-content">
+                            <h4>3 AM Eureka Moment</h4>
+                            <p>Best ideas always come at weird hours. Revenue model breakthrough happened at 3 AM khi cả team exhausted nhưng không muốn give up. Sometimes magic happens when you least expect it!</p>
+                        </div>
+                    </div>
+
+                    <div class="moment-item">
+                        <div class="moment-emoji">🎯</div>
+                        <div class="moment-content">
+                            <h4>Presentation Anxiety Support Group</h4>
+                            <p>Everyone nervous về pitch presentation. Chúng tôi create "anxiety support protocol": breathing exercises, positive affirmations, và group pep talks. Team bonding at its finest!</p>
+                        </div>
+                    </div>
+
+                    <div class="moment-item">
+                        <div class="moment-emoji">📱</div>
+                        <div class="moment-content">
+                            <h4>WhatsApp Group Explosion</h4>
+                            <p>Team WhatsApp group received 2,000+ messages trong 3 tháng. Topics range từ business ideas đến "Ai order lunch hôm nay?" Notification sound become team anthem!</p>
+                        </div>
+                    </div>
+
+                    <div class="moment-item">
+                        <div class="moment-emoji">🏆</div>
+                        <div class="moment-content">
+                            <h4>Victory Dance Traditions</h4>
+                            <p>Every small win được celebrate với ridiculous victory dance. Từ getting positive customer feedback đến fixing critical bug. Office culture: celebrate every milestone!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quote-section">
+                    <div class="quote-text">
+                        TEC Startup Program không chỉ teach us về business, mà còn about teamwork, perseverance, và importance of having fun trong journey. These 3 months shaped not just our startup, but also our friendship.
+                    </div>
+                    <div class="quote-author">- Team DigiFact</div>
+                </div>
+
+                <h2>Lessons Beyond Business</h2>
+                <p>Ngoài những business insights, TEC journey cũng teach team DigiFact về life và teamwork:</p>
+
+                <ul>
+                    <li><strong>Stress management:</strong> High-pressure situations bring out both best và worst in people. Chúng tôi learned to support each other during tough times.</li>
+                    <li><strong>Work-life balance:</strong> Even trong intense period, important để maintain health và personal relationships. Pizza không thể replace proper meals forever! 😅</li>
+                    <li><strong>Communication skills:</strong> Clear communication vital cho team efficiency. Weekly check-ins và honest feedback sessions improved collaboration significantly.</li>
+                    <li><strong>Celebrating small wins:</strong> Journey dài và challenging, nên celebrating milestones help maintain motivation và team morale.</li>
+                    <li><strong>Learning from failure:</strong> Mistakes inevitable, nhưng important thing là learn quickly và iterate. Growth mindset make all the difference.</li>
+                </ul>
+
+                <h2>Looking Forward</h2>
+                <p>Khi reflect về 3 tháng vừa qua, team DigiFact realize rằng TEC Startup Program experience đã transform not just our business approach, mà còn strengthen team chemistry và shared vision.</p>
+
+                <p>Regardless of kết quả pitching round, chúng tôi đã gain invaluable experience, lifelong connections, và memories sẽ last forever. These moments remind us why we started DigiFact và motivate us to continue building something meaningful.</p>
+
+                <div class="cta-section">
+                    <h3>Thank you for joining our journey!</h3>
+                    <p>Hope you enjoyed these behind-the-scenes glimpses. More updates coming soon!</p>
+                    <div class="cta-buttons">
+                        <a href="tec-startupprogram2025/blog/bai-hoc-kinh-nghiem.html" class="cta-btn">
+                            <i class="fas fa-arrow-right"></i>
+                            Bài tiếp theo: Bài học kinh nghiệm
+                        </a>
+                        <a href="tec-startupprogram2025/blog/index.html" class="cta-btn">
+                            <i class="fas fa-list"></i>
+                            Tất cả bài viết
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../">
+  <title>Hành trình nộp đề án TechXpo 2025 — Vòng sơ loại</title>
+  <link rel="icon" type="image/png" href="Resources/DigiFact_Logo_Noname_Type1.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      line-height: 1.6;
+      color: #0f172a;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .header-nav {
+      background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+      backdrop-filter: blur(10px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding: 1rem 0; box-shadow: 0 4px 20px rgba(59,130,246,0.3);
+    }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+    .back-btn {
+      background: linear-gradient(90deg, #2563eb, #10b981);
+      color: white; border: none; padding: 12px 25px; border-radius: 30px; font-weight: 600; cursor: pointer;
+      transition: all 0.3s ease; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .back-btn:hover { background: #2563eb; transform: translateY(-2px); }
+    .container { max-width: 900px; margin: 80px auto 0; }
+    .header { text-align: center; margin-bottom: 48px; }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 12px; padding: 12px 24px;
+      background: linear-gradient(135deg, #3b82f6, #10b981); color: white; border-radius: 50px; font-weight: 600; margin-bottom: 16px; box-shadow: 0 10px 30px -10px rgba(59,130,246,0.3);
+    }
+    .header h1 { font-size: 2.3rem; font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, #3b82f6, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .header p { font-size: 1.1rem; color: #475569; max-width: 768px; margin: 0 auto; }
+    .card { background: white; border-radius: 12px; box-shadow: 0 4px 12px -2px rgba(15,23,42,0.08); overflow: hidden; margin-bottom: 32px; }
+    .content-section { padding: 28px 32px; }
+    .content-section h2 { font-size: 1.4rem; font-weight: 700; color: #1e3a8a; margin-bottom: 18px; display:flex; align-items:center; gap:12px; padding-bottom: 10px; border-bottom: 2px solid rgba(59,130,246,0.1); }
+    .content-section p { color: #334155; margin-bottom: 14px; line-height: 1.7; }
+    pre { white-space: pre-wrap; word-wrap: break-word; background:#fbfcfe; border:1px solid #e2e8f0; border-radius:8px; padding:12px; font: 13px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace; color:#0f172a }
+    ul { padding-left: 18px; }
+    .timeline { display: grid; gap: 18px; margin: 18px 0; }
+    .timeline-item { background:#f9fafc; border:1px solid #e2e8f0; border-radius: 10px; padding: 16px; border-left: 4px solid #3b82f6; }
+    .timeline-item .date { color: #64748b; font-size: .9rem; margin-bottom: 6px; }
+    .cta { background: linear-gradient(135deg, #ff6600, #ff8533); color: #fff; text-align: center; padding: 28px 20px; border-radius: 12px; }
+    .cta a { display:inline-block; background:#fff; color:#ff6600; padding:12px 22px; font-weight:600; border-radius:10px; text-decoration:none; }
+    footer { text-align:center; font-size:14px; color:#64748b; padding: 20px; }
+    @media (max-width: 768px) { .header h1 { font-size: 1.9rem; } body { padding: 16px; } .container { margin-top: 60px; } .content-section { padding: 20px 16px; } }
+  </style>
+</head>
+<body>
+  <div class="header-nav">
+    <div class="nav-container">
+      <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Về trang chủ</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-badge"><i class="fas fa-file-alt"></i> Vòng sơ loại TechXpo 2025</div>
+      <h1>Hành trình nộp đề án TechXpo 2025 — Vòng sơ loại</h1>
+      <p>Kể lại quá trình xây dựng và nộp đề án cho vòng sơ loại cuộc thi TechXpo 2025 do VinTechTalent tổ chức.</p>
+    </div>
+
+    <div class="card">
+      <div class="content-section">
+        <h2><i class="fas fa-circle-info"></i> Tổng quan</h2>
+        <p>Bài viết tóm lược hành trình chuẩn bị hồ sơ dự thi: từ lên ý tưởng, xây dựng giải pháp, tổng hợp tài liệu kỹ thuật đến hoàn thiện hồ sơ nộp vòng sơ loại. Nội dung trích tự động từ hai tài liệu nguồn:</p>
+        <ul>
+          <li>Hồ sơ dự thi: <code>techxpo2025/Hồ sơ dự thi TechXpo 2025 - Team DigiTech.docx</code></li>
+          <li>Slide thuyết trình: <code>DigiFact - DevTool - Vietnamese Version.pptx</code></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="content-section">
+        <h2><i class="fas fa-file-word"></i> Trích đoạn từ Hồ sơ dự thi (DOCX)</h2>
+        <pre>Há»’ SÆ  Dá»° THI TECHXPO CHALLENGE 2025
+1. Bá»‘i cáº£nh vÃ  Váº¥n Ä‘á» cáº§n giáº£i quyáº¿t
+Bá»‘i cáº£nh:Bá»‘i cáº£nh thá»‹ trÆ°á»ng pháº§n má»m quáº£n lÃ½ táº¡i Viá»‡t Nam nÄƒm 2025 cho tháº¥y má»™t sá»± chuyá»ƒn dá»‹ch máº¡nh máº½ vÃ  cáº¥p thiáº¿t. CÃ¡c SME, Ä‘áº·c biá»‡t khá»‘i sáº£n xuáº¥t, Ä‘ang Ä‘á»‘i máº·t vá»›i chi phÃ­ triá»ƒn khai cÃ¡c há»‡ thá»‘ng quáº£n trá»‹ nhÆ° ERP/MES cao vÃ  thiáº¿u linh hoáº¡t. Chuyá»ƒn Ä‘á»•i sá»‘ toÃ n diá»‡n vá»›i chi phÃ­ dÆ°á»›i 50.000â€¯USD lÃ  nhu cáº§u bá»©c thiáº¿t. Äáº·c biá»‡t trong lÄ©nh vá»±c sáº£n xuáº¥t, Ã¡p lá»±c cáº¡nh tranh toÃ n cáº§u buá»™c cÃ¡c nhÃ  mÃ¡y pháº£i Ä‘áº©y nhanh quÃ¡ trÃ¬nh sá»‘ hÃ³a. Thá»‹ trÆ°á»ng pháº§n má»m quáº£n lÃ½ sáº£n xuáº¥t (MES) Ä‘ang tÄƒng trÆ°á»Ÿng nÃ³ng, tuy nhiÃªn váº«n tá»“n táº¡i "Ä‘á»™ trá»… cÃ´ng nghá»‡" lá»›n. CÃ¡c doanh nghiá»‡p váº¥p pháº£i rÃ o cáº£n vá» chi phÃ­ triá»ƒn khai cao, cÃ¡c giáº£i phÃ¡p ERP/MES truyá»n thá»‘ng quÃ¡ cá»©ng nháº¯c, khÃ³ tÃ¹y chá»‰nh vÃ  tÃ­ch há»£p sÃ¢u vá»›i há»‡ thá»‘ng sáº£n xuáº¥t (OT). Äiá»u nÃ y táº¡o ra má»™t khoáº£ng trá»‘ng lá»›n cho cÃ¡c ná»n táº£ng "táº¥t cáº£ trong má»™t", cÃ³ kháº£ nÄƒng "may Ä‘o" linh hoáº¡t, káº¿t ná»‘i liá»n máº¡ch tá»« vÄƒn phÃ²ng Ä‘áº¿n nhÃ  xÆ°á»Ÿng, giáº£i quyáº¿t bÃ i toÃ¡n hiá»‡u quáº£ tá»•ng thá»ƒ.
+TÃ­nh cáº¥p thiáº¿t:
+Sai sÃ³t vÃ  lÃ£ng phÃ­ áº©n khÃ´ng Ä‘Æ°á»£c phÃ¡t hiá»‡n ká»‹p thá»i:CÃ¡c nhÃ  mÃ¡y táº¡i Viá»‡t Nam Ä‘ang váº­n hÃ nh theo mÃ´ hÃ¬nh quáº£n lÃ½ truyá»n thá»‘ng cÃ³ thá»ƒ dáº«n tá»›i nhá»¯ng sai sÃ³t cÃ¡ nhÃ¢n hoáº·c phÃ²ng ban bá»‹ cá»‘ tÃ¬nh che giáº¥u hoáº·c cÃ³ phÃ¡t hiá»‡n nhÆ°ng khÃ´ng Ä‘Æ°á»£c giáº£i quyáº¿t dá»©t Ä‘iá»ƒm, kháº¯c phá»¥c khÃ´ng Ä‘á»ƒ tÃ¡i diá»…n.
+ThÃ¡ch thá»©c quáº£n lÃ½ vÃ  ra quyáº¿t Ä‘á»‹nh cá»§a lÃ£nh Ä‘áº¡o cáº¥p cao:NhÃ  quáº£n lÃ½ thiáº¿u má»™t cÃ´ng cá»¥ cung cáº¥p thÃ´ng tin cÃ³ tÃ­nh phá»• quÃ¡t, tá»•ng thá»ƒ hoáº¡t Ä‘á»™ng váº­n hÃ nh do Ä‘ang pháº£i sá»­ dá»¥ng nhiá»u pháº§n má»m khÃ¡c nhau cho cÃ¡c nghiá»‡p vá»¥ khÃ¡c nhau nhÆ° quáº£n lÃ½ kho, quáº£n lÃ½ nhÃ¢n sá»±, sá»• sÃ¡ch káº¿ toÃ¡n. Viá»‡c thiáº¿u má»™t há»‡ thá»‘ng táº­p trung dáº«n Ä‘áº¿n dá»¯ liá»‡u phÃ¢n máº£nh, khÃ³ truy xuáº¥t, ra quyáº¿t Ä‘á»‹nh cháº­m trá»…, vÃ  lÃ£ng phÃ­ nguá»“n lá»±c.
+Há»‡ thá»‘ng váº­n hÃ nh phÃ¢n tÃ¡n á»Ÿ nhiá»u Ä‘á»‹a Ä‘iá»ƒm:Viá»‡c thiáº¿u má»™t há»‡ thá»‘ng táº­p trung dáº«n Ä‘áº¿n dá»¯ liá»‡u phÃ¢n máº£nh, khÃ³ truy xuáº¥t, ra quyáº¿t Ä‘á»‹nh cháº­m trá»…, vÃ  lÃ£ng phÃ­ nguá»“n lá»±c.
+Äá»‘i tÆ°á»£ng chá»‹u áº£nh hÆ°á»Ÿng trá»±c tiáº¿p:
+Ban lÃ£nh Ä‘áº¡o nhÃ  mÃ¡y: Thiáº¿u táº§m nhÃ¬n tá»•ng thá»ƒ, khÃ³ khÄƒn trong ra quyáº¿t Ä‘á»‹nh chiáº¿n lÆ°á»£c.
+Quáº£n lÃ½ sáº£n xuáº¥t/váº­n hÃ nh: KhÃ³ kiá»ƒm soÃ¡t quy trÃ¬nh, cháº¥t lÆ°á»£ng, hiá»‡u suáº¥t thá»i gian thá»±c.
+Ká»¹ sÆ°/CÃ´ng nhÃ¢n:LÃ£ng phÃ­ thá»i gian vÃ o cÃ¡c tÃ¡c vá»¥ thá»§ cÃ´ng, thiáº¿u thÃ´ng tin há»— trá»£ cÃ´ng viá»‡c, khÃ³ khÄƒn trong Ä‘Ã o táº¡o vÃ  pháº£n á»©ng sá»± cá»‘.
+2. PhÃ¢n tÃ­ch thá»‹ trÆ°á»ng vÃ  cÃ¡c giáº£i phÃ¡p hiá»‡n cÃ³
+2.1. PhÃ¢n tÃ­ch quy mÃ´ thá»‹ trÆ°á»ng
+2.2. PhÃ¢n tÃ­ch Ä‘á»‘i thá»§ cáº¡nh tranh
+3. Giáº£i phÃ¡p Ä‘á» xuáº¥t vÃ  cÃ¡c tÃ­nh nÄƒng cá»‘t lÃµi
+3.1.MÃ´ táº£ giáº£i phÃ¡p:
+TÃªn giáº£i phÃ¡p: DigiFact Virtual Workspace.
+Tá»•ng quan:DigiFact cung cáº¥p má»™t há»‡ sinh thÃ¡i chuyá»ƒn Ä‘á»•i sá»‘ toÃ n diá»‡n vÃ  cÃ³ kháº£ nÄƒng tÃ¹y biáº¿n cao cho nhÃ  mÃ¡y sáº£n xuáº¥t, tá»« khÃ´ng gian lÃ m viá»‡c sá»‘, quáº£n lÃ½ váº­n hÃ nh, Ä‘áº¿n Ä‘iá»u khiá»ƒn sáº£n xuáº¥t vÃ  Ä‘Ã o táº¡o thá»±c táº¿ áº£o. ChÃºng tÃ´i cung cáº¥p má»™t giáº£i phÃ¡p may Ä‘o tá»‘i Æ°u chi phÃ­ nhá» DigiFact Framework, Ä‘áº£m báº£o thá»i gian triá»ƒn khai nhanh chÃ³ng vÃ  giáº£m thiá»ƒu rá»§i ro.
+Giáº£i quyáº¿t váº¥n Ä‘á»: Äá»“ng hÃ nh cÃ¹ng doanh nghiá»‡p, nhÃ  mÃ¡y xÃ¢y dá»±ng â€œÄ‘á»™i Ä‘áº·c nhiá»‡mâ€ chuyá»ƒn Ä‘á»•i sá»‘, lÃ  tá»•ng hÃ²a cá»§a cÃ¡c nhÃ¢n sá»± ká»³ cá»±u, náº¯m rÃµ quy trÃ¬nh lÃ m viá»‡c, cÃ¹ng vá»›i Ä‘á»™i ngÅ© BA, Dev, chuyÃªn gia quáº£n lÃ½ dá»± Ã¡n chuyá»ƒn Ä‘á»•i sá»‘ cÅ©ng nhÆ° cÃ¡c giÃ¡o sÆ°, sinh viÃªn tÃ i nÄƒng tá»« cÃ¡c trÆ°á»ng Ä‘áº¡i há»c giÃºp luÃ´n luÃ´n cÃ³ Ä‘Æ°á»£c giáº£i phÃ¡p sÃ¡ng táº¡o, cÃ´ng nghá»‡ cáº­p nháº­t. KhÃ´ng nhÆ° tháº¿, chÃºng tÃ´i cÃ²n táº­p trung vÃ o chuáº©n hÃ³a quy trÃ¬nh triá»ƒn khai 10 bÆ°á»›c bÃ i báº£n, khÃ¡c biá»‡t so vá»›i quy trÃ¬nh phÃ¡t triá»ƒn pháº§n má»m truyá»n thá»‘ng, chÃºng tÃ´i khÃ´ng chá»‰ cung cáº¥p pháº§n má»m mÃ  cÃ²n tham gia tÆ° váº¥n nghiá»‡p vá»¥, Ä‘á»“ng hÃ nh cÃ¹ng doanh nghiá»‡p:
+Chuáº©n hÃ³a quy trÃ¬nh: PhÃ¢n tÃ­ch nghiá»‡p vá»¥ chi tiáº¿t Ä‘á»ƒ váº½ láº¡i luá»“ng váº­n hÃ nh, loáº¡i bá» cÃ¡c bÆ°á»›c thá»«a vÃ  tá»‘i Æ°u hÃ³a hiá»‡u suáº¥t.
+Cung cáº¥p cÃ¡i nhÃ¬n tá»•ng thá»ƒ: Káº¿t ná»‘i dá»¯ liá»‡u tá»« sáº£n xuáº¥t tá»›i vÄƒn phÃ²ng, giÃºp ban lÃ£nh Ä‘áº¡o cÃ³ thÃ´ng tin tá»©c thá»i Ä‘á»ƒ ra quyáº¿t Ä‘á»‹nh.
+NÃ¢ng cao nÄƒng lá»±c sá»‘ cho nhÃ¢n sá»±: Giáº£i phÃ¡p Ä‘Æ°á»£c cung cáº¥p vá»›i giao diá»‡n, cÃ¡ch thá»©c tÆ°Æ¡ng tÃ¡c Ä‘Æ¡n giáº£n, dá»… sá»­ dá»¥ng káº¿t há»£p vá»›i Ä‘Ã o táº¡o trá»±c tiáº¿p vÃ  cung cáº¥p tÃ i liá»‡u hÆ°á»›ng dáº«n chi tiáº¿t, Ä‘áº£m báº£o Ä‘á»™i ngÅ© cá»§a báº¡n lÃ m chá»§ cÃ´ng nghá»‡ má»›i.
+Káº¿t quáº£ lÃ  má»™t há»‡ thá»‘ng váº­n hÃ nh liá»n máº¡ch, giÃºp nhÃ  mÃ¡y tÄƒng hiá»‡u suáº¥t, giáº£m chi phÃ­ vÃ  nÃ¢ng cao nÄƒng lá»±c cáº¡nh tranh má»™t cÃ¡ch bá»n vá»¯ng.
+3.2.CÃ¡c tÃ­nh nÄƒng cá»‘t lÃµi:
+Ná»n táº£ng Quáº£n trá»‹ Váº­n hÃ nh NhÃ  mÃ¡y (Real-time Interactive Dashboard): Tá»•ng há»£p vÃ  hiá»ƒn thá»‹ dá»¯ liá»‡u sáº£n xuáº¥t (OEE, tiáº¿n Ä‘á»™, cháº¥t lÆ°á»£ng) tá»« cáº¥p trÆ°á»ng (SCADA/PLC) theo thá»i gian thá»±c trÃªn mÃ n hÃ¬nh tÆ°Æ¡ng tÃ¡c, giÃºp ban lÃ£nh Ä‘áº¡o vÃ  quáº£n lÃ½ ra quyáº¿t Ä‘á»‹nh nhanh chÃ³ng. Bao gá»“m cÃ¡c biá»ƒu Ä‘á»“, chá»‰ sá»‘ hiá»‡u suáº¥t chÃ­nh (KPIs) tÃ¹y chá»‰nh.
+Há»‡ thá»‘ng Quáº£n lÃ½ Quy trÃ¬nh &amp; PhÃª duyá»‡t TÃ¹y biáº¿n (DigiProcess &amp; Workflow Engine): Sá»‘ hÃ³a vÃ  tá»± Ä‘á»™ng hÃ³a cÃ¡c quy trÃ¬nh nghiá»‡p vá»¥ phá»©c táº¡p cá»§a nhÃ  mÃ¡y (duyá»‡t mua hÃ ng, báº£o trÃ¬, xá»­ lÃ½ sá»± cá»‘ - escalation process, quáº£n lÃ½ cháº¥t lÆ°á»£ng). Há»— trá»£ phÃ¢n quyá»n cháº·t cháº½ vÃ  theo dÃµi lá»‹ch sá»­ chá»‰nh sá»­a vá»›i Ä‘á»‹nh danh FaceID, Ä‘áº£m báº£o minh báº¡ch vÃ  kiá»ƒm soÃ¡t.
+MÃ´i trÆ°á»ng LÃ m viá»‡c Há»£p tÃ¡c &amp; Quáº£n lÃ½ TÃ i liá»‡u sá»‘ (DigiWorkspace &amp; DMS): Cung cáº¥p khÃ´ng gian lÃ m viá»‡c áº£o chung cho toÃ n bá»™ nhÃ¢n sá»±, quáº£n lÃ½ táº­p trung tÃ i liá»‡u vÄƒn báº£n, file thiáº¿t káº¿ ká»¹ thuáº­t, lá»‹ch sá»­ phiÃªn báº£n, cÃ¹ng vá»›i cÃ¡c kÃªnh giao tiáº¿p ná»™i bá»™ (chat, gá»i Ä‘iá»‡n) vÃ  quáº£n lÃ½ dá»± Ã¡n tÃ­ch há»£p.
+Há»‡ thá»‘ng ÄÃ o táº¡o &amp; MÃ´ phá»ng Thá»±c táº¿ áº£o (VR/AR Training &amp; Simulation): Cho phÃ©p Ä‘Ã o táº¡o nghiá»‡p vá»¥, hÆ°á»›ng dáº«n váº­n hÃ nh mÃ¡y mÃ³c phá»©c táº¡p, vÃ  luyá»‡n táº­p pháº£n á»©ng sá»± cá»‘ trong mÃ´i trÆ°á»ng áº£o hÃ³a báº±ng kÃ­nh VR/AR. GiÃºp nhÃ¢n sá»± tiáº¿p thu kiáº¿n thá»©c nhanh hÆ¡n, an toÃ n hÆ¡n vÃ  hiá»‡u quáº£ hÆ¡n trÆ°á»›c khi thá»±c hÃ nh trÃªn dÃ¢y chuyá»n tháº­t.
+TÃ­ch há»£p Sáº£n xuáº¥t - Váº­n hÃ nh (Production-to-Operation Integration): Kháº£ nÄƒng káº¿t ná»‘i sÃ¢u vá»›i cÃ¡c há»‡ thá»‘ng OT hiá»‡n cÃ³ cá»§a nhÃ  mÃ¡y (PLC, SCADA, cáº£m biáº¿n) Ä‘á»ƒ thu tháº­p dá»¯ liá»‡u tá»± Ä‘á»™ng, Ä‘iá»u khiá»ƒn giÃ¡m sÃ¡t tá»« xa vÃ  cung cáº¥p thÃ´ng tin hai chiá»u giá»¯a táº§ng sáº£n xuáº¥t vÃ  táº§ng quáº£n lÃ½.
+4. TÃ­nh Ä‘á»•i má»›i vÃ  Lá»£i tháº¿ cáº¡nh tranh
+5. Äá»‘i tÆ°á»£ng ngÆ°á»i dÃ¹ng má»¥c tiÃªu vÃ  Tiá»m nÄƒng tÃ¡c Ä‘á»™ng
+5.1.NgÆ°á»i dÃ¹ng má»¥c tiÃªu:
+5.2. Tiá»m nÄƒng tÃ¡c Ä‘á»™ng:
+6. MÃ´ táº£ vá» chi tiáº¿t vá» sáº£n pháº©m: Ká»¹ thuáº­t vÃ  tÃ­nh kháº£ thi
+A. CÃ´ng nghá»‡ sá»­ dá»¥ng
+B. Kiáº¿n trÃºc há»‡ thá»‘ng vÃ  phÆ°Æ¡ng Ã¡n ká»¹ thuáº­t triá»ƒn khai
+C. YÃªu cáº§u vá» dá»¯ liá»‡u vÃ  háº¡ táº§ng triá»ƒn khai:
+Sáº£n pháº©m sá»­ dá»¥ng máº«u (MVP): BTC cÃ³ thá»ƒ truy cáº­p trang web https://www.digifact.vn/
+Báº¥m nÃºt â€œDÃ¹ng thá»­ ngayâ€ Ä‘á»ƒ táº£i vá» sáº£n pháº©m máº«u dÃ¹ng thá»­ cá»§a Ä‘á»™i nhÃ³m chÃºng em.</pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="content-section">
+        <h2><i class="fas fa-file-powerpoint"></i> Trích đoạn từ Slide thuyết trình (PPTX)</h2>
+        <pre>CHUYá»‚N Äá»”I Sá» TOÃ€N DIá»†N  QUáº¢N TRá»Š - Váº¬N HÃ€NH  DOANH NGHIá»†P Tá»° HÃ€O Sáº¢N PHáº¨M TRÃ TUá»† VIá»†T NAM Pháº§n má»m tÃ¹y biáº¿n theo nhu cáº§u, vÄƒn hÃ³a doanh nghiá»‡p  TÃ­ch há»£p táº¥t cáº£ cÃ´ng cá»¥ vÄƒn phÃ²ng, sáº£n xuáº¥t vÃ  bÃ¡o cÃ¡o  trÃªn cÃ¹ng má»™t há»‡ sinh thÃ¡i vá»›i má»i ná»n táº£ng thiáº¿t bá»‹ www.digifact.vn
+CÃ´ng cá»¥ phÃ¡t triá»ƒn pháº§n má»m PHáº¦N Má»€M QUáº¢N TRá»Š Váº¬N HÃ€NH TÃ­ch há»£p API giao tiáº¿p Sá»­ dá»¥ng ngay cÃ¡c API káº¿t ná»‘i vá»›i Ä‘a dáº¡ng ná»n táº£ng pháº§n cá»©ng vÃ  pháº§n má»m Äa dáº¡ng mÃ´ Ä‘un vÃ  bÃ¡o cÃ¡o máº«u ChÃºng tÃ´i Ä‘Ã£ phÃ¡t triá»ƒn thÃ nh nhiá»u mÃ´ Ä‘un chá»©c nÄƒng vÃ  bÃ¡o cÃ¡o máº«u dá»±a trÃªn nhu cáº§u thá»±c táº¿ cá»§a ngÆ°á»i dÃ¹ng cuá»‘i DIGIFACT
+PHÃT TRIá»‚N á»¨NG Dá»¤NG  ÄA Ná»€N Táº¢NG Vá»šI DUY NHáº¤T Má»˜T CODE BASE CÃ”NG Cá»¤ PHÃT TRIá»‚N á»¨NG Dá»¤NG DI Äá»˜NG
+RESOURCES TRANSPORT PLANNING UPDATES MARKETING CHAT DASHBOARD DEMAND MANAGEMENT Má»˜T MÃƒ NGUá»’N - ÄA Ná»€N Táº¢NG  PHáº¦N Má»€M QUáº¢N TRá»Š Váº¬N HÃ€NH WINDOWS - MAC OS -  ANDROID - iOS Chá»‰ vá»›i duy nháº¥t má»™t mÃ£ nguá»“n cÃ³ thá»ƒ  táº¡o ra á»©ng dá»¥ng native  trÃªn Ä‘Ãºng thiáº¿t bá»‹ má»¥c tiÃªu giÃºp Ä‘áº£m báº£o hiá»‡u nÄƒng  vá»›i nguá»“n lá»±c phÃ¡t triá»ƒn tá»‘i thiá»ƒu
+www.digifact.vn/techxpo2025 THANK YOU!
+Xá»¬ LÃ HÃŒNH áº¢NH Cháº¥m cÃ´ng khuÃ´n máº·t Kiá»ƒm kÃª kho OCR nháº­p liá»‡u nhanh Kiá»ƒm tra cháº¥t lÆ°á»£ng sáº£n pháº©m AR/VR MÃ´ phá»ng Digital Twin ÄÃ o táº¡o báº±ng thá»±c táº¿ áº£o Tham quan tá»« xa Theo dÃµi thao tÃ¡c lÃ m viá»‡c MICROSOFT OFFICE TÃ­ch há»£p trong á»©ng dá»¥ng Äá»“ng bá»™ ngay láº­p tá»©c Theo dÃµi lá»‹ch sá»­ chá»‰nh sá»­a KhÃ´ng cáº§n máº¡ng internet 02 03 01 QUáº¢N LÃ/CHIA Sáºº TÃ€I LIá»†U Quáº£n lÃ½ phÃ¢n quyá»n phiÃªn báº£n TÃ¬m kiáº¿m má»i nÆ¡i Há»i Ä‘Ã¡p báº±ng chatbot Tá»± Ä‘á»™ng sao lÆ°u vÃ  mÃ£ hÃ³a 04 á»¨NG Dá»¤NG CÃ”NG NGHá»† THá»°C TIá»„N QUáº¢N TRá»Š VÃ€ Váº¬N HÃ€NH HIá»†U QUáº¢
+Vá» chÃºng tÃ´i www.digifact.vn Táº§m nhÃ¬n Trá»Ÿ thÃ nh nhÃ  cung cáº¥p dá»‹ch vá»¥ cÃ´ng nghá»‡ trong quáº£n trá»‹ vÃ  váº­n hÃ nh doanh nghiá»‡p Ä‘Æ°á»£c tin dÃ¹ng táº¡i Viá»‡t Nam vÃ  cÃ¡c quá»‘c gia ÄÃ´ng Nam Ã Sá»© má»‡nh Äá»“ng hÃ nh cÃ¹ng doanh nghiá»‡p trong á»©ng dá»¥ng cÃ´ng nghá»‡ tiÃªn tiáº¿n vÃ o thá»±c tiá»…n hoáº¡t Ä‘á»™ng sáº£n xuáº¥t kinh doanh má»™t cÃ¡ch hiá»ƒu quáº£, thá»±c táº¿ DigiFact lÃ  táº­p thá»ƒ cÃ¡c nhÃ¢n sá»± ká»³ cá»±u lÃ m cá»‘ váº¥n vÄƒn hÃ³a  quáº£n trá»‹ váº­n hÃ nh trong doanh nghiá»‡p, chuyÃªn gia chuyá»ƒn Ä‘á»•i sá»‘,  ká»¹ sÆ° pháº§n má»m vÃ  cÃ¡c giáº£ng viÃªn, sinh viÃªn tÃ i nÄƒng
+Má»¨C Äá»˜ TRÆ¯á»žNG THÃ€NH Sá» Táº I VIá»†T NAM GIAI ÄOáº N SÆ  KHá»žI Sá»­ dá»¥ng cÃ¡ch thá»©c, cÃ´ng cá»¥ quáº£n lÃ½ báº±ng sá»• sÃ¡ch truyá»n thá»‘ng hoáº·c tá»‡p tin Excel hoáº·c ná»n táº£ng nháº¯n tin phá»• thÃ´ng 63% GIAI ÄOáº N CHUYá»‚N MÃŒNH Sá»­ dá»¥ng nhiá»u pháº§n má»m riÃªng biá»‡t cho tá»«ng chá»©c nÄƒng, phÃ²ng ban nghiá»‡p vá»¥, thiáº¿u tÃ­nh liÃªn káº¿t liÃªn thÃ´ng 30%  GIAI ÄOáº N TRÆ¯á»žNG THÃ€NH ÄÃ£ cÃ³ há»‡ thá»‘ng tá»± Ä‘á»™ng hÃ³a quáº£n trá»‹ váº­n hÃ nh xuyÃªn suá»‘t, hiá»‡u quáº£ 7% Theo thá»‘ng kÃª cá»§a Bá»™ CÃ´ng ThÆ°Æ¡ng nÄƒm 2024, vá» thá»±c tráº¡ng má»©c Ä‘á»™ trÆ°á»Ÿng thÃ nh sá»‘ cá»§a cÃ¡c doanh nghiá»‡p  Theo thá»‘ng kÃª cá»§a Bá»™ CÃ´ng ThÆ°Æ¡ng nÄƒm 2024, vá» thá»±c tráº¡ng má»©c Ä‘á»™ trÆ°á»Ÿng thÃ nh sá»‘ cá»§a cÃ¡c doanh nghiá»‡p 
+China Tourlink Unified Digital Platform  for Travel Agency and Travellerâ€™s Experience Improvement Explore now
+01 Introduction Greeting Agenda Page 2 of 14 02 Problems &amp; Solutions Pain Point Solutions Extend Features 03 Business Segment Potential Market Business Plan Finance TOURLINK
+Page 3 of 14 Greeting www.digifact.vn Vision To lead in innovation and  deliver unmatched customer satisfaction. Mission Providing high-quality, effective solutions  to help clients adapt, grow, and succeed  in a rapidly changing world. DigiFact empowers businesses to thrive in the  Industry 4.0 era with expert digital transformation solutions and a dedicated professional team. TOURLINK
+Thiáº¿u  Ä‘á»‹nh hÆ°á»›ng rÃµ rÃ ng Doanh nghiá»‡p loay hoay khÃ´ng biáº¿t báº¯t Ä‘áº§u tá»« Ä‘Ã¢u, thá»±c hiá»‡n nhÆ° tháº¿ nÃ o Thá»© nháº¥t ÄIá»‚M NGHáº¼N
+Page 4 of 14 High Operating Costs Overworked staff, duplicate entry, errors, slow response times,  no automated marketing / customer services Fragmented Workflow Jumping between tools: spreadsheets, phone calls, WeChat, email. Limited Real-Time  Visibility Unexpected changes, weather, traffic, and  legal updates Lack of data-driven  decision making Lacks cost transparency, demand forecasting, tour optimization and guide assessment Travel Agency Operating PAINT POINTS TOURLINK
+Issue ticket auto-reminder, Omnichannel auto-translate chatbot and Marketing automation  Custom Automated Workflow Page 5 of 14 ACCOMADATION TRANSPORT BOOKING UPDATES MARKETING CHAT DASHBOARD DEMAND MANAGEMENT Manage bookings, transportation, accomadation, resources, automation reminder Unified Workspace for Agencies Predict demands, Optimize tours, Realtime Dashboard on expenses and Tour guide ratings  AI-Powered Operational Insights 01 03 Crawled intelligence on China legal updates; instant weather, traffic, and itinerary change alerts Real-Time Updates 02 04 SOLUTIONS TOURLINK
+Integrated Travel Apps Page 6 of 14 Pre-loaded must-have apps (WeChat, Baidu, transport booking, translation, map, VPN) with auto-translation and AI chatbot assistant support Cultural &amp; Legal Guidance Local etiquette, customs, and lawsâ€”taboos, dress codes, restricted items, permits TOURLINK Traveler Experience Experience &amp; Discovery Meta-search, UGC rewards personal rating compliant app/mini-program links Smart Forms &amp; Vault Local encrypted vault for passports, visas, NFC/QR tickets, insurance, e-sign, to autofill immigration/tax payback forms with verification filter and version control EXTEND SOLUTIONS
+WHY NOW? Page 7 of 14 TOURLINK Tourism is Seasonal &amp; Volatile Tourism demand peaks during holidays and summer â†’ agencies face overload during high seasons. The number of travel agencies is growing rapidly â†’ leading to fierce competition. To re tain customers, agencies must: Create more diverse and unique travel experiences. Manage an ever-increasing volume of data, services, and bookings. Rising Competition Among Agencies Governments are actively promoting tourism cooperation, visa facilitation, and digital infrastructure  In 2024, nearly 35 million cross-border ASEANâ€“China trips, almost 100% raise compared to 2023. Government Push   ASEANâ€“China Tourism Boom New  Traveler Profile Travelers are younger and seek diverse experiences (self-driving tours, themed tours, adventure trips). Willing to spend MORE for travelling. This requires agencies to provide more tour options â†’ increasing their operational workload. Young, Digital-Native,  Experience-Hungry Booming tourism brings HUGE workloads. Agencies must digitalize NOW to survive and win. POTENTIAL MARKET
+Háº¡n cháº¿ vá»  kinh phÃ­ vÃ  nhÃ¢n sá»± Äáº§u tÆ° cho chuyá»ƒn Ä‘á»•i sá»‘ máº¡ng láº¡i  giÃ¡ trá»‹ dÃ i háº¡n  nhÆ°ng doanh nghiá»‡p thÆ°á»ng táº­p trung dÃ²ng tiá»n chi cho nhá»¯ng nhu cáº§u á»Ÿ hiá»‡n táº¡i  Thá»© hai ÄIá»‚M NGHáº¼N
+Váº­n hÃ nh há»‡ thá»‘ng phá»©c táº¡p, rá»i ráº¡c Pháº§n má»m vÃ  pháº§n cá»©ng hiá»‡n cÃ³ Ä‘Ã£ lá»—i thá»i nhÆ°ng ráº¥t khÃ³ Ä‘á»ƒ thay tháº¿ Ä‘á»“ng loáº¡t Thá»© ba ÄIá»‚M NGHáº¼N
+Chuyá»ƒn Ä‘á»•i sá»‘ Ä‘Ã²i há»i khá»‘i lÆ°á»£ng cÃ´ng viá»‡c ráº¥t lá»›n cá»§a  toÃ n bá»™ nhÃ¢n sá»± ÄIá»‚M NGHáº¼N
+CHÃšNG TÃ”I ÄÃƒ Táº O RA Má»˜T Ná»€N Táº¢NG TÃCH Há»¢P Táº¤T Cáº¢ TRONG Má»˜T Äá»‚ GIáº¢I QUYáº¾T NHá»®NG KHÃ“ KHÄ‚N ÄÃ“
+PhÃ¢n tÃ­ch dá»¯ liá»‡u BÃ¡o cÃ¡o, giÃ¡m sÃ¡t thá»i gian thá»±c KPI, OKR, OEE, SQCD, VSM, 7 QC tools Pháº§n má»m tÃ¹y biáº¿n TÃ¹y biáº¿n, tá»‘i Æ°u theo nhu cáº§u thá»±c táº¿ cá»§a doanh nghiá»‡p cáº£ trong quáº£n lÃ½ vÃ  thá»±c thi cÃ´ng viá»‡c hÃ ng ngÃ y TÃ­ch há»£p pháº§n cá»©ng Káº¿t ná»‘i, giao tiáº¿p trá»±c tiáº¿p vá»›i cÃ¡c thiáº¿t bá»‹, mÃ¡y mÃ³c cÃ´ng nghiá»‡p thÃ´ng qua IIoT, OPC, SCADA AI vÃ  á»©ng dá»¥ng tÃ­ch há»£p Chatbot AI, OTT Chatapp, Email ná»™i bá»™, DevOps, Giáº£i phÃ¡p báº£o máº­t, an toÃ n thÃ´ng tin ... KHÃ”NG GIAN LÃ€M VIá»†C Sá» QUáº¢N TRá»Š VÃ€ Váº¬N HÃ€NH HIá»†U QUáº¢
+CHÃšNG TÃ”I ÄÃƒ Táº O RA  Bá»˜ CÃ”NG Cá»¤ PHÃT TRIá»‚N PHáº¦N Má»€M  Äá»‚ Tá»I Æ¯U KHá»I LÆ¯á»¢NG CÃ”NG VIá»†C VÃ€ Má»ž Rá»˜NG QUY MÃ” DIGIFACT
+CÃ´ng cá»¥ phÃ¡t triá»ƒn  pháº§n má»m PHáº¦N Má»€M QUáº¢N TRá»Š Váº¬N HÃ€NH Giáº£m thiá»ƒu thá»i gian phÃ¡t triá»ƒn CÃ¡c tÃ­nh nÄƒng, máº«u thiáº¿t káº¿ thÆ°á»ng sá»­ dá»¥ng Ä‘Æ°á»£c Ä‘Ã³ng gÃ³i thÃ nh thÆ° viá»‡n dá»… dÃ ng sá»­ dá»¥ng nhanh chÃ³ng vÃ  trÃ¡nh lá»—i Thiáº¿t káº¿ giao diá»‡n tá»‘i giáº£n Thiáº¿t káº¿ hiá»‡n Ä‘áº¡i, tá»‘i giáº£n, dá»… dÃ ng sá»­ dá»¥ng vá»›i tráº£i nghiá»‡m sá»­ dá»¥ng Ä‘Æ°á»£c tá»‘i Æ°u
+</pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="content-section">
+        <h2><i class="fas fa-route"></i> Dấu mốc chuẩn bị</h2>
+        <div class="timeline">
+          <div class="timeline-item"><div class="date">Tháng 8/2025</div><div><strong>Chuẩn bị ý tưởng</strong>: xác định vấn đề, phạm vi và tiêu chí chấm.</div></div>
+          <div class="timeline-item"><div class="date">Tháng 8–9/2025</div><div><strong>Hoàn thiện hồ sơ</strong>: tài liệu kỹ thuật, demo và slide trình bày.</div></div>
+          <div class="timeline-item"><div class="date">Tháng 9/2025</div><div><strong>Nộp hồ sơ sơ loại</strong>: gửi đúng hạn theo hướng dẫn VinTechTalent.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>Sẵn sàng cho vòng kế tiếp</h2>
+      <p>Tiếp tục hoàn thiện sản phẩm và tài liệu để bứt phá tại TechXpo 2025.</p>
+      <a href="techxpo2025/sansangchobanket.html">Xem chặng Bán kết</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>Cập nhật: 08/09/2025 · Nguồn: DOCX và PPTX nội bộ DigiFact</p>
+  </footer>
+</body>
+</html>

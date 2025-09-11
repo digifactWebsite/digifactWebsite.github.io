@@ -1,0 +1,477 @@
+{
+  "nodes": [
+    {
+      "id": "process-356175",
+      "type": "process",
+      "position": {
+        "x": 291.44486492805413,
+        "y": 230.40385422401408
+      },
+      "data": {
+        "label": "[Auto] Gửi thông báo tới Trưởng nhóm sale"
+      },
+      "width": 180,
+      "height": 56,
+      "measured": {
+        "width": 180,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "process-356175-copy-696",
+      "type": "process",
+      "position": {
+        "x": 820.6810288940632,
+        "y": 231.75871763972935
+      },
+      "data": {
+        "label": "Gửi thông báo tới Trưởng phòng sale"
+      },
+      "width": 180,
+      "height": 56,
+      "measured": {
+        "width": 180,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "end-460231",
+      "type": "end",
+      "position": {
+        "x": 1584.2909064304695,
+        "y": 241.68746851895102
+      },
+      "data": {
+        "label": "Kết thúc"
+      },
+      "width": 140,
+      "height": 48,
+      "measured": {
+        "width": 140,
+        "height": 48
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "process-169635",
+      "type": "process",
+      "position": {
+        "x": -5.1678212842114135,
+        "y": 230.40932818943332
+      },
+      "data": {
+        "label": "[Auto] Chuyển trạng thái \"Chờ phê duyệt\""
+      },
+      "width": 221,
+      "height": 56,
+      "measured": {
+        "width": 221,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "process-659560",
+      "type": "process",
+      "position": {
+        "x": -236.47552973223958,
+        "y": 242.50547396541924
+      },
+      "data": {
+        "label": "Bấm gửi phê duyệt"
+      },
+      "width": 180,
+      "height": 56,
+      "measured": {
+        "width": 180,
+        "height": 56
+      },
+      "selected": true,
+      "dragging": false
+    },
+    {
+      "id": "start-909874",
+      "type": "start",
+      "position": {
+        "x": -485.70636352435224,
+        "y": 230.42849439732066
+      },
+      "data": {
+        "label": "Tạo mới/Chỉnh sửa đơn hàng"
+      },
+      "width": 201,
+      "height": 48,
+      "measured": {
+        "width": 201,
+        "height": 48
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "process-169635-copy-554",
+      "type": "process",
+      "position": {
+        "x": 510.4114663519144,
+        "y": 348.2182955836581
+      },
+      "data": {
+        "label": "[Auto] Gửi thông báo từ chối tới người gửi"
+      },
+      "width": 221,
+      "height": 56,
+      "measured": {
+        "width": 221,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "decision-748337",
+      "type": "decision",
+      "position": {
+        "x": 529.3308131705716,
+        "y": 227.19519098981579
+      },
+      "data": {
+        "label": "Kiểm tra"
+      },
+      "width": 180,
+      "height": 120,
+      "measured": {
+        "width": 180,
+        "height": 120
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "decision-748337-copy-936",
+      "type": "decision",
+      "position": {
+        "x": 1050.635423914329,
+        "y": 227.56509774241812
+      },
+      "data": {
+        "label": "Kiểm tra"
+      },
+      "width": 180,
+      "height": 120,
+      "measured": {
+        "width": 180,
+        "height": 120
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "process-169635-copy-554-copy-383",
+      "type": "process",
+      "position": {
+        "x": 1310.275428182453,
+        "y": 230.27227177156578
+      },
+      "data": {
+        "label": "[Auto] Chuyển trạng thái \"Có hiệu lực\""
+      },
+      "width": 221,
+      "height": 56,
+      "measured": {
+        "width": 221,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "process-169635-copy-393",
+      "type": "process",
+      "position": {
+        "x": 510.51478054941697,
+        "y": 532.3316484778528
+      },
+      "data": {
+        "label": "[Auto] Chuyển trạng thái \"Đang chỉnh sửa\""
+      },
+      "width": 221,
+      "height": 56,
+      "measured": {
+        "width": 221,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "process-169635-copy-554-copy-261",
+      "type": "process",
+      "position": {
+        "x": 1032.7949743882873,
+        "y": 345.787309141166
+      },
+      "data": {
+        "label": "[Auto] Gửi thông báo từ chối tới trưởng nhóm sale"
+      },
+      "width": 221,
+      "height": 56,
+      "measured": {
+        "width": 221,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "process-169635-copy-554-copy-261-copy-638",
+      "type": "process",
+      "position": {
+        "x": 1034.5292449758736,
+        "y": 467.6057625963043
+      },
+      "data": {
+        "label": "[Auto] Gửi thông báo từ chối tới người gửi"
+      },
+      "width": 221,
+      "height": 56,
+      "measured": {
+        "width": 221,
+        "height": 56
+      },
+      "selected": false,
+      "dragging": false,
+      "resizing": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "start-909874",
+      "sourceHandle": "s-right",
+      "target": "process-659560",
+      "targetHandle": "t-left",
+      "id": "start-909874-process-659560-1757321590331",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {},
+      "style": {}
+    },
+    {
+      "source": "process-659560",
+      "sourceHandle": "s-right",
+      "target": "process-169635",
+      "targetHandle": "t-left",
+      "id": "process-659560-process-169635-1757321592307",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {},
+      "style": {}
+    },
+    {
+      "source": "process-169635",
+      "sourceHandle": "s-right",
+      "target": "process-356175",
+      "targetHandle": "t-left",
+      "id": "process-169635-process-356175-1757321625219",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {},
+      "style": {},
+      "selected": false
+    },
+    {
+      "source": "process-356175",
+      "sourceHandle": "s-right",
+      "target": "decision-748337",
+      "targetHandle": "t-left",
+      "id": "process-356175-decision-748337-1757321746987",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {},
+      "style": {}
+    },
+    {
+      "source": "decision-748337",
+      "sourceHandle": "s-right",
+      "target": "process-356175-copy-696",
+      "targetHandle": "t-left",
+      "id": "decision-748337-process-356175-copy-696-1757321769618",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {
+        "label": "Có",
+        "kind": "yes"
+      },
+      "style": {
+        "stroke": "#10b981"
+      }
+    },
+    {
+      "source": "decision-748337",
+      "sourceHandle": "s-bottom",
+      "target": "process-169635-copy-554",
+      "targetHandle": "t-top",
+      "id": "decision-748337-process-169635-copy-554-1757321771514",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {
+        "label": "Không",
+        "kind": "no"
+      },
+      "style": {
+        "stroke": "#ef4444"
+      }
+    },
+    {
+      "source": "process-356175-copy-696",
+      "sourceHandle": "s-right",
+      "target": "decision-748337-copy-936",
+      "targetHandle": "t-left",
+      "id": "process-356175-copy-696-decision-748337-copy-936-1757321810912",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {},
+      "style": {}
+    },
+    {
+      "source": "decision-748337-copy-936",
+      "sourceHandle": "s-right",
+      "target": "process-169635-copy-554-copy-383",
+      "targetHandle": "t-left",
+      "id": "decision-748337-copy-936-process-169635-copy-554-copy-383-1757321843257",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {
+        "label": "Có",
+        "kind": "yes"
+      },
+      "style": {
+        "stroke": "#10b981"
+      }
+    },
+    {
+      "source": "process-169635-copy-554-copy-383",
+      "sourceHandle": "s-right",
+      "target": "end-460231",
+      "targetHandle": "t-left",
+      "id": "process-169635-copy-554-copy-383-end-460231-1757321845200",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {},
+      "style": {}
+    },
+    {
+      "source": "process-169635-copy-554",
+      "sourceHandle": "s-bottom",
+      "target": "process-169635-copy-393",
+      "targetHandle": "t-top",
+      "id": "process-169635-copy-554-process-169635-copy-393-1757321950600",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {},
+      "style": {}
+    },
+    {
+      "source": "decision-748337-copy-936",
+      "sourceHandle": "s-bottom",
+      "target": "process-169635-copy-554-copy-261",
+      "targetHandle": "t-top",
+      "id": "decision-748337-copy-936-process-169635-copy-554-copy-261-1757321963186",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {
+        "label": "Không",
+        "kind": "no"
+      },
+      "style": {
+        "stroke": "#ef4444"
+      }
+    },
+    {
+      "source": "process-169635-copy-554-copy-261",
+      "sourceHandle": "s-bottom",
+      "target": "process-169635-copy-554-copy-261-copy-638",
+      "targetHandle": "t-top",
+      "id": "process-169635-copy-554-copy-261-process-169635-copy-554-copy-261-copy-638-1757321964658",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {},
+      "style": {}
+    },
+    {
+      "source": "process-169635-copy-554-copy-261-copy-638",
+      "sourceHandle": "s-bottom",
+      "target": "process-169635-copy-393",
+      "targetHandle": "t-right",
+      "id": "process-169635-copy-554-copy-261-copy-638-process-169635-copy-393-1757321967272",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {},
+      "style": {}
+    },
+    {
+      "source": "process-169635-copy-393",
+      "sourceHandle": "s-left",
+      "target": "start-909874",
+      "targetHandle": "t-bottom",
+      "id": "process-169635-copy-393-start-909874-1757321970951",
+      "type": "dir",
+      "animated": true,
+      "markerEnd": {
+        "type": "arrowclosed"
+      },
+      "data": {},
+      "style": {}
+    }
+  ]
+}
