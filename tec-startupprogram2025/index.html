@@ -3,60 +3,416 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to TEC Startup Program 2025 - DigiFact</title>
-    <meta http-equiv="refresh" content="0; url=blog/chuan-bi-pitching.html">
-    <link rel="canonical" href="blog/chuan-bi-pitching.html">
+    <title>TEC Startup Program 2025 - DigiFact Live Presentation</title>
+    <link rel="icon" type="image/png" href="../Resources/DigiFact_Logo_Noname_Type1.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Auto redirect to presentation -->
+    <meta http-equiv="refresh" content="3;url=blog/chuan-bi-pitching.html">
+    
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            justify-content: center;
             color: white;
-            text-align: center;
+            overflow: hidden;
         }
-        .redirect-container {
+
+        .main-container {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Live Indicator */
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            padding: 1rem 2rem;
+            font-weight: 600;
+        }
+
+        .live-dot {
+            width: 16px;
+            height: 16px;
+            background: #ef4444;
+            border-radius: 50%;
+            position: relative;
+            animation: livePulse 1.5s infinite;
+        }
+
+        .live-dot::before,
+        .live-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #ef4444;
+            transform: translate(-50%, -50%);
+            animation: waveExpand 1.5s infinite;
+        }
+
+        .live-dot::after {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes livePulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes waveExpand {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(4);
+                opacity: 0;
+            }
+        }
+
+        .live-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        .competition-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .competition-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+        }
+
+        .team-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .loading-spinner {
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
         .spinner {
             width: 40px;
             height: 40px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        a {
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .countdown {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .manual-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             color: white;
-            text-decoration: underline;
+            text-decoration: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .manual-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            color: #fbbf24;
+        }
+
+        .feature-title {
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        /* Background animation */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.1"><circle cx="30" cy="30" r="2"/></g></svg>') repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .main-container {
+                padding: 1.5rem;
+            }
+            
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .live-text {
+                font-size: 1rem;
+            }
+            
+            .live-dot {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .live-text {
+                font-size: 0.9rem;
+            }
+            
+            .competition-info {
+                padding: 1.5rem;
+            }
+            
+            .team-name {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="redirect-container">
-        <div class="spinner"></div>
-        <h2>Đang chuyển hướng...</h2>
-        <p>Bạn sẽ được chuyển đến trang TEC Startup Program 2025</p>
-        <p><a href="blog/chuan-bi-pitching.html">Nhấp vào đây nếu không được chuyển hướng tự động</a></p>
+    <div class="main-container">
+        <!-- Live Indicator -->
+        <div class="live-indicator">
+            <div class="live-dot"></div>
+            <div class="live-text">ON AIR - Vòng thi bán kết</div>
+        </div>
+        
+        <div class="logo">
+            <img src="../Resources/DigiFact_Logo_Noname_Type1.png" alt="DigiFact Logo">
+        </div>
+        
+        <h1>TEC Startup Program</h1>
+        <p class="subtitle">2025</p>
+        
+        <div class="competition-info">
+            <div class="competition-title">
+                <i class="fas fa-trophy"></i> Vòng bán kết
+            </div>
+            <div class="team-name">
+                Đội thi: DIGIFACT
+            </div>
+            <p>Nền tảng số hóa sản xuất thông minh</p>
+        </div>
+        
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <span>Đang chuyển hướng đến presentation...</span>
+        </div>
+        
+        <div class="countdown" id="countdown">
+            Tự động chuyển trong <span id="timer">3</span> giây
+        </div>
+        
+        <a href="blog/chuan-bi-pitching.html" class="manual-link">
+            <i class="fas fa-presentation"></i>
+            <span>Vào presentation ngay</span>
+        </a>
+        
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-file-pdf"></i>
+                <div class="feature-title">PDF Slides</div>
+            </div>
+            <div class="feature">
+                <i class="fas fa-trophy"></i>
+                <div class="feature-title">Semi-Final</div>
+            </div>
+            <div class="feature">
+                <i class="fas fa-mobile-alt"></i>
+                <div class="feature-title">Mobile Ready</div>
+            </div>
+            <div class="feature">
+                <i class="fas fa-expand"></i>
+                <div class="feature-title">Fullscreen</div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Fallback redirect with JavaScript
-        setTimeout(function() {
-            window.location.href = 'blog/chuan-bi-pitching.html';
+        // Countdown timer
+        let timeLeft = 3;
+        const timerElement = document.getElementById('timer');
+        
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                // Redirect to presentation
+                window.location.href = 'blog/chuan-bi-pitching.html';
+            }
         }, 1000);
+
+        // Manual redirect if auto-redirect fails
+        setTimeout(() => {
+            if (window.location.href.includes('index.html')) {
+                window.location.href = 'blog/chuan-bi-pitching.html';
+            }
+        }, 5000);
+
+        // Preload presentation page
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = 'blog/chuan-bi-pitching.html';
+        document.head.appendChild(link);
     </script>
 </body>
 </html>
