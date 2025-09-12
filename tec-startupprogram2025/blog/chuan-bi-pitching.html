@@ -1073,7 +1073,7 @@
                     <i class="fas fa-route"></i>
                     <span>Hành trình TEC</span>
                 </a>
-                <a href="../PITCHDECK TEC STARTUP PROGRAM 2025.pdf" class="pdf-download" target="_blank">
+                <a href="PITCHDECK TEC STARTUP PROGRAM 2025.pdf" class="pdf-download" target="_blank">
                     <i class="fas fa-file-pdf"></i>
                     <span>Tải PDF</span>
                 </a>
@@ -1218,7 +1218,7 @@
         // Load PDF
         async function loadPDF() {
             try {
-                const pdfPath = '../PITCHDECK TEC STARTUP PROGRAM 2025.pdf';
+                const pdfPath = 'PITCHDECK TEC STARTUP PROGRAM 2025.pdf';
                 pdfDoc = await pdfjsLib.getDocument(pdfPath).promise;
                 
                 totalPagesSpan.textContent = pdfDoc.numPages;
