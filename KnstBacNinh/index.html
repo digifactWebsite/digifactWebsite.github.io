@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiFact - Khởi nghiệp sáng tạo Techfest Bắc Ninh 2025</title>
+    <link rel="icon" type="image/png" href="../Resources/DigiFact_Logo_Noname_Type1.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #60a5fa;
+            --primary-dark: #3b82f6;
+            --secondary: #34d399;
+            --accent: #22d3ee;
+            --success: #10b981;
+            --warning: #fbbf24;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        /* PDF Viewer Container */
+        .pdf-viewer-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        /* Navigation Header */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+        }
+
+        .live-dot {
+            width: 12px;
+            height: 12px;
+            background: #ef4444;
+            border-radius: 50%;
+            position: relative;
+            animation: livePulse 1.5s infinite;
+        }
+
+        .live-dot::before,
+        .live-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #ef4444;
+            transform: translate(-50%, -50%);
+            animation: waveExpand 1.5s infinite;
+        }
+
+        .live-dot::after {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes livePulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes waveExpand {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(4);
+                opacity: 0;
+            }
+        }
+
+        .live-text {
+            color: white;
+            font-size: 0.95rem;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-home {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Image Slide Container */
+        .image-slide-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .slide-image {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: white;
+            transition: all 0.3s ease;
+            object-fit: contain;
+        }
+
+        /* PDF Canvas Container */
+        .pdf-canvas-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .pdf-slide {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover:not(.disabled) {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .nav-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-info {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Page Input */
+        .page-input {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            width: 80px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .page-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* PDF Download */
+        .pdf-download {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pdf-download:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Video Button */
+        .video-btn {
+            background: linear-gradient(135deg, #00c4cc, #7b68ee);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .video-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .video-btn:hover::before {
+            left: 100%;
+        }
+
+        .video-btn:hover {
+            background: linear-gradient(135deg, #00d4db, #8a7af0);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 196, 204, 0.3);
+        }
+
+        .video-btn i {
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        /* Video Player in main area */
+        .video-player {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .video-header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            padding: 2rem;
+            z-index: 10;
+        }
+
+        .video-title-overlay {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-title-overlay i {
+            color: #ff0000;
+            animation: youtubeGlow 2s infinite;
+        }
+
+        .video-subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            margin-left: 3rem;
+        }
+
+        .back-to-slides-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 20;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .back-to-slides-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+            border-color: rgba(255,255,255,0.5);
+            box-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+
+        .back-to-slides-btn i {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        /* Video Popup Window */
+        .video-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .video-popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .video-popup-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(96, 165, 250, 0.1), rgba(52, 211, 153, 0.1));
+            pointer-events: none;
+        }
+
+        .video-popup-container {
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90vh;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 25px;
+            box-shadow: 
+                0 25px 80px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .video-popup-overlay.active .video-popup-container {
+            transform: scale(1) translateY(0);
+        }
+
+        .video-popup-header {
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.9), rgba(52, 211, 153, 0.9));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            position: relative;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-popup-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-popup-title i {
+            color: #ff0000;
+            font-size: 2rem;
+            animation: youtubeGlow 2s infinite;
+        }
+
+        .video-popup-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-left: 3rem;
+        }
+
+        .video-popup-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .video-popup-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1) rotate(90deg);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .video-popup-content {
+            aspect-ratio: 16/9;
+            position: relative;
+        }
+
+        .video-popup-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-popup-footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-info, .video-website {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .video-info i {
+            color: #60a5fa;
+        }
+
+        .video-website i {
+            color: #34d399;
+        }
+
+        .youtube-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+        }
+
+        @keyframes youtubeGlow {
+            0%, 100% { 
+                color: #ff0000; 
+                text-shadow: 0 0 10px #ff0000; 
+            }
+            50% { 
+                color: #ff4444; 
+                text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000; 
+            }
+        }
+
+        /* Fullscreen Mode */
+        .fullscreen-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Error Message */
+        .error-message {
+            background: rgba(239, 68, 68, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            margin: 1rem;
+            text-align: center;
+        }
+
+        /* Custom styles for Bắc Ninh theme */
+        .bacninh-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .bacninh-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(96, 165, 250, 0.4), 0 4px 15px rgba(52, 211, 153, 0.3);
+            filter: brightness(1.1);
+        }
+
+        .bacninh-badge .presentation-title {
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.6),
+                rgba(100, 255, 218, 1),
+                rgba(255, 255, 255, 1),
+                rgba(100, 255, 218, 1),
+                rgba(255, 255, 255, 0.6)
+            );
+            background-size: 200% 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: colorFlow 2.5s linear infinite;
+            transition: all 0.3s ease;
+        }
+
+        .bacninh-badge:hover .presentation-title {
+            animation: colorFlow 1s linear infinite;
+            filter: drop-shadow(0 0 8px rgba(100, 255, 218, 0.8));
+        }
+
+        .presentation-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 0.9;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-header {
+                padding: 1rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .nav-left,
+            .nav-right {
+                gap: 0.5rem;
+            }
+            
+            .live-indicator {
+                padding: 0.5rem 1rem;
+            }
+            
+            .live-text {
+                font-size: 0.85rem;
+            }
+            
+            .live-dot {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .pdf-canvas-container {
+                padding: 1rem;
+            }
+            
+            .nav-controls {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .slide-info {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .presentation-title {
+                font-size: 0.9rem;
+            }
+
+            .video-popup-container {
+                width: 95%;
+                margin: 1rem;
+            }
+            
+            .video-popup-header {
+                padding: 1rem 1.5rem;
+            }
+            
+            .video-popup-title {
+                font-size: 1.2rem;
+            }
+            
+            .video-popup-footer {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .live-text {
+                display: none;
+            }
+            
+            .live-indicator::after {
+                content: "LIVE";
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: #ef4444;
+            }
+        }
+
+        /* Fallback content when PDF.js not available */
+        .fallback-slides {
+            display: none;
+            height: 100vh;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .fallback-slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            scroll-snap-align: start;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: all 0.6s ease;
+        }
+
+        .fallback-slide:nth-child(even) {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+
+        .fallback-slide:nth-child(3n) {
+            background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            text-align: center;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .slide-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .slide-content h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .slide-content p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes textShine {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes colorFlow {
+            0% {
+                background-position: 200% center;
+            }
+            100% {
+                background-position: 0% center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pdf-viewer-container">
+        <!-- Navigation Header -->
+        <div class="nav-header">
+            <div class="nav-left">
+                <div class="live-indicator">
+                    <div class="live-dot"></div>
+                    <div class="live-text">ON AIR - TEAM DIGIFACT</div>
+                </div>
+                <a href="../index.html" class="back-home">
+                    <i class="fas fa-home"></i>
+                    <span>Trang chủ</span>
+                </a>
+                <a href="Khởi nghiệp sáng tạo Bắc Ninh.pdf" class="pdf-download" target="_blank">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Tải PDF</span>
+                </a>
+                <div class="video-btn" onclick="showProductVideo()">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Video Sản phẩm</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="bacninh-badge">
+                    <i class="fas fa-lightbulb"></i>
+                    <span class="presentation-title">Khởi nghiệp sáng tạo - Techfest Bắc Ninh 2025</span>
+                </div>
+                <div class="fullscreen-btn" onclick="toggleFullscreen()">
+                    <i class="fas fa-expand"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Slide Container (for exported slides) -->
+        <div class="image-slide-container" id="imageContainer" style="display: none;">
+            <img id="slideImage" class="slide-image" alt="Presentation Slide">
+        </div>
+
+        <!-- PDF Canvas Container -->
+        <div class="pdf-canvas-container" id="pdfContainer">
+            <div class="loading" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>Đang tải PDF presentation...</p>
+            </div>
+            <canvas id="pdfCanvas" class="pdf-slide" style="display: none;"></canvas>
+            <div id="errorMessage" class="error-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Không thể tải file PDF. Đang chuyển sang phiên bản dự phòng...</p>
+            </div>
+            
+            <!-- Video Player -->
+            <div class="video-player" id="videoPlayer">
+                <div class="video-header-overlay">
+                    <div class="video-title-overlay">
+                        <i class="fab fa-youtube"></i>
+                        <span>Video Sản phẩm DigiFact</span>
+                    </div>
+                    <div class="video-subtitle">Demo nền tảng số hóa sản xuất thông minh</div>
+                </div>
+                <div class="back-to-slides-btn" onclick="backToSlides()" title="Thoát video (ESC)">
+                    <i class="fas fa-times"></i>
+                </div>
+                <iframe 
+                    id="youtubePlayer"
+                    class="youtube-iframe"
+                    src=""
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <div class="nav-btn" id="prevBtn" onclick="previousPage()">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            
+            <div class="slide-info">
+                <span>Slide</span>
+                <input type="number" id="pageInput" class="page-input" min="1" onchange="goToPage()">
+                <span>/</span>
+                <span id="totalPages">0</span>
+            </div>
+            
+            <div class="nav-btn" id="nextBtn" onclick="nextPage()">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fallback Slides -->
+    <div class="fallback-slides" id="fallbackSlides">
+        <!-- Slide 1: Cover -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h1>DigiFact</h1>
+                <h2>Khởi nghiệp sáng tạo - Techfest Bắc Ninh 2025</h2>
+                <p>Nền tảng số hóa sản xuất thông minh</p>
+                <p>Tổ chức bởi: Sở Khoa học và Công nghệ tỉnh Bắc Ninh</p>
+            </div>
+        </section>
+
+        <!-- Slide 2: Problem -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>🏭 Thách thức của doanh nghiệp Bắc Ninh</h2>
+                <p>Doanh nghiệp sản xuất tại Bắc Ninh đang đối mặt với:</p>
+                <ul style="text-align: left; max-width: 800px; margin: 2rem auto; font-size: 1.2rem;">
+                    <li>Thiếu khả năng giám sát sản xuất real-time</li>
+                    <li>Quy trình quản lý thủ công, không hiệu quả</li>
+                    <li>Khó khăn trong tích hợp dữ liệu từ nhiều nguồn</li>
+                    <li>Chi phí vận hành cao, năng suất thấp</li>
+                    <li>Áp lực cạnh tranh trong khu công nghiệp</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 3: Solution -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>💡 Giải pháp DigiFact</h2>
+                <p>Nền tảng tích hợp toàn diện với 4 module chính:</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 2rem auto;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
+                        <h3>🏭 MES</h3>
+                        <p>Manufacturing Execution System - Quản lý sản xuất real-time</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
+                        <h3>📊 ERP</h3>
+                        <p>Enterprise Resource Planning - Quản lý tài nguyên tổng thể</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
+                        <h3>👥 CRM</h3>
+                        <p>Customer Relationship Management - Quản lý khách hàng</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
+                        <h3>🔧 PLM</h3>
+                        <p>Product Lifecycle Management - Quản lý vòng đời sản phẩm</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Technology -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>🚀 Công nghệ tiên tiến</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 2rem auto;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <i class="fas fa-cloud" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>Cloud Native</h3>
+                        <p>Triển khai trên AWS/Azure</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <i class="fas fa-brain" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>AI/ML</h3>
+                        <p>Dự đoán & tối ưu hóa</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <i class="fas fa-mobile-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>Mobile App</h3>
+                        <p>Quản lý mọi lúc mọi nơi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Demo -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h2>🎯 Demo sản phẩm</h2>
+                <p style="font-size: 1.5rem; margin-bottom: 3rem;">Trải nghiệm DigiFact Platform</p>
+                <div style="background: rgba(255,255,255,0.1); padding: 3rem; border-radius: 20px; max-width: 800px; margin: 0 auto;">
+                    <h3 style="margin-bottom: 2rem;">Tính năng chính được demo:</h3>
+                    <ul style="text-align: left; font-size: 1.2rem; line-height: 2;">
+                        <li>🏭 Dashboard giám sát sản xuất real-time</li>
+                        <li>📈 Báo cáo phân tích hiệu suất (OEE)</li>
+                        <li>🔧 Quản lý đơn hàng và lập kế hoạch</li>
+                        <li>📱 Mobile app cho công nhân</li>
+                        <li>🤖 AI dự đoán bảo trì thiết bị</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Thank You -->
+        <section class="fallback-slide">
+            <div class="slide-content">
+                <h1>Cảm ơn Sở KH&CN Bắc Ninh!</h1>
+                <h2>🚀 DigiFact - Future of Manufacturing</h2>
+                <div style="margin: 3rem 0;">
+                    <p style="font-size: 1.5rem; margin-bottom: 1rem;">📧 contact@digifact.vn</p>
+                    <p style="font-size: 1.5rem; margin-bottom: 1rem;">🌐 www.digifact.vn</p>
+                    <p style="font-size: 1.5rem;">📱 Đặt lịch demo: +84 xxx xxx xxx</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; max-width: 600px; margin: 0 auto;">
+                    <h3>Hãy cùng chúng tôi xây dựng tương lai sản xuất thông minh cho Bắc Ninh!</h3>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Set PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+        let scale = 1.5;
+        let isUsingFallback = false;
+        let isUsingImages = false;
+        let totalSlides = 0;
+        let slideImages = [];
+
+        const canvas = document.getElementById('pdfCanvas');
+        const ctx = canvas.getContext('2d');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const errorMessage = document.getElementById('errorMessage');
+        const pageInput = document.getElementById('pageInput');
+        const totalPagesSpan = document.getElementById('totalPages');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideImage = document.getElementById('slideImage');
+        const imageContainer = document.getElementById('imageContainer');
+        const pdfContainer = document.getElementById('pdfContainer');
+        const fallbackSlides = document.getElementById('fallbackSlides');
+        const presentationContainer = document.querySelector('.pdf-viewer-container');
+
+        async function checkSlideImages() {
+            console.log('Checking for exported slide images...');
+            slideImages = [];
+            
+            for (let i = 1; i <= 20; i++) {
+                const slideName = `slides/slide_${i.toString().padStart(2, '0')}.png`;
+                try {
+                    const response = await fetch(slideName, { method: 'HEAD' });
+                    if (response.ok) {
+                        slideImages.push(slideName);
+                    } else {
+                        break;
+                    }
+                } catch (error) {
+                    break;
+                }
+            }
+            
+            if (slideImages.length > 0) {
+                console.log(`Found ${slideImages.length} slide images`);
+                return true;
+            }
+            return false;
+        }
+
+        async function loadPresentationImages() {
+            console.log('Using exported slide images');
+            isUsingImages = true;
+            totalSlides = slideImages.length;
+            
+            pdfContainer.style.display = 'none';
+            loadingSpinner.style.display = 'none';
+            imageContainer.style.display = 'flex';
+            
+            totalPagesSpan.textContent = totalSlides;
+            pageInput.max = totalSlides;
+            pageInput.value = 1;
+            pageNum = 1;
+            
+            displaySlideImage(1);
+            updateNavButtons();
+        }
+
+        function displaySlideImage(slideNumber) {
+            if (slideNumber >= 1 && slideNumber <= slideImages.length) {
+                slideImage.src = slideImages[slideNumber - 1];
+                slideImage.onerror = () => {
+                    console.error(`Failed to load slide ${slideNumber}`);
+                    loadPresentationFallback();
+                };
+            }
+        }
+
+        async function loadPresentationFallback() {
+            console.log('Using fallback slide content');
+            isUsingFallback = true;
+            
+            pdfContainer.style.display = 'none';
+            imageContainer.style.display = 'none';
+            fallbackSlides.style.display = 'block';
+            presentationContainer.style.display = 'none';
+            
+            const slides = document.querySelectorAll('.fallback-slide');
+            totalPagesSpan.textContent = slides.length;
+            pageInput.max = slides.length;
+            pageInput.value = 1;
+            updateNavButtons();
+            
+            slides[0].scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function loadPresentation() {
+            try {
+                const pdfPath = 'Khởi nghiệp sáng tạo Bắc Ninh.pdf';
+                pdfDoc = await pdfjsLib.getDocument(pdfPath).promise;
+                
+                console.log(`PDF loaded successfully: ${pdfDoc.numPages} pages`);
+                
+                totalPagesSpan.textContent = pdfDoc.numPages;
+                pageInput.max = pdfDoc.numPages;
+                pageInput.value = pageNum;
+                
+                loadingSpinner.style.display = 'none';
+                canvas.style.display = 'block';
+                
+                renderPage(pageNum);
+                updateNavButtons();
+                
+            } catch (error) {
+                console.log('PDF loading failed, trying slide images...', error);
+                
+                const hasSlideImages = await checkSlideImages();
+                
+                if (hasSlideImages) {
+                    await loadPresentationImages();
+                    return;
+                }
+                
+                console.log('No images found, using fallback slides');
+                loadingSpinner.style.display = 'none';
+                errorMessage.style.display = 'block';
+                
+                setTimeout(() => {
+                    loadPresentationFallback();
+                }, 2000);
+            }
+        }
+
+        async function renderPage(num) {
+            if (isUsingFallback || pageRendering) {
+                if (!isUsingFallback) pageNumPending = num;
+                return;
+            }
+            
+            pageRendering = true;
+            
+            try {
+                const page = await pdfDoc.getPage(num);
+                
+                const container = document.getElementById('pdfContainer');
+                const containerWidth = container.clientWidth - 40;
+                const containerHeight = container.clientHeight - 40;
+                
+                const viewport = page.getViewport({ scale: 1 });
+                const scaleX = containerWidth / viewport.width;
+                const scaleY = containerHeight / viewport.height;
+                scale = Math.min(scaleX, scaleY, 2);
+                
+                const scaledViewport = page.getViewport({ scale: scale });
+                
+                canvas.height = scaledViewport.height;
+                canvas.width = scaledViewport.width;
+                
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: scaledViewport
+                };
+                
+                await page.render(renderContext).promise;
+                
+                pageRendering = false;
+                
+                if (pageNumPending !== null) {
+                    renderPage(pageNumPending);
+                    pageNumPending = null;
+                }
+                
+            } catch (error) {
+                console.error('Error rendering page:', error);
+                pageRendering = false;
+            }
+        }
+
+        function previousPage() {
+            if (isUsingImages) {
+                if (pageNum > 1) {
+                    pageNum--;
+                    pageInput.value = pageNum;
+                    displaySlideImage(pageNum);
+                    updateNavButtons();
+                }
+            } else if (isUsingFallback) {
+                const slides = document.querySelectorAll('.fallback-slide');
+                if (pageNum > 1) {
+                    pageNum--;
+                    pageInput.value = pageNum;
+                    slides[pageNum - 1].scrollIntoView({ behavior: 'smooth' });
+                    updateNavButtons();
+                }
+            } else {
+                if (pageNum <= 1) return;
+                pageNum--;
+                pageInput.value = pageNum;
+                renderPage(pageNum);
+                updateNavButtons();
+            }
+        }
+
+        function nextPage() {
+            const totalPages = isUsingImages ? slideImages.length :
+                isUsingFallback ? document.querySelectorAll('.fallback-slide').length : 
+                (pdfDoc ? pdfDoc.numPages : 0);
+                
+            if (pageNum >= totalPages) return;
+            
+            if (isUsingImages) {
+                pageNum++;
+                pageInput.value = pageNum;
+                displaySlideImage(pageNum);
+                updateNavButtons();
+            } else if (isUsingFallback) {
+                const slides = document.querySelectorAll('.fallback-slide');
+                pageNum++;
+                pageInput.value = pageNum;
+                slides[pageNum - 1].scrollIntoView({ behavior: 'smooth' });
+                updateNavButtons();
+            } else {
+                pageNum++;
+                pageInput.value = pageNum;
+                renderPage(pageNum);
+                updateNavButtons();
+            }
+        }
+
+        function goToPage() {
+            const inputPage = parseInt(pageInput.value);
+            const totalPages = isUsingImages ? slideImages.length :
+                isUsingFallback ? document.querySelectorAll('.fallback-slide').length : 
+                (pdfDoc ? pdfDoc.numPages : 0);
+                
+            if (inputPage >= 1 && inputPage <= totalPages) {
+                pageNum = inputPage;
+                
+                if (isUsingImages) {
+                    displaySlideImage(pageNum);
+                } else if (isUsingFallback) {
+                    const slides = document.querySelectorAll('.fallback-slide');
+                    slides[pageNum - 1].scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    renderPage(pageNum);
+                }
+                updateNavButtons();
+            } else {
+                pageInput.value = pageNum;
+            }
+        }
+
+        function updateNavButtons() {
+            const totalPages = isUsingImages ? slideImages.length :
+                isUsingFallback ? document.querySelectorAll('.fallback-slide').length : 
+                (pdfDoc ? pdfDoc.numPages : 0);
+                
+            prevBtn.classList.toggle('disabled', pageNum <= 1);
+            nextBtn.classList.toggle('disabled', pageNum >= totalPages);
+        }
+
+        function toggleFullscreen() {
+            const elem = document.documentElement;
+            const icon = document.querySelector('.fullscreen-btn i');
+            
+            if (!document.fullscreenElement) {
+                elem.requestFullscreen().then(() => {
+                    icon.className = 'fas fa-compress';
+                });
+            } else {
+                document.exitFullscreen().then(() => {
+                    icon.className = 'fas fa-expand';
+                });
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                previousPage();
+            } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                nextPage();
+            } else if (e.key === 'Escape') {
+                const videoPopup = document.getElementById('videoPopupOverlay');
+                if (videoPopup) {
+                    closeVideoPopup();
+                }
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextPage();
+                } else {
+                    previousPage();
+                }
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            if (pdfDoc && pageNum && !isUsingFallback && !isUsingImages) {
+                renderPage(pageNum);
+            }
+        });
+
+        document.addEventListener('fullscreenchange', () => {
+            const icon = document.querySelector('.fullscreen-btn i');
+            if (document.fullscreenElement) {
+                icon.className = 'fas fa-compress';
+            } else {
+                icon.className = 'fas fa-expand';
+            }
+            
+            if (!isUsingFallback && !isUsingImages) {
+                setTimeout(() => {
+                    if (pdfDoc && pageNum) {
+                        renderPage(pageNum);
+                    }
+                }, 100);
+            }
+        });
+
+        function convertToEmbedUrl(youtubeUrl) {
+            let videoId = '';
+            
+            if (youtubeUrl.includes('watch?v=')) {
+                videoId = youtubeUrl.split('watch?v=')[1].split('&')[0];
+            } else if (youtubeUrl.includes('youtu.be/')) {
+                videoId = youtubeUrl.split('youtu.be/')[1].split('?')[0];
+            } else if (youtubeUrl.includes('/embed/')) {
+                videoId = youtubeUrl.split('/embed/')[1].split('?')[0];
+            }
+            
+            return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+        }
+
+        function showProductVideo() {
+            const youtubeUrl = 'https://youtu.be/aUz7kMQW_Ks';
+            openVideoPopup(youtubeUrl);
+        }
+
+        function openVideoPopup(youtubeUrl) {
+            const embedUrl = convertToEmbedUrl(youtubeUrl);
+            
+            const popupOverlay = document.createElement('div');
+            popupOverlay.className = 'video-popup-overlay';
+            popupOverlay.id = 'videoPopupOverlay';
+            
+            popupOverlay.innerHTML = `
+                <div class="video-popup-container">
+                    <div class="video-popup-header">
+                        <div class="video-popup-title">
+                            <i class="fab fa-youtube"></i>
+                            <span>Video Sản phẩm DigiFact</span>
+                        </div>
+                        <div class="video-popup-subtitle">Demo nền tảng số hóa sản xuất thông minh</div>
+                        <div class="video-popup-close" onclick="closeVideoPopup()">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="video-popup-content">
+                        <iframe 
+                            src="${embedUrl}"
+                            class="video-popup-iframe"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-popup-footer">
+                        <div class="video-info">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Tích hợp tất cả công cụ quản trí - vận hành doanh nghiệp</span>
+                        </div>
+                        <div class="video-website">
+                            <i class="fas fa-globe"></i>
+                            <span>www.digifact.vn</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(popupOverlay);
+            
+            setTimeout(() => {
+                popupOverlay.classList.add('active');
+            }, 10);
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoPopup() {
+            const popupOverlay = document.getElementById('videoPopupOverlay');
+            if (popupOverlay) {
+                popupOverlay.classList.remove('active');
+                setTimeout(() => {
+                    popupOverlay.remove();
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+
+        document.addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('video-popup-overlay')) {
+                closeVideoPopup();
+            }
+        });
+
+        loadPresentation();
+    </script>
+</body>
+</html>
